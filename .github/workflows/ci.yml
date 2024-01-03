@@ -18,5 +18,5 @@ jobs:
           node-version: 16
       - name: Rush Install
         run: node common/scripts/install-run-rush.js install
-      - name: Rush uld
+      - name: Rush build
         run: node common/scripts/install-run-rush.js build
