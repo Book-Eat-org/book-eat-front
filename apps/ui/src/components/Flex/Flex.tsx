@@ -5,13 +5,8 @@ import {
   space,
   width,
   padding,
-  flex,
-  flexbox,
-  FlexProps,
-  FlexboxProps,
   LayoutProps,
   PaddingProps,
-  grid,
   layout,
 } from "styled-system";
 
@@ -19,17 +14,13 @@ interface IProps {
   gap?: number;
 }
 
-const Flex = styled.div<
-  LayoutProps & PaddingProps & FlexProps & IProps & FlexboxProps
->`
+const Flex = styled.div<LayoutProps & PaddingProps & IProps>`
   ${space}
   ${layout}
   ${fontSize}
   ${color}
+  ${width}
   ${padding}
-  ${flex}
-  ${grid}
-  ${flexbox}
   display:flex;
   gap: ${({ gap }) => (gap ? `${gap * 4}px` : undefined)};
 `;
