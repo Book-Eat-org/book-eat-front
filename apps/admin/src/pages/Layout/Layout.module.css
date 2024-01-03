@@ -1,0 +1,11 @@
+.wrapper {
+  display: grid;
+  grid-template-rows: auto max-content;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.content {
+  overflow: auto;
+  padding: 0 15px 40px;
+}

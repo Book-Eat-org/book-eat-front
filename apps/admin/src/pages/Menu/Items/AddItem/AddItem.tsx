@@ -1,0 +1,119 @@
+import { FC } from "react";
+import { FormProvider, useForm } from "react-hook-form";
+
+import { UIButton } from "@book-eat/ui";
+
+import classes from "./AddItem.module.css";
+import {
+  Additionals,
+  Categories,
+  Ingredients,
+  Description,
+  Discont,
+  Image,
+  Price,
+  Stock,
+  Title,
+  Weight,
+} from "./Fields";
+import { IFormValues } from "./models";
+import {
+  additionsEndpoints,
+  categoriesEndpoints,
+  menuEndpoints,
+  menuSelectors,
+} from "$api";
+import { useSelector } from "react-redux";
+import { IMenu } from "$models";
+import { EntityId } from "@reduxjs/toolkit";
+
+interface IProps {
+  id?: EntityId;
+  onSubmit: () => void;
+  onCancel: () => void;
+}
+
+const AddItem: FC<IProps> = (props) => {
+  const { id, onCancel, onSubmit } = props;
+
+  const item = useSelector((state) => menuSelectors.selectById(state, id));
+  categoriesEndpoints.useFetchCategoriesQuery();
+  additionsEndpoints.useFetchAdditionsQuery();
+
+  const defaultValues: IFormValues = {
+    title: item?.title,
+    price: item?.price,
+    discount: item?.discount,
+    weight: item?.quantity,
+    stock: item?.inStock?.map((stock) => String(stock)) ?? [],
+    categories: item?.group_id ?? [],
+    additionals: item?.additionIds ?? [],
+    description: item?.description,
+    image: item?.previewImage,
+    ingredients: item?.ingredients,
+  };
+
+  const methods = useForm<IFormValues>({
+    defaultValues,
+  });
+
+  const [saveMenu] = menuEndpoints.useSaveMenuMutation();
+
+  const handleSubmit = async (data: IFormValues) => {
+    const payload: IMenu = {
+      title: data.title,
+      price: Number(data.price),
+      description: data.description,
+      ingredients: data.ingredients,
+      enabled: true,
+      measure: "гр",
+      inStock: data.stock.map((item) => Number(item)),
+      discount: Number(data.discount),
+      additionIds: data.additionals,
+      group_id: data.categories,
+      previewImage: data.image,
+      quantity: Number(data.weight),
+      guid: id,
+    };
+
+    await saveMenu([payload]);
+    onSubmit();
+  };
+
+  return (
+    <FormProvider {...methods}>
+      <div className={classes.wrapper}>
+        <div className={classes.topWrapper}>
+          <Image />
+          <div className={classes.topInputsWrapper}>
+            <Title />
+            <Categories />
+            <div className={classes.topAdditionalInputsWrapper}>
+              <Weight />
+              <Price />
+              <Discont />
+            </div>
+          </div>
+        </div>
+        <div className={classes.outlineSelects}>
+          <Ingredients />
+          <Description />
+        </div>
+        <div className={classes.multipleSelects}>
+          <Additionals />
+          <Stock />
+        </div>
+        <div className={classes.footer}>
+          <UIButton variant="secondary" onClick={onCancel}>
+            Отменить
+          </UIButton>
+          <UIButton onClick={methods.handleSubmit(handleSubmit)}>
+            Сохранить изменения
+          </UIButton>
+        </div>
+      </div>
+    </FormProvider>
+  );
+};
+
+export default AddItem;

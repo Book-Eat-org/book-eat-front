@@ -1,0 +1,23 @@
+import { ComponentProps, FC } from "react";
+
+interface IProps extends ComponentProps<"svg"> {}
+
+export const BrowsIcon: FC<IProps> = (props) => {
+  return (
+    <svg
+      width="12"
+      height="12"
+      viewBox="0 0 12 12"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M1.2 12L0 10.8L4.8 6L0 1.2L1.2 0L6 4.8L10.8 0L12 1.2L7.2 6L12 10.8L10.8 12L6 7.2L1.2 12Z"
+        fill="#282828"
+      />
+    </svg>
+  );
+};
+
+export default BrowsIcon;

@@ -1,0 +1,38 @@
+.wrapper {
+  width: fit-content;
+  height: fit-content;
+  text-align: center;
+}
+
+.inputWrapper {
+  border: 2px solid #ffffff;
+  border-radius: 20px;
+  width: 80px;
+  height: 80px;
+  background-color: #ebebeb;
+}
+
+.error {
+  border-color: #B60000;
+}
+
+.label {
+  font-size: initial;
+  font-weight: initial;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+.imageInput {
+  display: none;
+}
+
+.addWrapper {
+  color: #2c2c2c;
+  padding: 0 8px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 9px;
+}

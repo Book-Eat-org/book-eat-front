@@ -1,0 +1,14 @@
+.title {
+  font-size: 14px;
+  line-height: 19px;
+  color: #2c2c2c;
+
+  opacity: 0.5;
+}
+
+.dash {
+  width: 10px;
+  height: 1px;
+  background: #222222;
+  opacity: 0.5;
+}

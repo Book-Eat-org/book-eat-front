@@ -1,0 +1,16 @@
+.wrapper {
+  display: grid;
+  gap: 30px;
+}
+
+.list > div {
+  border-top: 1px solid #d9d9d9;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: #2c2c2c;
+  opacity: 0.5;
+}

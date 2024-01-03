@@ -1,0 +1,25 @@
+.list {
+  grid-template-columns: repeat(1, 12fr);
+  gap: 20px;
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .list {
+    grid-template-columns: repeat(2, 6fr);
+    gap: 28px;
+  }
+}
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .list {
+    grid-template-columns: repeat(3, 4fr);
+    gap: 32px;
+  }
+}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .list {
+    grid-template-columns: repeat(4, 3fr);
+    gap: 36px;
+  }
+}

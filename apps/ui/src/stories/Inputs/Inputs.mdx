@@ -1,0 +1,31 @@
+import { Meta, Canvas } from "@storybook/blocks";
+import { NumberInput } from "./NumberInput.stories";
+import { Input } from "./Input.stories";
+import { PhoneInput } from "./PhoneInput.stories";
+import { TimeInputStory } from "./TimeInput.stories";
+
+<Meta title="Components/Inputs" />
+
+# Inputs
+
+Поля ввода - элемент, с помощью которого можно организовывать ввод с устройства
+
+## Текстовые поля ввода
+
+Существует 2 варианта кнопок - `primary` и `secondary`
+
+<Canvas of={Input} />
+
+## Числовые поля ввода
+
+<Canvas of={NumberInput} />
+
+## Поля ввода телефона
+
+<Canvas of={PhoneInput} />
+
+## Маски
+
+<Canvas of={NumberInput} />
+
+<Canvas of={TimeInputStory} />

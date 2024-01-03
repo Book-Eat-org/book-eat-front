@@ -1,0 +1,202 @@
+// DO NOT ADD COMMENTS IN THIS FILE.  They will be lost when the Rush tool resaves it.
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/approved-packages.schema.json",
+  "packages": [
+    {
+      "name": "@book-eat/ui",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@emotion/react",
+      "allowedCategories": [ "tools" ]
+    },
+    {
+      "name": "@emotion/styled",
+      "allowedCategories": [ "tools" ]
+    },
+    {
+      "name": "@pbe/react-yandex-maps",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "@reduxjs/toolkit",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@storybook/addon-essentials",
+      "allowedCategories": [ "tools" ]
+    },
+    {
+      "name": "@storybook/addon-interactions",
+      "allowedCategories": [ "tools" ]
+    },
+    {
+      "name": "@storybook/addon-links",
+      "allowedCategories": [ "tools" ]
+    },
+    {
+      "name": "@storybook/addon-onboarding",
+      "allowedCategories": [ "tools" ]
+    },
+    {
+      "name": "@storybook/blocks",
+      "allowedCategories": [ "tools" ]
+    },
+    {
+      "name": "@storybook/react",
+      "allowedCategories": [ "tools" ]
+    },
+    {
+      "name": "@storybook/react-vite",
+      "allowedCategories": [ "tools" ]
+    },
+    {
+      "name": "@storybook/testing-library",
+      "allowedCategories": [ "tools" ]
+    },
+    {
+      "name": "@types/ramda",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "@types/react",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "@types/react-dom",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "@types/react-input-mask",
+      "allowedCategories": [ "tools" ]
+    },
+    {
+      "name": "@types/styled-system",
+      "allowedCategories": [ "tools" ]
+    },
+    {
+      "name": "@types/uuid",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "@types/yandex-maps",
+      "allowedCategories": [ "tools" ]
+    },
+    {
+      "name": "@typescript-eslint/eslint-plugin",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "@typescript-eslint/parser",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "@vitejs/plugin-react",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "classnames",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "cropperjs",
+      "allowedCategories": [ "tools" ]
+    },
+    {
+      "name": "eslint",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "eslint-plugin-react-hooks",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "eslint-plugin-react-refresh",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "eslint-plugin-storybook",
+      "allowedCategories": [ "tools" ]
+    },
+    {
+      "name": "imask",
+      "allowedCategories": [ "tools" ]
+    },
+    {
+      "name": "moment",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "prettier",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "ramda",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "react",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "react-cropper",
+      "allowedCategories": [ "tools" ]
+    },
+    {
+      "name": "react-dom",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "react-hook-form",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "react-imask",
+      "allowedCategories": [ "tools" ]
+    },
+    {
+      "name": "react-input-mask",
+      "allowedCategories": [ "tools" ]
+    },
+    {
+      "name": "react-redux",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "react-router-dom",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "storybook",
+      "allowedCategories": [ "tools" ]
+    },
+    {
+      "name": "styled-system",
+      "allowedCategories": [ "tools" ]
+    },
+    {
+      "name": "typescript",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "uuid",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "vite",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "vite-plugin-dts",
+      "allowedCategories": [ "tools" ]
+    },
+    {
+      "name": "yandex-maps",
+      "allowedCategories": [ "tools" ]
+    },
+    {
+      "name": "ymaps",
+      "allowedCategories": [ "tools" ]
+    }
+  ]
+}

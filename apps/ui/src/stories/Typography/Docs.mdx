@@ -1,0 +1,23 @@
+import { Meta,Canvas,Source  } from "@storybook/blocks";
+import {UIButton} from "$components";
+import {Variants} from "./Test.stories.tsx";
+import {Weights} from "./Weights.stories.tsx";
+
+<Meta title="Components/Typography" />
+
+# Typography
+
+Типографика — это система размеров и насыщенности шрифтов, которая используется для организации контента.
+
+
+## Размеры
+
+Вся сетка размеров представлена ниже
+
+<Canvas of={Variants}/>
+
+## Начертание
+
+Есть 3 варианта начертания: `regular`, `semibold`, `bold`
+
+<Canvas of={Weights}/>

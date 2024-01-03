@@ -1,0 +1,47 @@
+.wrapper {
+  display: grid;
+  gap: 5px;
+}
+
+.label {
+  font-size: initial;
+  font-weight: initial;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+.image {
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 2px solid #ffffff;
+  border-radius: 20px;
+}
+
+.imageInput {
+  display: none;
+}
+
+.description {
+  font-size: 10px;
+  line-height: 12px;
+  text-align: center;
+
+  color: #8a8a8a;
+}
+
+.addWrapper {
+  position: absolute;
+  font-size: 14px;
+  line-height: 17px;
+  color: #2c2c2c;
+  padding: 4px 8px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 9px;
+}
+
+.error {
+  border-color: red;
+}

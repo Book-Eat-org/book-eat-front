@@ -1,0 +1,31 @@
+.wrapper {
+  display: grid;
+  gap: 5px;
+}
+
+.label {
+  font-size: initial;
+  font-weight: initial;
+  display: block;
+  margin-bottom: 0;
+}
+
+.image {
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 2px solid #ffffff;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.imageInput {
+  display: none;
+}
+
+.description {
+  font-size: 10px;
+  line-height: 12px;
+  text-align: center;
+
+  color: #8a8a8a;
+}

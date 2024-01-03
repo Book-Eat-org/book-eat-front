@@ -1,0 +1,73 @@
+.wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0 154px;
+  gap: 15px;
+  z-index: 1;
+  overflow-y: auto;
+}
+
+.title {
+  text-align: center;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 31px;
+  color: #2c2c2c;
+}
+
+.place {
+  text-align: center;
+}
+
+.dateInHours {
+  text-align: center;
+}
+
+.title {
+  text-align: center;
+}
+
+.clientInfoTitle {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: #2c2c2c;
+  opacity: 0.5;
+}
+
+.clientName {
+  font-style: italic;
+  font-size: 14px;
+  line-height: 17px;
+  color: #2c2c2c;
+}
+
+.clientPhone {
+  font-style: italic;
+  font-size: 14px;
+  line-height: 17px;
+  color: #0113af;
+}
+
+.bankStatus {
+  font-size: 14px;
+  line-height: 17px;
+  color: #2c2c2c;
+  opacity: 0.5;
+}
+
+.deliveryAddress {
+  font-size: 14px;
+  line-height: 17px;
+  color: #2c2c2c;
+}
+
+.clientGrid > div:nth-child(n):not(:last-child) {
+  border-bottom: 1px solid #d9d9d9;
+}

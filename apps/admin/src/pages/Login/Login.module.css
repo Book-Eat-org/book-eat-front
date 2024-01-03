@@ -1,0 +1,25 @@
+.wrapper {
+  padding: 144px 15px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 31px;
+
+  color: #2c2c2c;
+}
+
+.subtitle {
+  font-size: 12px;
+  line-height: 20px;
+  color: #8a8a8a;
+}
+
+.submitBtn {
+  font-size: 12px;
+  line-height: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #282828;
+}

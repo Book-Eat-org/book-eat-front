@@ -1,0 +1,18 @@
+import { Meta,Canvas } from "@storybook/blocks";
+import {UIButton} from "$components";
+import * as TestStories from "./Variants.stories.tsx";
+
+<Meta title="Components/Button" />
+
+# Button
+
+Кнопка — интерактивный элемент, на который можно нажать, который подразумевает какое-то действие.
+Вы можете разместить текст и значки внутри кнопки.
+Кнопки часто используются для отправки форм и для переключения элементов в режим просмотра.
+
+
+## Варианты
+
+Существует 2 варианта кнопок - `primary` и `secondary`
+
+<Canvas of={TestStories.Variants}/>

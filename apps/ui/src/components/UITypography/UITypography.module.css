@@ -1,0 +1,58 @@
+.displayXl {
+  font-size: 26px;
+  line-height: 26px;
+}
+
+.textXl {
+  font-size: 20px;
+  line-height: 20px;
+}
+
+.textMd {
+  font-size: 14px;
+  line-height: 14px;
+}
+
+.textXs {
+  font-size: 12px;
+  line-height: 12px;
+}
+
+.captionMd {
+  font-size: 11px;
+  line-height: 11px;
+}
+
+.captionXs {
+  font-size: 10px;
+  line-height: 12px;
+}
+
+.semibold {
+  font-weight: 600;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.gray {
+  color: #2c2c2c;
+  opacity: 0.5;
+}
+
+.blue {
+  color: #0113af;
+}
+
+.red {
+  color: #da3400;
+}
