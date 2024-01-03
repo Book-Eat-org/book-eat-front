@@ -134,7 +134,14 @@
        */
       "disableBuildCache": false
     },
-
+    {
+      "name": "build",
+      "commandKind": "bulk",
+      "summary": "Build all projects that haven't been built, or have changed since they were last built",
+      "incremental": true,
+      "enableParallelism": true,
+      "allowWarningsInSuccessfulBuild": true
+    },
     {
       /**
        * (Required) Determines the type of custom command.
