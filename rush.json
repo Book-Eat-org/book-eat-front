@@ -159,29 +159,6 @@
    */
   "gitPolicy": {
     /**
-     * Work at a big company?  Tired of finding Git commits at work with unprofessional Git
-     * emails such as "beer-lover@my-college.edu"?  Rush can validate people's Git email address
-     * before they get started.
-     *
-     * Define a list of regular expressions describing allowable e-mail patterns for Git commits.
-     * They are case-insensitive anchored JavaScript RegExps.  Example: ".*@example\.com"
-     *
-     * IMPORTANT: Because these are regular expressions encoded as JSON string literals,
-     * RegExp escapes need two backslashes, and ordinary periods should be "\\.".
-     */
-    "allowedEmailRegExps": [
-      "[^@]+@users\\.noreply\\.github\\.com",
-      "rush-bot@example\\.org"
-    ],
-
-    /**
-     * When Rush reports that the address is malformed, the notice can include an example
-     * of a recommended email.  Make sure it conforms to one of the allowedEmailRegExps
-     * expressions.
-     */
-    "sampleEmail": "example@users.noreply.github.com",
-
-    /**
      * The commit message to use when committing changes during 'rush publish'.
      *
      * For example, if you want to prevent these commits from triggering a CI build,

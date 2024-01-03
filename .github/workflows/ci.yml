@@ -20,3 +20,19 @@ jobs:
         run: node common/scripts/install-run-rush.js install
       - name: Rush build
         run: node common/scripts/install-run-rush.js build
+      - name: Deploy Admin
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.1
+        with:
+          username: root
+          server: ovz2.1usefulservice.meo8n.vps.myjino.ru
+          port: 49374 # default is 22
+          ssh_private_key: ${{ secrets.SSH_IFT_KEY }}
+
+
+          # will put all file under this path
+          local_path: ./apps/admin/dist/*
+          # files will copy to under remote_path
+          remote_path: /home/book-eat-pl/admin
+
+          # sftp args
+          args: '-o ConnectTimeout=5'
