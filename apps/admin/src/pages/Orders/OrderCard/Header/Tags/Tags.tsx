@@ -3,8 +3,7 @@ import { UIGrid, UITypography } from "@book-eat/ui";
 import { useOrder } from "../../../hooks";
 import { ORDERS_ISSUING_MODE_CONFIG } from "$constants";
 import classes from "./Tags.module.css";
-
-import moment from "moment";
+import dayjs from "dayjs";
 
 export interface IProps {
   id: number;
@@ -21,7 +20,7 @@ const Tags: FC<IProps> = (props) => {
 
   const { orderType, readyTime } = item;
 
-  const timeToTake = moment(readyTime).format("hh:mm");
+  const timeToTake = dayjs(readyTime).format("HH:MM");
 
   const tagsConfig = [
     {

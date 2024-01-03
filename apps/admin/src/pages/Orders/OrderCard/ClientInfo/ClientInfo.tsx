@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { UIGrid, UITypography } from "@book-eat/ui";
+import { LONG_DASH, UIGrid, UITypography } from "@book-eat/ui";
 import { useOrder } from "../../hooks";
 import Row from "./Row";
 
@@ -51,7 +51,7 @@ const ClientInfo: FC<IProps> = (props) => {
           </Row>
         )}
         <Row title="Количество персон">{persons}</Row>
-        <Row title="Комментарий">{comment}</Row>
+        <Row title="Комментарий">{comment || LONG_DASH}</Row>
         <Row title="Статус банка">
           <UITypography variant="textMd" color="gray">
             {bankOrderStatus?.description}

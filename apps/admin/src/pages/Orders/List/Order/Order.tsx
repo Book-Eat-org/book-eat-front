@@ -1,14 +1,14 @@
 import classNames from "classnames";
-import moment from "moment";
 import { isNil } from "ramda";
 import { FC, useCallback } from "react";
 
-import { UIGrid, UITypography } from "@book-eat/ui";
+import { UIGrid, UITypography, LONG_DASH } from "@book-eat/ui";
 import { ORDERS_ISSUING_MODE_CONFIG } from "$constants";
 
 import { useOrder, useOrdersContext } from "../../hooks";
 import classes from "./Order.module.css";
 import { EntityId } from "@reduxjs/toolkit";
+import dayjs from "dayjs";
 
 interface IProps {
   id: EntityId;
@@ -28,21 +28,26 @@ const Order: FC<IProps> = (props) => {
 
   const { price, name, phone, readyTime, orderType } = item;
 
-  const now = moment(new Date());
-  const end = moment(readyTime);
-  const duration = moment.duration(now.diff(end));
-  const days = duration.asDays().toFixed();
-  const hours = duration.asDays().toFixed();
-  const minutes = (duration.asMinutes() % 60).toFixed();
+  const currentDate = dayjs();
+  const readyTimeDate = dayjs(readyTime);
+
+  const isExpired = currentDate.isAfter(readyTimeDate);
+
+  const timesLeftInMinutes = isExpired
+    ? currentDate.diff(readyTimeDate, "minute")
+    : readyTimeDate.diff(currentDate, "minute");
+
+  const timesLeftInHours = timesLeftInMinutes / 60;
+  const timesLeftInDays = timesLeftInHours / 24;
+
+  const danger = isExpired || timesLeftInMinutes < 15;
 
   const timeFrom =
-    Number(days) > 0
-      ? `${days} д.`
-      : hours
-      ? `${hours}ч${minutes}м`
-      : `ч${minutes}м`;
-
-  const danger = duration.asMinutes() > 15;
+    Math.floor(timesLeftInDays) > 0
+      ? `${Math.floor(timesLeftInDays)} д.`
+      : Math.floor(timesLeftInHours) > 0
+      ? `${Math.floor(timesLeftInHours)}ч${timesLeftInMinutes}м`
+      : `${timesLeftInMinutes}м`;
 
   const wrapperClasses = classNames(classes.wrapper, {
     [classes.warningShadow]: !danger,
@@ -63,7 +68,7 @@ const Order: FC<IProps> = (props) => {
           color={danger ? "red" : undefined}
           className={classes.alignRight}
         >
-          {timeFrom}
+          {isExpired ? "Просрочено на" : "Осталось"} {timeFrom}
         </UITypography>
       </UIGrid>
       <div className={classes.separator} />
@@ -75,7 +80,7 @@ const Order: FC<IProps> = (props) => {
           weight="semibold"
           className={classes.alignRight}
         >
-          {price}₽
+          {price ?? LONG_DASH} ₽
         </UITypography>
       </UIGrid>
     </UIGrid>

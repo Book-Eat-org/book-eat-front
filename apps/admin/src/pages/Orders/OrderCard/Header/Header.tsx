@@ -1,11 +1,9 @@
 import { FC } from "react";
 import { UIGrid, UITypography } from "@book-eat/ui";
 import { useOrder } from "../../hooks";
-import moment from "moment";
 import classes from "./Header.module.css";
 import Tags from "./Tags";
-
-moment.locale("ru");
+import dayjs from "dayjs";
 
 export interface IProps {
   id: number;
@@ -22,8 +20,7 @@ const Header: FC<IProps> = (props) => {
 
   const { place, creationDate } = item;
 
-  const dateInHHMM = moment(creationDate).format("hh:mm");
-  const dateInDays = moment(creationDate).format("L");
+  const dateInHHMM = dayjs(creationDate).format("HH:MM DD.MM.YYYY");
 
   return (
     <UIGrid gap="30px">
@@ -39,7 +36,7 @@ const Header: FC<IProps> = (props) => {
           {place?.title}
         </UITypography>
         <UITypography variant="textMd" className={classes.centered}>
-          {dateInHHMM} {dateInDays}
+          {dateInHHMM}
         </UITypography>
       </UIGrid>
       <Tags id={id} />

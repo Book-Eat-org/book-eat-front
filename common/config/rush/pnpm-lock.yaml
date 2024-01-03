@@ -48,6 +48,7 @@ specifiers:
   uuid: ~9.0.1
   vite: ^4.4.5
   vite-plugin-dts: ~3.6.3
+  yandex-maps: ~0.0.1
   ymaps: ~0.2.1
 
 dependencies:
@@ -98,6 +99,7 @@ dependencies:
   uuid: 9.0.1
   vite: 4.4.5
   vite-plugin-dts: 3.6.3_6ttq55wyqenbsokpszm7caowaq
+  yandex-maps: 0.0.1
   ymaps: 0.2.1
 
 packages:
@@ -5337,6 +5339,10 @@ packages:
     resolution: {integrity: sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==}
     dev: false
 
+  /dayjs/1.11.10:
+    resolution: {integrity: sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==}
+    dev: false
+
   /de-indent/1.0.2:
     resolution: {integrity: sha512-e/1zu3xH5MQryN2zdVaF0OrdNLUbvWxzMbi+iNA6Bky7l1RoP8a2fIbRocyHclXt/arDrrR6lL3TqFD9pMQTsg==}
     dev: false
@@ -9364,7 +9370,7 @@ packages:
     dev: false
 
   file:projects/admin.tgz:
-    resolution: {integrity: sha512-5ITEAPe48CGMTguJuJSsYiVy4tWIzUlshLa0ZOOtGz1HrQYEE1k8tC+jGFifxFZYei2D2rA7CxMn3XJYFUx4aQ==, tarball: file:projects/admin.tgz}
+    resolution: {integrity: sha512-izUbAtQESAOFKQ/G+l615jN+Lp1EJhxSJZ2hMYYTME5POt5ai8kufatt3XMq1fx5+jrPc0JCmDjDe0uAj+5Y2g==, tarball: file:projects/admin.tgz}
     name: '@rush-temp/admin'
     version: 0.0.0
     dependencies:
@@ -9378,6 +9384,7 @@ packages:
       '@typescript-eslint/parser': 6.0.0_xaiy4vqh4w4prx7ej54h3ywmza
       '@vitejs/plugin-react': 4.0.3_vite@4.4.5
       classnames: 2.3.2
+      dayjs: 1.11.10
       eslint: 8.45.0
       eslint-plugin-react-hooks: 4.6.0_eslint@8.45.0
       eslint-plugin-react-refresh: 0.4.3_eslint@8.45.0
@@ -9515,4 +9522,5 @@ time:
   /uuid/9.0.1: '2023-09-12T08:56:35.205Z'
   /vite-plugin-dts/3.6.3: '2023-10-30T07:43:47.129Z'
   /vite/4.4.5: '2023-07-20T14:30:40.377Z'
+  /yandex-maps/0.0.1: '2023-03-14T09:09:17.419Z'
   /ymaps/0.2.1: '2019-06-20T14:15:10.628Z'
