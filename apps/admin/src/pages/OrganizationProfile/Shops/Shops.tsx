@@ -31,11 +31,10 @@ const Shops: FC = () => {
         </Page.Header>
       }
     >
-      {!addNewVisible && (
-        <UIGrid className={classes.list}>
-          {data?.ids.map((id) => <Item key={id} id={id} />)}
-        </UIGrid>
-      )}
+      <UIGrid className={classes.list}>
+        {data?.ids.map((id) => <Item key={id} id={id} />)}
+      </UIGrid>
+
       {addNewVisible && (
         <AddItem onSubmit={toggleAddVisible} onCancel={toggleAddVisible} />
       )}

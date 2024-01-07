@@ -2,10 +2,12 @@ import { not, prop, propEq, sortBy } from "ramda";
 import { FC, MouseEvent, useState } from "react";
 
 import {
+  Box,
+  EyeIcon,
+  Flex,
   Grid,
   PlaceholderImage,
   TrashIcon,
-  UIGrid,
   UITypography,
 } from "@book-eat/ui";
 
@@ -24,6 +26,7 @@ const Item: FC<IProps> = (props) => {
   const { id } = props;
   const [fetchDeletePlace] =
     placesEndpoints.endpoints.deletePlace.useMutation();
+  const [fetchEditPlace] = placesEndpoints.endpoints.savePlace.useMutation();
 
   const item = useSelector((state) => placesSelectors.selectById(state, id));
 
@@ -33,7 +36,7 @@ const Item: FC<IProps> = (props) => {
 
   const toggleEditing = () => setEditing(not);
 
-  const { photo, title, address, phone, workingTime, placeId } = item;
+  const { photo, title, address, phone, enabled, workingTime, placeId } = item;
 
   const sortedWorkingTime = sortBy(prop("dayOfWeek"), workingTime);
   console.log(sortedWorkingTime);
@@ -56,47 +59,58 @@ const Item: FC<IProps> = (props) => {
     event.stopPropagation();
   };
 
+  const handleHide = (event: MouseEvent<HTMLDivElement>) => {
+    fetchEditPlace({ ...item, enabled: !item.enabled });
+
+    event.stopPropagation();
+  };
+
   return (
-    <div className={classes.wrapper} onClick={toggleEditing}>
+    <Box
+      backgroundColor="white"
+      borderRadius={20}
+      boxShadow="0px 4px 4px rgba(0, 0, 0, 0.1)"
+      opacity={enabled ? 1 : 0.5}
+      onClick={toggleEditing}
+    >
       <div className={classes.deleteIcon} onClick={handleDelete}>
         <TrashIcon />
       </div>
+      <div className={classes.hideIcon} onClick={handleHide}>
+        <EyeIcon />
+      </div>
       <img className={classes.image} src={photo || PlaceholderImage} alt="" />
-      <UIGrid padding="5px 10px 15px" gap="12px">
-        <UIGrid gap="10px">
+      <Grid padding="5px 10px 15px" gap={2}>
+        <Grid gap={2}>
           <UITypography variant="textXl" className={classes.title}>
             {title}
           </UITypography>
           <UITypography variant="textXs">{address}</UITypography>
-        </UIGrid>
-        <UIGrid gap="10px">
-          <UIGrid colSizes="max-content auto" gap="10px">
+        </Grid>
+        <Grid gap={2}>
+          <Flex gap={2}>
             <UITypography variant="textXs">Телефон:</UITypography>
             <UITypography variant="textXs" className={classes.phone}>
               {phone}
             </UITypography>
-          </UIGrid>
-          <UIGrid gap="5px">
+          </Flex>
+          <Grid gap={1}>
             {sortedWorkingTime?.map(
               ({ dayOfWeek, workingTimeFrom, workingTimeTo }) => (
-                <Grid
-                  gridTemplateColumns="max-content auto"
-                  gap={2}
-                  key={dayOfWeek}
-                >
+                <Flex gap={2} key={dayOfWeek}>
                   <UITypography variant="textXs">
                     {WORK_TIME.find(propEq(dayOfWeek, "id"))?.name}:
                   </UITypography>
                   <UITypography variant="textXs">
                     {workingTimeFrom} - {workingTimeTo}
                   </UITypography>
-                </Grid>
+                </Flex>
               ),
             )}
-          </UIGrid>
-        </UIGrid>
-      </UIGrid>
-    </div>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Box>
   );
 };
 

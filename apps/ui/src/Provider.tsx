@@ -27,6 +27,7 @@ const styles = css`
   }
   a {
     text-decoration: none;
+    color: inherit;
   }
 
   body {
@@ -37,6 +38,15 @@ const styles = css`
   }
   #root {
     height: 100%;
+    --color-primary: #bae48f;
+    --color-primary-light: #dbf5c0;
+    --color-primary-dark: #87b15c;
+    --color-black: #282828;
+    --color-white: #ffffff;
+    --color-gray: #d9d9d9;
+    --color-gray-light: #ebebeb;
+    --color-red: #b60000;
+    --color-blue: #0113af;
   }
 `;
 

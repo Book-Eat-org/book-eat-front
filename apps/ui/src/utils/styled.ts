@@ -11,6 +11,7 @@ import {
   padding,
   space,
   width,
+  boxShadow,
 } from "styled-system";
 
 export const styledCommonFn = compose(
@@ -25,4 +26,5 @@ export const styledCommonFn = compose(
   opacity,
   borders,
   borderRadius,
+  boxShadow,
 );

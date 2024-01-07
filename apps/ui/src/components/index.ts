@@ -20,8 +20,10 @@ import Autocomplete from "./Autocomplete";
 import TimeInput from "./TimeInput";
 import ListNavigation from "./ListNavigation";
 import Page from "./Page";
+import Button from "./Button";
 
 export {
+  Button,
   UICheckbox,
   UIInput,
   UIButton,

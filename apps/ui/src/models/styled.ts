@@ -3,6 +3,7 @@ import {
   BackgroundProps,
   BorderProps,
   BorderRadiusProps,
+  BoxShadowProps,
   LayoutProps,
   MarginProps,
   OpacityProps,
@@ -18,4 +19,5 @@ export type TStyledCommonProps = LayoutProps &
   OpacityProps &
   BorderRadiusProps &
   BorderProps &
+  BoxShadowProps &
   BackgroundProps;

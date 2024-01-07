@@ -6,7 +6,6 @@ import { ordersAdapter } from "./adapter";
 
 export interface IGetOrderParams {
   orgId: EntityId;
-  rows: number;
 }
 
 interface IUpdateOrderRequestPayload {
@@ -17,10 +16,10 @@ export const ordersEndpoints = api.injectEndpoints({
   endpoints: (build) => ({
     getOrders: build.query<EntityState<IOrder>, IGetOrderParams>({
       providesTags: [ApiTags.Orders],
-      query: ({ orgId, rows }) => {
+      query: ({ orgId }) => {
         return {
           url: `/v1/orders-by-organization-title-or-id/${orgId}`,
-          params: { rows, archived_option: true },
+          params: { archived_option: true },
         };
       },
       transformResponse: (res: IOrder[]) =>

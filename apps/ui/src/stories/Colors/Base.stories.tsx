@@ -1,4 +1,4 @@
-import { Box, Grid } from "$components";
+import { Flex, Grid } from "$components";
 import { Meta, StoryObj } from "@storybook/react";
 import { theme } from "$constants";
 
@@ -8,21 +8,27 @@ export const Base = () => {
   return (
     <Grid gap={3}>
       {colorsConfig.map((color) => (
-        <Box bg={color} height={100} width={100}>
+        <Flex
+          bg={color}
+          p={3}
+          justifyContent="center"
+          alignItems="center"
+          borderRadius={5}
+        >
           {color}
-        </Box>
+        </Flex>
       ))}
     </Grid>
   );
 };
 
-type Story = StoryObj<typeof Box>;
+type Story = StoryObj<typeof Flex>;
 
 export const Variants: Story = {
   render: Base,
 };
 
-const meta: Meta<typeof Box> = {
-  component: Box,
+const meta: Meta<typeof Flex> = {
+  component: Flex,
 };
 export default meta;
