@@ -1,10 +1,10 @@
 import { not } from "ramda";
 import { FC, useCallback, useState } from "react";
 
-import Header from "../../Header";
+import Header, { AddButton } from "../../Header";
 import AddItem from "./AddItem";
 import Item from "./Item";
-import { UIGrid } from "@book-eat/ui";
+import { Page, UIGrid } from "@book-eat/ui";
 import classes from "./Shops.module.css";
 import { placesEndpoints } from "$api";
 import { PAGE_URLS } from "$constants";
@@ -22,12 +22,15 @@ const Shops: FC = () => {
   const toggleAddVisible = () => setAddNewVisible(not);
 
   return (
-    <UIGrid gap="60px">
-      <Header
-        title="Мои заведения"
-        onAddClick={toggleAddVisible}
-        onBackClick={onBackClick}
-      />
+    <Page
+      header={
+        <Page.Header>
+          <Page.Title right={<AddButton onClick={toggleAddVisible} />}>
+            Мои заведения
+          </Page.Title>
+        </Page.Header>
+      }
+    >
       {!addNewVisible && (
         <UIGrid className={classes.list}>
           {data?.ids.map((id) => <Item key={id} id={id} />)}
@@ -36,7 +39,7 @@ const Shops: FC = () => {
       {addNewVisible && (
         <AddItem onSubmit={toggleAddVisible} onCancel={toggleAddVisible} />
       )}
-    </UIGrid>
+    </Page>
   );
 };
 

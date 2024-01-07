@@ -1,11 +1,11 @@
-import { F, isNil, pipe, prop, sortBy, T, values } from "ramda";
+import { F, isNil, pipe, sortBy, T } from "ramda";
 import { useCallback, useState } from "react";
 
-import Header from "../../Header";
+import { AddButton } from "../../Header";
 import AddItem from "./AddItem";
 import Item from "./Item";
 import { useNavigate } from "react-router-dom";
-import { UIGrid } from "@book-eat/ui";
+import { Grid, Page } from "@book-eat/ui";
 import { additionsEndpoints, additionsSelectors } from "$api";
 import { PAGE_URLS } from "$constants";
 import { useSelector } from "react-redux";
@@ -30,19 +30,22 @@ const Additions = () => {
   const sortedList = sortBy((item) => item?.title ?? "", data);
 
   return (
-    <UIGrid gap="60px">
-      <Header
-        title="Добавки"
-        onAddClick={openAddItem}
-        onBackClick={onBackClick}
-      />
-      <UIGrid>
+    <Page
+      header={
+        <Page.Header>
+          <Page.Title right={<AddButton onClick={openAddItem} />}>
+            Добавки
+          </Page.Title>
+        </Page.Header>
+      }
+    >
+      <Grid>
         {addItemOpened && <AddItem onCancel={closeAddItem} />}
         {sortedList.map(({ id }) => (
           <Item id={id} key={id} />
         ))}
-      </UIGrid>
-    </UIGrid>
+      </Grid>
+    </Page>
   );
 };
 

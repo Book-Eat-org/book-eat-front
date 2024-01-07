@@ -2,14 +2,15 @@ import { F, pipe, T } from "ramda";
 import { sortBy } from "ramda";
 import { useCallback, useState } from "react";
 
-import Header from "../../Header";
+import Header, { AddButton } from "../../Header";
 import AddItem from "./AddItem";
 import Item from "./Item";
-import { UIGrid } from "@book-eat/ui";
+import { Grid, Page, UIGrid } from "@book-eat/ui";
 import { categoriesEndpoints, categoriesSelectors } from "$api";
 import { useNavigate } from "react-router-dom";
 import { PAGE_URLS } from "$constants";
 import { useSelector } from "react-redux";
+import Points from "../Items/Points";
 
 const Groups = () => {
   const [addItemOpened, setAddItemOpened] = useState(false);
@@ -32,19 +33,22 @@ const Groups = () => {
   const openAddItem = pipe(T, setAddItemOpened);
 
   return (
-    <UIGrid gap="60px">
-      <Header
-        title="Категории"
-        onAddClick={openAddItem}
-        onBackClick={onBackClick}
-      />
-      <UIGrid gap="20px">
+    <Page
+      header={
+        <Page.Header>
+          <Page.Title right={<AddButton onClick={openAddItem} />}>
+            Категории
+          </Page.Title>
+        </Page.Header>
+      }
+    >
+      <Grid gap={4}>
         {addItemOpened && <AddItem onCancel={closeAddItem} />}
         {sotredList.map(({ grouppingsId }) => (
           <Item id={grouppingsId} key={grouppingsId} />
         ))}
-      </UIGrid>
-    </UIGrid>
+      </Grid>
+    </Page>
   );
 };
 

@@ -1,10 +1,10 @@
 import { not } from "ramda";
 import { FC, useCallback, useState } from "react";
 
-import Header from "../../Header";
+import Header, { AddButton } from "../../Header";
 import AddItem from "./AddItem";
 import Points from "./Points";
-import { UIGrid } from "@book-eat/ui";
+import { Page, UIGrid } from "@book-eat/ui";
 import { useSelector } from "react-redux";
 import { menuEndpoints, menuSelectors, placesEndpoints } from "$api";
 import { useNavigate } from "react-router-dom";
@@ -30,18 +30,21 @@ const Items: FC = () => {
   }
 
   return (
-    <UIGrid>
-      <Header
-        title="Меню"
-        onAddClick={toggleAddVisible}
-        burgerMenu={<Points points={points} setPoints={setPoints} />}
-        onBackClick={onBackClick}
-      />
+    <Page
+      header={
+        <Page.Header>
+          <Page.Title right={<AddButton onClick={toggleAddVisible} />}>
+            Меню
+          </Page.Title>
+          <Points points={points} setPoints={setPoints} />
+        </Page.Header>
+      }
+    >
       {addVisible && (
         <AddItem onCancel={toggleAddVisible} onSubmit={toggleAddVisible} />
       )}
       <List placesIds={points} />
-    </UIGrid>
+    </Page>
   );
 };
 
