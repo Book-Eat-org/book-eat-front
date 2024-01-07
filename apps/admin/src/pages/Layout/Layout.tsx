@@ -8,7 +8,7 @@ import { Flex } from "@book-eat/ui";
 
 const Layout: FC = () => {
   return (
-    <Flex flexDirection="column" height="100vh">
+    <Flex flexDirection="column" height="100%">
       <div className={classes.content}>
         <Outlet />
       </div>

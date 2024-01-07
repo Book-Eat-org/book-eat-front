@@ -9,7 +9,9 @@ const Title: FC<IProps> = (props) => {
   const { children, right } = props;
   return (
     <Grid gridTemplateColumns="1fr min-content" gap={2}>
-      <UITypography variant="displayXl">{children}</UITypography>
+      <UITypography variant="displayXl" weight="bold">
+        {children}
+      </UITypography>
       {right}
     </Grid>
   );
