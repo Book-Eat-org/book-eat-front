@@ -32,7 +32,11 @@ const styles = css`
   body {
     padding: 0;
     margin: 0;
+    height: 100dvh;
     font-family: Inter, sans-serif;
+  }
+  #root {
+    height: 100%;
   }
 `;
 
