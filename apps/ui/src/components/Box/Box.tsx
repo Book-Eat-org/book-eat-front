@@ -1,13 +1,10 @@
-import styled from '@emotion/styled'
-import {color, fontSize, space, width, padding, LayoutProps,PaddingProps} from 'styled-system'
+import styled from "@emotion/styled";
 
-const Box = styled.div<LayoutProps & PaddingProps>`
-  ${space}
-  ${width}
-  ${fontSize}
-  ${color}
-  ${padding}
-`
+import { TStyledCommonProps } from "$models";
+import { styledCommonFn } from "$utils";
 
-export default Box
+const Box = styled.div<TStyledCommonProps>`
+  ${styledCommonFn}
+`;
 
+export default Box;

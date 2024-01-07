@@ -1,7 +1,6 @@
 import classNames from "classnames";
 import { ComponentProps, forwardRef, ReactNode } from "react";
 
-import UIGrid from "../UIGrid";
 import classes from "./UIBaseInput.module.css";
 import UITypography from "../UITypography";
 import Grid from "../Grid";
@@ -44,7 +43,9 @@ const UIBaseInput = forwardRef<HTMLInputElement, IProps>((props, ref) => {
           {postfix && <div className={classes.postfix}>{postfix}</div>}
         </Grid>
       </fieldset>
-      <span className={classes.error}>{error}</span>
+      <UITypography variant="textXs" className={classes.error}>
+        {error}
+      </UITypography>
     </Grid>
   );
 });

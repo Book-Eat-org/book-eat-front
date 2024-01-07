@@ -1,22 +1,21 @@
-
-import {Box, Flex, UIButton} from "$components";
-import {Meta, StoryObj} from "@storybook/react";
-
+import { Box } from "$components";
+import { Meta, StoryObj } from "@storybook/react";
 
 export const Base = () => {
-    return (
-        <Flex gap={3} px={2}><span>test</span><span>test</span></Flex>
-    )
-}
+  return (
+    <Box bg="primary" height={100} width={100} p={2} m={1}>
+      Box
+    </Box>
+  );
+};
 
-
-type Story = StoryObj<typeof UIButton>;
+type Story = StoryObj<typeof Box>;
 
 export const Variants: Story = {
-    render:Base,
+  render: Base,
 };
 
 const meta: Meta<typeof Box> = {
-    component: Box,
+  component: Box,
 };
 export default meta;

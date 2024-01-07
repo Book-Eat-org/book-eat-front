@@ -11,6 +11,7 @@ export default defineConfig({
       $components: resolve(__dirname, "./src/components"),
       $hooks: resolve(__dirname, "./src/hooks"),
       $models: resolve(__dirname, "./src/models"),
+      $utils: resolve(__dirname, "./src/utils"),
       $api: resolve(__dirname, "./src/api"),
     },
   },

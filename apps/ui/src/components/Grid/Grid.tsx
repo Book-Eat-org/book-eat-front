@@ -13,14 +13,14 @@ import {
   layout,
   FlexboxProps,
   flexbox,
+  ColorProps,
 } from "styled-system";
 
 interface IProps {
   gap?: number;
 }
-
 const Grid = styled.div<
-  LayoutProps & PaddingProps & GridProps & IProps & FlexboxProps
+  LayoutProps & PaddingProps & ColorProps & GridProps & FlexboxProps & IProps
 >`
   ${space}
   ${width}
@@ -32,7 +32,7 @@ const Grid = styled.div<
   ${grid}
   ${flexbox}
   display:grid;
-  gap: ${({ gap }) => (gap ? `${gap * 4}px` : undefined)};
+  gap: ${({ gap }) => (gap ? `${gap * 5}px` : undefined)};
 `;
 
 export default Grid;

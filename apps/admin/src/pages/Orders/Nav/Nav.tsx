@@ -1,7 +1,7 @@
 import { groupBy, keys, prop } from "ramda";
 import { FC } from "react";
 
-import { UIGrid, UITypography } from "@book-eat/ui";
+import { Flex, ListNavigation } from "@book-eat/ui";
 
 import { useOrders } from "../hooks";
 import { STATUS_CONFIG } from "$constants";
@@ -14,13 +14,13 @@ const Nav: FC = () => {
   const statuses = keys(grouppedByStatus);
 
   return (
-    <UIGrid colSizes={`repeat(${statuses.length},max-content)`} gap="15px">
+    <Flex>
       {statuses.map((status) => (
-        <UITypography key={status} variant="textMd" weight="bold">
+        <ListNavigation.MenuNavItem id={status}>
           {STATUS_CONFIG[status]}
-        </UITypography>
+        </ListNavigation.MenuNavItem>
       ))}
-    </UIGrid>
+    </Flex>
   );
 };
 

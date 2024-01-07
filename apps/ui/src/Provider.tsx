@@ -2,6 +2,7 @@ import { css, Global, ThemeProvider } from "@emotion/react";
 import { FC, ReactNode, memo } from "react";
 import "./assets/fonts/stylesheet.css";
 import { YMaps } from "@pbe/react-yandex-maps";
+import { theme } from "$constants";
 
 interface IProps {
   children: ReactNode;
@@ -34,6 +35,7 @@ const styles = css`
     font-family: Inter, sans-serif;
   }
 `;
+
 const UIProvider: FC<IProps> = ({ children }) => {
   return (
     <YMaps
@@ -44,7 +46,7 @@ const UIProvider: FC<IProps> = ({ children }) => {
         load: "package.full",
       }}
     >
-      <ThemeProvider theme={{}}>
+      <ThemeProvider theme={theme}>
         <Global styles={styles} />
         {children}
       </ThemeProvider>

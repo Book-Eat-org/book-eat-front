@@ -4,15 +4,16 @@ import Nav from "./Nav";
 
 import classes from "./Layout.module.css";
 import { Outlet } from "react-router-dom";
+import { Flex } from "@book-eat/ui";
 
 const Layout: FC = () => {
   return (
-    <div className={classes.wrapper}>
+    <Flex flexDirection="column" height="100vh">
       <div className={classes.content}>
         <Outlet />
       </div>
       <Nav />
-    </div>
+    </Flex>
   );
 };
 

@@ -1,14 +1,14 @@
 import { isNil } from "ramda";
 import { FC, useMemo, useState } from "react";
 
-import { UIGrid } from "@book-eat/ui";
+import { ListNavigation, Page } from "@book-eat/ui";
 
 import BurgerMenu from "./BurgerMenu";
 import OrderCard from "./OrderCard";
 import List from "./List";
 import { OrdersContext } from "./context";
-import Header from "../Header";
 import { placesEndpoints } from "$api";
+import Nav from "./Nav";
 
 const Orders: FC = () => {
   const [placeId, setPlaceId] = useState<number | undefined>();
@@ -28,13 +28,23 @@ const Orders: FC = () => {
   );
 
   return (
-    <OrdersContext.Provider value={contextValue}>
-      <UIGrid>
-        <Header title="Заказы" burgerMenu={<BurgerMenu />} />
-        <List />
-      </UIGrid>
-      {!isNil(activeOrderId) && <OrderCard />}
-    </OrdersContext.Provider>
+    <ListNavigation.Provider>
+      <OrdersContext.Provider value={contextValue}>
+        <Page
+          withoutPaddings
+          header={
+            <Page.Header backgroundColor="white">
+              <Page.Title>Заказы</Page.Title>
+              <BurgerMenu />
+              <Nav />
+            </Page.Header>
+          }
+        >
+          <List />
+          {!isNil(activeOrderId) && <OrderCard />}
+        </Page>
+      </OrdersContext.Provider>
+    </ListNavigation.Provider>
   );
 };
 

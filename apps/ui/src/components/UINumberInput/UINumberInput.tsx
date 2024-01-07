@@ -14,11 +14,20 @@ const UINumberInput: FC<IProps> = (props) => {
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     const { value: eventValue, validity } = event.target;
-    const val = validity.valid ? Number(eventValue) : 0;
-    onChange?.(val, event);
+
+    if (validity.valid) {
+      onChange?.(Number(eventValue), event);
+    }
   };
 
-  return <UIBaseInput onChange={handleChange} {...restProps} />;
+  return (
+    <UIBaseInput
+      onChange={handleChange}
+      type="text"
+      pattern="[0-9]*"
+      {...restProps}
+    />
+  );
 };
 
 export default UINumberInput;

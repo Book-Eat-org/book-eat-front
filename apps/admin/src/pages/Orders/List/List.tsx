@@ -1,4 +1,11 @@
-import { Skeleton, UIGrid, UITypography } from "@book-eat/ui";
+import {
+  Box,
+  Grid,
+  ListNavigation,
+  Skeleton,
+  UIGrid,
+  UITypography,
+} from "@book-eat/ui";
 import { groupBy, keys, prop } from "ramda";
 import Order from "./Order";
 import { useOrders } from "../hooks";
@@ -14,20 +21,26 @@ const List = () => {
   const grouppedByStatus = groupBy(prop("orderStatus"), data);
 
   return (
-    <UIGrid gap="15px">
-      {keys(grouppedByStatus).map((status) => (
-        <UIGrid key={status} gap="15px">
-          <UITypography variant="textXl" color="gray" weight="bold">
-            {STATUS_CONFIG[status]}
-          </UITypography>
-          <UIGrid gap="15px">
-            {grouppedByStatus?.[status]?.map((item) => (
-              <Order key={item.id} id={item.id} />
-            ))}
-          </UIGrid>
-        </UIGrid>
-      ))}
-    </UIGrid>
+    <ListNavigation.ScrollContainer>
+      <Grid gap={4}>
+        {keys(grouppedByStatus).map((status) => (
+          <ListNavigation.TargetItem id={status} key={status}>
+            <Grid gap={4}>
+              <Box pl={3}>
+                <UITypography variant="textXl" color="gray" weight="bold">
+                  {STATUS_CONFIG[status]}
+                </UITypography>
+              </Box>
+              <Grid gap={3}>
+                {grouppedByStatus?.[status]?.map((item) => (
+                  <Order key={item.id} id={item.id} />
+                ))}
+              </Grid>
+            </Grid>
+          </ListNavigation.TargetItem>
+        ))}
+      </Grid>
+    </ListNavigation.ScrollContainer>
   );
 };
 

@@ -1,6 +1,8 @@
-import type { Preview } from "@storybook/react";
+import { Preview } from "@storybook/react";
+import ThemeDecorator from "./themeDecorator";
 
 const preview: Preview = {
+  decorators: [ThemeDecorator],
   parameters: {
     actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {
@@ -11,5 +13,4 @@ const preview: Preview = {
     },
   },
 };
-
 export default preview;

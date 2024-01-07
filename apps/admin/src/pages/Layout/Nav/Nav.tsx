@@ -4,7 +4,14 @@ import { Link, useLocation } from "react-router-dom";
 
 import classes from "./Nav.module.css";
 import { PAGE_URLS } from "$constants";
-import { ConnectIcon, MenuIcon, OrdersIcon, ShopsIcon } from "@book-eat/ui";
+import {
+  ConnectIcon,
+  Flex,
+  Grid,
+  MenuIcon,
+  OrdersIcon,
+  ShopsIcon,
+} from "@book-eat/ui";
 
 const items = [
   {
@@ -26,7 +33,14 @@ const Nav: FC = () => {
   const { pathname } = useLocation();
 
   return (
-    <div className={classes.wrapper}>
+    <Grid
+      className={classes.wrapper}
+      height={75}
+      backgroundColor="grayLight"
+      gap={3}
+      p={3}
+      gridTemplateColumns="1fr 1fr 1fr 1fr"
+    >
       {items.map(({ title, Icon, to }) => (
         <Link key={title} to={to}>
           <div
@@ -41,7 +55,7 @@ const Nav: FC = () => {
           </div>
         </Link>
       ))}
-    </div>
+    </Grid>
   );
 };
 

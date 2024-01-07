@@ -9,12 +9,9 @@ const Street = () => {
   const [suggested, setSuggested] = useState([]);
 
   const { street } = stateValue;
-  const onChange = (value: string) => {
-    console.log(value);
-  };
+  const onChange = (value: string) => {};
 
   const onTextChange = (value: string) => {
-    console.log(value);
     setValue({ ...stateValue, street: value });
   };
 

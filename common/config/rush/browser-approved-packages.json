@@ -19,6 +19,10 @@
       "allowedCategories": [ "production", "tools" ]
     },
     {
+      "name": "@react-theming/storybook-addon",
+      "allowedCategories": [ "tools" ]
+    },
+    {
       "name": "@reduxjs/toolkit",
       "allowedCategories": [ "production" ]
     },

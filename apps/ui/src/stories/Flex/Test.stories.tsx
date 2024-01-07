@@ -1,4 +1,4 @@
-import { Flex } from "$components";
+import { Box, Flex } from "$components";
 import { Meta, StoryObj } from "@storybook/react";
 
 export const TestStories = () => {
@@ -6,12 +6,10 @@ export const TestStories = () => {
 };
 
 const Sizes = () => (
-  <div>
-    <Flex gap={3}>
-      <div>Тест 1</div>
-      <div>Тест 1</div>
-    </Flex>
-  </div>
+  <Flex gap={3}>
+    <Box background="green" width="100%" height={100} />
+    <Box background="green" width="100%" />
+  </Flex>
 );
 
 type Story = StoryObj<typeof Flex>;

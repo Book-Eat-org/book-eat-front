@@ -1,30 +1,36 @@
 import { FC, ReactNode } from "react";
 
-
 import classes from "./Header.module.css";
-import {LeftArrowIcon, PlusIcon10, UIButton, UIGrid, UIIconButton, UITypography} from "@book-eat/ui";
+import {
+  Grid,
+  LeftArrowIcon,
+  PlusIcon10,
+  UIButton,
+  UIGrid,
+  UIIconButton,
+  UITypography,
+} from "@book-eat/ui";
 
 interface IProps {
   title: string;
-  burgerMenu?: ReactNode;
-  nav?: ReactNode;
+  children?: ReactNode;
   onAddClick?: () => void;
   onBackClick?: () => void;
 }
 
 const Header: FC<IProps> = (props) => {
-  const { title, burgerMenu, nav, onAddClick, onBackClick } = props;
+  const { title, children, onAddClick, onBackClick } = props;
 
   const topPadding = onBackClick ? "10px" : "40px";
 
   return (
-    <UIGrid
-      gap="30px"
-      padding={`${topPadding} 0 15px`}
-      className={classes.wrapper}
-    >
+    <Grid gap={7} padding={`${topPadding} 0 15px`} className={classes.wrapper}>
       {onBackClick && (
-        <UIIconButton Icon={LeftArrowIcon} onClick={onBackClick} variant="secondary" />
+        <UIIconButton
+          Icon={LeftArrowIcon}
+          onClick={onBackClick}
+          variant="secondary"
+        />
       )}
       <UIGrid colSizes="auto max-content">
         <UITypography variant="displayXl" weight="bold">
@@ -36,9 +42,8 @@ const Header: FC<IProps> = (props) => {
           </UIButton>
         )}
       </UIGrid>
-      {burgerMenu && <UIGrid>{burgerMenu}</UIGrid>}
-      {nav && <UIGrid>{nav}</UIGrid>}
-    </UIGrid>
+      {children}
+    </Grid>
   );
 };
 

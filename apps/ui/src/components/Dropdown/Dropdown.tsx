@@ -28,7 +28,6 @@ const Dropdown: FC<IProps> & { Item: typeof Item; Empty: typeof Empty } = (
 
   useEffect(() => {
     const a = ref.current?.getBoundingClientRect();
-    console.log(a);
     setRect(a);
   }, [ref.current]);
 

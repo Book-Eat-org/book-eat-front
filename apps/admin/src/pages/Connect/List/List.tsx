@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import Item from "./Item";
 import { cashiersEndpoints } from "$api";
-import { Skeleton, UIGrid } from "@book-eat/ui";
+import { Grid, Skeleton } from "@book-eat/ui";
 
 const List: FC = () => {
   const { data, isFetching } = cashiersEndpoints.useGetCashiersQuery();
@@ -12,9 +12,7 @@ const List: FC = () => {
   }
 
   return (
-    <UIGrid gap="30px">
-      {data?.ids?.map((id) => <Item key={id} id={id} />)}
-    </UIGrid>
+    <Grid gap={6}>{data?.ids?.map((id) => <Item key={id} id={id} />)}</Grid>
   );
 };
 
