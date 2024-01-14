@@ -1,6 +1,7 @@
-import { Meta,Canvas  } from "@storybook/blocks";
-import {Variants} from "./Test.stories.tsx";
-import {Weights} from "./Weights.stories.tsx";
+import { Meta, Canvas } from "@storybook/blocks";
+import { Sizes } from "./Sizes.stories.tsx";
+import { Weights } from "./Weights.stories.tsx";
+import { Coloring } from "./Styling.stories";
 
 <Meta title="Styles/Typography" />
 
@@ -8,15 +9,18 @@ import {Weights} from "./Weights.stories.tsx";
 
 Типографика — это система размеров и насыщенности шрифтов, которая используется для организации контента.
 
-
 ## Размеры
 
 Вся сетка размеров представлена ниже
 
-<Canvas of={Variants}/>
+<Canvas of={Sizes} />
 
 ## Начертание
 
 Есть 3 варианта начертания: `regular`, `semibold`, `bold`
 
-<Canvas of={Weights}/>
+<Canvas of={Weights} />
+
+## Стилизация
+
+<Canvas of={Coloring} />

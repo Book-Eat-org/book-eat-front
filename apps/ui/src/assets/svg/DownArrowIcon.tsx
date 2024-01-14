@@ -2,7 +2,7 @@ import { ComponentProps, FC } from "react";
 
 interface IProps extends ComponentProps<"svg"> {}
 
-export const LeftArrowIcon: FC<IProps> = (props) => {
+export const DownArrowIcon: FC<IProps> = (props) => {
   return (
     <svg
       width="12"
@@ -20,4 +20,4 @@ export const LeftArrowIcon: FC<IProps> = (props) => {
   );
 };
 
-export default LeftArrowIcon;
+export default DownArrowIcon;

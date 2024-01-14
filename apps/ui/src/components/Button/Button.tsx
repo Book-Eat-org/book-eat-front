@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { SerializedStyles, css } from "@emotion/react";
-import { theme } from "$constants";
+import { theme } from "$theme";
 
 interface IProps {
   variant?: "primary" | "gray" | "danger";

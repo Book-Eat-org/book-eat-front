@@ -6,10 +6,10 @@ import {
   UIGrid,
   UITypography,
 } from "@book-eat/ui";
-import { groupBy, keys, prop } from "ramda";
+import { groupBy, innerJoin, intersection, keys, prop } from "ramda";
 import Order from "./Order";
 import { useOrders } from "../hooks";
-import { STATUS_CONFIG } from "$constants";
+import { ORDER_STATUS_ORDER_ARRAY, STATUS_CONFIG } from "$constants";
 
 const List = () => {
   const { data, isFetching } = useOrders(true);
@@ -20,10 +20,15 @@ const List = () => {
 
   const grouppedByStatus = groupBy(prop("orderStatus"), data);
 
+  const sortedStatuses = intersection(
+    keys(grouppedByStatus),
+    ORDER_STATUS_ORDER_ARRAY,
+  );
+
   return (
     <ListNavigation.ScrollContainer>
       <Grid gap={4}>
-        {keys(grouppedByStatus).map((status) => (
+        {sortedStatuses.map((status) => (
           <ListNavigation.TargetItem id={status} key={status}>
             <Grid gap={4}>
               <Box pl={3}>

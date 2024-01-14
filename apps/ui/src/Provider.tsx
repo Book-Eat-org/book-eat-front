@@ -2,7 +2,7 @@ import { css, Global, ThemeProvider } from "@emotion/react";
 import { FC, ReactNode, memo } from "react";
 import "./assets/fonts/stylesheet.css";
 import { YMaps } from "@pbe/react-yandex-maps";
-import { theme } from "$constants";
+import { theme } from "$theme";
 
 interface IProps {
   children: ReactNode;

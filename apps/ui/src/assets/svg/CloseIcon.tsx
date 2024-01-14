@@ -2,7 +2,7 @@ import { ComponentProps, FC } from "react";
 
 interface IProps extends ComponentProps<"svg"> {}
 
-export const BrowsIcon: FC<IProps> = (props) => {
+export const CloseIcon: FC<IProps> = (props) => {
   return (
     <svg
       width="12"
@@ -20,4 +20,4 @@ export const BrowsIcon: FC<IProps> = (props) => {
   );
 };
 
-export default BrowsIcon;
+export default CloseIcon;

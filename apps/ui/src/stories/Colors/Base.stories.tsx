@@ -1,10 +1,10 @@
 import { Flex, Grid } from "$components";
 import { Meta, StoryObj } from "@storybook/react";
-import { theme } from "$constants";
-
-const colorsConfig = Object.keys(theme.colors);
+import { theme } from "$theme";
 
 export const Base = () => {
+  const colorsConfig = Object.keys(theme.colors);
+
   return (
     <Grid gap={3}>
       {colorsConfig.map((color) => (

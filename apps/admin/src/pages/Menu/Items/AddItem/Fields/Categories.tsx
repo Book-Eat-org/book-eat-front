@@ -25,6 +25,7 @@ export const Categories: FC = () => {
       values={value}
       onChange={handleChange}
       placeholder="Категории"
+      error={errorMessage}
     >
       {data?.map((item) => (
         <UIMultipleSelectOption

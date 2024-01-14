@@ -21,6 +21,7 @@ import TimeInput from "./TimeInput";
 import ListNavigation from "./ListNavigation";
 import Page from "./Page";
 import Button from "./Button";
+import Typography from "./Typography";
 
 export {
   Button,
@@ -33,6 +34,7 @@ export {
   UINumberInput,
   UIImageInput,
   UIFileInput,
+  Typography,
   UIPhoneInput,
   UITimeInput,
   UITypography,

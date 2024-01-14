@@ -8,6 +8,8 @@ import UIGrid from "../../UIGrid";
 import UITypography from "../../UITypography";
 import UIPopupMenu from "../../UIPopupMenu";
 import { DownArrowIcon } from "$assets";
+import { Typography } from "$components";
+
 interface IProps {
   title?: string;
   values: string[];
@@ -16,6 +18,7 @@ interface IProps {
   onChange: (value: string) => void;
   prefix?: ReactNode;
   children?: ReactNode;
+  error?: string;
 }
 
 const UIMultipleSelect: FC<IProps> = (props) => {
@@ -26,6 +29,7 @@ const UIMultipleSelect: FC<IProps> = (props) => {
     title,
     defaultOpened = false,
     children,
+    error,
   } = props;
   const [opened, setOpened] = useState(defaultOpened);
 
@@ -64,6 +68,9 @@ const UIMultipleSelect: FC<IProps> = (props) => {
             </UIPopupMenu>
           )}
         </fieldset>
+        <Typography color="red" size="12/12">
+          {error}
+        </Typography>
       </UIGrid>
     </UIMultipleSelectContext.Provider>
   );

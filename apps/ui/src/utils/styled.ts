@@ -13,6 +13,7 @@ import {
   width,
   boxShadow,
 } from "styled-system";
+import { colorsStyleFn, textSizeStyleFn } from "$theme";
 
 export const styledCommonFn = compose(
   space,
@@ -27,4 +28,6 @@ export const styledCommonFn = compose(
   borders,
   borderRadius,
   boxShadow,
+  colorsStyleFn,
+  textSizeStyleFn,
 );

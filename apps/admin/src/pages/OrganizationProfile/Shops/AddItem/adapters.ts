@@ -1,8 +1,7 @@
 import { IFormValues } from "./models";
-import { keys, pick, prop, whereEq } from "ramda";
+import { pick, prop, whereEq } from "ramda";
 import { DAYS_ITEMS } from "$constants";
 import { v4 } from "uuid";
-import { OrdersIssuingMode } from "$enums";
 import { IPlace } from "$models";
 
 export const inputAdapter = (input: IPlace): IFormValues => {
@@ -28,7 +27,7 @@ export const inputAdapter = (input: IPlace): IFormValues => {
           }),
         )
       : false,
-    placeSettings: input.placeSetting,
+    placeSettings: input?.placeSetting ?? [],
     workingHoursDaily:
       input?.workingTime ??
       DAYS_ITEMS.map(({ id }) => ({

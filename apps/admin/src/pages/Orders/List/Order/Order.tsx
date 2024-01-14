@@ -40,13 +40,13 @@ const Order: FC<IProps> = (props) => {
   const timesLeftInHours = timesLeftInMinutes / 60;
   const timesLeftInDays = timesLeftInHours / 24;
 
-  const danger = isExpired || timesLeftInMinutes < 15;
+  const danger = isExpired || timesLeftInMinutes < 20;
 
   const timeFrom =
     Math.floor(timesLeftInDays) > 0
       ? `${Math.floor(timesLeftInDays)} д.`
       : Math.floor(timesLeftInHours) > 0
-      ? `${Math.floor(timesLeftInHours)}ч${timesLeftInMinutes}м`
+      ? `${Math.floor(timesLeftInHours)}ч${timesLeftInMinutes % 60}м`
       : `${timesLeftInMinutes}м`;
 
   const wrapperClasses = classNames(classes.wrapper, {

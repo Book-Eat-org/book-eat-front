@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
-import { UIButton } from "@book-eat/ui";
+import { Flex, Grid, UIButton } from "@book-eat/ui";
 
 import classes from "./AddItem.module.css";
 import {
@@ -83,18 +83,20 @@ const AddItem: FC<IProps> = (props) => {
   return (
     <FormProvider {...methods}>
       <div className={classes.wrapper}>
-        <div className={classes.topWrapper}>
-          <Image />
-          <div className={classes.topInputsWrapper}>
-            <Title />
-            <Categories />
-            <div className={classes.topAdditionalInputsWrapper}>
-              <Weight />
-              <Price />
-              <Discont />
-            </div>
-          </div>
-        </div>
+        <Grid gap={5}>
+          <Grid gridTemplateColumns="min-content auto" gap={3}>
+            <Image />
+            <Grid gap={5}>
+              <Title />
+              <Categories />
+            </Grid>
+          </Grid>
+          <Grid gridTemplateColumns="2fr 2fr 4fr" gap={4}>
+            <Weight />
+            <Price />
+            <Discont />
+          </Grid>
+        </Grid>
         <div className={classes.outlineSelects}>
           <Ingredients />
           <Description />

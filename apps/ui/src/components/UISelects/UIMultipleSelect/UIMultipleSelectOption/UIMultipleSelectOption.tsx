@@ -1,27 +1,18 @@
-import  UICheckbox from "../../../UICheckbox";
-import  {
-  FC, ReactNode,
-  SyntheticEvent,
-} from "react";
+import UICheckbox from "../../../UICheckbox";
+import { FC, ReactNode, SyntheticEvent } from "react";
 
 import { useUIMultipleSelectContext } from "../context";
 
 interface IProps {
-  value?: string;
-  children:ReactNode
+  value?: string | number;
+  children: ReactNode;
 }
 
 const UIMultipleSelectOption: FC<IProps> = (props) => {
   const { value, children } = props;
-  const {
-    onChange,
-    values: selectedValues,
-  } = useUIMultipleSelectContext();
+  const { onChange, values: selectedValues } = useUIMultipleSelectContext();
 
-  const handleClick = (
-    _: unknown,
-    event?: SyntheticEvent
-  ) => {
+  const handleClick = (_: unknown, event?: SyntheticEvent) => {
     onChange?.(value!);
     event?.stopPropagation();
   };

@@ -1,17 +1,20 @@
-import { groupBy, keys, prop } from "ramda";
+import { groupBy, intersection, keys, prop } from "ramda";
 import { FC } from "react";
 
 import { Flex, ListNavigation } from "@book-eat/ui";
 
 import { useOrders } from "../hooks";
-import { STATUS_CONFIG } from "$constants";
+import { ORDER_STATUS_ORDER_ARRAY, STATUS_CONFIG } from "$constants";
 
 const Nav: FC = () => {
   const { data = [] } = useOrders();
 
   const grouppedByStatus = groupBy(prop("orderStatus"), data);
 
-  const statuses = keys(grouppedByStatus);
+  const statuses = intersection(
+    keys(grouppedByStatus),
+    ORDER_STATUS_ORDER_ARRAY,
+  );
 
   return (
     <Flex>

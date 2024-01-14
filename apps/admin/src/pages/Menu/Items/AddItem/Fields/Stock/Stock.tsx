@@ -10,10 +10,12 @@ import { useSelector } from "react-redux";
 import { placesSelectors } from "$api";
 
 export const Stock: FC = () => {
-  const { field } = useController<IFormValues, "stock">({
+  const { field, fieldState } = useController<IFormValues, "stock">({
     name: "stock",
+    rules: { required: { value: true, message: "Выберите наличие на точках" } },
   });
   const { onChange, value } = field;
+  const errorMessage = fieldState.error?.message;
 
   const places = useSelector(placesSelectors.selectAll);
 
@@ -26,6 +28,7 @@ export const Stock: FC = () => {
         values={value}
         onChange={handleChange}
         placeholder="Наличие на точках"
+        error={errorMessage}
       >
         {places?.map(({ title, placeId }) => (
           <UIMultipleSelectOption key={placeId} value={String(placeId)}>

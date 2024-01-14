@@ -2,7 +2,7 @@ import { isNil } from "ramda";
 import { FC } from "react";
 
 import classes from "./Item.module.css";
-import { TrashIcon, UIGrid, UITypography } from "@book-eat/ui";
+import { Grid, TrashIcon, Typography } from "@book-eat/ui";
 import { cashiersEndpoints, cashiersSelectors } from "$api";
 import { EntityId } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
@@ -27,19 +27,19 @@ const Item: FC<IProps> = ({ id }) => {
   const { phone, login } = item;
 
   return (
-    <UIGrid
-      colSizes="auto max-content"
+    <Grid
+      gridTemplateColumns="auto max-content"
       padding="0 0 10px"
       className={classes.wrapper}
     >
-      <UIGrid gap="10px">
-        <UITypography variant="textMd" weight="semibold">
+      <Grid gap={2}>
+        <Typography size="14/14" fontWeight={600}>
           {login}
-        </UITypography>
-        <UITypography variant="textMd">{phone}</UITypography>
-      </UIGrid>
+        </Typography>
+        <Typography size="14/14">{phone}</Typography>
+      </Grid>
       <TrashIcon onClick={deleteCashier} />
-    </UIGrid>
+    </Grid>
   );
 };
 

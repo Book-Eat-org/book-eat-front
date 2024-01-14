@@ -15,8 +15,12 @@ export const useActions = (
       {
         title: "Отменить",
         variant: "secondary",
-        handler: () =>
-          trigger({ id, statusVal: OrderStatus.CANCELLED_BY_PROVIDER }),
+        handler: () => {
+          const confirmed = confirm("Вы уверены, что хотите отменить заказ?");
+          if (confirmed) {
+            trigger({ id, statusVal: OrderStatus.CANCELLED_BY_PROVIDER });
+          }
+        },
       },
       {
         title: "Принять",

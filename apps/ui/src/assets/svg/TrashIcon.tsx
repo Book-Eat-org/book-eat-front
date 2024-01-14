@@ -2,7 +2,7 @@ import { ComponentProps, FC } from "react";
 
 interface IProps extends ComponentProps<"svg"> {}
 
-export const PlusIcon: FC<IProps> = (props) => {
+export const TrashIcon: FC<IProps> = (props) => {
   return (
     <svg
       width="17"
@@ -21,4 +21,4 @@ export const PlusIcon: FC<IProps> = (props) => {
   );
 };
 
-export default PlusIcon;
+export default TrashIcon;

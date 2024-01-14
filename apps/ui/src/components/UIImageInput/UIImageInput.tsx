@@ -61,13 +61,7 @@ const UIImageInput: FC<IProps> = (props) => {
   return (
     <div className={classes.wrapper}>
       <label className={classes.label} htmlFor="file-input">
-        <img
-          width={80}
-          height={80}
-          src={value ?? PlaceholderImage}
-          className={imageClasses}
-          alt=""
-        />
+        <img src={value ?? PlaceholderImage} className={imageClasses} alt="" />
         {isNil(value) && <div className={classes.addWrapper}>+</div>}
       </label>
       <input
