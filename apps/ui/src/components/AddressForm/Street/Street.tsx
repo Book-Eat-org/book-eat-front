@@ -17,7 +17,6 @@ const Street = () => {
 
   useEffect(() => {
     if (isNotNil(street)) {
-      console.log(street, ymaps);
       ymaps
         ?.suggest(street, {
           boundedBy: [

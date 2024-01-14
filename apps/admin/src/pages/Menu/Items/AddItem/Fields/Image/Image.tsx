@@ -14,8 +14,6 @@ export const Image = () => {
 
   const errorMessage = fieldState.error?.message;
 
-  console.log(errorMessage);
-
   return (
     <UIImageInput value={value} onChange={onChange} error={errorMessage} />
   );

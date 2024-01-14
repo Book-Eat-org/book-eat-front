@@ -24,8 +24,6 @@ export const organizationsEndpoints = api.injectEndpoints({
       query: ({ files, infoLegal }) => {
         const data = new FormData();
 
-        console.log(infoLegal);
-
         const blob = new Blob([JSON.stringify(infoLegal)], {
           type: "application/json;charset=utf-8",
         });

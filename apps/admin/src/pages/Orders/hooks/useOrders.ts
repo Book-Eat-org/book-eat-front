@@ -19,7 +19,6 @@ export const useOrders = (fetchable?: boolean) => {
 
   useEffect(() => {
     if (placeId && fetchable) {
-      console.log(placeId);
       trigger({
         rows,
         orgId: placeId,

@@ -39,7 +39,6 @@ const Item: FC<IProps> = (props) => {
   const { photo, title, address, phone, enabled, workingTime, placeId } = item;
 
   const sortedWorkingTime = sortBy(prop("dayOfWeek"), workingTime);
-  console.log(sortedWorkingTime);
 
   if (editing) {
     return (
