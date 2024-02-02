@@ -1,35 +1,58 @@
 import { FC, useState } from "react";
-
 import { useController } from "react-hook-form";
 
-import { UIInput } from "@book-eat/ui";
-import { IFormValues } from "../../../models";
+import {
+  AddressForm,
+  LeftArrowIcon,
+  UIIconButton,
+  UIInput,
+} from "@book-eat/ui";
+
+import { IFormValues } from "../../models";
+import classes from "./Address.module.css";
 
 const Address: FC = () => {
-  const [opened, setOpened] = useState(false);
+  const [mapOpened, setMapOpened] = useState(false);
+
   const { field, fieldState } = useController<
     IFormValues,
     "legalContactsAddress"
   >({
     name: "legalContactsAddress",
-    // rules: { required: { value: true, message: "Укажите адрес" } },
+    rules: { required: { value: true, message: "Укажите адрес" } },
   });
-  const { onChange, value } = field;
 
-  const onSubmit = (address: string) => {
-    onChange(address);
-    setOpened(false);
+  const { onChange, value } = field;
+  const errorMessage = fieldState.error?.message;
+
+  const handleAddressClick = () => setMapOpened(true);
+  const handleCloseDetailAddress = () => setMapOpened(false);
+
+  const handleChange = (value?: string) => {
+    onChange(value);
+    handleCloseDetailAddress();
   };
 
   return (
     <>
       <UIInput
         value={value}
-        onClick={() => setOpened(true)}
+        onClick={handleAddressClick}
+        title="Юридический адрес"
         placeholder="Юридический адрес"
         type="text"
-        error={fieldState.error?.message}
+        error={errorMessage}
       />
+      {mapOpened && (
+        <div className={classes.wrapper}>
+          <UIIconButton
+            Icon={LeftArrowIcon}
+            onClick={handleCloseDetailAddress}
+            variant="secondary"
+          />
+          <AddressForm onChange={handleChange} value={value} />
+        </div>
+      )}
     </>
   );
 };

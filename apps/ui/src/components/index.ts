@@ -8,6 +8,7 @@ import UIImageInput from "./UIImageInput";
 import UIFileInput from "./UIFileInput";
 import UIGrid from "./UIGrid";
 import UIPhoneInput from "./UIPhoneInput";
+import RadioGroup from "./Radio";
 import UITimeInput from "./UITimeInput";
 import UITypography from "./UITypography";
 import Box from "./Box";
@@ -22,6 +23,7 @@ import ListNavigation from "./ListNavigation";
 import Page from "./Page";
 import Button from "./Button";
 import Typography from "./Typography";
+import Switch from "./Switch";
 
 export {
   Button,
@@ -45,6 +47,8 @@ export {
   Flex,
   AddressForm,
   Autocomplete,
+  RadioGroup,
+  Switch,
   TimeInput,
   ListNavigation,
   Page,

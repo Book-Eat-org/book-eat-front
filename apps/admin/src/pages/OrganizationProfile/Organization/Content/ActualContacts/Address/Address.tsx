@@ -8,7 +8,7 @@ import {
   UIInput,
 } from "@book-eat/ui";
 
-import { IFormValues } from "../../../models";
+import { IFormValues } from "../../models";
 import classes from "./Address.module.css";
 
 const Address: FC = () => {
@@ -21,6 +21,7 @@ const Address: FC = () => {
     name: "actualContactsAddress",
     rules: { required: { value: true, message: "Укажите адрес" } },
   });
+
   const { onChange, value } = field;
   const errorMessage = fieldState.error?.message;
 

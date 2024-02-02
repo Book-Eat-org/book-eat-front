@@ -1,7 +1,13 @@
 import { isNil } from "ramda";
 import { FC } from "react";
 
-import { LeftArrowIcon, UIButton, UIGrid, UIIconButton } from "@book-eat/ui";
+import {
+  Grid,
+  LeftArrowIcon,
+  UIButton,
+  UIGrid,
+  UIIconButton,
+} from "@book-eat/ui";
 
 import { useActions, useOrder, useOrdersContext } from "../hooks";
 import classes from "./OrderCard.module.css";
@@ -35,13 +41,13 @@ const OrderCard: FC = () => {
         <Items id={activeOrderId} />
         <UIGrid padding="0 15px" gap="45px">
           <ClientInfo id={activeOrderId} />
-          <UIGrid gap="68px" colSizes="1fr 2fr">
+          <Grid gap={12} gridTemplateColumns="1fr 2fr">
             {actions.map(({ handler, title, variant }) => (
               <UIButton variant={variant} key={title} onClick={handler}>
                 {title}
               </UIButton>
             ))}
-          </UIGrid>
+          </Grid>
         </UIGrid>
       </UIGrid>
     </div>

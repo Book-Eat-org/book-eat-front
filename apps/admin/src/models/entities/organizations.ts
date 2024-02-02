@@ -1,7 +1,7 @@
 export interface IOrganization {
   id: string;
   image?: string;
-  title: string;
+  title?: string;
   inn?: string;
   ogrnip?: string;
   fileIds?: string[];

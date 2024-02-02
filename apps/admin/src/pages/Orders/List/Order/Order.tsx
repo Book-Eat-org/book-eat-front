@@ -9,6 +9,7 @@ import { useOrder, useOrdersContext } from "../../hooks";
 import classes from "./Order.module.css";
 import { EntityId } from "@reduxjs/toolkit";
 import dayjs from "dayjs";
+import { OrderStatus } from "$enums";
 
 interface IProps {
   id: EntityId;
@@ -26,7 +27,7 @@ const Order: FC<IProps> = (props) => {
     return null;
   }
 
-  const { price, name, phone, readyTime, orderType } = item;
+  const { price, name, phone, readyTime, orderStatus, orderType } = item;
 
   const currentDate = dayjs();
   const readyTimeDate = dayjs(readyTime);
@@ -49,9 +50,15 @@ const Order: FC<IProps> = (props) => {
       ? `${Math.floor(timesLeftInHours)}ч${timesLeftInMinutes % 60}м`
       : `${timesLeftInMinutes}м`;
 
+  const isTimeDisabled = [
+    OrderStatus.COMPLETED,
+    OrderStatus.CANCELLED_BY_PROVIDER,
+    OrderStatus.CANCELLED_BY_CLIENT,
+  ].includes(orderStatus);
+
   const wrapperClasses = classNames(classes.wrapper, {
-    [classes.warningShadow]: !danger,
-    [classes.dangerShadow]: danger,
+    [classes.warningShadow]: !danger && !isTimeDisabled,
+    [classes.dangerShadow]: danger && !isTimeDisabled,
   });
 
   return (
@@ -63,13 +70,15 @@ const Order: FC<IProps> = (props) => {
         <UITypography variant="textMd" color="gray">
           ({ORDERS_ISSUING_MODE_CONFIG[orderType]})
         </UITypography>
-        <UITypography
-          variant="textMd"
-          color={danger ? "red" : undefined}
-          className={classes.alignRight}
-        >
-          {isExpired ? "Просрочено на" : "Осталось"} {timeFrom}
-        </UITypography>
+        {!isTimeDisabled && (
+          <UITypography
+            variant="textMd"
+            color={danger ? "red" : undefined}
+            className={classes.alignRight}
+          >
+            {isExpired ? "Просрочено на" : "Осталось"} {timeFrom}
+          </UITypography>
+        )}
       </UIGrid>
       <div className={classes.separator} />
       <UIGrid colSizes="1fr auto 1fr" alignItems="start">

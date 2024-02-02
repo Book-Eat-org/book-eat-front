@@ -10,15 +10,18 @@ const digitsUuid = (value: string) =>
     ? value
     : Number(value.match(numberPattern)?.join("").substring(0, 6));
 export const inputAdapter = (input: IOrganization): IFormValues => {
-  const { title, legalContacts, actualContacts, inn, ogrnip } = input ?? {};
+  const { title, image, legalContacts, actualContacts, inn, ogrnip } =
+    input ?? {};
 
   return {
     title: title,
+    image: image?.company,
     legalContactsEmails: legalContacts?.emails ?? [{ id: v4(), value: "" }],
     legalContactsPhones: legalContacts?.emails ?? [{ id: v4(), value: "" }],
+    legalContactsAddress: legalContacts?.address,
     actualContactsEmails: actualContacts?.emails ?? [{ id: v4(), value: "" }],
     actualContactsPhones: actualContacts?.phones ?? [{ id: v4(), value: "" }],
-    files: [],
+    actualContactsAddress: actualContacts?.address,
     inn: isNil(inn) ? inn : Number(inn),
     ogrnip: isNil(ogrnip) ? ogrnip : Number(ogrnip),
   };
@@ -31,7 +34,7 @@ export const outputAdapter = (
   return {
     title: data.title,
     id,
-    image: data.image,
+    image: { company: data.image, info: data.image },
     actualContacts: {
       address: data.actualContactsAddress,
       emails: data.actualContactsEmails.map((item) => ({
@@ -43,7 +46,7 @@ export const outputAdapter = (
         id: digitsUuid(item.id),
       })),
     },
-    inn: String(data.inn),
+    inn: data.inn,
     legalContacts: {
       address: data.legalContactsAddress,
       emails: data.legalContactsEmails.map((item) => ({

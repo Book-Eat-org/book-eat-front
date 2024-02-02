@@ -17,19 +17,8 @@ export const organizationsEndpoints = api.injectEndpoints({
         ),
       providesTags: [ApiTags.Organizations],
     }),
-    updateOrg: build.mutation<
-      { success: boolean },
-      { files: File[]; infoLegal: { title: string } }
-    >({
-      query: ({ files, infoLegal }) => {
-        const data = new FormData();
-
-        const blob = new Blob([JSON.stringify(infoLegal)], {
-          type: "application/json;charset=utf-8",
-        });
-        files.forEach((file) => data.append("files", file));
-        data.append("info_legal", blob);
-
+    updateOrg: build.mutation<{ success: boolean }, IOrganization>({
+      query: (data) => {
         return {
           url: "/v1/organizations/info-legal",
           method: "PUT",

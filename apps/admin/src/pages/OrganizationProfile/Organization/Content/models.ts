@@ -3,7 +3,6 @@ export interface IFormValues {
   title?: string;
   inn?: number;
   ogrnip?: number;
-  files?: { value: File; id: string }[];
   actualContactsAddress?: string;
   actualContactsPhones: {
     id: string;

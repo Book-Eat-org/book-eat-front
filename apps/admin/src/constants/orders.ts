@@ -6,6 +6,7 @@ export const STATUS_CONFIG: Record<OrderStatus | string, string> = {
   [OrderStatus.IN_PROGRESS]: "В работе",
   [OrderStatus.UNPAID]: "Не оплачены",
   [OrderStatus.ACCEPTED]: "Принятые",
+  [OrderStatus.COMPLETED]: "Выполненные",
   [OrderStatus.CANCELLED_BY_CLIENT]: "Отмененные клиентом",
   [OrderStatus.CANCELLED_BY_PROVIDER]: "Отмененные менеджером",
 };

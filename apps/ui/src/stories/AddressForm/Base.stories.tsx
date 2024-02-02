@@ -4,7 +4,9 @@ import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 
 export const Base = () => {
-  const [value, setValue] = useState<string | undefined>();
+  const [value, setValue] = useState<string | undefined>(
+    "Москва, Тестовая улица 25/16",
+  );
 
   return (
     <YMaps

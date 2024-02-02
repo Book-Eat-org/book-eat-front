@@ -24,7 +24,7 @@ export const useActions = (
       },
       {
         title: "Принять",
-        handler: () => trigger({ id, statusVal: OrderStatus.ACCEPTED }),
+        handler: () => trigger({ id, statusVal: OrderStatus.IN_PROGRESS }),
       },
     ];
   }
@@ -47,13 +47,7 @@ export const useActions = (
   if (orderStatus === OrderStatus.IN_PROGRESS) {
     return [
       {
-        title: "Отменить",
-        variant: "secondary",
-        handler: () =>
-          trigger({ id, statusVal: OrderStatus.CANCELLED_BY_PROVIDER }),
-      },
-      {
-        title: "Взять в работу",
+        title: "Выполнен",
         handler: () => trigger({ id, statusVal: OrderStatus.COMPLETED }),
       },
     ];
