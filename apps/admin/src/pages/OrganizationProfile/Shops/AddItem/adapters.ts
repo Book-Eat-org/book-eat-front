@@ -13,7 +13,7 @@ export const inputAdapter = (input: IPlace): IFormValues => {
 
   return {
     title: input?.title,
-    image: input?.photo,
+    image: input?.logoUrl,
     address: input?.address,
     phone: input?.phone,
     contactName: input?.contactName,
@@ -22,28 +22,32 @@ export const inputAdapter = (input: IPlace): IFormValues => {
     differentTimeDaily: input?.workingTime
       ? !input?.workingTime?.every(
           whereEq({
-            workingTimeFrom: input?.workingTime[0].workingTimeFrom,
-            workingTimeTo: input?.workingTime[0].workingTimeTo,
+            timeFrom: input?.workingTime[0].timeFrom,
+            timeTo: input?.workingTime[0].timeTo,
           }),
         )
       : false,
-    placeSettings: input?.placeSetting ?? [],
+    placeSettings: {
+      deliveryAvailable: input.isDeliveryAvailable,
+      onPlaceAvailable: input.isInPlaceAvailable,
+      toOutsideAvailable: true,
+    },
     workingHoursDaily:
       input?.workingTime ??
       DAYS_ITEMS.map(({ id }) => ({
         dayOfWeek: id,
-        workingTimeFrom: "09:00",
-        workingTimeTo: "22:00",
+        timeFrom: "09:00",
+        timeTo: "22:00",
       })),
     workingHoursAllDays: {
-      workingTimeFrom: "09:00",
-      workingTimeTo: "22:00",
+      timeFrom: "09:00",
+      timeTo: "22:00",
     },
     additionalFields,
   };
 };
 
-export const ouptutAdapter = (data: IFormValues): IPlace => {
+export const ouptutAdapter = (data: IFormValues): Omit<IPlace, "placeId"> => {
   return {
     address: data.address,
     phone: data.phone,
@@ -51,16 +55,14 @@ export const ouptutAdapter = (data: IFormValues): IPlace => {
       ? data.workingHoursDaily
       : DAYS_ITEMS.map(({ id }) => ({
           dayOfWeek: id,
-          workingTimeFrom: data.workingHoursAllDays.workingTimeFrom,
-          workingTimeTo: data.workingHoursAllDays.workingTimeTo,
+          timeFrom: data.workingHoursAllDays.timeFrom,
+          timeTo: data.workingHoursAllDays.timeTo,
         })),
     title: data.title,
-    placeId: undefined,
-    placeSetting: data.placeSettings,
-    photo: data.image,
+    isDeliveryAvailable: data.placeSettings["deliveryAvailable"],
+    isInPlaceAvailable: data.placeSettings["onPlaceAvailable"],
+    logoUrl: data.image,
     extraContacts: data.additionalFields.map(pick(["title", "value"])),
     enabled: true,
-    contactName: data.contactName,
-    orgId: undefined,
   };
 };

@@ -36,6 +36,22 @@ jobs:
 
           # sftp args
           args: '-o ConnectTimeout=5'
+      - name: Deploy Shop
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.1
+        with:
+          username: root
+          server: ovz2.1usefulservice.meo8n.vps.myjino.ru
+          port: 49374 # default is 22
+          ssh_private_key: ${{ secrets.SSH_IFT_KEY }}
+
+
+          # will put all file under this path
+          local_path: ./apps/shop/dist/*
+          # files will copy to under remote_path
+          remote_path: /home/book-eat-pl/shop
+
+          # sftp args
+          args: '-o ConnectTimeout=5'
       - name: Build storybook
         run: npm run build-storybook --prefix apps/ui
       - name: Deploy Storybook

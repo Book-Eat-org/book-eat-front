@@ -1,4 +1,5 @@
-import { RequiredTheme, ResponsiveValue, Theme, variant } from "styled-system";
+import type { RequiredTheme, ResponsiveValue, Theme } from "styled-system";
+import { variant } from "styled-system";
 
 export const colors = {
   primary: "#BAE48F",

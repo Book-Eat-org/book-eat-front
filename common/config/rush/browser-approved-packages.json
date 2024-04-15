@@ -3,6 +3,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/approved-packages.schema.json",
   "packages": [
     {
+      "name": "@book-eat/api",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "@book-eat/ui",
       "allowedCategories": [ "production" ]
     },
@@ -24,7 +28,7 @@
     },
     {
       "name": "@reduxjs/toolkit",
-      "allowedCategories": [ "production" ]
+      "allowedCategories": [ "production", "tools" ]
     },
     {
       "name": "@storybook/addon-essentials",
@@ -107,6 +111,10 @@
       "allowedCategories": [ "tools" ]
     },
     {
+      "name": "csstype",
+      "allowedCategories": [ "tools" ]
+    },
+    {
       "name": "dayjs",
       "allowedCategories": [ "production" ]
     },
@@ -136,7 +144,7 @@
     },
     {
       "name": "prettier",
-      "allowedCategories": [ "production" ]
+      "allowedCategories": [ "production", "tools" ]
     },
     {
       "name": "ramda",
@@ -197,6 +205,10 @@
     {
       "name": "vite-plugin-dts",
       "allowedCategories": [ "tools" ]
+    },
+    {
+      "name": "vite-plugin-mkcert",
+      "allowedCategories": [ "production", "tools" ]
     },
     {
       "name": "yandex-maps",

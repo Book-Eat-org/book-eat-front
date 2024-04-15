@@ -17,10 +17,10 @@ const Day: FC<{ day: number }> = ({ day }) => {
     return null;
   }
 
-  const { workingTimeTo, workingTimeFrom } = item;
+  const { timeTo, timeFrom } = item;
   const workingFromChange = (time: string) => {
     const newValue = value.map((item) =>
-      item.dayOfWeek === day ? { ...item, workingTimeFrom: time } : item,
+      item.dayOfWeek === day ? { ...item, timeFrom: time } : item,
     );
 
     onChange(newValue);
@@ -28,7 +28,7 @@ const Day: FC<{ day: number }> = ({ day }) => {
 
   const workingToChange = (time: string) => {
     const newValue = value.map((item) =>
-      item.dayOfWeek === day ? { ...item, workingTimeTo: time } : item,
+      item.dayOfWeek === day ? { ...item, timeTo: time } : item,
     );
 
     onChange(newValue);
@@ -43,13 +43,9 @@ const Day: FC<{ day: number }> = ({ day }) => {
       alignItems="center"
     >
       <span>{dayItem?.name}</span>
-      <TimeInput
-        title="От"
-        onChange={workingFromChange}
-        value={workingTimeFrom}
-      />
+      <TimeInput title="От" onChange={workingFromChange} value={timeFrom} />
       <div className={classes.dash} />
-      <TimeInput title="До" onChange={workingToChange} value={workingTimeTo} />
+      <TimeInput title="До" onChange={workingToChange} value={timeTo} />
     </Grid>
   );
 };

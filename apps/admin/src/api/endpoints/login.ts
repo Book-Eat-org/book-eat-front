@@ -21,18 +21,11 @@ export const loginApi = api.injectEndpoints({
       query: () => "/v1/auth/login",
     }),
     login: build.mutation<ICheckAuthResponse, ILoginRequest>({
-      query: ({ username, password }) => {
-        const headers = new Headers();
-
-        headers.set(
-          "Authorization",
-          "Basic " + btoa(username + ":" + password),
-        );
-
+      query: (body) => {
         return {
           url: "/v1/auth/login",
           method: "POST",
-          headers,
+          body,
         };
       },
     }),

@@ -94,18 +94,16 @@ const Item: FC<IProps> = (props) => {
             </UITypography>
           </Flex>
           <Grid gap={1}>
-            {sortedWorkingTime?.map(
-              ({ dayOfWeek, workingTimeFrom, workingTimeTo }) => (
-                <Flex gap={2} key={dayOfWeek}>
-                  <UITypography variant="textXs">
-                    {WORK_TIME.find(propEq(dayOfWeek, "id"))?.name}:
-                  </UITypography>
-                  <UITypography variant="textXs">
-                    {workingTimeFrom} - {workingTimeTo}
-                  </UITypography>
-                </Flex>
-              ),
-            )}
+            {sortedWorkingTime?.map(({ dayOfWeek, timeFrom, timeTo }) => (
+              <Flex gap={2} key={dayOfWeek}>
+                <UITypography variant="textXs">
+                  {WORK_TIME.find(propEq(dayOfWeek, "id"))?.name}:
+                </UITypography>
+                <UITypography variant="textXs">
+                  {timeFrom} - {timeTo}
+                </UITypography>
+              </Flex>
+            ))}
           </Grid>
         </Grid>
       </Grid>

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-import { TStyledCommonProps } from "$models";
+import type { TStyledCommonProps } from "$models";
 import { styledCommonFn } from "$utils";
 
 const Box = styled.div<TStyledCommonProps>`

@@ -13,29 +13,21 @@ const TimesAllDays: FC = () => {
   });
   const { onChange, value } = field;
 
-  const { workingTimeFrom, workingTimeTo } = value;
+  const { timeFrom, timeTo } = value;
 
   const handleToTimeChange = (eventValue: string) => {
-    onChange({ ...value, workingTimeTo: eventValue });
+    onChange({ ...value, timeTo: eventValue });
   };
 
   const handleFromTimeChange = (eventValue: string) => {
-    onChange({ ...value, workingTimeFrom: eventValue });
+    onChange({ ...value, timeFrom: eventValue });
   };
 
   return (
     <Grid gridTemplateColumns="1fr auto 1fr" gap={6} alignItems="center">
-      <TimeInput
-        title="От"
-        value={workingTimeFrom}
-        onChange={handleFromTimeChange}
-      />
+      <TimeInput title="От" value={timeFrom} onChange={handleFromTimeChange} />
       <div className={classes.dash} />
-      <TimeInput
-        title="До"
-        value={workingTimeTo}
-        onChange={handleToTimeChange}
-      />
+      <TimeInput title="До" value={timeTo} onChange={handleToTimeChange} />
     </Grid>
   );
 };

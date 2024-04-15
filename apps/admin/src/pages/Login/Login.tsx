@@ -19,7 +19,7 @@ const Login = () => {
   const [trigger, { data }] = loginApi.useLoginMutation();
 
   useEffect(() => {
-    if (data?.isAuthenticated) {
+    if (data?.status === "ok") {
       dispatch(setAuthorizedAction(true));
       navigate(PAGE_URLS.CONNECT);
     }

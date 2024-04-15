@@ -326,6 +326,18 @@
       "tags": [ "production" ]
     },
     {
+      "packageName": "@book-eat/shop",
+      "projectFolder": "apps/shop",
+      "reviewCategory": "production",
+      "tags": [ "production" ]
+    },
+    {
+      "packageName": "@book-eat/api",
+      "projectFolder": "apps/api",
+      "reviewCategory": "tools",
+      "tags": [ "tools" ]
+    },
+    {
       "packageName": "@book-eat/ui",
       "projectFolder": "apps/ui",
       "reviewCategory": "tools",

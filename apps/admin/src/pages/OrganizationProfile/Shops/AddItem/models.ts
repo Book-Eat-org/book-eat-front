@@ -1,9 +1,9 @@
-import { IPlace } from "$models";
+import { IPlace, IPlaceSettings } from "$models";
 
 interface IWorkingHoursItem {
   dayOfWeek: number;
-  workingTimeFrom: string;
-  workingTimeTo: string;
+  timeFrom: string;
+  timeTo: string;
 }
 
 export interface IFormValues {
@@ -14,9 +14,9 @@ export interface IFormValues {
   workingDays: number[];
   differentTimeDaily: boolean;
   contactName?: string;
-  workingHoursAllDays: { workingTimeFrom: string; workingTimeTo: string };
+  workingHoursAllDays: { timeFrom: string; timeTo: string };
   workingHoursDaily: IWorkingHoursItem[];
-  placeSettings: IPlace["placeSetting"];
+  placeSettings: IPlaceSettings;
   additionalFields: {
     title: string;
     value: string;

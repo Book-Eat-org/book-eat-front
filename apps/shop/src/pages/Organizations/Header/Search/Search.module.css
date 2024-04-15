@@ -1,0 +1,10 @@
+.wrapper {
+    outline: none;
+    background-color: #EBEBEB;
+    border: none;
+    padding: 6px 15px;
+    border-radius: 10px;
+    width: 100%;
+    font-size: 16px;
+    line-height: 24px;
+}
