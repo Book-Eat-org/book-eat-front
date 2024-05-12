@@ -1,6 +1,6 @@
 import { createEntityAdapter } from "@reduxjs/toolkit";
-import { ICategory } from "$models";
+import { ICategory } from "@book-eat/api";
 
 export const categoriesAdapters = createEntityAdapter<ICategory>({
-  selectId: (entity) => entity.grouppingsId,
+  selectId: (entity) => entity.id,
 });

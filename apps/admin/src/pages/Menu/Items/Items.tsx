@@ -16,7 +16,7 @@ const Items: FC = () => {
   const [addVisible, setAddVisible] = useState(false);
 
   const data = useSelector(menuSelectors.selectAll);
-  menuEndpoints.useFetchMenuQuery();
+  menuEndpoints.useGetMenuByOrganizationQuery();
   placesEndpoints.useFetchPlacesQuery();
 
   const navigate = useNavigate();

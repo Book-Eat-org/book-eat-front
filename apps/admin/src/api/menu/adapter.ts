@@ -1,6 +1,6 @@
 import { createEntityAdapter } from "@reduxjs/toolkit";
-import { IMenu } from "$models";
+import { IProduct } from "@book-eat/api";
 
-export const menuAdapter = createEntityAdapter<IMenu>({
-  selectId: (entity) => entity.guid,
+export const menuAdapter = createEntityAdapter<IProduct>({
+  selectId: (entity) => entity.id,
 });

@@ -1,32 +1,17 @@
 import { IFormValues } from "./models";
-import { pick, prop, whereEq } from "ramda";
+import { pick, prop } from "ramda";
 import { DAYS_ITEMS } from "$constants";
-import { v4 } from "uuid";
-import { IPlace } from "$models";
+import { IPlace } from "@book-eat/api";
 
 export const inputAdapter = (input: IPlace): IFormValues => {
-  const { extraContacts } = input ?? {};
-
-  const additionalFields = extraContacts
-    ? extraContacts.map(({ title, value }) => ({ title, value, id: v4() }))
-    : [];
-
   return {
     title: input?.title,
     image: input?.logoUrl,
     address: input?.address,
     phone: input?.phone,
     contactName: input?.contactName,
-    workingDays:
-      input?.workingTime?.map(prop("dayOfWeek")) ?? DAYS_ITEMS.map(prop("id")),
-    differentTimeDaily: input?.workingTime
-      ? !input?.workingTime?.every(
-          whereEq({
-            timeFrom: input?.workingTime[0].timeFrom,
-            timeTo: input?.workingTime[0].timeTo,
-          }),
-        )
-      : false,
+    workingDays: DAYS_ITEMS.map(prop("id")),
+    differentTimeDaily: false,
     placeSettings: {
       deliveryAvailable: input.isDeliveryAvailable,
       onPlaceAvailable: input.isInPlaceAvailable,
@@ -43,7 +28,6 @@ export const inputAdapter = (input: IPlace): IFormValues => {
       timeFrom: "09:00",
       timeTo: "22:00",
     },
-    additionalFields,
   };
 };
 

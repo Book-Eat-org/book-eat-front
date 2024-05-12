@@ -23,7 +23,8 @@
     "moment": "~2.29.4",
     "uuid": "~9.0.1",
     "@pbe/react-yandex-maps": "~1.2.5",
-    "dayjs": "~1.11.10"
+    "dayjs": "~1.11.10",
+    "@book-eat/api": "~0.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
@@ -39,6 +40,7 @@
     "prettier": "~3.0.3",
     "@types/ramda": "~0.29.8",
     "@types/uuid": "~9.0.7",
-    "vite-plugin-mkcert": "~1.17.5"
+    "vite-plugin-mkcert": "~1.17.5",
+    "@vitejs/plugin-basic-ssl": "~1.1.0"
   }
 }

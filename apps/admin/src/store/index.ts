@@ -1,5 +1,10 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { additionsEndpoints, cashiersEndpoints, loginApi } from "$api";
+import {
+  additionsEndpoints,
+  cashiersEndpoints,
+  loginApi,
+  rtkQueryErrorLogger,
+} from "$api";
 import { authorizedReducer } from "./authorized";
 
 export { setAuthorizedAction, authorizedSelector } from "./authorized";
@@ -14,5 +19,7 @@ export type IRootState = ReturnType<typeof rootReducer>;
 export const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(additionsEndpoints.middleware),
+    getDefaultMiddleware()
+      .concat(additionsEndpoints.middleware)
+      .concat(rtkQueryErrorLogger),
 });

@@ -11,10 +11,10 @@ const AddItem: FC<IProps> = (props) => {
   const { onCancel } = props;
 
   const [title, setTitle] = useState("");
-  const [trigger] = categoriesEndpoints.useSaveGroupsMutation();
+  const [trigger] = categoriesEndpoints.useCreateCategoryMutation();
 
   const onSubmit = async () => {
-    await trigger([{ title, enabled: true, isEdit: true }]);
+    await trigger({ title, isActive: true });
     onCancel();
   };
 

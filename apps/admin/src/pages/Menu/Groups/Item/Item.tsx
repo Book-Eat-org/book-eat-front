@@ -24,17 +24,17 @@ const Item: FC<IProps> = (props) => {
   const item = useSelector((state) =>
     categoriesSelectors.selectById(state, id),
   );
-  const [triggerEdit] = categoriesEndpoints.useSaveGroupsMutation();
-  const [triggerDelete] = categoriesEndpoints.useDeleteGroupsMutation();
+  const [triggerEdit] = categoriesEndpoints.useUpdateCategoryMutation();
+  const [triggerDelete] = categoriesEndpoints.useDeleteCategoryMutation();
 
   if (!item) {
     return null;
   }
 
-  const { title, enabled } = item;
+  const { title, isActive } = item;
 
   const handleEyeIconClick = () => {
-    triggerEdit([{ grouppingsId: id, enabled: !enabled, title }]);
+    triggerEdit({ id, isActive: !isActive, title });
   };
 
   const handleDelete = () => {
@@ -42,7 +42,7 @@ const Item: FC<IProps> = (props) => {
   };
 
   const wrapperClasses = classNames(classes.wrapper, {
-    [classes.semiTransparent]: !enabled,
+    [classes.semiTransparent]: !isActive,
   });
 
   return (
@@ -54,7 +54,7 @@ const Item: FC<IProps> = (props) => {
       alignItems="center"
     >
       <div onClick={handleEyeIconClick}>
-        {enabled ? <EyeIcon /> : <BrowsIcon />}
+        {isActive ? <EyeIcon /> : <BrowsIcon />}
       </div>
       <UITypography variant="textMd">{title}</UITypography>
       <TrashIcon onClick={handleDelete} />

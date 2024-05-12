@@ -1,4 +1,4 @@
-import { Flex, Grid, UITypography } from "@book-eat/ui";
+import { Flex, UITypography } from "@book-eat/ui";
 import { Image } from "./Image";
 
 const Header = () => {

@@ -50,7 +50,6 @@ specifiers:
   typescript: ^5.0.2
   uuid: ~9.0.1
   vite: ^4.4.5
-  vite-plugin-mkcert: ^1.17.5
   yandex-maps: ~0.0.1
   ymaps: ~0.2.1
 
@@ -104,7 +103,6 @@ dependencies:
   typescript: 5.0.2
   uuid: 9.0.1
   vite: 4.4.5
-  vite-plugin-mkcert: 1.17.5_vite@4.4.5
   yandex-maps: 0.0.1
   ymaps: 0.2.1
 
@@ -4666,6 +4664,15 @@ packages:
     dependencies:
       '@typescript-eslint/types': 6.0.0
       eslint-visitor-keys: 3.4.3
+    dev: false
+
+  /@vitejs/plugin-basic-ssl/1.1.0_vite@4.4.5:
+    resolution: {integrity: sha512-wO4Dk/rm8u7RNhOf95ZzcEmC9rYOncYgvq4z3duaJrCgjN8BxAnDVyndanfcJZ0O6XZzHz6Q0hTimxTg8Y9g/A==}
+    engines: {node: '>=14.6.0'}
+    peerDependencies:
+      vite: ^3.0.0 || ^4.0.0 || ^5.0.0
+    dependencies:
+      vite: 4.4.5
     dev: false
 
   /@vitejs/plugin-react/3.1.0_vite@4.4.5:
@@ -9551,7 +9558,7 @@ packages:
     dev: false
 
   file:projects/admin.tgz:
-    resolution: {integrity: sha512-p7nc8zEicbqR3PLsAHp4amGQJmNURFfXPCpqu3op5va+gJVZ4xVi+cJkp0PkIbAGtcx0cfhhVLJBQL4+NRngIg==, tarball: file:projects/admin.tgz}
+    resolution: {integrity: sha512-cdXf1ydUJKIRRwel57/FwuO4xPqKxwmO9/fY3a8oK2wqRLql1T/h136H3OvzRML5l6RV7+ndYtree3mjGyKujQ==, tarball: file:projects/admin.tgz}
     name: '@rush-temp/admin'
     version: 0.0.0
     dependencies:
@@ -9563,6 +9570,7 @@ packages:
       '@types/uuid': 9.0.7
       '@typescript-eslint/eslint-plugin': 6.0.0_qr7lyyvyor5rute5ubjtz7e77m
       '@typescript-eslint/parser': 6.0.0_d5a6zedifdtzynwhy3uykrjvoy
+      '@vitejs/plugin-basic-ssl': 1.1.0_vite@4.4.5
       '@vitejs/plugin-react': 4.0.3_vite@4.4.5
       classnames: 2.3.2
       dayjs: 1.11.10
@@ -9595,7 +9603,7 @@ packages:
     dev: false
 
   file:projects/api.tgz_reiadaay42xu3uk4bvhmtbk5mu:
-    resolution: {integrity: sha512-OS5vMHCdcmNFAeFjOTpJzgtVFZ6EqO/4RcyTrtrtLf3UAdby0VrciA21awVRoDFnomvJaFEtvIeIP3PIBK31Gw==, tarball: file:projects/api.tgz}
+    resolution: {integrity: sha512-s5FcCVqdOCFF01zD4bxwxvhRSjwcrmLK3Hx0NVKiJce60nRkv86jH+4GZgyd3LKrQ9BIu7qbPd5yHhpqAEUzzQ==, tarball: file:projects/api.tgz}
     id: file:projects/api.tgz
     name: '@rush-temp/api'
     version: 0.0.0
@@ -9624,7 +9632,7 @@ packages:
     dev: false
 
   file:projects/shop.tgz:
-    resolution: {integrity: sha512-TvzWPWjgv+x6UH9LT7daOX/0Kn7wu4s8pt5zCXMt50FpCv9BA/trqwvpA5g+Sgo9uceSUxfOKRXRBwmaQmZLoA==, tarball: file:projects/shop.tgz}
+    resolution: {integrity: sha512-HFZ0WCxj/qcSLyUCi7VUGq2GlMUQqaVy2c8JAMo4Mn+Y0r05zHz0vg/ZMvvaKmL0OvMEmS0AitrtOUqFLIJKJQ==, tarball: file:projects/shop.tgz}
     name: '@rush-temp/shop'
     version: 0.0.0
     dependencies:
@@ -9667,7 +9675,7 @@ packages:
     dev: false
 
   file:projects/ui.tgz:
-    resolution: {integrity: sha512-PTRWm7R6tj4Z/TznKEKHyjJ72rEdRjTHMeA3hpJsbU5uSLKfQJ1/21fPB0TIYbcvaLeSDTihJ3hVyIHgF80UKw==, tarball: file:projects/ui.tgz}
+    resolution: {integrity: sha512-8pVhLkDtvUz0UGZSFHoHdJkXZzFhUtTKsGL/gGj5x/Pfl7KvfFBTYI/zXPk6d0qXfCwZTMuACPyO7eaUyQOQsw==, tarball: file:projects/ui.tgz}
     name: '@rush-temp/ui'
     version: 0.0.0
     dependencies:
@@ -9776,7 +9784,6 @@ time:
   /styled-system/5.1.5: '2020-02-17T20:32:50.368Z'
   /typescript/5.0.2: '2023-03-16T16:41:18.461Z'
   /uuid/9.0.1: '2023-09-12T08:56:35.205Z'
-  /vite-plugin-mkcert/1.17.5: '2024-03-20T01:02:34.991Z'
   /vite/4.4.5: '2023-07-20T14:30:40.377Z'
   /yandex-maps/0.0.1: '2023-03-14T09:09:17.419Z'
   /ymaps/0.2.1: '2019-06-20T14:15:10.628Z'

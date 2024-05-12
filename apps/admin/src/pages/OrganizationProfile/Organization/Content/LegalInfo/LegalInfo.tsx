@@ -1,9 +1,11 @@
-import { Inn, Ogrnip, Title } from "./Fields";
+import { Email, Inn, Ogrnip, Phone, Title } from "./Fields";
 import Block from "../Block";
 
 const LegalInfo = () => (
   <Block>
     <Title />
+    <Email />
+    <Phone />
     <Inn />
     <Ogrnip />
   </Block>

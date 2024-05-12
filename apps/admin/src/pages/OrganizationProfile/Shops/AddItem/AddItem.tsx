@@ -7,7 +7,6 @@ import { inputAdapter, ouptutAdapter } from "./adapters";
 import classes from "./AddItem.module.css";
 import {
   Address,
-  Contacts,
   TimesPerDay,
   DifferentTimes,
   Image,
@@ -19,7 +18,7 @@ import {
 import { IFormValues } from "./models";
 import Header from "../../../Header";
 import { useSelector } from "react-redux";
-import { placesEndpoints, placesSelectors } from "$api";
+import { placesByOrganizationSelectors, placesEndpoints } from "$api";
 import { EntityId } from "@reduxjs/toolkit";
 import { Days } from "./Fields/Days";
 
@@ -35,7 +34,9 @@ const AddItem: FC<IProps> = (props) => {
   const [mapOpened, setMapOpened] = useState(false);
   const [savePlace] = placesEndpoints.useSavePlaceMutation();
 
-  const item = useSelector((state) => placesSelectors.selectById(state, id));
+  const item = useSelector((state) =>
+    placesByOrganizationSelectors.selectById(state, id),
+  );
 
   const defaultValues = inputAdapter(item);
 
@@ -71,7 +72,7 @@ const AddItem: FC<IProps> = (props) => {
               <Address onClick={handleAddressClick} />
             </UIGrid>
           </UIGrid>
-          <Contacts />
+          {/*<Contacts />*/}
           <UIGrid gap="30px">
             <span className={classes.subTitle}>График работы</span>
             <Days />

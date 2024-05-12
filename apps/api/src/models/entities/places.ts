@@ -1,30 +1,23 @@
 import { EntityId } from "@reduxjs/toolkit";
-
-interface IWorkingTime {
-  dayOfWeek: number;
-  timeFrom: string;
-  timeTo: string;
-}
-
-interface IPlaceSettings {
-  deliveryAvailable: boolean;
-  onPlaceAvailable: boolean;
-  toOutsideAvailable: boolean;
-}
+import { IOrganization } from "./organizations.ts";
+import { IGeoLocation } from "./geo.ts";
+import { ICity } from "./city.ts";
+import { ISchedule } from "./schedule.ts";
 
 export interface IPlace {
-  city: { name: string };
-  contactName: string;
-  address: string;
-  enabled: boolean;
-  extraContacts: Array<{ title: string; value: string }>;
-  infoForCourier: string;
-  location: { latitude: number; longitude: number };
-  orgId: EntityId;
-  phone: string;
-  photo: string;
-  placeId: EntityId;
+  id: EntityId;
+  logoUrl: string;
   title: string;
-  workingTime: IWorkingTime[];
-  placeSetting: IPlaceSettings;
+  description: string;
+  isDeliveryAvailable: boolean;
+  isInPlaceAvailable: boolean;
+  address: string;
+  geolocation: IGeoLocation;
+  city: ICity;
+  schedule: ISchedule[];
+  organization: IOrganization;
+  deliveryComment: string;
+  email: string;
+  phone: string;
+  contactName: string;
 }

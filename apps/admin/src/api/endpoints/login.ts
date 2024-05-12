@@ -5,22 +5,9 @@ export interface ILoginRequest {
   password: string;
 }
 
-export interface ICheckAuthResponse {
-  id: null | string;
-  companyId: null | string;
-  placeId: null | string;
-  avatarUrl: null | string;
-  name: "anonymousUser" | string;
-  isPro: boolean;
-  isAuthenticated: boolean;
-}
-
 export const loginApi = api.injectEndpoints({
   endpoints: (build) => ({
-    checkAuth: build.query<ICheckAuthResponse, void>({
-      query: () => "/v1/auth/login",
-    }),
-    login: build.mutation<ICheckAuthResponse, ILoginRequest>({
+    login: build.mutation<ILoginRequest, ILoginRequest>({
       query: (body) => {
         return {
           url: "/v1/auth/login",

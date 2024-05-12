@@ -16,7 +16,7 @@ const Item: FC<IProps> = (props) => {
   const { id } = props;
 
   const data = useSelector(additionsSelectors.selectAll);
-  const [triggerEdit] = additionsEndpoints.useSaveAdditionMutation();
+  const [triggerEdit] = additionsEndpoints.useEditAdditionMutation();
   const [triggerDelete] = additionsEndpoints.useDeleteAdditionMutation();
 
   const item = data.find((item) => item.id === id);
@@ -25,10 +25,10 @@ const Item: FC<IProps> = (props) => {
     return null;
   }
 
-  const { title, enabled, price } = item;
+  const { title, isActive, price } = item;
 
   const handleEyeIconClick = () => {
-    triggerEdit([{ id, enabled: !enabled, title, price }]);
+    triggerEdit({ id, isActive: !isActive, title, price });
   };
 
   const handleDelete = () => {
@@ -36,7 +36,7 @@ const Item: FC<IProps> = (props) => {
   };
 
   const wrapperClasses = classNames(classes.wrapper, {
-    [classes.semiTransparent]: !enabled,
+    [classes.semiTransparent]: !isActive,
   });
 
   return (
@@ -48,7 +48,7 @@ const Item: FC<IProps> = (props) => {
       alignItems="center"
     >
       <div onClick={handleEyeIconClick}>
-        {enabled ? <EyeIcon /> : <BrowsIcon />}
+        {isActive ? <EyeIcon /> : <BrowsIcon />}
       </div>
       <span>{title}</span>
       <TrashIcon onClick={handleDelete} />

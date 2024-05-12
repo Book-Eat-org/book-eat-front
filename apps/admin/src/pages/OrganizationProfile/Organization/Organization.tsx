@@ -8,7 +8,9 @@ interface IProps {
 }
 const Organization: FC<IProps> = (props) => {
   const { onCancel, onSubmit } = props;
-  const { isLoading } = organizationsEndpoints.useGetOrganisationQuery();
+  const { data } = organizationsEndpoints.useGetCurrentOrganisationQuery();
+  const id = data!.ids[0];
+  const { isLoading } = organizationsEndpoints.useGetOrganisationQuery(id);
 
   if (isLoading) {
     return null;

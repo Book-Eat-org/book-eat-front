@@ -1,34 +1,14 @@
 export interface IOrganization {
   id: string;
-  image?: string;
+  logoUrl?: string;
   title?: string;
-  inn?: string;
-  logo: {
-    company: string;
-    info: string;
-  };
-  ogrnip?: string;
-  fileIds?: string[];
-  actualContacts?: {
-    address?: string;
-    phones: {
-      id: string;
-      value: string;
-    }[];
-    emails: {
-      id: string;
-      value: string;
-    }[];
-  };
-  legalContacts?: {
-    address?: string;
-    phones: {
-      id: string;
-      value: string;
-    }[];
-    emails: {
-      id: string;
-      value: string;
-    }[];
+  description?: string;
+  legalInfo: {
+    inn: string;
+    ogrn: string;
+    actualAddress: string;
+    legalAddress: string;
+    phone: string;
+    email: string;
   };
 }

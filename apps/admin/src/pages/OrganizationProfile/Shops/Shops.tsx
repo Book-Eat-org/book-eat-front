@@ -11,7 +11,7 @@ import { PAGE_URLS } from "$constants";
 import { useNavigate } from "react-router-dom";
 
 const Shops: FC = () => {
-  const { data } = placesEndpoints.useFetchPlacesQuery();
+  const { data } = placesEndpoints.useFetchPlacesByOrganizationQuery();
 
   const [addNewVisible, setAddNewVisible] = useState(false);
 

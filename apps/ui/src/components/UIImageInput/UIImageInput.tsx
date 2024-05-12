@@ -11,17 +11,6 @@ import classes from "./UIImageInput.module.css";
 import Crop from "./Crop";
 import { PlaceholderImage } from "$assets";
 import classNames from "classnames";
-import { Simulate } from "react-dom/test-utils";
-import error = Simulate.error;
-
-const getDataUrlFromFile = (file: File) =>
-  new Promise<string>((resolve) => {
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      resolve(reader.result as string);
-    };
-    reader.readAsDataURL(file);
-  });
 
 interface IProps extends Omit<ComponentProps<"input">, "value" | "onChange"> {
   value?: string;
@@ -32,22 +21,40 @@ interface IProps extends Omit<ComponentProps<"input">, "value" | "onChange"> {
 const UIImageInput: FC<IProps> = (props) => {
   const { value, onChange, ...restProps } = props;
 
-  const [selected, setSelected] = useState(value);
+  const [selected, setSelected] = useState<File | undefined>();
   const [cropping, setCropping] = useState(false);
+
+  const uploadImage = async (value: Blob): Promise<string> => {
+    if (!selected) {
+      return "";
+    }
+
+    const formData = new FormData();
+
+    formData.append("file", value, "image.png");
+
+    const response = await fetch("/book-eat/api/v1/files/image", {
+      method: "POST",
+      body: formData,
+    });
+
+    const result = await response.json();
+
+    return result.imageUrl;
+  };
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = async (event) => {
     const imageFile = event?.target?.files?.[0];
     if (!imageFile) {
       return;
     }
-
-    const dataUrl = await getDataUrlFromFile(imageFile);
-    setSelected(dataUrl);
+    setSelected(imageFile);
     setCropping(true);
   };
-  const handleSubmit = (value: string) => {
+  const handleSubmit = async (value: Blob) => {
+    const url = await uploadImage(value);
     setCropping(false);
-    onChange?.(value);
+    onChange?.(url);
   };
 
   const onCancel = () => {
@@ -74,7 +81,7 @@ const UIImageInput: FC<IProps> = (props) => {
       />
       <span className={classes.description}>jpg, до 5 МБ</span>
       {cropping && selected && (
-        <Crop url={selected} onChange={handleSubmit} onCancel={onCancel} />
+        <Crop file={selected} onChange={handleSubmit} onCancel={onCancel} />
       )}
     </div>
   );

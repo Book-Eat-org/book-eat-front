@@ -2,15 +2,14 @@ import { F, pipe, T } from "ramda";
 import { sortBy } from "ramda";
 import { useCallback, useState } from "react";
 
-import Header, { AddButton } from "../../Header";
+import { AddButton } from "../../Header";
 import AddItem from "./AddItem";
 import Item from "./Item";
-import { Grid, Page, UIGrid } from "@book-eat/ui";
+import { Grid, Page } from "@book-eat/ui";
 import { categoriesEndpoints, categoriesSelectors } from "$api";
 import { useNavigate } from "react-router-dom";
 import { PAGE_URLS } from "$constants";
 import { useSelector } from "react-redux";
-import Points from "../Items/Points";
 
 const Groups = () => {
   const [addItemOpened, setAddItemOpened] = useState(false);
@@ -44,8 +43,8 @@ const Groups = () => {
     >
       <Grid gap={4}>
         {addItemOpened && <AddItem onCancel={closeAddItem} />}
-        {sotredList.map(({ grouppingsId }) => (
-          <Item id={grouppingsId} key={grouppingsId} />
+        {sotredList.map(({ id }) => (
+          <Item id={id} key={id} />
         ))}
       </Grid>
     </Page>

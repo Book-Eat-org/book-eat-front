@@ -1,5 +1,5 @@
 import { createEntityAdapter } from "@reduxjs/toolkit";
-import { IOrganization } from "$models";
+import { IOrganization } from "@book-eat/api";
 
 export const organizationsAdapter = createEntityAdapter<IOrganization>({
   selectId: (entity) => entity.id,

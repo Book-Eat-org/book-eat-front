@@ -8,13 +8,11 @@ import { IFormValues } from "./models";
 import { useNavigate } from "react-router-dom";
 import PageHeader from "../../../Header";
 import { inputAdapter, outputAdapter } from "./adapters";
-import { organizationsEndpoints, organizationsSelectors } from "$api";
+import { currentOrganizationSelector, organizationsEndpoints } from "$api";
 import { useSelector } from "react-redux";
 import { PAGE_URLS } from "$constants";
 import Header from "./Header";
 import LegalInfo from "./LegalInfo";
-import { ActualContacts } from "./ActualContacts";
-import { LegalContacts } from "./LegalContacts";
 
 interface IProps {
   onSubmit: () => void;
@@ -24,7 +22,7 @@ interface IProps {
 const Content: FC<IProps> = (props) => {
   const { onCancel, onSubmit } = props;
 
-  const [data] = useSelector(organizationsSelectors.selectAll);
+  const [data] = useSelector(currentOrganizationSelector.selectAll);
   const [saveOrganization] = organizationsEndpoints.useUpdateOrgMutation();
 
   const navigate = useNavigate();
@@ -52,8 +50,6 @@ const Content: FC<IProps> = (props) => {
         <Grid gap={7}>
           <Header />
           <LegalInfo />
-          <ActualContacts />
-          <LegalContacts />
           <UIGrid colSizes="1fr 2fr" gap="68px">
             <UIButton variant="secondary" onClick={onCancel}>
               Отменить

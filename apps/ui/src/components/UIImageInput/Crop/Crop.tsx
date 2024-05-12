@@ -6,23 +6,21 @@ import classes from "./Crop.module.css";
 import "cropperjs/dist/cropper.css";
 
 interface IProps {
-  url: string;
-  onChange: (url: string) => void;
+  file: File;
+  onChange: (blob: Blob) => void;
   onCancel: () => void;
 }
 
 const Crop: FC<IProps> = (props) => {
-  const { onChange, url, onCancel } = props;
+  const { onChange, file, onCancel } = props;
+
+  const url = URL.createObjectURL(file);
 
   const cropperRef = useRef<ReactCropperElement>(null);
 
   const onCrop = () => {
     const cropper = cropperRef.current?.cropper;
-    const URL = cropper?.getCroppedCanvas().toDataURL();
-
-    if (URL) {
-      onChange(URL);
-    }
+    cropper?.getCroppedCanvas().toBlob((res) => res && onChange(res));
   };
 
   return (

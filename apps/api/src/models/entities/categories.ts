@@ -1,8 +1,9 @@
 import { EntityId } from "@reduxjs/toolkit";
 
 export interface ICategory {
-  enabled: boolean;
+  isActive: boolean;
   title: string;
-  grouppingsId: EntityId;
-  isEdit?: boolean;
+  description: string;
+  id: EntityId;
+  products: EntityId[];
 }

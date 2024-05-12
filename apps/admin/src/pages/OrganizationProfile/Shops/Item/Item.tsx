@@ -1,4 +1,4 @@
-import { not, prop, propEq, sortBy } from "ramda";
+import { not } from "ramda";
 import { FC, MouseEvent, useState } from "react";
 
 import {
@@ -12,9 +12,8 @@ import {
 } from "@book-eat/ui";
 
 import AddItem from "../AddItem";
-import { WORK_TIME } from "./constants";
 import classes from "./Item.module.css";
-import { placesEndpoints, placesSelectors } from "$api";
+import { placesByOrganizationSelectors, placesEndpoints } from "$api";
 import { useSelector } from "react-redux";
 
 interface IProps {
@@ -28,7 +27,9 @@ const Item: FC<IProps> = (props) => {
     placesEndpoints.endpoints.deletePlace.useMutation();
   const [fetchEditPlace] = placesEndpoints.endpoints.savePlace.useMutation();
 
-  const item = useSelector((state) => placesSelectors.selectById(state, id));
+  const item = useSelector((state) =>
+    placesByOrganizationSelectors.selectById(state, id),
+  );
 
   if (!item) {
     return;
@@ -36,13 +37,11 @@ const Item: FC<IProps> = (props) => {
 
   const toggleEditing = () => setEditing(not);
 
-  const { photo, title, address, phone, enabled, workingTime, placeId } = item;
-
-  const sortedWorkingTime = sortBy(prop("dayOfWeek"), workingTime);
+  const { logoUrl, title, address, phone } = item;
 
   if (editing) {
     return (
-      <AddItem id={placeId} onSubmit={toggleEditing} onCancel={toggleEditing} />
+      <AddItem id={id} onSubmit={toggleEditing} onCancel={toggleEditing} />
     );
   }
 
@@ -78,7 +77,7 @@ const Item: FC<IProps> = (props) => {
       <div className={classes.hideIcon} onClick={handleHide}>
         <EyeIcon />
       </div>
-      <img className={classes.image} src={photo || PlaceholderImage} alt="" />
+      <img className={classes.image} src={logoUrl || PlaceholderImage} alt="" />
       <Grid padding="5px 10px 15px" gap={2}>
         <Grid gap={2}>
           <UITypography variant="textXl" className={classes.title}>
@@ -93,18 +92,6 @@ const Item: FC<IProps> = (props) => {
               {phone}
             </UITypography>
           </Flex>
-          <Grid gap={1}>
-            {sortedWorkingTime?.map(({ dayOfWeek, timeFrom, timeTo }) => (
-              <Flex gap={2} key={dayOfWeek}>
-                <UITypography variant="textXs">
-                  {WORK_TIME.find(propEq(dayOfWeek, "id"))?.name}:
-                </UITypography>
-                <UITypography variant="textXs">
-                  {timeFrom} - {timeTo}
-                </UITypography>
-              </Flex>
-            ))}
-          </Grid>
         </Grid>
       </Grid>
     </Box>

@@ -6,7 +6,7 @@ import { UIButton, UIGrid } from "@book-eat/ui";
 import { Group, Price, Title, Weight } from "./Fields";
 import { IFormValues } from "./models";
 import { additionsEndpoints, categoriesEndpoints } from "$api";
-import { IAddition } from "$models";
+import { IAddition } from "@book-eat/api";
 
 interface IProps {
   onCancel: () => void;
@@ -23,10 +23,10 @@ const AddItem: FC<IProps> = (props) => {
     const payload: IAddition = {
       title: data.title,
       price: data.price,
-      enabled: true,
+      isActive: true,
     };
 
-    await saveAddition([payload]);
+    await saveAddition(payload);
     onCancel();
   };
 

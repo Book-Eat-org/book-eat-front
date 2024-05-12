@@ -14,17 +14,15 @@ const List: FC<IProps> = (props) => {
   const { placesIds } = props;
 
   const data = useSelector(menuSelectors.selectAll);
-  const { isFetching } = menuEndpoints.useFetchMenuQuery();
+  const { isFetching } = menuEndpoints.useGetMenuByOrganizationQuery();
 
   if (isFetching) {
     return <Skeleton count={12} gap={3} height={40} />;
   }
 
-  const filtered = data.filter(({ inStock }) =>
-    isEmpty(placesIds) ? true : !isEmpty(intersection(inStock, placesIds)),
-  );
-
-  const grouped = groupBy((a) => String(a.group_id[0]), filtered);
+  const grouped = {
+    "1": data,
+  };
 
   return (
     <div>
