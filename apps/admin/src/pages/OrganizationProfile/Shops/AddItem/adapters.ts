@@ -2,6 +2,7 @@ import { IFormValues } from "./models";
 import { pick, prop } from "ramda";
 import { DAYS_ITEMS, DAYS_ITEMS_API } from "$constants";
 import { IPlace } from "@book-eat/api";
+import { EntityId } from "@reduxjs/toolkit";
 
 export const inputAdapter = (input: IPlace): IFormValues => {
   return {
@@ -35,8 +36,12 @@ export const inputAdapter = (input: IPlace): IFormValues => {
   };
 };
 
-export const ouptutAdapter = (data: IFormValues): Omit<IPlace, "placeId"> => {
+export const ouptutAdapter = (
+  data: IFormValues,
+  id?: EntityId,
+): Omit<IPlace, "placeId"> => {
   return {
+    id,
     address: data.address,
     phone: data.phone,
     geolocation: {

@@ -16,7 +16,7 @@ export const Phone: FC = () => {
       <UIPhoneInput
         type="text"
         onChange={onChange}
-        placeholder="Телефон"
+        placeholder="Телефон*"
         value={value}
       />
     </Flex>

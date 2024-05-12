@@ -36,7 +36,7 @@ const Content: FC<IProps> = (props) => {
   const handleSubmit = async (formData: IFormValues) => {
     await saveOrganization(outputAdapter(formData, data.id));
 
-    onSubmit();
+    onSubmit?.();
   };
 
   const onBackClick = () => {

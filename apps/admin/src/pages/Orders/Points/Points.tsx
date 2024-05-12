@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 import { UICheckbox, UIGrid, UIPopupMenu } from "@book-eat/ui";
-import { placesSelectors } from "$api";
+import { placesByOrganizationSelectors } from "$api";
 import { useSelector } from "react-redux";
 import { EntityId } from "@reduxjs/toolkit";
 
@@ -14,16 +14,16 @@ interface IProps<T = EntityId> {
 const Points: FC<IProps> = (props) => {
   const { selectedId, setSelectedId, onClose } = props;
 
-  const data = useSelector(placesSelectors.selectAll);
+  const data = useSelector(placesByOrganizationSelectors.selectAll);
 
   return (
     <UIPopupMenu onClose={onClose}>
       <UIGrid gap="26px">
-        {data.map(({ placeId, title }) => (
+        {data.map(({ id, title }) => (
           <UICheckbox
-            selected={placeId === selectedId}
-            key={placeId}
-            onChange={() => setSelectedId(placeId)}
+            selected={id === selectedId}
+            key={id}
+            onChange={() => setSelectedId(id)}
           >
             {title}
           </UICheckbox>

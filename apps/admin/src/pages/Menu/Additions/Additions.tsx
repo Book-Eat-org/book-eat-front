@@ -27,7 +27,7 @@ const Additions = () => {
     return null;
   }
 
-  const sortedList = sortBy((item) => item?.title ?? "", data);
+  const sortedList = sortBy((item) => !item?.isActive, data);
 
   return (
     <Page

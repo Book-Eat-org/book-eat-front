@@ -1,5 +1,5 @@
 import { api } from "$api";
-import { EntityState } from "@reduxjs/toolkit";
+import { EntityId, EntityState } from "@reduxjs/toolkit";
 import { ApiTags } from "$enums";
 import { placesAdapter } from "./adapter.ts";
 import { IPlace } from "@book-eat/api";
@@ -30,7 +30,15 @@ export const placesEndpoints = api.injectEndpoints({
       }),
       invalidatesTags: [ApiTags.Places],
     }),
-    deletePlace: build.mutation<{ success: boolean }, number>({
+    editPlace: build.mutation<{ success: boolean }, IPlace>({
+      query: (place) => ({
+        url: `/v1/places/${place.id}`,
+        method: "PUT",
+        body: place,
+      }),
+      invalidatesTags: [ApiTags.Places],
+    }),
+    deletePlace: build.mutation<{ success: boolean }, EntityId>({
       query: (placeId) => ({
         url: `/v1/places/${placeId}`,
         method: "DELETE",

@@ -46,7 +46,7 @@ const AddItem: FC<IProps> = (props) => {
             Отменить
           </UIButton>
           <UIButton onClick={methods.handleSubmit(handleSubmit)}>
-            Добавить категорию
+            Создать
           </UIButton>
         </UIGrid>
       </UIGrid>

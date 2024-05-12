@@ -4,21 +4,21 @@ import { FC, useEffect, useState } from "react";
 import { UIGrid, BurgerMenuIcon } from "@book-eat/ui";
 import { useOrdersContext } from "../hooks";
 import { useSelector } from "react-redux";
-import { placesSelectors } from "$api";
+import { placesByOrganizationSelectors } from "$api";
 import Points from "../Points";
 
 const BurgerMenu: FC = () => {
   const [pointsOpened, setPointsOpened] = useState(false);
 
-  const placesData = useSelector(placesSelectors.selectAll);
+  const placesData = useSelector(placesByOrganizationSelectors.selectAll);
 
   const { setPlaceId, placeId } = useOrdersContext();
 
-  const selectedPlace = placesData.find((item) => item.placeId === placeId);
+  const selectedPlace = placesData.find((item) => item.id === placeId);
 
   useEffect(() => {
     if (!isNil(placesData)) {
-      setPlaceId?.(placesData[0]?.placeId);
+      setPlaceId?.(placesData[0]?.id);
     }
   }, [placesData]);
 

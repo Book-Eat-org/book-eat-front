@@ -14,7 +14,7 @@ const Orders: FC = () => {
   const [placeId, setPlaceId] = useState<number | undefined>();
   const [activeOrderId, setActiveOrderId] = useState<number | undefined>();
 
-  placesEndpoints.useFetchPlacesQuery();
+  placesEndpoints.useFetchPlacesByOrganizationQuery();
 
   const contextValue = useMemo(
     () => ({

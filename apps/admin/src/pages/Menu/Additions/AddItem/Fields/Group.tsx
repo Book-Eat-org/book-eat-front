@@ -21,11 +21,11 @@ export const Group: FC = () => {
       onChange={onChange}
       placeholder="Категория"
       renderValue={(value: string) =>
-        data.find(({ grouppingsId }) => grouppingsId === value)?.title
+        data.find(({ id }) => id === value)?.title
       }
     >
-      {data?.map(({ title, grouppingsId }) => (
-        <UIOption key={grouppingsId} value={grouppingsId}>
+      {data?.map(({ title, id }) => (
+        <UIOption key={id} value={id}>
           {title}
         </UIOption>
       ))}

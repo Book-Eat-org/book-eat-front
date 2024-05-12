@@ -15,9 +15,10 @@ import AddItem from "../AddItem";
 import classes from "./Item.module.css";
 import { placesByOrganizationSelectors, placesEndpoints } from "$api";
 import { useSelector } from "react-redux";
+import { EntityId } from "@reduxjs/toolkit";
 
 interface IProps {
-  id: number | string;
+  id: EntityId;
 }
 
 const Item: FC<IProps> = (props) => {
@@ -25,7 +26,7 @@ const Item: FC<IProps> = (props) => {
   const { id } = props;
   const [fetchDeletePlace] =
     placesEndpoints.endpoints.deletePlace.useMutation();
-  const [fetchEditPlace] = placesEndpoints.endpoints.savePlace.useMutation();
+  const [fetchEditPlace] = placesEndpoints.endpoints.editPlace.useMutation();
 
   const item = useSelector((state) =>
     placesByOrganizationSelectors.selectById(state, id),
@@ -51,14 +52,14 @@ const Item: FC<IProps> = (props) => {
     );
 
     if (confirmed) {
-      fetchDeletePlace(Number(id));
+      fetchDeletePlace(id);
     }
 
     event.stopPropagation();
   };
 
   const handleHide = (event: MouseEvent<HTMLDivElement>) => {
-    fetchEditPlace({ ...item, enabled: !item.enabled });
+    fetchEditPlace({ ...item, isActive: !item.isActive });
 
     event.stopPropagation();
   };

@@ -33,6 +33,7 @@ const AddItem: FC<IProps> = (props) => {
 
   const [mapOpened, setMapOpened] = useState(false);
   const [savePlace] = placesEndpoints.useSavePlaceMutation();
+  const [editPlace] = placesEndpoints.useEditPlaceMutation();
 
   const item = useSelector((state) =>
     placesByOrganizationSelectors.selectById(state, id),
@@ -50,9 +51,13 @@ const AddItem: FC<IProps> = (props) => {
   );
 
   const handleSubmit = async (data: IFormValues) => {
-    const payload = { ...ouptutAdapter(data), placeId: id };
+    const payload = ouptutAdapter(data, id);
 
-    await savePlace(payload);
+    if (id) {
+      await editPlace(payload);
+    } else {
+      await savePlace(payload);
+    }
 
     onSubmit();
   };

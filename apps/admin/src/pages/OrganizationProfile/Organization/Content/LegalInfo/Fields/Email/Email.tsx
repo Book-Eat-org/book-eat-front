@@ -11,5 +11,5 @@ export const Email: FC = () => {
 
   const { onChange, value } = field;
 
-  return <UIInput value={value} onChange={onChange} placeholder="E-mail" />;
+  return <UIInput value={value} onChange={onChange} placeholder="E-mail*" />;
 };

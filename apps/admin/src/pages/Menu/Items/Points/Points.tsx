@@ -32,7 +32,7 @@ const Points: FC<IProps> = (props) => {
   };
   const closeOpenPlace = () => setOpened(false);
 
-  const selectedPoints = innerJoin((a, b) => a.placeId === b, data, points);
+  const selectedPoints = innerJoin((a, b) => a.id === b, data, points);
 
   const selectedText =
     selectedPoints.length === 0
@@ -46,7 +46,7 @@ const Points: FC<IProps> = (props) => {
           "%d точек",
         )}`;
 
-  const placesIds = data.map(prop("placeId"));
+  const placesIds = data.map(prop("id"));
   const notSelected = difference(placesIds, points);
   const allSelected = isEmpty(notSelected);
 
@@ -87,15 +87,15 @@ const Points: FC<IProps> = (props) => {
                 onChange={selectAll}
               />
             </UIGrid>
-            {data.map(({ placeId, title }) => (
+            {data.map(({ id, title }) => (
               <UICheckbox
-                selected={points.includes(placeId)}
-                key={placeId}
+                selected={points.includes(id)}
+                key={id}
                 onChange={() =>
                   setPoints(
-                    points.includes(placeId)
-                      ? reject(equals(placeId), points)
-                      : [...points, placeId],
+                    points.includes(id)
+                      ? reject(equals(id), points)
+                      : [...points, id],
                   )
                 }
               >
