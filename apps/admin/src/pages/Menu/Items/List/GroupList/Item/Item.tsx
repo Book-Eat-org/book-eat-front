@@ -22,7 +22,7 @@ const Item: FC<IProps> = ({ id }) => {
     return null;
   }
 
-  const { previewImage, title, quantity, enabled, price } = item;
+  const { mainImageUrl, title, quantity, enabled, price } = item;
 
   const [saveMenu] = menuEndpoints.useSaveMenuMutation();
 
@@ -49,7 +49,7 @@ const Item: FC<IProps> = ({ id }) => {
           </div>
           <img
             className={classes.image}
-            src={previewImage}
+            src={mainImageUrl}
             width={80}
             height={80}
             alt=""

@@ -8,7 +8,7 @@ export const cashiersEndpoints = api.injectEndpoints({
   endpoints: (build) => ({
     getCashiers: build.query<EntityState<ICashier>, void>({
       providesTags: [ApiTags.Cashiers],
-      query: () => "/v1/auth/cashier",
+      query: () => "/v1/users/organization",
       transformResponse: (res: ICashier[]) =>
         cashiersAdapter.setAll(cashiersAdapter.getInitialState(), res),
     }),

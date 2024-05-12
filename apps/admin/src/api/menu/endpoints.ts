@@ -24,9 +24,9 @@ export const menuEndpoints = api.injectEndpoints({
         menuAdapter.setAll(menuAdapter.getInitialState(), res),
       providesTags: [ApiTags.Menu],
     }),
-    saveMenu: build.mutation<{ success: boolean }, IProduct[]>({
+    saveMenu: build.mutation<{ success: boolean }, IProduct>({
       query: (menu) => ({
-        url: "/v1/organizations/menus",
+        url: "/v1/products",
         method: "POST",
         body: menu,
       }),

@@ -29,7 +29,7 @@ export const outputAdapter = (
       ogrn: String(data.legalInfoOgrn),
       email: data.legalInfoEmail,
       phone: data.legalInfoPhone,
-      legalAddress: data.legalInfoLegalAddress,
+      legalAddress: data.legalInfoActualAddress,
       actualAddress: data.legalInfoActualAddress,
     },
   };

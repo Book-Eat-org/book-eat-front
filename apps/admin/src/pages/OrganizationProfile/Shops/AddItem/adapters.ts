@@ -1,6 +1,6 @@
 import { IFormValues } from "./models";
 import { pick, prop } from "ramda";
-import { DAYS_ITEMS } from "$constants";
+import { DAYS_ITEMS, DAYS_ITEMS_API } from "$constants";
 import { IPlace } from "@book-eat/api";
 
 export const inputAdapter = (input: IPlace): IFormValues => {
@@ -50,18 +50,18 @@ export const ouptutAdapter = (data: IFormValues): Omit<IPlace, "placeId"> => {
     },
     schedule: data.differentTimeDaily
       ? data.workingHoursDaily.map(({ dayOfWeek }) => ({
-          dayOfWeek: String(dayOfWeek),
+          dayOfWeek: DAYS_ITEMS_API[String(dayOfWeek)],
           timeFrom: data.workingHoursAllDays.timeFrom,
           timeTo: data.workingHoursAllDays.timeTo,
         }))
       : DAYS_ITEMS.map(({ id }) => ({
-          dayOfWeek: id,
+          dayOfWeek: DAYS_ITEMS_API[String(id)],
           timeFrom: data.workingHoursAllDays.timeFrom,
           timeTo: data.workingHoursAllDays.timeTo,
         })),
     title: data.title,
-    isDeliveryAvailable: data.placeSettings["deliveryAvailable"],
-    isInPlaceAvailable: data.placeSettings["onPlaceAvailable"],
+    isDeliveryAvailable: data.placeSettings["deliveryAvailable"] ?? true,
+    isInPlaceAvailable: data.placeSettings["onPlaceAvailable"] ?? true,
     logoUrl: data.image,
   };
 };

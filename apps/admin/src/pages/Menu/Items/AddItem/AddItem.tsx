@@ -49,7 +49,7 @@ const AddItem: FC<IProps> = (props) => {
     categories: item?.group_id ?? [],
     additionals: item?.additionIds ?? [],
     description: item?.description,
-    image: item?.previewImage,
+    image: item?.mainImageUrl,
     ingredients: item?.ingredients,
   };
 
@@ -62,6 +62,8 @@ const AddItem: FC<IProps> = (props) => {
   const handleSubmit = async (data: IFormValues) => {
     const payload: IMenu = {
       title: data.title,
+      slug: data.title,
+      sku: data.price,
       price: Number(data.price),
       description: data.description,
       ingredients: data.ingredients,
@@ -69,14 +71,16 @@ const AddItem: FC<IProps> = (props) => {
       measure: "гр",
       inStock: data.stock.map((item) => Number(item)),
       discount: Number(data.discount),
-      additionIds: data.additionals,
+      additions: data.additionals,
       group_id: data.categories,
-      previewImage: data.image,
+      isRecommend: false,
+      mainImageUrl: data.image,
+      imagesUrls: [data.image],
       quantity: Number(data.weight),
-      guid: id,
+      id: id,
     };
 
-    await saveMenu([payload]);
+    await saveMenu(payload);
     onSubmit();
   };
 
