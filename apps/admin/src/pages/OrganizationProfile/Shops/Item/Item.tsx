@@ -37,7 +37,7 @@ const Item: FC<IProps> = (props) => {
 
   const toggleEditing = () => setEditing(not);
 
-  const { logoUrl, title, address, phone } = item;
+  const { logoUrl, title, address, phone, enabled = true } = item;
 
   if (editing) {
     return (

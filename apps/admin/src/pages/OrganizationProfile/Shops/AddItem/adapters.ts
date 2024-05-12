@@ -13,12 +13,16 @@ export const inputAdapter = (input: IPlace): IFormValues => {
     workingDays: DAYS_ITEMS.map(prop("id")),
     differentTimeDaily: false,
     placeSettings: {
-      deliveryAvailable: input.isDeliveryAvailable,
-      onPlaceAvailable: input.isInPlaceAvailable,
+      deliveryAvailable: input?.isDeliveryAvailable,
+      onPlaceAvailable: input?.isInPlaceAvailable,
       toOutsideAvailable: true,
     },
     workingHoursDaily:
-      input?.workingTime ??
+      input?.schedule?.map((item) => ({
+        dayOfWeek: item.dayOfWeek,
+        timeTo: item.timeTo,
+        timeFrom: item.timeFrom,
+      })) ??
       DAYS_ITEMS.map(({ id }) => ({
         dayOfWeek: id,
         timeFrom: "09:00",
@@ -35,8 +39,21 @@ export const ouptutAdapter = (data: IFormValues): Omit<IPlace, "placeId"> => {
   return {
     address: data.address,
     phone: data.phone,
-    workingTime: data.differentTimeDaily
-      ? data.workingHoursDaily
+    geolocation: {
+      latitude: 11.222,
+      longitude: 22.333,
+    },
+    isDeliveryAvailable: true,
+    isInPlaceAvailable: false,
+    city: {
+      name: "Москва",
+    },
+    schedule: data.differentTimeDaily
+      ? data.workingHoursDaily.map(({ dayOfWeek }) => ({
+          dayOfWeek: String(dayOfWeek),
+          timeFrom: data.workingHoursAllDays.timeFrom,
+          timeTo: data.workingHoursAllDays.timeTo,
+        }))
       : DAYS_ITEMS.map(({ id }) => ({
           dayOfWeek: id,
           timeFrom: data.workingHoursAllDays.timeFrom,
@@ -46,7 +63,5 @@ export const ouptutAdapter = (data: IFormValues): Omit<IPlace, "placeId"> => {
     isDeliveryAvailable: data.placeSettings["deliveryAvailable"],
     isInPlaceAvailable: data.placeSettings["onPlaceAvailable"],
     logoUrl: data.image,
-    extraContacts: data.additionalFields.map(pick(["title", "value"])),
-    enabled: true,
   };
 };

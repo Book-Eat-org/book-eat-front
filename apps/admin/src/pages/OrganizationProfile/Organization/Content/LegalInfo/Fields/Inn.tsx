@@ -5,8 +5,8 @@ import { UINumberInput } from "@book-eat/ui";
 import { IFormValues } from "../../models";
 
 export const Inn: FC = () => {
-  const { field, fieldState } = useController<IFormValues, "inn">({
-    name: "inn",
+  const { field, fieldState } = useController<IFormValues, "legalInfoInn">({
+    name: "legalInfoInn",
     rules: {
       required: { value: true, message: "Введите ИНН" },
       maxLength: { value: 10, message: "ИНН должен состять из 10 цифр" },

@@ -1,13 +1,14 @@
-import { Email, Inn, Ogrnip, Phone, Title } from "./Fields";
+import { Email, Inn, Ogrnip, Phone, Title, Address } from "./Fields";
 import Block from "../Block";
 
 const LegalInfo = () => (
   <Block>
     <Title />
-    <Email />
-    <Phone />
+    <Address />
     <Inn />
     <Ogrnip />
+    <Email />
+    <Phone />
   </Block>
 );
 

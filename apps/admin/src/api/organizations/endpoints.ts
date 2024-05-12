@@ -42,7 +42,7 @@ export const organizationsEndpoints = api.injectEndpoints({
     updateOrg: build.mutation<{ success: boolean }, IOrganization>({
       query: (data) => {
         return {
-          url: "/v1/organizations/info-legal",
+          url: `/v1/organizations/${data.id}`,
           method: "PUT",
           body: data,
           formData: true,
