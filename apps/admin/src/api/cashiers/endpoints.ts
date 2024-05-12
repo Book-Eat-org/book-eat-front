@@ -1,8 +1,8 @@
 import { api } from "$api";
-import { ICashier } from "$models";
 import { EntityId, EntityState } from "@reduxjs/toolkit";
 import { ApiTags } from "$enums";
 import { cashiersAdapter } from "./adapter";
+import { ICashier } from "@book-eat/api";
 
 export const cashiersEndpoints = api.injectEndpoints({
   endpoints: (build) => ({
@@ -24,7 +24,7 @@ export const cashiersEndpoints = api.injectEndpoints({
         },
       },
     ),
-    deleteCashiers: build.mutation<{ success: boolean }, EntityId[]>({
+    deleteCashiers: build.mutation<{ success: boolean }, EntityId>({
       invalidatesTags: [ApiTags.Cashiers],
       query: (body) => ({
         url: "/v1/auth/cashier",

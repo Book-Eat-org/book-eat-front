@@ -14,6 +14,7 @@ import {
   OrdersMode,
   TimesAllDays,
   Title,
+  Phone,
 } from "./Fields";
 import { IFormValues } from "./models";
 import Header from "../../../Header";
@@ -39,7 +40,7 @@ const AddItem: FC<IProps> = (props) => {
     placesByOrganizationSelectors.selectById(state, id),
   );
 
-  const defaultValues = inputAdapter(item);
+  const defaultValues = inputAdapter(item!);
 
   const methods = useForm<IFormValues>({
     defaultValues,
@@ -75,9 +76,9 @@ const AddItem: FC<IProps> = (props) => {
             <UIGrid>
               <Title />
               <Address onClick={handleAddressClick} />
+              <Phone />
             </UIGrid>
           </UIGrid>
-          {/*<Contacts />*/}
           <UIGrid gap="30px">
             <span className={classes.subTitle}>График работы</span>
             <Days />

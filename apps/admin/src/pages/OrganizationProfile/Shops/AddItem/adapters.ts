@@ -1,5 +1,5 @@
 import { IFormValues } from "./models";
-import { pick, prop } from "ramda";
+import { prop } from "ramda";
 import { DAYS_ITEMS, DAYS_ITEMS_API } from "$constants";
 import { IPlace } from "@book-eat/api";
 import { EntityId } from "@reduxjs/toolkit";

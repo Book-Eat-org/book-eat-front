@@ -2,7 +2,11 @@ import { EntityId } from "@reduxjs/toolkit";
 
 export interface ICashier {
   id: EntityId;
-  login: string;
-  email?: string;
+  birthDate: string;
+  email: string;
+  firstName: string;
+  middleName: string;
   phone: string;
+  secondName: string;
+  username: string;
 }

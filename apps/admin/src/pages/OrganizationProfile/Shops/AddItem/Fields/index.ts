@@ -8,3 +8,4 @@ export * from "./Address";
 export * from "./Image";
 export * from "./Days";
 export * from "./NewAddress";
+export * from "./Phone";

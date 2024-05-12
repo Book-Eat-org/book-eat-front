@@ -21,10 +21,10 @@ const Item: FC<IProps> = ({ id }) => {
   }
 
   const deleteCashier = () => {
-    trigger([id]);
+    trigger(id);
   };
 
-  const { phone, login } = item;
+  const { phone, firstName } = item;
 
   return (
     <Grid
@@ -34,7 +34,7 @@ const Item: FC<IProps> = ({ id }) => {
     >
       <Grid gap={2}>
         <Typography size="14/14" fontWeight={600}>
-          {login}
+          {firstName}
         </Typography>
         <Typography size="14/14">{phone}</Typography>
       </Grid>
