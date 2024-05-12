@@ -24,7 +24,7 @@ const Item: FC<IProps> = ({ id }) => {
     trigger(id);
   };
 
-  const { phone, firstName } = item;
+  const { phone, firstName, secondName } = item;
 
   return (
     <Grid
@@ -34,7 +34,7 @@ const Item: FC<IProps> = ({ id }) => {
     >
       <Grid gap={2}>
         <Typography size="14/14" fontWeight={600}>
-          {firstName}
+          {firstName} {secondName}
         </Typography>
         <Typography size="14/14">{phone}</Typography>
       </Grid>

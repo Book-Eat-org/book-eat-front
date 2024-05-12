@@ -17,7 +17,7 @@ export const cashiersEndpoints = api.injectEndpoints({
         invalidatesTags: [ApiTags.Cashiers],
         query: (body) => {
           return {
-            url: "/v1/auth/cashier",
+            url: "/v1/users/place",
             method: "POST",
             body,
           };
