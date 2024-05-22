@@ -23,6 +23,7 @@ export default defineConfig({
       $api: resolve(__dirname, "./src/api"),
       $enums: resolve(__dirname, "./src/enums"),
       $utils: resolve(__dirname, "./src/utils"),
+      $components: resolve(__dirname, "./src/components"),
     },
   },
   plugins: [mkcert(), react()],

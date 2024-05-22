@@ -1,7 +1,7 @@
 import { IFormValues } from "./models";
-import { prop } from "ramda";
-import { DAYS_ITEMS, DAYS_ITEMS_API } from "$constants";
-import { IPlace } from "@book-eat/api";
+import { prop, values } from "ramda";
+import { DAYS_ITEMS } from "$constants";
+import { DayOfWeek, IPlace, PickPartial } from "@book-eat/api";
 import { EntityId } from "@reduxjs/toolkit";
 
 export const inputAdapter = (input: IPlace): IFormValues => {
@@ -13,11 +13,9 @@ export const inputAdapter = (input: IPlace): IFormValues => {
     contactName: input?.contactName,
     workingDays: DAYS_ITEMS.map(prop("id")),
     differentTimeDaily: false,
-    placeSettings: {
-      deliveryAvailable: input?.isDeliveryAvailable,
-      onPlaceAvailable: input?.isInPlaceAvailable,
-      toOutsideAvailable: true,
-    },
+    isDeliveryAvailable: input?.isDeliveryAvailable,
+    isInPlaceAvailable: input?.isInPlaceAvailable,
+    isOutsideAvailable: input?.isOutsideAvailable,
     workingHoursDaily:
       input?.schedule?.map((item) => ({
         dayOfWeek: item.dayOfWeek,
@@ -39,7 +37,7 @@ export const inputAdapter = (input: IPlace): IFormValues => {
 export const ouptutAdapter = (
   data: IFormValues,
   id?: EntityId,
-): Omit<IPlace, "placeId"> => {
+): PickPartial<IPlace, "id"> => {
   return {
     id,
     address: data.address,
@@ -48,25 +46,24 @@ export const ouptutAdapter = (
       latitude: 11.222,
       longitude: 22.333,
     },
-    isDeliveryAvailable: true,
-    isInPlaceAvailable: false,
     city: {
       name: "Москва",
     },
     schedule: data.differentTimeDaily
       ? data.workingHoursDaily.map(({ dayOfWeek }) => ({
-          dayOfWeek: DAYS_ITEMS_API[String(dayOfWeek)],
+          dayOfWeek,
           timeFrom: data.workingHoursAllDays.timeFrom,
           timeTo: data.workingHoursAllDays.timeTo,
         }))
-      : DAYS_ITEMS.map(({ id }) => ({
-          dayOfWeek: DAYS_ITEMS_API[String(id)],
+      : values(DayOfWeek).map((dayOfWeek) => ({
+          dayOfWeek,
           timeFrom: data.workingHoursAllDays.timeFrom,
           timeTo: data.workingHoursAllDays.timeTo,
         })),
     title: data.title,
-    isDeliveryAvailable: data.placeSettings["deliveryAvailable"] ?? true,
-    isInPlaceAvailable: data.placeSettings["onPlaceAvailable"] ?? true,
+    isDeliveryAvailable: data.isDeliveryAvailable,
+    isInPlaceAvailable: data.isInPlaceAvailable,
+    isOutsideAvailable: data?.isOutsideAvailable,
     logoUrl: data.image,
   };
 };

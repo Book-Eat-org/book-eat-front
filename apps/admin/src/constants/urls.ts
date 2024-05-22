@@ -1,34 +1,57 @@
-import { concat } from "ramda";
+import { EntityId } from "@reduxjs/toolkit";
+import { generatePath } from "react-router-dom";
 
-const ROOT_URL = "/admin";
-
-const CONNECT = concat(ROOT_URL, "/connect");
-const ORDERS = concat(ROOT_URL, "/orders");
-const LOGIN = concat(ROOT_URL, "/login");
-
-const SHOPS = concat(ROOT_URL, "/my");
-
-const ORGANIZATION = concat(SHOPS, "/organization");
-const MY_SHOPS = concat(SHOPS, "/shops");
-
-const MENU = concat(ROOT_URL, "/menu");
-
-const MENU_MENU = concat(MENU, "/items");
-const MENU_ADDITIONS = concat(MENU, "/additions");
-const MENU_CATEGORIES = concat(MENU, "/categories");
-
-const MAIN = CONNECT;
-
-export const PAGE_URLS = {
-  CONNECT,
-  MENU,
-  ORDERS,
-  SHOPS,
-  ORGANIZATION,
-  LOGIN,
-  MY_SHOPS,
-  MAIN,
-  MENU_MENU,
-  MENU_ADDITIONS,
-  MENU_CATEGORIES,
+export enum PageURLS {
+  ROOT = "ROOT",
+  SHOPS = "SHOPS",
+  ShopsCreate = "ShopsCreate",
+  ShopsEdit = "ShopsEdit",
+  Users = "Users",
+  UsersCreate = "UsersCreate",
+  UsersEdit = "UsersEdit",
+  Additions = "Additions",
+  AdditionsCreate = "AdditionsCreate",
+  AdditionsEdit = "AdditionsEdit",
+  Categories = "Categories",
+  CategoriesCreate = "CategoriesCreate",
+  CategoriesEdit = "CategoriesEdit",
+  Orders = "Orders",
+  Menu = "Menu",
+  MenuList = "MenuList",
+  MenuListCreate = "MenuListCreate",
+  MenuListEdit = "MenuListEdit",
+  Profile = "Profile",
+  Organization = "Organization",
+  Login = "Login",
+}
+export interface IPagesNavigatePayload {
+  [PageURLS.ShopsEdit]: { id: EntityId };
+  [PageURLS.UsersEdit]: { id: EntityId };
+}
+export const PAGES: Record<PageURLS, string> = {
+  [PageURLS.ROOT]: "/",
+  [PageURLS.SHOPS]: "shops",
+  [PageURLS.Login]: "login",
+  [PageURLS.Users]: "/users",
+  [PageURLS.UsersCreate]: "create",
+  [PageURLS.UsersEdit]: "users/:id",
+  [PageURLS.ShopsCreate]: "/profile/shops/create",
+  [PageURLS.ShopsEdit]: "/profile/shops/:id",
+  [PageURLS.Additions]: "/menu/additions",
+  [PageURLS.AdditionsCreate]: "/menu/additions/create",
+  [PageURLS.AdditionsEdit]: "/menu/additions/:id",
+  [PageURLS.Categories]: "/menu/categories",
+  [PageURLS.CategoriesCreate]: "/menu/categories/create",
+  [PageURLS.CategoriesEdit]: "/menu/categories/:id",
+  [PageURLS.Orders]: "orders",
+  [PageURLS.Menu]: "menu",
+  [PageURLS.Profile]: "profile",
+  [PageURLS.Organization]: "organization",
+  [PageURLS.MenuList]: "/menu/list",
+  [PageURLS.MenuListCreate]: "/menu/list/create",
+  [PageURLS.MenuListEdit]: "/menu/list/:id",
 };
+export const navigateToPage = <T extends PageURLS>(
+  page: T,
+  options: IPagesNavigatePayload[T],
+) => generatePath(PAGES[page], options);

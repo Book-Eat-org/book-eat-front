@@ -1,7 +1,7 @@
-import { IPlace, IPlaceSettings } from "$models";
+import { DayOfWeek } from "@book-eat/api";
 
 interface IWorkingHoursItem {
-  dayOfWeek: number;
+  dayOfWeek: DayOfWeek;
   timeFrom: string;
   timeTo: string;
 }
@@ -16,7 +16,9 @@ export interface IFormValues {
   contactName?: string;
   workingHoursAllDays: { timeFrom: string; timeTo: string };
   workingHoursDaily: IWorkingHoursItem[];
-  placeSettings: IPlaceSettings;
+  isDeliveryAvailable: boolean;
+  isInPlaceAvailable: boolean;
+  isOutsideAvailable: boolean;
   additionalFields: {
     title: string;
     value: string;

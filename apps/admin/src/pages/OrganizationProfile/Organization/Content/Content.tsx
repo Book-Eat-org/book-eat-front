@@ -1,27 +1,18 @@
 import { FC } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
-import { Grid, UIButton, UIGrid } from "@book-eat/ui";
+import { BackIcon24, Button, Flex, Grid, theme, UIGrid } from "@book-eat/ui";
 
-import classes from "./AddItem.module.css";
 import { IFormValues } from "./models";
 import { useNavigate } from "react-router-dom";
-import PageHeader from "../../../Header";
 import { inputAdapter, outputAdapter } from "./adapters";
 import { currentOrganizationSelector, organizationsEndpoints } from "$api";
 import { useSelector } from "react-redux";
-import { PAGE_URLS } from "$constants";
 import Header from "./Header";
 import LegalInfo from "./LegalInfo";
+import { Page } from "$components";
 
-interface IProps {
-  onSubmit: () => void;
-  onCancel: () => void;
-}
-
-const Content: FC<IProps> = (props) => {
-  const { onCancel, onSubmit } = props;
-
+const Content: FC = () => {
   const [data] = useSelector(currentOrganizationSelector.selectAll);
   const [saveOrganization] = organizationsEndpoints.useUpdateOrgMutation();
 
@@ -33,34 +24,47 @@ const Content: FC<IProps> = (props) => {
     defaultValues,
   });
 
+  const navigateBack = () => navigate("..");
+
   const handleSubmit = async (formData: IFormValues) => {
     await saveOrganization(outputAdapter(formData, data.id));
 
-    onSubmit?.();
+    navigateBack();
   };
 
   const onBackClick = () => {
-    navigate(PAGE_URLS.MY_SHOPS);
+    navigate("..");
   };
 
   return (
-    <FormProvider {...methods}>
-      <div className={classes.wrapper}>
-        <PageHeader title="Загрузка информации" onBackClick={onBackClick} />
-        <Grid gap={7}>
-          <Header />
-          <LegalInfo />
-          <UIGrid colSizes="1fr 2fr" gap="68px">
-            <UIButton variant="secondary" onClick={onCancel}>
-              Отменить
-            </UIButton>
-            <UIButton onClick={methods.handleSubmit(handleSubmit)}>
-              Сохранить изменения
-            </UIButton>
-          </UIGrid>
-        </Grid>
-      </div>
-    </FormProvider>
+    <Page>
+      <Page.Header>
+        <Page.Header.Buttons>
+          <Flex
+            backgroundColor={theme.colors.primary90}
+            borderRadius={10}
+            padding="6px"
+          >
+            <BackIcon24 onClick={onBackClick} />
+          </Flex>
+        </Page.Header.Buttons>
+        <Page.Header.Title>Инфо</Page.Header.Title>
+      </Page.Header>
+      <Page.Body>
+        <FormProvider {...methods}>
+          <Grid gap={7}>
+            <Header />
+            <LegalInfo />
+            <UIGrid colSizes="1fr 2fr" gap="68px">
+              <Button onClick={navigateBack}>Отменить</Button>
+              <Button onClick={methods.handleSubmit(handleSubmit)}>
+                Сохранить изменения
+              </Button>
+            </UIGrid>
+          </Grid>
+        </FormProvider>
+      </Page.Body>
+    </Page>
   );
 };
 

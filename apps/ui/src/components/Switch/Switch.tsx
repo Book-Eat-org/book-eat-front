@@ -1,20 +1,51 @@
 import { ChangeEvent, FC, useId } from "react";
 import styled from "@emotion/styled";
+import { theme } from "$theme";
 
 interface IProps {
   checked?: boolean;
   onChange: (checked: boolean, event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Track = styled.span``;
-const Circle = styled.span``;
-const Field = styled.input`
+const Track = styled.span`
+  position: relative;
+  display: inline-block;
+  width: 42px;
+  height: 26px;
+  border-radius: 34px;
+`;
+const Circle = styled.span<{ checked?: boolean }>`
   position: absolute;
-  left: 0;
+  cursor: pointer;
   top: 0;
-  width: 100%;
-  height: 100%;
-  margin: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: ${(props) =>
+    props.checked ? theme.colors.primary100 : theme.colors.general70};
+  transition: 0.4s;
+  border-radius: 34px;
+  :before {
+    box-shadow:
+      0 3px 1px 0 rgba(0, 0, 0, 0.06),
+      0 3px 8px 0 rgba(0, 0, 0, 0.15);
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 2px;
+    top: 2px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+    transform: ${(props) =>
+      props.checked ? `translateX(14px)` : `translateX(0)`};
+  }
+`;
+const Field = styled.input`
+  opacity: 0;
+  width: 0;
+  height: 0;
 `;
 
 const Switch: FC<IProps> = (props) => {
@@ -25,10 +56,15 @@ const Switch: FC<IProps> = (props) => {
     onChange(event.target.checked, event);
 
   return (
-    <label>
+    <label htmlFor={id} onClick={(e) => e.stopPropagation()}>
       <Track>
-        <Circle>
-          <Field type="checkbox" onChange={handleChange} checked={checked} />
+        <Circle checked={checked}>
+          <Field
+            id={id}
+            type="checkbox"
+            onChange={handleChange}
+            checked={checked}
+          />
         </Circle>
       </Track>
     </label>

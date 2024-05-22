@@ -9,7 +9,7 @@ export const ImageInput = () => {
 
   return (
     <UIGrid>
-      <UIImageInput title="Цена" value={value} onChange={setValue} />
+      <UIImageInput title="Цена" onChange={setValue} />
       <UIImageInput title="Цена" value={value} onChange={setValue} />
     </UIGrid>
   );

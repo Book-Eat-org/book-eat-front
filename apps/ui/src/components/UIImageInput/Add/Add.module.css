@@ -1,0 +1,17 @@
+.wrapper {
+  border: 2px dotted #969696;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  background: white;
+  padding: 6px;
+  display: flex;
+  border-radius: 10px;
+}

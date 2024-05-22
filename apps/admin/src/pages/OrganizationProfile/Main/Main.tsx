@@ -1,21 +1,26 @@
-import { Grid, Page } from "@book-eat/ui";
+import { Grid } from "@book-eat/ui";
 import { ORGANIZATION_PROFILE_ROUTES } from "../constants";
-import NavItem from "./NavItem";
+import { NavItem, Page } from "$components";
+import { useNavigate } from "react-router-dom";
 
-const Main = () => (
-  <Page
-    header={
+const Main = () => {
+  const navigate = useNavigate();
+  return (
+    <Page>
       <Page.Header>
-        <Page.Title>Профиль</Page.Title>
+        <Page.Header.Title>Профиль</Page.Header.Title>
       </Page.Header>
-    }
-  >
-    <Grid gap={6}>
-      {ORGANIZATION_PROFILE_ROUTES.map(({ route }) => (
-        <NavItem key={route} route={route} />
-      ))}
-    </Grid>
-  </Page>
-);
+      <Page.Body>
+        <Grid gap={3}>
+          {ORGANIZATION_PROFILE_ROUTES.map(({ route, title }) => (
+            <NavItem key={route} onClick={() => navigate(route)}>
+              {title}
+            </NavItem>
+          ))}
+        </Grid>
+      </Page.Body>
+    </Page>
+  );
+};
 
 export default Main;

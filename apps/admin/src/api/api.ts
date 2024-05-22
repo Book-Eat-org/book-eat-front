@@ -1,13 +1,36 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import {
+  BaseQueryApi,
+  createApi,
+  FetchArgs,
+  fetchBaseQuery,
+} from "@reduxjs/toolkit/query/react";
 import { values } from "ramda";
 import { ApiTags } from "$enums";
 import {
-  isFulfilled,
   isRejectedWithValue,
   Middleware,
   MiddlewareAPI,
 } from "@reduxjs/toolkit";
 
+const baseQueryToasts = (baseUrl: string) => {
+  const baseQuery = fetchBaseQuery({ baseUrl });
+  return async (
+    args: string | FetchArgs,
+    api: BaseQueryApi,
+    extraOptions: NonNullable<unknown>,
+  ) => {
+    const { data } = (await baseQuery(args, api, extraOptions)) as {
+      data: { code: string };
+    };
+
+    if (data.code) {
+      alert(`Ошибка: ${data.code}`);
+      return { error: data };
+    }
+
+    return { data };
+  };
+};
 export const rtkQueryErrorLogger: Middleware =
   (api: MiddlewareAPI) => (next) => async (action) => {
     // RTK Query uses `createAsyncThunk` from redux-toolkit under the hood, so we're able to utilize these matchers!
@@ -21,14 +44,6 @@ export const rtkQueryErrorLogger: Middleware =
 export const api = createApi({
   reducerPath: "api",
   tagTypes: values(ApiTags),
-  baseQuery: fetchBaseQuery({
-    baseUrl: "/book-eat/api",
-
-    // prepareHeaders: (headers) => {
-    //   headers.set("Content-Type", "application/json");
-    //
-    //   return headers;
-    // },
-  }),
+  baseQuery: baseQueryToasts("/book-eat/api"),
   endpoints: () => ({}),
 });

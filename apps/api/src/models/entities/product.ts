@@ -12,7 +12,10 @@ export interface IProduct {
   quantity: number;
   isRecommend: boolean;
   mainImageUrl: string;
-  addImagesUrls: string[];
+  imagesUrls: string[];
   additions: IAddition[];
-  recommend: string;
+  weight: number;
+  ingredients: string;
+  isActiveOnOrganization: boolean;
+  isActiveOnPlace: boolean;
 }

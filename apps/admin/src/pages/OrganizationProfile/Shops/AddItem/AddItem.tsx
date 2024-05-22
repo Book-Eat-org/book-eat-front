@@ -1,39 +1,38 @@
 import { FC, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
-import { UIButton, UIGrid } from "@book-eat/ui";
+import {
+  BackIcon24,
+  Button,
+  Flex,
+  theme,
+  UIButton,
+  UIGrid,
+} from "@book-eat/ui";
 
 import { inputAdapter, ouptutAdapter } from "./adapters";
 import classes from "./AddItem.module.css";
 import {
   Address,
-  TimesPerDay,
-  DifferentTimes,
   Image,
   NewAddress,
-  OrdersMode,
-  TimesAllDays,
   Title,
   Phone,
+  DeliveryMethod,
+  Schedule,
 } from "./Fields";
 import { IFormValues } from "./models";
-import Header from "../../../Header";
 import { useSelector } from "react-redux";
 import { placesByOrganizationSelectors, placesEndpoints } from "$api";
-import { EntityId } from "@reduxjs/toolkit";
-import { Days } from "./Fields/Days";
+import { Page } from "$components";
+import { useNavigate, useParams } from "react-router-dom";
 
-interface IProps {
-  id?: EntityId;
-  onSubmit: () => void;
-  onCancel: () => void;
-}
-
-const AddItem: FC<IProps> = (props) => {
-  const { id, onCancel, onSubmit } = props;
+const AddItem: FC = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
 
   const [mapOpened, setMapOpened] = useState(false);
-  const [savePlace] = placesEndpoints.useSavePlaceMutation();
+  const [savePlace, { isLoading }] = placesEndpoints.useSavePlaceMutation();
   const [editPlace] = placesEndpoints.useEditPlaceMutation();
 
   const item = useSelector((state) =>
@@ -46,21 +45,16 @@ const AddItem: FC<IProps> = (props) => {
     defaultValues,
   });
 
-  const differentTimeDaily = methods.watch(
-    "differentTimeDaily",
-    defaultValues.differentTimeDaily,
-  );
-
+  const navigateBack = () => navigate("..");
   const handleSubmit = async (data: IFormValues) => {
     const payload = ouptutAdapter(data, id);
 
-    if (id) {
-      await editPlace(payload);
-    } else {
-      await savePlace(payload);
+    const result = await (id ? editPlace(payload) : savePlace(payload));
+    if (result.error) {
+      return;
     }
 
-    onSubmit();
+    navigateBack();
   };
 
   const handleAddressClick = () => setMapOpened(true);
@@ -68,38 +62,44 @@ const AddItem: FC<IProps> = (props) => {
 
   return (
     <FormProvider {...methods}>
-      <div className={classes.wrapper}>
-        <Header title="Мои заведения" onBackClick={onCancel} />
-        <UIGrid gap="40px">
-          <UIGrid colSizes="max-content 3fr" gap="15px">
+      <Page>
+        <Page.Header>
+          <Page.Header.Buttons>
+            <Flex
+              backgroundColor={theme.colors.primary90}
+              borderRadius={10}
+              padding="6px"
+            >
+              <BackIcon24 onClick={navigateBack} />
+            </Flex>
+          </Page.Header.Buttons>
+          <Page.Header.Title>Заведения</Page.Header.Title>
+        </Page.Header>
+        <Page.Body>
+          <UIGrid gap="20px" className={classes.content}>
             <Image />
-            <UIGrid>
-              <Title />
-              <Address onClick={handleAddressClick} />
-              <Phone />
+            <UIGrid gap="15px">
+              <UIGrid gap="15px">
+                <Title />
+                <Address onClick={handleAddressClick} />
+                <Phone />
+              </UIGrid>
             </UIGrid>
+            <Schedule />
+            <DeliveryMethod />
+            <UIGrid colSizes="1fr 1fr" gap="30px">
+              <Button onClick={navigateBack}>Отменить</Button>
+              <Button
+                loading={isLoading}
+                onClick={methods.handleSubmit(handleSubmit)}
+              >
+                Сохранить
+              </Button>
+            </UIGrid>
+            {mapOpened && <NewAddress onClose={handleCloseDetailAddress} />}
           </UIGrid>
-          <UIGrid gap="30px">
-            <span className={classes.subTitle}>График работы</span>
-            <Days />
-            <DifferentTimes />
-            {differentTimeDaily ? <TimesPerDay /> : <TimesAllDays />}
-          </UIGrid>
-          <UIGrid gap="30px">
-            <span className={classes.subTitle}>Способы выдачи заказов</span>
-            <OrdersMode />
-          </UIGrid>
-          <UIGrid colSizes="1fr 2fr" gap="68px">
-            <UIButton variant="secondary" onClick={onCancel}>
-              Отменить
-            </UIButton>
-            <UIButton onClick={methods.handleSubmit(handleSubmit)}>
-              Сохранить изменения
-            </UIButton>
-          </UIGrid>
-          {mapOpened && <NewAddress onClose={handleCloseDetailAddress} />}
-        </UIGrid>
-      </div>
+        </Page.Body>
+      </Page>
     </FormProvider>
   );
 };

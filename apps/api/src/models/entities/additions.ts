@@ -5,4 +5,6 @@ export interface IAddition {
   title: string;
   price: number;
   isActive: boolean;
+  weight: number;
+  categoryId?: EntityId;
 }

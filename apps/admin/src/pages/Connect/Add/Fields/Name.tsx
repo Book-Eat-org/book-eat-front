@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { useController } from "react-hook-form";
 
-
 import { IFormValues } from "../models";
 import { UIInput } from "@book-eat/ui";
 
@@ -17,7 +16,7 @@ export const Name: FC = () => {
     <UIInput
       type="text"
       onChange={onChange}
-      placeholder="Имя"
+      placeholder="ФИО"
       value={value}
       error={errorMessage}
     />

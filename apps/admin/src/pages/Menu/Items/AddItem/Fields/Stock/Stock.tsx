@@ -7,17 +7,17 @@ import { UIMultipleSelect, UIMultipleSelectOption } from "@book-eat/ui";
 import { IFormValues } from "../../models";
 import classes from "./Stock.module.css";
 import { useSelector } from "react-redux";
-import { placesSelectors } from "$api";
+import { placesByOrganizationSelectors } from "$api";
 
 export const Stock: FC = () => {
   const { field, fieldState } = useController<IFormValues, "stock">({
     name: "stock",
     rules: { required: { value: true, message: "Выберите наличие на точках" } },
   });
-  const { onChange, value } = field;
+  const { onChange, value = [] } = field;
   const errorMessage = fieldState.error?.message;
 
-  const places = useSelector(placesSelectors.selectAll);
+  const places = useSelector(placesByOrganizationSelectors.selectAll);
 
   const handleChange = (item: string) =>
     onChange(symmetricDifference(value, [item]));

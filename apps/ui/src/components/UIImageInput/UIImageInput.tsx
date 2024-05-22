@@ -9,8 +9,8 @@ import {
 
 import classes from "./UIImageInput.module.css";
 import Crop from "./Crop";
-import { PlaceholderImage } from "$assets";
 import classNames from "classnames";
+import { Add } from "./Add";
 
 interface IProps extends Omit<ComponentProps<"input">, "value" | "onChange"> {
   value?: string;
@@ -68,8 +68,11 @@ const UIImageInput: FC<IProps> = (props) => {
   return (
     <div className={classes.wrapper}>
       <label className={classes.label} htmlFor="file-input">
-        <img src={value ?? PlaceholderImage} className={imageClasses} alt="" />
-        {isNil(value) && <div className={classes.addWrapper}>+</div>}
+        {isNil(value) ? (
+          <Add />
+        ) : (
+          <img src={value} className={imageClasses} alt="" />
+        )}
       </label>
       <input
         id="file-input"
@@ -79,7 +82,6 @@ const UIImageInput: FC<IProps> = (props) => {
         className={classes.imageInput}
         {...restProps}
       />
-      <span className={classes.description}>jpg, до 5 МБ</span>
       {cropping && selected && (
         <Crop file={selected} onChange={handleSubmit} onCancel={onCancel} />
       )}

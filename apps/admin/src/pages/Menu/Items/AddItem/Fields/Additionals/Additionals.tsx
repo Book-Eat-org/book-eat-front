@@ -13,7 +13,7 @@ export const Additionals: FC = () => {
   const { field } = useController<IFormValues, "additionals">({
     name: "additionals",
   });
-  const { onChange, value } = field;
+  const { onChange, value = [] } = field;
 
   const data = useSelector(additionsSelectors.selectAll);
 

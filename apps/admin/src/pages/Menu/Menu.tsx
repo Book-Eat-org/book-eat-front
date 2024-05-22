@@ -9,9 +9,9 @@ const Menu = () => {
   return (
     <Routes>
       <Route index element={<Main />} />
-      <Route path="additions" element={<Additions />} />
-      <Route path="items" element={<Items />} />
-      <Route path="categories" element={<Groups />} />
+      <Route path="additions/*" element={<Additions />} />
+      <Route path="list/*" element={<Items />} />
+      <Route path="categories/*" element={<Groups />} />
     </Routes>
   );
 };

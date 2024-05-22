@@ -1,12 +1,8 @@
 import { api } from "$api";
-import { IOrder } from "$models";
-import { EntityId, EntityState } from "@reduxjs/toolkit";
+import { EntityState } from "@reduxjs/toolkit";
 import { ApiTags, OrderStatus } from "$enums";
 import { ordersAdapter } from "./adapter";
-
-export interface IGetOrderParams {
-  orgId: EntityId;
-}
+import { IOrder } from "@book-eat/api";
 
 interface IUpdateOrderRequestPayload {
   id: number;
@@ -14,12 +10,11 @@ interface IUpdateOrderRequestPayload {
 }
 export const ordersEndpoints = api.injectEndpoints({
   endpoints: (build) => ({
-    getOrders: build.query<EntityState<IOrder>, IGetOrderParams>({
+    getOrders: build.query<EntityState<IOrder>, void>({
       providesTags: [ApiTags.Orders],
-      query: ({ orgId }) => {
+      query: () => {
         return {
-          url: `/v1/orders-by-organization-title-or-id/${orgId}`,
-          params: { archived_option: true },
+          url: `/v1/orders`,
         };
       },
       transformResponse: (res: IOrder[]) =>

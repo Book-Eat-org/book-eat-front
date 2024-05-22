@@ -1,21 +1,21 @@
 import Additions from "./Additions";
 import Items from "./Items";
 import Groups from "./Groups";
-import { PAGE_URLS } from "$constants";
+import { PAGES, PageURLS } from "$constants";
 
 export const MENU_ROUTE_CONFIG = [
   {
     title: "Добавки",
     Component: Additions,
-    route: PAGE_URLS.MENU_ADDITIONS,
+    route: PAGES[PageURLS.Additions],
   },
   {
     title: "Меню",
     Component: Items,
-    route: PAGE_URLS.MENU_MENU,
+    route: PAGES[PageURLS.MenuList],
   },
   {
-    route: PAGE_URLS.MENU_CATEGORIES,
+    route: PAGES[PageURLS.Categories],
     title: "Категории",
     Component: Groups,
   },

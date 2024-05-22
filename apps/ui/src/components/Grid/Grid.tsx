@@ -15,11 +15,12 @@ import {
   flexbox,
   ColorProps,
 } from "styled-system";
+import Box from "../Box";
 
 interface IProps {
   gap?: number;
 }
-const Grid = styled.div<
+const Grid = styled(Box)<
   LayoutProps & PaddingProps & ColorProps & GridProps & FlexboxProps & IProps
 >`
   ${space}

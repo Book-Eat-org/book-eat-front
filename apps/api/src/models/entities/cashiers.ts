@@ -9,4 +9,5 @@ export interface ICashier {
   phone: string;
   secondName: string;
   username: string;
+  placeId?: EntityId;
 }

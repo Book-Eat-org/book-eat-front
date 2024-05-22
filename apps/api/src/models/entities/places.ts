@@ -20,4 +20,5 @@ export interface IPlace {
   email: string;
   phone: string;
   contactName: string;
+  isActive: boolean;
 }

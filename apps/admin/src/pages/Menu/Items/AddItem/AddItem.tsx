@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
-import { Flex, Grid, UIButton } from "@book-eat/ui";
+import { BackIcon24, Button, Flex, Grid, theme } from "@book-eat/ui";
 
 import classes from "./AddItem.module.css";
 import {
@@ -22,103 +22,78 @@ import {
   categoriesEndpoints,
   menuEndpoints,
   menuSelectors,
+  placesEndpoints,
 } from "$api";
 import { useSelector } from "react-redux";
-import { IMenu } from "$models";
-import { EntityId } from "@reduxjs/toolkit";
+import { Page } from "$components";
+import { useNavigate, useParams } from "react-router-dom";
+import { isNil } from "ramda";
+import { inputAdapter, outputAdapter } from "./adapters.ts";
 
-interface IProps {
-  id?: EntityId;
-  onSubmit: () => void;
-  onCancel: () => void;
-}
-
-const AddItem: FC<IProps> = (props) => {
-  const { id, onCancel, onSubmit } = props;
+const AddItem: FC = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
 
   const item = useSelector((state) => menuSelectors.selectById(state, id));
   categoriesEndpoints.useFetchCategoriesQuery();
   additionsEndpoints.useFetchAdditionsQuery();
-
-  const defaultValues: IFormValues = {
-    title: item?.title,
-    price: item?.price,
-    discount: item?.discount,
-    weight: item?.quantity,
-    stock: item?.inStock?.map((stock) => String(stock)) ?? [],
-    categories: item?.group_id ?? [],
-    additionals: item?.additionIds ?? [],
-    description: item?.description,
-    image: item?.mainImageUrl,
-    ingredients: item?.ingredients,
-  };
+  placesEndpoints.useFetchPlacesByOrganizationQuery();
 
   const methods = useForm<IFormValues>({
-    defaultValues,
+    defaultValues: isNil(item) ? undefined : inputAdapter(item),
   });
 
   const [saveMenu] = menuEndpoints.useSaveMenuMutation();
+  const [editMenu] = menuEndpoints.useEditMenuMutation();
+
+  const navigateBack = () => navigate("..");
 
   const handleSubmit = async (data: IFormValues) => {
-    const payload: IMenu = {
-      title: data.title,
-      slug: data.title,
-      sku: data.price,
-      price: Number(data.price),
-      description: data.description,
-      ingredients: data.ingredients,
-      enabled: true,
-      measure: "гр",
-      inStock: data.stock.map((item) => Number(item)),
-      discount: Number(data.discount),
-      additions: data.additionals,
-      group_id: data.categories,
-      isRecommend: false,
-      mainImageUrl: data.image,
-      imagesUrls: [data.image],
-      quantity: Number(data.weight),
-      id: id,
-    };
+    const payload = outputAdapter(data);
 
-    await saveMenu(payload);
-    onSubmit();
+    isNil(id) ? await saveMenu(payload) : await editMenu({ ...payload, id });
+    navigateBack();
   };
 
   return (
-    <FormProvider {...methods}>
-      <div className={classes.wrapper}>
-        <Grid gap={5}>
-          <Grid gridTemplateColumns="min-content auto" gap={3}>
-            <Image />
-            <Grid gap={5}>
+    <Page>
+      <Page.Header>
+        <Page.Header.Buttons>
+          <Flex
+            backgroundColor={theme.colors.primary90}
+            borderRadius={10}
+            padding="6px"
+          >
+            <BackIcon24 onClick={navigateBack} />
+          </Flex>
+        </Page.Header.Buttons>
+        <Page.Header.Title>Меню</Page.Header.Title>
+      </Page.Header>
+      <Page.Body>
+        <FormProvider {...methods}>
+          <div>
+            <Grid gap={3}>
+              <Image />
               <Title />
               <Categories />
+              <Weight />
+              <Price />
+              <Discont />
+              <Ingredients />
+              <Description />
+              <Additionals />
+              <Stock />
             </Grid>
-          </Grid>
-          <Grid gridTemplateColumns="2fr 2fr 4fr" gap={4}>
-            <Weight />
-            <Price />
-            <Discont />
-          </Grid>
-        </Grid>
-        <div className={classes.outlineSelects}>
-          <Ingredients />
-          <Description />
-        </div>
-        <div className={classes.multipleSelects}>
-          <Additionals />
-          <Stock />
-        </div>
-        <div className={classes.footer}>
-          <UIButton variant="secondary" onClick={onCancel}>
-            Отменить
-          </UIButton>
-          <UIButton onClick={methods.handleSubmit(handleSubmit)}>
-            Сохранить изменения
-          </UIButton>
-        </div>
-      </div>
-    </FormProvider>
+            <div className={classes.footer}>
+              <Button onClick={navigateBack}>Отменить</Button>
+              <Button onClick={methods.handleSubmit(handleSubmit)}>
+                Сохранить
+              </Button>
+            </div>
+          </div>
+        </FormProvider>
+      </Page.Body>
+    </Page>
   );
 };
 

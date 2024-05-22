@@ -3,12 +3,12 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./Layout";
 
 import Connect from "./Connect";
-import { PAGE_URLS } from "$constants";
 import { useCheckAuth } from "$hooks";
 import { Login } from "./Login";
 import Orders from "./Orders";
 import OrganizationProfile from "./OrganizationProfile";
 import Menu from "./Menu";
+import { PAGES, PageURLS } from "$constants";
 
 const NewAdminPage: FC = () => {
   const { isLoading, authorized } = useCheckAuth();
@@ -20,8 +20,11 @@ const NewAdminPage: FC = () => {
   if (!authorized) {
     return (
       <Routes>
-        <Route path={PAGE_URLS.LOGIN} element={<Login />} />
-        <Route path="*" element={<Navigate to={PAGE_URLS.LOGIN} replace />} />
+        <Route path={PAGES[PageURLS.Login]} element={<Login />} />
+        <Route
+          path="*"
+          element={<Navigate to={PAGES[PageURLS.Login]} replace />}
+        />
       </Routes>
     );
   }
@@ -29,17 +32,11 @@ const NewAdminPage: FC = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route path={PAGE_URLS.CONNECT} element={<Connect />} />
-        <Route path={PAGE_URLS.ORDERS} element={<Orders />} />
-        <Route path="admin/my*" element={<OrganizationProfile />} />
-        <Route path="admin/menu/*" element={<Menu />} />
-        <Route path="*" element={<Navigate to={PAGE_URLS.MAIN} replace />} />
-        {/*<Route path={PAGE_URLS.MENU}>*/}
-        {/*  <Menu />*/}
-        {/*</Route>*/}
-        {/*<Route path={PAGE_URLS.ORGANIZATION}>*/}
-        {/*  <OrganizationProfile />*/}
-        {/*</Route>*/}
+        <Route path="connect/*" element={<Connect />} />
+        <Route path="orders/*" element={<Orders />} />
+        <Route path="profile/*" element={<OrganizationProfile />} />
+        <Route path="menu/*" element={<Menu />} />
+        <Route path="*" element={<Navigate to="connect" replace />} />
       </Route>
     </Routes>
   );

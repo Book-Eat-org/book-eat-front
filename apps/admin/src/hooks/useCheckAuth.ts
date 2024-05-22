@@ -1,10 +1,10 @@
 import { organizationsEndpoints } from "$api";
 import { useNavigate } from "react-router-dom";
-import { PAGE_URLS } from "$constants";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { authorizedSelector, setAuthorizedAction } from "../store";
 import { isEmpty, isNotNil } from "ramda";
+import { PageURLS } from "$constants";
 
 export const useCheckAuth = () => {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ export const useCheckAuth = () => {
 
   useEffect(() => {
     if (isSuccess && !checkAuthAuthorized) {
-      navigate(PAGE_URLS.LOGIN);
+      navigate(PageURLS[PageURLS.Login]);
     }
     if (checkAuthAuthorized) {
       dispatch(setAuthorizedAction(true));

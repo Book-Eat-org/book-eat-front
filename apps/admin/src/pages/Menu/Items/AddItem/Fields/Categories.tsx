@@ -14,11 +14,13 @@ export const Categories: FC = () => {
     name: "categories",
     rules: { required: { value: true, message: "Выберите категорию" } },
   });
-  const { onChange, value } = field;
+  const { onChange, value = [] } = field;
   const errorMessage = fieldState.error?.message;
 
   const handleChange = (item: string) =>
     onChange(symmetricDifference(value, [item]));
+
+  console.log(data);
 
   return (
     <UIMultipleSelect
@@ -28,10 +30,7 @@ export const Categories: FC = () => {
       error={errorMessage}
     >
       {data?.map((item) => (
-        <UIMultipleSelectOption
-          key={item.grouppingsId}
-          value={item.grouppingsId}
-        >
+        <UIMultipleSelectOption key={item.id} value={item.id}>
           {item.title}
         </UIMultipleSelectOption>
       ))}

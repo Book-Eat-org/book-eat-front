@@ -1,5 +1,4 @@
-import classes from "../Login.module.css";
-import { UIButton } from "@book-eat/ui";
+import { Button } from "@book-eat/ui";
 import { FC } from "react";
 import { useWatch } from "react-hook-form";
 
@@ -13,13 +12,9 @@ const Submit: FC<IProps> = (props) => {
   const confirmation = useWatch({ name: "confirmation" });
 
   return (
-    <UIButton
-      variant={confirmation ? "primary" : "secondary"}
-      className={classes.submitBtn}
-      onClick={onSubmit}
-    >
+    <Button disabled={!confirmation} onClick={onSubmit}>
       Войти
-    </UIButton>
+    </Button>
   );
 };
 

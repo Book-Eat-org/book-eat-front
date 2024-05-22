@@ -3,29 +3,28 @@ import { FC } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import classes from "./Nav.module.css";
-import { PAGE_URLS } from "$constants";
 import {
-  ConnectIcon,
-  Flex,
+  ConnectIcon24,
   Grid,
-  MenuIcon,
-  OrdersIcon,
-  ShopsIcon,
+  HomeIcon24,
+  MenuIcon24,
+  OrdersIcon24,
 } from "@book-eat/ui";
+import { PAGES, PageURLS } from "$constants";
 
 const items = [
   {
     title: "Подключить",
-    to: PAGE_URLS.CONNECT,
-    Icon: ConnectIcon,
+    to: PAGES[PageURLS.Users],
+    Icon: ConnectIcon24,
   },
-  { title: "Заказы", to: PAGE_URLS.ORDERS, Icon: OrdersIcon },
+  { title: "Заказы", to: PAGES[PageURLS.Orders], Icon: OrdersIcon24 },
 
-  { title: "Меню", to: PAGE_URLS.MENU, Icon: MenuIcon },
+  { title: "Меню", to: PAGES[PageURLS.Menu], Icon: MenuIcon24 },
   {
-    title: "Заведения",
-    to: PAGE_URLS.SHOPS,
-    Icon: ShopsIcon,
+    title: "Профиль",
+    to: PAGES[PageURLS.Profile],
+    Icon: HomeIcon24,
   },
 ];
 

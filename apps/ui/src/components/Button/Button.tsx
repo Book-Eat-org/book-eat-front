@@ -3,42 +3,44 @@ import { SerializedStyles, css } from "@emotion/react";
 import { theme } from "$theme";
 
 interface IProps {
-  variant?: "primary" | "gray" | "danger";
-  size?: "xl" | "lg" | "md" | "sm" | "xs";
+  variant?: "primary";
+  disabled?: boolean;
+  loading?: boolean;
+  size?: "lg" | "md" | "sm";
 }
 
 const disabledCss = css`
-  background-color: ${theme.colors.grayLight};
-  color: ${theme.colors.gray};
+  background-color: ${theme.colors.general80};
+  color: ${theme.colors.general30};
+`;
+
+const loadingCss = css`
+  background-color: ${theme.colors.red100};
+  color: ${theme.colors.general30};
 `;
 
 const cssByVariants = {
   primary: css`
-    background-color: ${theme.colors.primary};
-  `,
-  gray: css`
-    background-color: ${theme.colors.gray};
-  `,
-  danger: css`
-    background-color: #ffc0ac;
+    background-color: ${theme.colors.primary100};
+    color: ${theme.colors.general40};
   `,
 };
 
 const sizesProps: Record<NonNullable<IProps["size"]>, SerializedStyles> = {
-  xl: css({ padding: 25 }),
-  lg: css({ padding: 15 }),
-  md: css({ padding: 15 }),
-  sm: css({ padding: 15 }),
-  xs: css({ padding: 15 }),
+  lg: css({ padding: 10 }),
+  md: css({ padding: 13 }),
+  sm: css({ padding: 10 }),
 };
 
 const Button = styled.button<IProps>`
   ${(props) => cssByVariants[props.variant ?? "primary"]}
   ${(props) => props.disabled && disabledCss}
+  ${(props) => props.loading && loadingCss}
   ${(props) => sizesProps[props.size ?? "md"]}
   border:none;
   border-radius: 10px;
   cursor: pointer;
+  text-transform: uppercase;
 `;
 
 export default Button;

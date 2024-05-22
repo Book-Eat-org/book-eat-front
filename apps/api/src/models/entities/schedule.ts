@@ -1,12 +1,14 @@
-interface ITime {
-  hour: number;
-  minute: number;
-  second: number;
-  nano: number;
+export enum DayOfWeek {
+  Monday = "Понедельник",
+  Tuesday = "Вторник",
+  Wednesday = "Среда",
+  Thursday = "Четверг",
+  Friday = "Пятница",
+  Saturday = "Суббота",
+  Sunday = "Воскресенье",
 }
-
 export interface ISchedule {
-  dayOfWeek: string;
-  timeFrom: ITime;
-  timeTo: ITime;
+  dayOfWeek: DayOfWeek;
+  timeFrom: string;
+  timeTo: string;
 }

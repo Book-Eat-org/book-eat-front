@@ -1,72 +1,103 @@
-import classNames from "classnames";
-import { not } from "ramda";
-import { FC, useState } from "react";
-
-import AddItem from "../../../AddItem";
-import classes from "./Item.module.css";
+import { FC } from "react";
 import { useSelector } from "react-redux";
 import { menuEndpoints, menuSelectors } from "$api";
 import { EntityId } from "@reduxjs/toolkit";
-import { BrowsIcon, EyeIcon, PencilIcon } from "@book-eat/ui";
+import {
+  Flex,
+  Grid,
+  PhoneIcon20,
+  Switch,
+  theme,
+  Typography,
+} from "@book-eat/ui";
+import { useNavigate } from "react-router-dom";
+import { navigateToPage, PageURLS } from "$constants";
 
 interface IProps {
   id: EntityId;
 }
 
 const Item: FC<IProps> = ({ id }) => {
+  const navigate = useNavigate();
   const item = useSelector((state) => menuSelectors.selectById(state, id));
-
-  const [editing, setEditing] = useState(false);
 
   if (!item) {
     return null;
   }
 
-  const { mainImageUrl, title, quantity, enabled, price } = item;
+  const { mainImageUrl, title, weight = 0, price } = item;
+
+  const isActiveOnOrganization = true;
 
   const [saveMenu] = menuEndpoints.useSaveMenuMutation();
 
-  const toggleEnabled = () => saveMenu([{ ...item, enabled: !item.enabled }]);
+  const toggleEnabled = (checked: boolean) =>
+    saveMenu({ ...item, isActiveOnOrganization: checked });
 
-  const toggleEditing = () => setEditing(not);
-
-  const wrapperClasses = classNames(classes.wrapper, {
-    [classes.semiTransparent]: !enabled,
-  });
-
-  if (editing) {
-    return (
-      <AddItem id={id} onSubmit={toggleEditing} onCancel={toggleEditing} />
-    );
-  }
+  const onCLick = () => {
+    navigate(navigateToPage(PageURLS.MenuListEdit, { id }));
+  };
 
   return (
-    <div className={wrapperClasses}>
-      <div className={classes.titleWrapper}>
-        <div className={classes.imageWrapper}>
-          <div onClick={toggleEnabled} className={classes.eyeIcon}>
-            {enabled ? <EyeIcon /> : <BrowsIcon />}
-          </div>
-          <img
-            className={classes.image}
-            src={mainImageUrl}
-            width={80}
-            height={80}
-            alt=""
-          />
-        </div>
-        <div className={classes.descriptionWrapper}>
-          <span className={classes.title}>{title}</span>
-          <div className={classes.descriptionFooterWrapper}>
-            <span className={classes.weight}>{quantity} г</span>
-            <span className={classes.count}>{price}₽</span>
-          </div>
-        </div>
-      </div>
-      <div className={classes.edit}>
-        <PencilIcon onClick={toggleEditing} />
-      </div>
-    </div>
+    <Flex
+      gap={4}
+      padding="10px"
+      backgroundColor={
+        isActiveOnOrganization ? theme.colors.general30 : theme.colors.general40
+      }
+      borderRadius={15}
+      onClick={onCLick}
+    >
+      <img
+        src={mainImageUrl}
+        alt=""
+        width={80}
+        height={80}
+        style={{ borderRadius: "15px" }}
+      />
+      <Flex justifyContent="space-between" width="100%">
+        <Grid>
+          <Grid>
+            <Typography
+              size="12/12"
+              fontWeight={600}
+              color={
+                isActiveOnOrganization
+                  ? theme.colors.general100
+                  : theme.colors.general90
+              }
+            >
+              {title}
+            </Typography>
+            <Typography
+              size="12/12"
+              color={
+                isActiveOnOrganization
+                  ? theme.colors.general90
+                  : theme.colors.general80
+              }
+            >
+              {weight ?? 0} г.
+            </Typography>
+          </Grid>
+          <Flex alignItems="center" gap={1}>
+            <Typography
+              color={
+                isActiveOnOrganization
+                  ? theme.colors.general90
+                  : theme.colors.general80
+              }
+              size="12/12"
+            >
+              {price} ₽
+            </Typography>
+          </Flex>
+        </Grid>
+        <Flex alignItems="center">
+          <Switch checked={isActiveOnOrganization} onChange={toggleEnabled} />
+        </Flex>
+      </Flex>
+    </Flex>
   );
 };
 

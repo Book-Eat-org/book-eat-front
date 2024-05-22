@@ -32,6 +32,14 @@ export const menuEndpoints = api.injectEndpoints({
       }),
       invalidatesTags: [ApiTags.Menu],
     }),
+    editMenu: build.mutation<{ success: boolean }, IProduct>({
+      query: (menu) => ({
+        url: `/v1/products/${menu.id}`,
+        method: "PUT",
+        body: menu,
+      }),
+      invalidatesTags: [ApiTags.Menu],
+    }),
     deleteMenu: build.mutation<{ success: boolean }, EntityId>({
       query: (guid) => ({
         url: `/menu/${guid}`,

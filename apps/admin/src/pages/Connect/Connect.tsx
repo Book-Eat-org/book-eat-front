@@ -1,30 +1,16 @@
-import { FC, useState } from "react";
-import Add from "./Add";
+import { FC } from "react";
+import { Route, Routes } from "react-router-dom";
 import List from "./List";
-import { Grid, Page } from "@book-eat/ui";
-import { AddButton } from "../Header";
+import Add from "./Add";
+import { PAGES, PageURLS } from "$constants";
 
 const Connect: FC = () => {
-  const [addUserVisible, setAddUserVisible] = useState(false);
-
-  const handleAddCLick = () => setAddUserVisible(true);
-  const handleCancelCLick = () => setAddUserVisible(false);
-
   return (
-    <Page
-      header={
-        <Page.Header>
-          <Page.Title right={<AddButton onClick={handleAddCLick} />}>
-            Пользователи
-          </Page.Title>
-        </Page.Header>
-      }
-    >
-      <Grid gap={8}>
-        {addUserVisible && <Add onCancel={handleCancelCLick} />}
-        <List />
-      </Grid>
-    </Page>
+    <Routes>
+      <Route index element={<List />} />
+      <Route path={PAGES[PageURLS.UsersCreate]} element={<Add />} />
+      <Route path={PAGES[PageURLS.UsersEdit]} element={<Add />} />
+    </Routes>
   );
 };
 

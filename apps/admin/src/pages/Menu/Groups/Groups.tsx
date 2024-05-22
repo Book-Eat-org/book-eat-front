@@ -1,54 +1,16 @@
-import { F, pipe, T } from "ramda";
-import { sortBy } from "ramda";
-import { useCallback, useState } from "react";
+import { FC } from "react";
+import { Route, Routes } from "react-router-dom";
+import { List } from "./List";
+import Add from "./AddItem";
 
-import { AddButton } from "../../Header";
-import AddItem from "./AddItem";
-import Item from "./Item";
-import { Grid, Page } from "@book-eat/ui";
-import { categoriesEndpoints, categoriesSelectors } from "$api";
-import { useNavigate } from "react-router-dom";
-import { PAGE_URLS } from "$constants";
-import { useSelector } from "react-redux";
-
-const Groups = () => {
-  const [addItemOpened, setAddItemOpened] = useState(false);
-
-  const navigate = useNavigate();
-
-  const { isLoading } = categoriesEndpoints.useFetchCategoriesQuery();
-
-  const data = useSelector(categoriesSelectors.selectAll);
-
-  const onBackClick = useCallback(() => navigate(PAGE_URLS.MENU), []);
-
-  if (isLoading) {
-    return null;
-  }
-
-  const sotredList = sortBy((item) => item.title, data);
-
-  const closeAddItem = pipe(F, setAddItemOpened);
-  const openAddItem = pipe(T, setAddItemOpened);
-
+const Additions: FC = () => {
   return (
-    <Page
-      header={
-        <Page.Header>
-          <Page.Title right={<AddButton onClick={openAddItem} />}>
-            Категории
-          </Page.Title>
-        </Page.Header>
-      }
-    >
-      <Grid gap={4}>
-        {addItemOpened && <AddItem onCancel={closeAddItem} />}
-        {sotredList.map(({ id }) => (
-          <Item id={id} key={id} />
-        ))}
-      </Grid>
-    </Page>
+    <Routes>
+      <Route index element={<List />} />
+      <Route path="create" element={<Add />} />
+      <Route path=":id" element={<Add />} />
+    </Routes>
   );
 };
 
-export default Groups;
+export default Additions;

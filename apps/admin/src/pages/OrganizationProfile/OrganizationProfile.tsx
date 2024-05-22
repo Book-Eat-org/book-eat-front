@@ -8,7 +8,7 @@ const OrganizationProfile = () => {
   return (
     <Routes>
       <Route index element={<Main />} />
-      <Route path="shops" element={<Shops />} />
+      <Route path="shops/*" element={<Shops />} />
       <Route path="organization" element={<Organization />} />
     </Routes>
   );

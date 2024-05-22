@@ -1,56 +1,79 @@
 import { FC } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
-import { UIButton, UIGrid } from "@book-eat/ui";
+import { BackIcon24, Button, Flex, theme, UIGrid } from "@book-eat/ui";
 
-import { Group, Price, Title, Weight } from "./Fields";
+import { Category, Price, Title, Weight } from "./Fields";
 import { IFormValues } from "./models";
-import { additionsEndpoints, categoriesEndpoints } from "$api";
-import { IAddition } from "@book-eat/api";
+import {
+  additionsEndpoints,
+  additionsSelectors,
+  categoriesEndpoints,
+} from "$api";
+import { Page } from "$components";
+import { useNavigate, useParams } from "react-router-dom";
+import { inputAdapter, outputAdapter } from "./adapters.ts";
+import { isNil } from "ramda";
+import { useSelector } from "react-redux";
 
-interface IProps {
-  onCancel: () => void;
-}
+const AddItem: FC = () => {
+  const { id } = useParams();
 
-const AddItem: FC<IProps> = (props) => {
-  const { onCancel } = props;
-  const methods = useForm<IFormValues>();
+  const item = useSelector((state) => additionsSelectors.selectById(state, id));
+
+  const navigate = useNavigate();
+
+  const methods = useForm<IFormValues>({
+    defaultValues: isNil(item) ? undefined : inputAdapter(item),
+  });
+
+  const navigateBack = () => navigate("..");
 
   categoriesEndpoints.useFetchCategoriesQuery();
   const [saveAddition] = additionsEndpoints.useSaveAdditionMutation();
 
   const handleSubmit = async (data: IFormValues) => {
-    const payload: IAddition = {
-      title: data.title,
-      price: data.price,
-      isActive: true,
-    };
+    const payload = outputAdapter(data);
 
     await saveAddition(payload);
-    onCancel();
+    navigateBack();
   };
 
   return (
-    <FormProvider {...methods}>
-      <UIGrid gap="30px">
-        <UIGrid gap="20px">
-          <Title />
-          <UIGrid gap="8px" colSizes="1fr 1fr 2fr">
-            <Weight />
-            <Price />
-            <Group />
+    <Page>
+      <Page.Header>
+        <Page.Header.Buttons>
+          <Flex
+            backgroundColor={theme.colors.primary90}
+            borderRadius={10}
+            padding="6px"
+          >
+            <BackIcon24 onClick={navigateBack} />
+          </Flex>
+        </Page.Header.Buttons>
+        <Page.Header.Title>Добавки</Page.Header.Title>
+      </Page.Header>
+      <Page.Body>
+        <FormProvider {...methods}>
+          <UIGrid gap="30px">
+            <UIGrid gap="20px">
+              <Title />
+              <UIGrid gap="8px" colSizes="1fr 1fr 2fr">
+                <Weight />
+                <Price />
+                <Category />
+              </UIGrid>
+            </UIGrid>
+            <UIGrid colSizes="1fr 2fr" gap="64px">
+              <Button onClick={navigateBack}>Отменить</Button>
+              <Button onClick={methods.handleSubmit(handleSubmit)}>
+                Создать
+              </Button>
+            </UIGrid>
           </UIGrid>
-        </UIGrid>
-        <UIGrid colSizes="1fr 2fr" gap="64px">
-          <UIButton variant="secondary" onClick={onCancel}>
-            Отменить
-          </UIButton>
-          <UIButton onClick={methods.handleSubmit(handleSubmit)}>
-            Создать
-          </UIButton>
-        </UIGrid>
-      </UIGrid>
-    </FormProvider>
+        </FormProvider>
+      </Page.Body>
+    </Page>
   );
 };
 

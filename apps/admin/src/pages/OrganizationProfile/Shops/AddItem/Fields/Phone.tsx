@@ -17,7 +17,7 @@ export const Phone: FC = () => {
     <UIPhoneInput
       value={value}
       onChange={onChange}
-      placeholder="Телефон"
+      title="Телефон"
       type="text"
       error={errorMessage}
     />

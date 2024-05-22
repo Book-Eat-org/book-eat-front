@@ -1,18 +1,18 @@
 import { isNil } from "ramda";
 import { FC } from "react";
-
-import classes from "./Item.module.css";
-import { Grid, TrashIcon, Typography } from "@book-eat/ui";
-import { cashiersEndpoints, cashiersSelectors } from "$api";
+import { Grid, theme, TrashIcon, Typography } from "@book-eat/ui";
+import { cashiersSelectors } from "$api";
 import { EntityId } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { navigateToPage, PageURLS } from "$constants";
 
 interface IProps {
   id: EntityId;
 }
 
 const Item: FC<IProps> = ({ id }) => {
-  const [trigger] = cashiersEndpoints.endpoints.deleteCashiers.useMutation();
+  const navigate = useNavigate();
 
   const item = useSelector((state) => cashiersSelectors.selectById(state, id));
 
@@ -20,25 +20,23 @@ const Item: FC<IProps> = ({ id }) => {
     return null;
   }
 
-  const deleteCashier = () => {
-    trigger(id);
-  };
+  const onEditClick = () =>
+    navigate(navigateToPage(PageURLS.UsersEdit, { id }));
 
-  const { phone, firstName, secondName } = item;
+  const { firstName, secondName } = item;
 
   return (
     <Grid
       gridTemplateColumns="auto max-content"
-      padding="0 0 10px"
-      className={classes.wrapper}
+      padding="15px"
+      backgroundColor={theme.colors.general30}
+      borderRadius={10}
+      onClick={onEditClick}
     >
-      <Grid gap={2}>
-        <Typography size="14/14" fontWeight={600}>
-          {firstName} {secondName}
-        </Typography>
-        <Typography size="14/14">{phone}</Typography>
-      </Grid>
-      <TrashIcon onClick={deleteCashier} />
+      <Typography size="14/14" fontWeight={500}>
+        {firstName} {secondName}
+      </Typography>
+      <TrashIcon onClick={onEditClick} />
     </Grid>
   );
 };

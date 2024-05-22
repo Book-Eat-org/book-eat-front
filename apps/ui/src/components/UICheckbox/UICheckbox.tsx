@@ -1,32 +1,29 @@
 import classNames from "classnames";
-import {
-  FC, ReactNode,
-  SyntheticEvent,
-} from "react";
+import { FC, ReactNode, SyntheticEvent } from "react";
 
 import UIGrid from "../UIGrid";
 import classes from "./UICheckbox.module.css";
+import styled from "@emotion/styled";
+import Box from "../Box";
+import { theme } from "$theme";
 
 interface IProps {
   selected?: boolean;
   onChange?: (value: boolean, event?: SyntheticEvent) => void;
   error?: boolean;
   className?: string;
-  children?:ReactNode;
+  children?: ReactNode;
 }
 
 const UICheckbox: FC<IProps> = (props) => {
   const { selected, onChange, children, className, error } = props;
 
   const handleChange = () => {
+    console.log(selected);
     onChange?.(!selected);
   };
 
   const wrapperClasses = classNames(classes.wrapper, className);
-
-  const checkBoxClasses = classNames(classes.checkbox, {
-    [classes.selected]: selected,
-  });
 
   const textClasses = classNames(classes.text, {
     [classes.error]: error,
@@ -40,7 +37,14 @@ const UICheckbox: FC<IProps> = (props) => {
       onClick={handleChange}
       className={wrapperClasses}
     >
-      <div className={checkBoxClasses} />
+      <Box
+        width={20}
+        height={20}
+        background={selected ? theme.colors.primary100 : theme.colors.general30}
+        borderRadius={5}
+        boxShadow="0 4px 4px 0 rgba(0, 0, 0, 0.1) inset"
+        border={`1px solid ${theme.colors.general70}`}
+      />
       <span className={textClasses}>{children}</span>
     </UIGrid>
   );
