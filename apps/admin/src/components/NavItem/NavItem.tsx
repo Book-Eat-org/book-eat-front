@@ -1,5 +1,11 @@
 import { FC, ReactNode } from "react";
-import { Grid, theme, TrashIcon, Typography } from "@book-eat/ui";
+import {
+  ArrowRightIcon24,
+  Grid,
+  theme,
+  TrashIcon,
+  Typography,
+} from "@book-eat/ui";
 
 interface IProps {
   children: ReactNode;
@@ -10,6 +16,7 @@ export const NavItem: FC<IProps> = (props) => {
   return (
     <Grid
       gridTemplateColumns="auto max-content"
+      alignItems="center"
       padding="15px"
       backgroundColor={theme.colors.general30}
       borderRadius={10}
@@ -18,7 +25,7 @@ export const NavItem: FC<IProps> = (props) => {
       <Typography size="14/14" fontWeight={500}>
         {children}
       </Typography>
-      <TrashIcon />
+      <ArrowRightIcon24 />
     </Grid>
   );
 };

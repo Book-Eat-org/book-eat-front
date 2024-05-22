@@ -1,11 +1,11 @@
 import { isNil } from "ramda";
 import { FC } from "react";
-import { Grid, theme, TrashIcon, Typography } from "@book-eat/ui";
 import { cashiersSelectors } from "$api";
 import { EntityId } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { navigateToPage, PageURLS } from "$constants";
+import { NavItem } from "$components";
 
 interface IProps {
   id: EntityId;
@@ -26,18 +26,9 @@ const Item: FC<IProps> = ({ id }) => {
   const { firstName, secondName } = item;
 
   return (
-    <Grid
-      gridTemplateColumns="auto max-content"
-      padding="15px"
-      backgroundColor={theme.colors.general30}
-      borderRadius={10}
-      onClick={onEditClick}
-    >
-      <Typography size="14/14" fontWeight={500}>
-        {firstName} {secondName}
-      </Typography>
-      <TrashIcon onClick={onEditClick} />
-    </Grid>
+    <NavItem onClick={onEditClick}>
+      {firstName} {secondName}
+    </NavItem>
   );
 };
 

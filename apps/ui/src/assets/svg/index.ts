@@ -18,6 +18,7 @@ import ConnectIcon24 from "./ConnectIcon24.tsx";
 import HomeIcon24 from "./HomeIcon24.tsx";
 import BackIcon24 from "./BackIcon24.tsx";
 import PhoneIcon20 from "./PhoneIcon20.tsx";
+import ArrowRightIcon24 from "./ArrowRightIcon24.tsx";
 
 export {
   BurgerMenuIcon,
@@ -25,6 +26,7 @@ export {
   MenuIcon24,
   OrdersIcon24,
   ConnectIcon24,
+  ArrowRightIcon24,
   HomeIcon24,
   PhoneIcon20,
   PlusIcon,

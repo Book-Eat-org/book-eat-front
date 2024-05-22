@@ -49,7 +49,7 @@ export const List = () => {
         <Page.Header.Title>Добавки</Page.Header.Title>
       </Page.Header>
       <Page.Body>
-        <Grid>
+        <Grid gap={3}>
           {sortedList.map(({ id }) => (
             <Item id={id} key={id} />
           ))}
