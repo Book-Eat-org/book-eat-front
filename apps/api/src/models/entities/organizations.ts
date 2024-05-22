@@ -1,5 +1,7 @@
+import { EntityId } from "@reduxjs/toolkit";
+
 export interface IOrganization {
-  id: string;
+  id: EntityId;
   logoUrl?: string;
   title?: string;
   description?: string;

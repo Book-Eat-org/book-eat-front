@@ -40,7 +40,12 @@ const Item: FC<IProps> = (props) => {
     fetchEditPlace({ ...item, isActive: checked });
   };
 
-  const { logoUrl, title, address, phone, isActive = true } = item;
+  const {
+    logoUrl,
+    title,
+    info: { address, phone },
+    isActive = true,
+  } = item;
 
   return (
     <Flex

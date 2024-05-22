@@ -4,3 +4,4 @@ export * from "./Title.tsx";
 export * from "./Phone";
 export * from "./Email";
 export * from "./Address";
+export * from "./ActualAddress";

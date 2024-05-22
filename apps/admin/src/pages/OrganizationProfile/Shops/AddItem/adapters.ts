@@ -8,14 +8,14 @@ export const inputAdapter = (input: IPlace): IFormValues => {
   return {
     title: input?.title,
     image: input?.logoUrl,
-    address: input?.address,
-    phone: input?.phone,
-    contactName: input?.contactName,
+    address: input?.info?.address ?? "",
+    phone: input?.info?.phone ?? "",
+    contactName: input?.info.contactName,
     workingDays: DAYS_ITEMS.map(prop("id")),
     differentTimeDaily: false,
     isDeliveryAvailable: input?.isDeliveryAvailable,
     isInPlaceAvailable: input?.isInPlaceAvailable,
-    isOutsideAvailable: input?.isOutsideAvailable,
+    isOutsideAvailable: input?.isOnPlaceAvailable,
     workingHoursDaily:
       input?.schedule?.map((item) => ({
         dayOfWeek: item.dayOfWeek,
@@ -40,8 +40,7 @@ export const ouptutAdapter = (
 ): PickPartial<IPlace, "id"> => {
   return {
     id,
-    address: data.address,
-    phone: data.phone,
+    info: { address: data.address, phone: data.phone },
     geolocation: {
       latitude: 11.222,
       longitude: 22.333,
@@ -63,7 +62,7 @@ export const ouptutAdapter = (
     title: data.title,
     isDeliveryAvailable: data.isDeliveryAvailable,
     isInPlaceAvailable: data.isInPlaceAvailable,
-    isOutsideAvailable: data?.isOutsideAvailable,
-    logoUrl: data.image,
+    isOnPlaceAvailable: data?.isOutsideAvailable,
+    logoUrl: data.image!,
   };
 };

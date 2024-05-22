@@ -1,5 +1,6 @@
 import { IFormValues } from "./models";
 import { IOrganization } from "@book-eat/api";
+import { EntityId } from "@reduxjs/toolkit";
 
 export const inputAdapter = (input: IOrganization): IFormValues => {
   const { title, logoUrl, legalInfo } = input ?? {};
@@ -18,8 +19,8 @@ export const inputAdapter = (input: IOrganization): IFormValues => {
 
 export const outputAdapter = (
   data: IFormValues,
-  id?: string,
-): Partial<IOrganization> => {
+  id: EntityId,
+): IOrganization => {
   return {
     id,
     title: data.title,
@@ -29,7 +30,7 @@ export const outputAdapter = (
       ogrn: String(data.legalInfoOgrn),
       email: data.legalInfoEmail,
       phone: data.legalInfoPhone,
-      legalAddress: data.legalInfoActualAddress,
+      legalAddress: data.legalInfoLegalAddress,
       actualAddress: data.legalInfoActualAddress,
     },
   };

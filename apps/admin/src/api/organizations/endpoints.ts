@@ -48,6 +48,12 @@ export const organizationsEndpoints = api.injectEndpoints({
           formData: true,
         };
       },
+      transformResponse: (res: IOrganization) =>
+        organizationsAdapter.updateOne(
+          organizationsAdapter.getInitialState(),
+          res,
+        ),
+      invalidatesTags: [ApiTags.Organizations],
     }),
   }),
 });

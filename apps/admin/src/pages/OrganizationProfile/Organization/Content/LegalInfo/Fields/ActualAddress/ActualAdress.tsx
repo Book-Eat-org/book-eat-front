@@ -9,16 +9,16 @@ import {
 } from "@book-eat/ui";
 
 import { IFormValues } from "../../../models";
-import classes from "./Address.module.css";
+import classes from "./ActualAdress.module.css";
 
-const Address: FC = () => {
+const ActualAdress: FC = () => {
   const [mapOpened, setMapOpened] = useState(false);
 
   const { field, fieldState } = useController<
     IFormValues,
-    "legalInfoLegalAddress"
+    "legalInfoActualAddress"
   >({
-    name: "legalInfoLegalAddress",
+    name: "legalInfoActualAddress",
     rules: { required: { value: true, message: "Укажите адрес" } },
   });
 
@@ -38,8 +38,8 @@ const Address: FC = () => {
       <UIInput
         value={value}
         onClick={handleAddressClick}
-        title="Фактический адрес*"
-        placeholder="Фактический адрес"
+        title="Юридический адрес*"
+        placeholder="Юридический адрес"
         type="text"
         error={errorMessage}
       />
@@ -57,4 +57,4 @@ const Address: FC = () => {
   );
 };
 
-export default Address;
+export default ActualAdress;

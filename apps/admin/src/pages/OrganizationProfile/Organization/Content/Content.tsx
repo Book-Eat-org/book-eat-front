@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import { inputAdapter, outputAdapter } from "./adapters";
 import { currentOrganizationSelector, organizationsEndpoints } from "$api";
 import { useSelector } from "react-redux";
-import Header from "./Header";
 import LegalInfo from "./LegalInfo";
 import { Page } from "$components";
 
@@ -53,7 +52,6 @@ const Content: FC = () => {
       <Page.Body>
         <FormProvider {...methods}>
           <Grid gap={7}>
-            <Header />
             <LegalInfo />
             <UIGrid colSizes="1fr 2fr" gap="68px">
               <Button onClick={navigateBack}>Отменить</Button>

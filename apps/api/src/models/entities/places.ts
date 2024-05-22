@@ -9,16 +9,20 @@ export interface IPlace {
   logoUrl: string;
   title: string;
   description: string;
+  info: {
+    address?: string;
+    contactName?: string;
+    deliveryInfo?: string;
+    email?: string;
+    phone?: string;
+  };
   isDeliveryAvailable: boolean;
   isInPlaceAvailable: boolean;
-  address: string;
+  isOnPlaceAvailable: boolean;
   geolocation: IGeoLocation;
   city: ICity;
   schedule: ISchedule[];
   organization: IOrganization;
   deliveryComment: string;
-  email: string;
-  phone: string;
-  contactName: string;
   isActive: boolean;
 }
