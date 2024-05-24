@@ -1,16 +1,16 @@
 import { Flex, Grid, Typography } from "@book-eat/ui";
 import classes from "./PageHeader.module.css";
-import { organizationsEndpoints } from "$api";
 import { useParams } from "react-router-dom";
+import { organizationsEndpoints } from "@book-eat/api";
 
 const PageHeader = () => {
   const { id } = useParams();
-  const { data } = organizationsEndpoints.useGetOrganisationQuery();
+  const { data } = organizationsEndpoints.useGetOrganisationsQuery();
 
   const item = data?.entities[id!];
 
   return (
-    <Flex p={4} gap={2} alignItems="center">
+    <Flex gap={2} alignItems="center">
       <img
         src={item?.logoUrl}
         alt=""

@@ -4,8 +4,9 @@ import { Grid, TimeInput } from "@book-eat/ui";
 import classes from "./Day.module.css";
 import { IFormValues } from "../../../models.ts";
 import { WORK_TIME } from "../../../../List/Item/constants.ts";
+import { DayOfWeek } from "@book-eat/api";
 
-const Day: FC<{ day: number }> = ({ day }) => {
+const Day: FC<{ day: DayOfWeek }> = ({ day }) => {
   const { field } = useController<IFormValues, "workingHoursDaily">({
     name: "workingHoursDaily",
   });

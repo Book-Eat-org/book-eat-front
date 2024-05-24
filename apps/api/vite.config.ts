@@ -7,6 +7,7 @@ export default defineConfig({
   resolve: {
     alias: {
       $models: resolve(__dirname, "./src/models"),
+      $enums: resolve(__dirname, "./src/enums"),
     },
   },
   build: {

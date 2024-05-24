@@ -3,12 +3,13 @@ import { FC } from "react";
 import { isNil } from "ramda";
 import { Box, Grid } from "@book-eat/ui";
 import classes from "./Card.module.css";
-import { PRODUCTS } from "../../stubs.ts";
 import Price from "./Price";
 import Weight from "./Weight";
 import Title from "./Title";
 import Image from "./Image";
 import Cart from "./Cart";
+import { useSelector } from "react-redux";
+import { menuSelectors } from "@book-eat/api";
 
 interface IProps {
   id: EntityId;
@@ -16,11 +17,7 @@ interface IProps {
 
 const Card: FC<IProps> = (props) => {
   const { id } = props;
-  // const item = useSelector((state) =>
-  //   organizationsSelectors.selectById(state, id),
-  // );
-
-  const item = PRODUCTS.entities.find((item) => item.id === id);
+  const item = useSelector((state) => menuSelectors.selectById(state, id));
 
   if (isNil(item)) {
     return null;
@@ -33,14 +30,14 @@ const Card: FC<IProps> = (props) => {
       width="100%"
       className={classes.wrapper}
     >
-      <Box p="2px" borderRadius="20px">
+      <Box borderRadius="20px">
         <Image id={id} />
-        <Grid gap={5}>
-          <Grid padding="5px 10px" gap={1}>
+        <Grid gap={5} p={10}>
+          <Grid gap={1}>
             <Weight id={id} />
             <Title id={id} />
           </Grid>
-          <Grid padding="5px 10px" gap={1}>
+          <Grid gap={1}>
             <Price id={id} />
           </Grid>
           <Cart id={id} />

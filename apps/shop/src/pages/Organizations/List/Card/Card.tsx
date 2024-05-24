@@ -1,13 +1,13 @@
 import { EntityId } from "@reduxjs/toolkit";
 import { FC } from "react";
 import { useSelector } from "react-redux";
-import { organizationsSelectors } from "$api";
 import { isNil } from "ramda";
 import { Box, Grid, Typography } from "@book-eat/ui";
 import TimeTag from "./TimeTag";
 import classes from "./Card.module.css";
 import { navigateToPage, PageURLS } from "../../../../constants/urls.ts";
 import { useNavigate } from "react-router-dom";
+import { organizationsSelectors } from "@book-eat/api";
 
 interface IProps {
   id: EntityId;
@@ -19,6 +19,8 @@ const Card: FC<IProps> = (props) => {
   const item = useSelector((state) =>
     organizationsSelectors.selectById(state, id),
   );
+
+  console.log(item);
 
   if (isNil(item)) {
     return null;

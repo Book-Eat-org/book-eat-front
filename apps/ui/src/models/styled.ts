@@ -8,6 +8,7 @@ import {
   MarginProps,
   OpacityProps,
   PaddingProps,
+  PositionProps,
   TextColorProps,
 } from "styled-system";
 import { ColorProps, TextSizeProps } from "$theme";
@@ -23,4 +24,5 @@ export type TStyledCommonProps = LayoutProps &
   BoxShadowProps &
   TextSizeProps &
   ColorProps &
+  PositionProps &
   BackgroundProps;

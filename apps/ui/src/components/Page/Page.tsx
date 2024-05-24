@@ -1,45 +1,19 @@
-import { ComponentProps, FC, ReactNode } from "react";
+import { FC, ReactNode } from "react";
 import Header from "./Header";
-import Title from "./Title";
-import Box from "../Box";
-import Flex from "../Flex";
+import Body from "./Body";
+import classes from "./Page.module.css";
 
-interface IProps extends ComponentProps<typeof Box> {
-  header: ReactNode;
+interface IProps {
   children: ReactNode;
-  withoutPaddings?: boolean;
 }
 
-interface INestedComponents {
-  Header: typeof Header;
-  Title: typeof Title;
-}
+type TNestedComponents = { Header: typeof Header; Body: typeof Body };
+const Page: FC<IProps> & TNestedComponents = (props) => {
+  const { children } = props;
 
-const Page: FC<IProps> & INestedComponents = (props) => {
-  const { header, withoutPaddings, children, ...restProps } = props;
-
-  return (
-    <Flex
-      flexDirection="column"
-      height="100%"
-      overflow="auto"
-      backgroundColor="grayLight"
-    >
-      {header}
-      <Box
-        px={withoutPaddings ? undefined : "15px"}
-        py="15px"
-        height="100%"
-        overflow="auto"
-        {...restProps}
-      >
-        {children}
-      </Box>
-    </Flex>
-  );
+  return <div className={classes.wrapper}>{children}</div>;
 };
 
-Page.Title = Title;
 Page.Header = Header;
-
+Page.Body = Body;
 export default Page;

@@ -1,6 +1,7 @@
 import { createContext, useContext } from "react";
 import { EntityId } from "@reduxjs/toolkit";
-import { PRODUCTS } from "./stubs.ts";
+import { useSelector } from "react-redux";
+import { menuSelectors } from "@book-eat/api";
 
 export interface IContextState {
   searchValue: string;
@@ -14,5 +15,7 @@ export const OrganizationsContext = createContext<IContextState>({
 export const useOrganizationsContext = () => useContext(OrganizationsContext);
 
 export const useCard = (id: EntityId) => {
-  return PRODUCTS.entities.find((item) => item.id === id)!;
+  const item = useSelector((state) => menuSelectors.selectById(state, id));
+
+  return item!;
 };

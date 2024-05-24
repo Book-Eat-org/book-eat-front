@@ -1,21 +1,11 @@
 import { FC, useState } from "react";
 
-import {
-  BackIcon24,
-  Button,
-  Flex,
-  theme,
-  UIButton,
-  UIGrid,
-  UIInput,
-} from "@book-eat/ui";
+import { BackIcon24, Button, Flex, theme, UIGrid, UIInput } from "@book-eat/ui";
 import { categoriesEndpoints } from "$api";
 import { Page } from "$components";
 import { useNavigate, useParams } from "react-router-dom";
 
 const AddItem: FC = () => {
-  const { id } = useParams();
-
   const navigate = useNavigate();
 
   const [title, setTitle] = useState("");

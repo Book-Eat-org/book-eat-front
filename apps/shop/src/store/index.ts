@@ -1,7 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { organizationsEndpoints } from "$api";
 import { authorizedReducer } from "./authorized";
 import { cartReducer } from "./cart";
+import { organizationsEndpoints } from "@book-eat/api";
 
 export { setAuthorizedAction, authorizedSelector } from "./authorized";
 

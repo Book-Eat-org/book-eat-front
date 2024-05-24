@@ -1,10 +1,11 @@
-import { organizationsEndpoints } from "$api";
 import { Grid } from "@book-eat/ui";
 import Card from "./Card";
 import { useOrganizationsContext } from "../context.ts";
+import { organizationsEndpoints } from "@book-eat/api";
 
 const List = () => {
-  const { data, isFetching } = organizationsEndpoints.useGetOrganisationQuery();
+  const { data, isFetching } =
+    organizationsEndpoints.useGetOrganisationsQuery();
   const { searchValue } = useOrganizationsContext();
 
   if (isFetching || !data) {

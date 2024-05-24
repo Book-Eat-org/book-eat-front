@@ -1,14 +1,11 @@
-import { organizationsEndpoints } from "$api";
 import { Grid } from "@book-eat/ui";
 import Card from "./Card";
 import { useOrganizationsContext } from "../context.ts";
-import { PRODUCTS } from "../stubs.ts";
+import { menuEndpoints } from "@book-eat/api";
 
 const List = () => {
-  const { isFetching } = organizationsEndpoints.useGetOrganisationQuery();
+  const { data, isFetching } = menuEndpoints.useGetMenuByOrganizationQuery();
   const { searchValue } = useOrganizationsContext();
-
-  const data = PRODUCTS;
 
   if (isFetching || !data) {
     return <div>loading...</div>;

@@ -12,12 +12,14 @@ import {
   space,
   width,
   boxShadow,
+  position,
 } from "styled-system";
 import { colorsStyleFn, textSizeStyleFn } from "$theme";
 
 export const styledCommonFn = compose(
   space,
   width,
+  position,
   layout,
   fontSize,
   color,

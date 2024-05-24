@@ -1,4 +1,3 @@
-import { intersection, isEmpty } from "ramda";
 import { FC } from "react";
 
 import Item from "./Item";

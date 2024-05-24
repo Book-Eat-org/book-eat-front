@@ -19,6 +19,7 @@ import HomeIcon24 from "./HomeIcon24.tsx";
 import BackIcon24 from "./BackIcon24.tsx";
 import PhoneIcon20 from "./PhoneIcon20.tsx";
 import ArrowRightIcon24 from "./ArrowRightIcon24.tsx";
+import CartIcon24 from "./CartIcon24.tsx";
 
 export {
   BurgerMenuIcon,
@@ -35,6 +36,7 @@ export {
   PencilIcon,
   RightArrowIcon,
   BrowsIcon,
+  CartIcon24,
   EyeIcon,
   PlusIcon10,
   LeftArrowIcon,

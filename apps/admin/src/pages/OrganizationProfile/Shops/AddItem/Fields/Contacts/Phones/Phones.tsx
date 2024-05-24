@@ -1,4 +1,4 @@
-import { complement, equals, keys, propEq } from "ramda";
+import { complement, equals, keys } from "ramda";
 import { FC, useState } from "react";
 import { useController } from "react-hook-form";
 

@@ -23,9 +23,11 @@
     "typescript": "^5.0.2",
     "vite": "^4.4.5",
     "vite-plugin-dts": "~3.7.3",
-    "vite-plugin-mkcert": "^1.17.5"
+    "vite-plugin-mkcert": "^1.17.5",
+    "@types/ramda": "~0.30.0"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "~2.2.1"
+    "@reduxjs/toolkit": "~2.2.1",
+    "ramda": "~0.30.0"
   }
 }

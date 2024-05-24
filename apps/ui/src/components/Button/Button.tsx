@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { SerializedStyles, css } from "@emotion/react";
 import { theme } from "$theme";
+import { styledCommonFn } from "$utils";
 
 interface IProps {
   variant?: "primary";
@@ -41,6 +42,7 @@ const Button = styled.button<IProps>`
   border-radius: 10px;
   cursor: pointer;
   text-transform: uppercase;
+  ${styledCommonFn}
 `;
 
 export default Button;

@@ -1,18 +1,21 @@
-import Grid from "../../Grid";
-import { ComponentProps, FC, ReactNode } from "react";
-import Box from "../../Box";
+import { FC, ReactNode } from "react";
+import Title from "./Title";
+import classes from "./Header.module.css";
+import Buttons from "./Buttons";
 
-interface IProps extends ComponentProps<typeof Box> {
+interface IProps {
   children: ReactNode;
-  backgroundColor?: "white";
 }
-const Header: FC<IProps> = (props) => {
-  const { children, ...restProps } = props;
-  return (
-    <Grid gap={6} padding="40px 15px" minHeight="45px" {...restProps}>
-      {children}
-    </Grid>
-  );
+
+type TNestedComponents = { Title: typeof Title; Buttons: typeof Buttons };
+
+const Header: FC<IProps> & TNestedComponents = (props) => {
+  const { children } = props;
+
+  return <div className={classes.wrapper}>{children}</div>;
 };
+
+Header.Title = Title;
+Header.Buttons = Buttons;
 
 export default Header;

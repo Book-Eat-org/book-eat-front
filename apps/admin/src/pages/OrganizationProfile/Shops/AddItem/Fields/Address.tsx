@@ -16,7 +16,7 @@ export const Address: FC<IProps> = (props) => {
     name: "address",
     rules: { required: { value: true, message: "Укажите адрес" } },
   });
-  const { onChange, value } = field;
+  const { value } = field;
   const errorMessage = fieldState.error?.message;
 
   return (

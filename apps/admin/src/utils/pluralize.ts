@@ -12,7 +12,7 @@ function getNounPluralForm(a: number) {
 }
 
 export function pluralize(num: number, ...args: ThreeForms | TwoForms) {
-  const forms = Array.prototype.slice.call(arguments, 1);
+  const forms = Array.prototype.slice.call(args, 1);
 
   let str;
 

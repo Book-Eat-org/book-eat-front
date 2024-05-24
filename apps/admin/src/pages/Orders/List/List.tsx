@@ -3,10 +3,9 @@ import {
   Grid,
   ListNavigation,
   Skeleton,
-  UIGrid,
   UITypography,
 } from "@book-eat/ui";
-import { groupBy, innerJoin, intersection, keys, prop } from "ramda";
+import { groupBy, intersection, keys, prop } from "ramda";
 import Order from "./Order";
 import { useOrders } from "../hooks";
 import { ORDER_STATUS_ORDER_ARRAY, STATUS_CONFIG } from "$constants";
