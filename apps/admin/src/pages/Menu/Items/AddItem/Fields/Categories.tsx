@@ -20,8 +20,6 @@ export const Categories: FC = () => {
   const handleChange = (item: string) =>
     onChange(symmetricDifference(value, [item]));
 
-  console.log(data);
-
   return (
     <UIMultipleSelect
       values={value}

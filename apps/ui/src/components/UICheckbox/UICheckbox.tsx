@@ -19,7 +19,6 @@ const UICheckbox: FC<IProps> = (props) => {
   const { selected, onChange, children, className, error } = props;
 
   const handleChange = () => {
-    console.log(selected);
     onChange?.(!selected);
   };
 

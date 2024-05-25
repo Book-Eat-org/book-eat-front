@@ -20,8 +20,6 @@ const Card: FC<IProps> = (props) => {
     organizationsSelectors.selectById(state, id),
   );
 
-  console.log(item);
-
   if (isNil(item)) {
     return null;
   }

@@ -1,9 +1,11 @@
-import { useParams } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import { Create } from "./Create";
+import { Detail } from "./Detail";
 
-const Order = () => {
-  const { id: orgId } = useParams();
-
-  return <div>Order</div>;
-};
-
+const Order = () => (
+  <Routes>
+    <Route path="create" element={<Create />} />
+    <Route path=":id" element={<Detail />} />
+  </Routes>
+);
 export default Order;

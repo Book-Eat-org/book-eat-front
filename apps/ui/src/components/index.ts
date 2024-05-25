@@ -1,6 +1,7 @@
 import UICheckbox from "./UICheckbox";
 import UIInput from "./UIInput";
 import UIButton from "./UIButton";
+import IconButton from "./IconButton";
 import UIIconButton from "./UIIconButton";
 import UIPopupMenu from "./UIPopupMenu";
 import UINumberInput from "./UINumberInput";
@@ -34,6 +35,7 @@ export {
   UIPopupMenu,
   UIGrid,
   UINumberInput,
+  IconButton,
   UIImageInput,
   UIFileInput,
   Typography,

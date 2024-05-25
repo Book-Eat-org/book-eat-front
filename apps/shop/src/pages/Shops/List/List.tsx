@@ -7,8 +7,6 @@ const List = () => {
   const { data, isFetching } = placesEndpoints.useFetchPlacesQuery();
   const { searchValue } = useShopsContext();
 
-  console.log(data);
-
   if (isFetching || !data) {
     return <div>loading...</div>;
   }

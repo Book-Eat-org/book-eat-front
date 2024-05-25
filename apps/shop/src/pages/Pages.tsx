@@ -13,7 +13,7 @@ const Pages: FC = () => {
       <Route path="/organizations/:id/shops" element={<Shops />} />
       <Route path="/products/:id" element={<Products />} />
       <Route path="/cart" element={<Cart />} />
-      <Route path="/order" element={<Order />} />
+      <Route path="/orders/*" element={<Order />} />
     </Routes>
   );
 };

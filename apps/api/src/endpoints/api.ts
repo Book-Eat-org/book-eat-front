@@ -30,15 +30,7 @@ const baseQueryToasts = (baseUrl: string) => {
     return { data };
   };
 };
-export const rtkQueryErrorLogger: Middleware =
-  (api: MiddlewareAPI) => (next) => async (action) => {
-    if (isRejectedWithValue(action)) {
-      console.log(action);
-    }
-    console.log(api);
 
-    return next(action);
-  };
 export const api = createApi({
   reducerPath: "api",
   tagTypes: Object.values(ApiTags),

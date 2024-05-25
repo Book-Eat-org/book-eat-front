@@ -32,12 +32,7 @@ const baseQueryToasts = (baseUrl: string) => {
   };
 };
 export const rtkQueryErrorLogger: Middleware =
-  (api: MiddlewareAPI) => (next) => async (action) => {
-    if (isRejectedWithValue(action)) {
-      console.log(action);
-    }
-    console.log(api);
-
+  () => (next) => async (action) => {
     return next(action);
   };
 export const api = createApi({
