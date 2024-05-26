@@ -1,19 +1,13 @@
 import { useNavigate } from "react-router-dom";
-import {
-  BackIcon24,
-  Button,
-  Flex,
-  Grid,
-  Page,
-  theme,
-  Typography,
-} from "@book-eat/ui";
+import { BackIcon24, Button, Flex, Grid, Page, theme } from "@book-eat/ui";
 import { Items } from "./Items";
 import { Totals } from "./Totals";
+import { navigateToPage, PageURLS } from "../../constants/urls.ts";
 
 const Cart = () => {
   const navigate = useNavigate();
   const onBackClick = () => navigate("..");
+  const onSubmit = () => navigate(navigateToPage(PageURLS.ORDERS_CREATE, {}));
 
   return (
     <Page>
@@ -36,7 +30,7 @@ const Cart = () => {
               <Items />
             </Grid>
             <Totals />
-            <Button>Продолжить</Button>
+            <Button onClick={onSubmit}>Продолжить</Button>
           </Grid>
         </div>
       </Page.Body>

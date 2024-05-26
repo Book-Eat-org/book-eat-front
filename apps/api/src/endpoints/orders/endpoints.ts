@@ -20,6 +20,14 @@ export const ordersEndpoints = api.injectEndpoints({
       transformResponse: (res: IOrder[]) =>
         ordersAdapter.setAll(ordersAdapter.getInitialState(), res),
     }),
+    createOrder: build.mutation<{ success: boolean }, IOrder>({
+      query: (body) => ({
+        url: "/v1/orders",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: [ApiTags.Orders],
+    }),
     updateOrderStatus: build.mutation<void, IUpdateOrderRequestPayload>({
       query: ({ id, statusVal }) => ({
         params: { status: statusVal },

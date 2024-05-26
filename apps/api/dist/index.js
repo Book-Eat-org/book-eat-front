@@ -1,8 +1,8 @@
 var Cn = Object.defineProperty;
 var An = (e, t, r) => t in e ? Cn(e, t, { enumerable: !0, configurable: !0, writable: !0, value: r }) : e[t] = r;
 var _t = (e, t, r) => (An(e, typeof t != "symbol" ? t + "" : t, r), r);
-import * as et from "react";
-import ft, { useContext as Mn, useRef as ie, useCallback as xe, useDebugValue as $t, useMemo as te, useState as sr, useEffect as fe, useLayoutEffect as Nn } from "react";
+import * as Ze from "react";
+import lt, { useContext as Mn, useRef as ie, useCallback as xe, useDebugValue as $t, useMemo as te, useState as sr, useEffect as fe, useLayoutEffect as Nn } from "react";
 import { unstable_batchedUpdates as Pn } from "react-dom";
 var In = /* @__PURE__ */ ((e) => (e.Monday = "Понедельник", e.Tuesday = "Вторник", e.Wednesday = "Среда", e.Thursday = "Четверг", e.Friday = "Пятница", e.Saturday = "Суббота", e.Sunday = "Воскресенье", e))(In || {});
 function kt(e) {
@@ -253,12 +253,12 @@ function jt(e, t) {
   return Object.create(Ee(e), r);
 }
 function Gt(e, t = !1) {
-  return dt(e) || ne(e) || !oe(e) || (_e(e) > 1 && (e.set = e.add = e.clear = e.delete = Wn), Object.freeze(e), t && Pe(e, (r, n) => Gt(n, !0))), e;
+  return ft(e) || ne(e) || !oe(e) || (_e(e) > 1 && (e.set = e.add = e.clear = e.delete = Wn), Object.freeze(e), t && Pe(e, (r, n) => Gt(n, !0))), e;
 }
 function Wn() {
   Y(2);
 }
-function dt(e) {
+function ft(e) {
   return Object.isFrozen(e);
 }
 var xt = {};
@@ -303,15 +303,15 @@ function Yn(e) {
 function lr(e, t) {
   t.unfinalizedDrafts_ = t.drafts_.length;
   const r = t.drafts_[0];
-  return e !== void 0 && e !== r ? (r[Z].modified_ && (qt(t), Y(4)), oe(e) && (e = it(t, e), t.parent_ || st(t, e)), t.patches_ && be("Patches").generateReplacementPatches_(
+  return e !== void 0 && e !== r ? (r[Z].modified_ && (qt(t), Y(4)), oe(e) && (e = ot(t, e), t.parent_ || it(t, e)), t.patches_ && be("Patches").generateReplacementPatches_(
     r[Z].base_,
     e,
     t.patches_,
     t.inversePatches_
-  )) : e = it(t, r, []), qt(t), t.patches_ && t.patchListener_(t.patches_, t.inversePatches_), e !== Ht ? e : void 0;
+  )) : e = ot(t, r, []), qt(t), t.patches_ && t.patchListener_(t.patches_, t.inversePatches_), e !== Ht ? e : void 0;
 }
-function it(e, t, r) {
-  if (dt(t))
+function ot(e, t, r) {
+  if (ft(t))
     return t;
   const n = t[Z];
   if (!n)
@@ -322,7 +322,7 @@ function it(e, t, r) {
   if (n.scope_ !== e)
     return t;
   if (!n.modified_)
-    return st(e, n.base_, !0), n.base_;
+    return it(e, n.base_, !0), n.base_;
   if (!n.finalized_) {
     n.finalized_ = !0, n.scope_.unfinalizedDrafts_--;
     const o = n.copy_;
@@ -330,7 +330,7 @@ function it(e, t, r) {
     n.type_ === 3 && (u = new Set(o), o.clear(), d = !0), Pe(
       u,
       (v, O) => fr(e, n, o, v, O, r, d)
-    ), st(e, o, !1), r && e.patches_ && be("Patches").generatePatches_(
+    ), it(e, o, !1), r && e.patches_ && be("Patches").generatePatches_(
       n,
       r,
       e.patches_,
@@ -342,20 +342,20 @@ function it(e, t, r) {
 function fr(e, t, r, n, o, u, d) {
   if (process.env.NODE_ENV !== "production" && o === r && Y(5), ne(o)) {
     const v = u && t && t.type_ !== 3 && // Set objects are atomic since they have no keys.
-    !Qe(t.assigned_, n) ? u.concat(n) : void 0, O = it(e, o, v);
+    !Qe(t.assigned_, n) ? u.concat(n) : void 0, O = ot(e, o, v);
     if (Yr(r, n, O), ne(O))
       e.canAutoFreeze_ = !1;
     else
       return;
   } else
     d && r.add(o);
-  if (oe(o) && !dt(o)) {
+  if (oe(o) && !ft(o)) {
     if (!e.immer_.autoFreeze_ && e.unfinalizedDrafts_ < 1)
       return;
-    it(e, o), (!t || !t.scope_.parent_) && st(e, o);
+    ot(e, o), (!t || !t.scope_.parent_) && it(e, o);
   }
 }
-function st(e, t, r = !1) {
+function it(e, t, r = !1) {
   !e.parent_ && e.immer_.autoFreeze_ && e.canAutoFreeze_ && Gt(t, r);
 }
 function Hn(e, t) {
@@ -578,7 +578,7 @@ function Jr(e) {
   return ne(e) || Y(10, e), Xr(e);
 }
 function Xr(e) {
-  if (!oe(e) || dt(e))
+  if (!oe(e) || ft(e))
     return e;
   const t = e[Z];
   let r;
@@ -893,7 +893,7 @@ var io = (e, t) => {
     return this.value;
   }
 }, co = typeof WeakRef < "u" ? WeakRef : so, uo = 0, hr = 1;
-function tt() {
+function et() {
   return {
     s: uo,
     v: void 0,
@@ -902,7 +902,7 @@ function tt() {
   };
 }
 function Ke(e, t = {}) {
-  let r = tt();
+  let r = et();
   const { resultEqualityCheck: n } = t;
   let o, u = 0;
   function d() {
@@ -914,12 +914,12 @@ function Ke(e, t = {}) {
         let a = v.o;
         a === null && (v.o = a = /* @__PURE__ */ new WeakMap());
         const p = a.get(l);
-        p === void 0 ? (v = tt(), a.set(l, v)) : v = p;
+        p === void 0 ? (v = et(), a.set(l, v)) : v = p;
       } else {
         let a = v.p;
         a === null && (v.p = a = /* @__PURE__ */ new Map());
         const p = a.get(l);
-        p === void 0 ? (v = tt(), a.set(l, v)) : v = p;
+        p === void 0 ? (v = et(), a.set(l, v)) : v = p;
       }
     }
     const E = v;
@@ -931,7 +931,7 @@ function Ke(e, t = {}) {
     return E.v = S, S;
   }
   return d.clearCache = () => {
-    r = tt(), d.resetResultsCount();
+    r = et(), d.resetResultsCount();
   }, d.resultsCount = () => u, d.resetResultsCount = () => {
     u = 0;
   }, d;
@@ -1154,7 +1154,7 @@ function pe(...e) {
 function Fe(...e) {
   return (t) => e.every((r) => nn(r, t));
 }
-function pt(e, t) {
+function dt(e, t) {
   if (!e || !e.meta)
     return !1;
   const r = typeof e.meta.requestId == "string", n = t.indexOf(e.meta.requestStatus) > -1;
@@ -1164,29 +1164,29 @@ function Je(e) {
   return typeof e[0] == "function" && "pending" in e[0] && "fulfilled" in e[0] && "rejected" in e[0];
 }
 function Zt(...e) {
-  return e.length === 0 ? (t) => pt(t, ["pending"]) : Je(e) ? (t) => {
+  return e.length === 0 ? (t) => dt(t, ["pending"]) : Je(e) ? (t) => {
     const r = e.map((o) => o.pending);
     return pe(...r)(t);
   } : Zt()(e[0]);
 }
 function Ie(...e) {
-  return e.length === 0 ? (t) => pt(t, ["rejected"]) : Je(e) ? (t) => {
+  return e.length === 0 ? (t) => dt(t, ["rejected"]) : Je(e) ? (t) => {
     const r = e.map((o) => o.rejected);
     return pe(...r)(t);
   } : Ie()(e[0]);
 }
-function Xe(...e) {
+function pt(...e) {
   const t = (r) => r && r.meta && r.meta.rejectedWithValue;
-  return e.length === 0 ? (r) => Fe(Ie(...e), t)(r) : Je(e) ? (r) => Fe(Ie(...e), t)(r) : Xe()(e[0]);
+  return e.length === 0 ? (r) => Fe(Ie(...e), t)(r) : Je(e) ? (r) => Fe(Ie(...e), t)(r) : pt()(e[0]);
 }
 function ye(...e) {
-  return e.length === 0 ? (t) => pt(t, ["fulfilled"]) : Je(e) ? (t) => {
+  return e.length === 0 ? (t) => dt(t, ["fulfilled"]) : Je(e) ? (t) => {
     const r = e.map((o) => o.fulfilled);
     return pe(...r)(t);
   } : ye()(e[0]);
 }
 function Lt(...e) {
-  return e.length === 0 ? (t) => pt(t, ["pending", "fulfilled", "rejected"]) : Je(e) ? (t) => {
+  return e.length === 0 ? (t) => dt(t, ["pending", "fulfilled", "rejected"]) : Je(e) ? (t) => {
     const r = [];
     for (const o of e)
       r.push(o.pending, o.rejected, o.fulfilled);
@@ -1551,13 +1551,13 @@ function No({
     options: S
   } = r, g = o(e, u, S);
   n.exposeAction(t, g), d && n.addCase(g.fulfilled, d), v && n.addCase(g.pending, v), O && n.addCase(g.rejected, O), E && n.addMatcher(g.settled, E), n.exposeCaseReducer(t, {
-    fulfilled: d || rt,
-    pending: v || rt,
-    rejected: O || rt,
-    settled: E || rt
+    fulfilled: d || tt,
+    pending: v || tt,
+    rejected: O || tt,
+    settled: E || tt
   });
 }
-function rt() {
+function tt() {
 }
 function Po() {
   return {
@@ -1971,26 +1971,26 @@ function Jo({
       forced: h,
       type: s
     }) || _;
-    const P = (q) => typeof q == "object" && (ce(q) || Array.isArray(q) || typeof q.toJSON == "function");
+    const P = (z) => typeof z == "object" && (ce(z) || Array.isArray(z) || typeof z.toJSON == "function");
     if (!C.headers.has("content-type") && P(C.body) && C.headers.set("content-type", u), P(C.body) && o(C.headers) && (C.body = JSON.stringify(C.body, d)), b) {
-      const q = ~c.indexOf("?") ? "&" : "?", G = n ? n(b) : new URLSearchParams(Or(b));
-      c += q + G;
+      const z = ~c.indexOf("?") ? "&" : "?", G = n ? n(b) : new URLSearchParams(Or(b));
+      c += z + G;
     }
     c = Ko(e, c);
     const I = new Request(c, C);
     i = {
       request: new Request(c, C)
     };
-    let $, x = !1, j = T && setTimeout(() => {
-      x = !0, l.abort();
+    let $, q = !1, j = T && setTimeout(() => {
+      q = !0, l.abort();
     }, T);
     try {
       $ = await r(I);
-    } catch (q) {
+    } catch (z) {
       return {
         error: {
-          status: x ? "TIMEOUT_ERROR" : "FETCH_ERROR",
-          error: String(q)
+          status: q ? "TIMEOUT_ERROR" : "FETCH_ERROR",
+          error: String(z)
         },
         meta: i
       };
@@ -2001,22 +2001,22 @@ function Jo({
     i.response = K;
     let k, H = "";
     try {
-      let q;
+      let z;
       if (await Promise.all([
-        g($, w).then((G) => k = G, (G) => q = G),
+        g($, w).then((G) => k = G, (G) => z = G),
         // see https://github.com/node-fetch/node-fetch/issues/665#issuecomment-538995182
         // we *have* to "use up" both streams at the same time or they will stop running in node-fetch scenarios
         K.text().then((G) => H = G, () => {
         })
-      ]), q)
-        throw q;
-    } catch (q) {
+      ]), z)
+        throw z;
+    } catch (z) {
       return {
         error: {
           status: "PARSING_ERROR",
           originalStatus: $.status,
           data: H,
-          error: String(q)
+          error: String(z)
         },
         meta: i
       };
@@ -2156,9 +2156,9 @@ You must add the middleware for RTK-Query to function correctly!`);
       }), I = n.endpoints[m].select(i), D = T(P), $ = I(A());
       a(T);
       const {
-        requestId: x,
+        requestId: q,
         abort: j
-      } = D, K = $.requestId !== x, k = (G = u.get(T)) == null ? void 0 : G[C], H = () => I(A()), q = Object.assign(w ? (
+      } = D, K = $.requestId !== q, k = (G = u.get(T)) == null ? void 0 : G[C], H = () => I(A()), z = Object.assign(w ? (
         // a query has been forced (upsertQueryData)
         // -> we want to resolve it once data has been written with the data that will be written
         D.then(H)
@@ -2172,12 +2172,12 @@ You must add the middleware for RTK-Query to function correctly!`);
         Promise.all([k, D]).then(H)
       ), {
         arg: i,
-        requestId: x,
+        requestId: q,
         subscriptionOptions: b,
         queryCacheKey: C,
         abort: j,
         async unwrap() {
-          const J = await q;
+          const J = await z;
           if (J.isError)
             throw J.error;
           return J.data;
@@ -2189,13 +2189,13 @@ You must add the middleware for RTK-Query to function correctly!`);
         unsubscribe() {
           c && T(v({
             queryCacheKey: C,
-            requestId: x
+            requestId: q
           }));
         },
         updateSubscriptionOptions(J) {
-          q.subscriptionOptions = J, T(E({
+          z.subscriptionOptions = J, T(E({
             endpointName: m,
-            requestId: x,
+            requestId: q,
             queryCacheKey: C,
             options: J
           }));
@@ -2203,11 +2203,11 @@ You must add the middleware for RTK-Query to function correctly!`);
       });
       if (!k && !K && !w) {
         const J = u.get(T) || {};
-        J[C] = q, u.set(T, J), q.then(() => {
+        J[C] = z, u.set(T, J), z.then(() => {
           delete J[C], Ne(J) || u.delete(T);
         });
       }
-      return q;
+      return z;
     };
     return s;
   }
@@ -2352,9 +2352,9 @@ function ri({
         else if (C.error === void 0 && C.data === void 0)
           $ = `${D} returned an object containing neither a valid \`error\` and \`result\`. At least one of them should not be \`undefined\``;
         else
-          for (const x of Object.keys(C))
-            if (x !== "error" && x !== "data" && x !== "meta") {
-              $ = `The object returned by ${D} has the unknown property ${x}.`;
+          for (const q of Object.keys(C))
+            if (q !== "error" && q !== "data" && q !== "meta") {
+              $ = `The object returned by ${D} has the unknown property ${q}.`;
               break;
             }
         $ && console.error(`Error encountered handling the endpoint ${h.endpointName}.
@@ -2463,9 +2463,9 @@ In the case of an unhandled error, no tags will be "provided" or "invalidated".`
   };
 }
 function dn(e, t, r, n) {
-  return nr(r[e.meta.arg.endpointName][t], ye(e) ? e.payload : void 0, Xe(e) ? e.payload : void 0, e.meta.arg.originalArgs, "baseQueryMeta" in e.meta ? e.meta.baseQueryMeta : void 0, n);
+  return nr(r[e.meta.arg.endpointName][t], ye(e) ? e.payload : void 0, pt(e) ? e.payload : void 0, e.meta.arg.originalArgs, "baseQueryMeta" in e.meta ? e.meta.baseQueryMeta : void 0, n);
 }
-function nt(e, t, r) {
+function rt(e, t, r) {
   const n = e[t];
   n && r(n);
 }
@@ -2511,7 +2511,7 @@ function ni({
             patches: c
           }
         }) {
-          nt(s, i, (_) => {
+          rt(s, i, (_) => {
             _.data = dr(_.data, c.concat());
           });
         },
@@ -2530,7 +2530,7 @@ function ni({
         i[w = _.queryCacheKey] ?? (i[w] = {
           status: "uninitialized",
           endpointName: _.endpointName
-        }), nt(i, _.queryCacheKey, (R) => {
+        }), rt(i, _.queryCacheKey, (R) => {
           R.status = "pending", R.requestId = b && R.requestId ? (
             // for `upsertQuery` **updates**, keep the current `requestId`
             R.requestId
@@ -2543,7 +2543,7 @@ function ni({
         meta: c,
         payload: _
       }) => {
-        nt(i, c.arg.queryCacheKey, (b) => {
+        rt(i, c.arg.queryCacheKey, (b) => {
           if (b.requestId !== c.requestId && !Ut(c.arg))
             return;
           const {
@@ -2579,7 +2579,7 @@ function ni({
         error: w,
         payload: R
       }) => {
-        nt(i, _.queryCacheKey, (T) => {
+        rt(i, _.queryCacheKey, (T) => {
           if (!c) {
             if (T.requestId !== b)
               return;
@@ -2698,7 +2698,7 @@ function ni({
             for (const I of C)
               P.includes(I) || P.push(I);
           }
-      }).addMatcher(pe(ye(t), Xe(t)), (i, c) => {
+      }).addMatcher(pe(ye(t), pt(t)), (i, c) => {
         const _ = dn(c, "providesTags", n, v), {
           queryCacheKey: b
         } = c.meta.arg;
@@ -3033,7 +3033,7 @@ var ci = 2147483647 / 1e3 - 1, ui = ({
 }) => {
   const {
     removeQueryResult: E
-  } = u.internalActions, S = pe(ye(n), Xe(n)), g = pe(ye(n, o), Ie(n, o));
+  } = u.internalActions, S = pe(ye(n), pt(n)), g = pe(ye(n, o), Ie(n, o));
   let y = [];
   const l = (f, m) => {
     S(f) ? p(dn(f, "invalidatesTags", r, d), m) : g(f) ? p([], m) : u.util.invalidateTags.match(f) && p(nr(f.payload, void 0, void 0, void 0, void 0, d), m);
@@ -3536,7 +3536,7 @@ var Ir = /* @__PURE__ */ Symbol(), gi = ({
       getRunningMutationThunk: I,
       getRunningMutationsThunk: D,
       getRunningQueriesThunk: $,
-      getRunningQueryThunk: x
+      getRunningQueryThunk: q
     } = ti({
       queryThunk: l,
       mutationThunk: a,
@@ -3547,7 +3547,7 @@ var Ir = /* @__PURE__ */ Symbol(), gi = ({
     return ae(t.util, {
       getRunningMutationThunk: I,
       getRunningMutationsThunk: D,
-      getRunningQueryThunk: x,
+      getRunningQueryThunk: q,
       getRunningQueriesThunk: $
     }), {
       name: Ir,
@@ -3581,7 +3581,7 @@ function vi() {
   if (Dr)
     return Ct;
   Dr = 1;
-  var e = ft;
+  var e = lt;
   function t(g, y) {
     return g === y && (g !== 0 || 1 / g === 1 / y) || g !== g && y !== y;
   }
@@ -3626,7 +3626,7 @@ var $r;
 function Si() {
   return $r || ($r = 1, process.env.NODE_ENV !== "production" && function() {
     typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ < "u" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart == "function" && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
-    var e = ft, t = e.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+    var e = lt, t = e.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
     function r(s) {
       {
         for (var i = arguments.length, c = new Array(i > 1 ? i - 1 : 0), _ = 1; _ < i; _++)
@@ -3709,7 +3709,7 @@ function Ei() {
   if (kr)
     return Mt;
   kr = 1;
-  var e = ft, t = yn;
+  var e = lt, t = yn;
   function r(E, S) {
     return E === S && (E !== 0 || 1 / E === 1 / S) || E !== E && S !== S;
   }
@@ -3763,7 +3763,7 @@ var jr;
 function _i() {
   return jr || (jr = 1, process.env.NODE_ENV !== "production" && function() {
     typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ < "u" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart == "function" && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
-    var e = ft, t = yn;
+    var e = lt, t = yn;
     function r(S, g) {
       return S === g && (S !== 0 || 1 / S === 1 / g) || S !== S && g !== g;
     }
@@ -3789,8 +3789,8 @@ function _i() {
           var D = _, $ = b;
           if (n(D, C))
             return $;
-          var x = l(C);
-          return a !== void 0 && a($, x) ? $ : (_ = C, b = x, x);
+          var q = l(C);
+          return a !== void 0 && a($, q) ? $ : (_ = C, b = q, q);
         }, R = y === void 0 ? null : y, T = function() {
           return w(g());
         }, A = R === null ? void 0 : function() {
@@ -3813,11 +3813,11 @@ const xr = Symbol.for("react-redux-context"), qr = typeof globalThis < "u" ? glo
 );
 function Oi() {
   var e;
-  if (!et.createContext)
+  if (!Ze.createContext)
     return {};
   const t = (e = qr[xr]) != null ? e : qr[xr] = /* @__PURE__ */ new Map();
-  let r = t.get(et.createContext);
-  return r || (r = et.createContext(null), process.env.NODE_ENV !== "production" && (r.displayName = "ReactRedux"), t.set(et.createContext, r)), r;
+  let r = t.get(Ze.createContext);
+  return r || (r = Ze.createContext(null), process.env.NODE_ENV !== "production" && (r.displayName = "ReactRedux"), t.set(Ze.createContext, r)), r;
 }
 const Oe = /* @__PURE__ */ Oi();
 function or(e = Oe) {
@@ -3908,7 +3908,7 @@ Selectors that return the entire state are almost certainly a mistake, as they w
   };
 }
 const Ai = /* @__PURE__ */ Ci();
-var Bt = { exports: {} }, z = {};
+var Bt = { exports: {} }, V = {};
 /** @license React v16.13.1
  * react-is.production.min.js
  *
@@ -3920,7 +3920,7 @@ var Bt = { exports: {} }, z = {};
 var zr;
 function Mi() {
   if (zr)
-    return z;
+    return V;
   zr = 1;
   var e = typeof Symbol == "function" && Symbol.for, t = e ? Symbol.for("react.element") : 60103, r = e ? Symbol.for("react.portal") : 60106, n = e ? Symbol.for("react.fragment") : 60107, o = e ? Symbol.for("react.strict_mode") : 60108, u = e ? Symbol.for("react.profiler") : 60114, d = e ? Symbol.for("react.provider") : 60109, v = e ? Symbol.for("react.context") : 60110, O = e ? Symbol.for("react.async_mode") : 60111, E = e ? Symbol.for("react.concurrent_mode") : 60111, S = e ? Symbol.for("react.forward_ref") : 60112, g = e ? Symbol.for("react.suspense") : 60113, y = e ? Symbol.for("react.suspense_list") : 60120, l = e ? Symbol.for("react.memo") : 60115, a = e ? Symbol.for("react.lazy") : 60116, p = e ? Symbol.for("react.block") : 60121, f = e ? Symbol.for("react.fundamental") : 60117, m = e ? Symbol.for("react.responder") : 60118, h = e ? Symbol.for("react.scope") : 60119;
   function s(c) {
@@ -3956,35 +3956,35 @@ function Mi() {
   function i(c) {
     return s(c) === E;
   }
-  return z.AsyncMode = O, z.ConcurrentMode = E, z.ContextConsumer = v, z.ContextProvider = d, z.Element = t, z.ForwardRef = S, z.Fragment = n, z.Lazy = a, z.Memo = l, z.Portal = r, z.Profiler = u, z.StrictMode = o, z.Suspense = g, z.isAsyncMode = function(c) {
+  return V.AsyncMode = O, V.ConcurrentMode = E, V.ContextConsumer = v, V.ContextProvider = d, V.Element = t, V.ForwardRef = S, V.Fragment = n, V.Lazy = a, V.Memo = l, V.Portal = r, V.Profiler = u, V.StrictMode = o, V.Suspense = g, V.isAsyncMode = function(c) {
     return i(c) || s(c) === O;
-  }, z.isConcurrentMode = i, z.isContextConsumer = function(c) {
+  }, V.isConcurrentMode = i, V.isContextConsumer = function(c) {
     return s(c) === v;
-  }, z.isContextProvider = function(c) {
+  }, V.isContextProvider = function(c) {
     return s(c) === d;
-  }, z.isElement = function(c) {
+  }, V.isElement = function(c) {
     return typeof c == "object" && c !== null && c.$$typeof === t;
-  }, z.isForwardRef = function(c) {
+  }, V.isForwardRef = function(c) {
     return s(c) === S;
-  }, z.isFragment = function(c) {
+  }, V.isFragment = function(c) {
     return s(c) === n;
-  }, z.isLazy = function(c) {
+  }, V.isLazy = function(c) {
     return s(c) === a;
-  }, z.isMemo = function(c) {
+  }, V.isMemo = function(c) {
     return s(c) === l;
-  }, z.isPortal = function(c) {
+  }, V.isPortal = function(c) {
     return s(c) === r;
-  }, z.isProfiler = function(c) {
+  }, V.isProfiler = function(c) {
     return s(c) === u;
-  }, z.isStrictMode = function(c) {
+  }, V.isStrictMode = function(c) {
     return s(c) === o;
-  }, z.isSuspense = function(c) {
+  }, V.isSuspense = function(c) {
     return s(c) === g;
-  }, z.isValidElementType = function(c) {
+  }, V.isValidElementType = function(c) {
     return typeof c == "string" || typeof c == "function" || c === n || c === E || c === u || c === o || c === g || c === y || typeof c == "object" && c !== null && (c.$$typeof === a || c.$$typeof === l || c.$$typeof === d || c.$$typeof === v || c.$$typeof === S || c.$$typeof === f || c.$$typeof === m || c.$$typeof === h || c.$$typeof === p);
-  }, z.typeOf = s, z;
+  }, V.typeOf = s, V;
 }
-var V = {};
+var F = {};
 /** @license React v16.13.1
  * react-is.development.js
  *
@@ -4033,7 +4033,7 @@ function Ni() {
         }
       }
     }
-    var c = O, _ = E, b = v, w = d, R = t, T = S, A = n, C = a, P = l, I = r, D = u, $ = o, x = g, j = !1;
+    var c = O, _ = E, b = v, w = d, R = t, T = S, A = n, C = a, P = l, I = r, D = u, $ = o, q = g, j = !1;
     function K(M) {
       return j || (j = !0, console.warn("The ReactIs.isAsyncMode() alias has been deprecated, and will be removed in React 17+. Update your code to use ReactIs.isConcurrentMode() instead. It has the exact same API.")), k(M) || i(M) === O;
     }
@@ -4043,7 +4043,7 @@ function Ni() {
     function H(M) {
       return i(M) === v;
     }
-    function q(M) {
+    function z(M) {
       return i(M) === d;
     }
     function G(M) {
@@ -4073,8 +4073,8 @@ function Ni() {
     function Et(M) {
       return i(M) === g;
     }
-    V.AsyncMode = c, V.ConcurrentMode = _, V.ContextConsumer = b, V.ContextProvider = w, V.Element = R, V.ForwardRef = T, V.Fragment = A, V.Lazy = C, V.Memo = P, V.Portal = I, V.Profiler = D, V.StrictMode = $, V.Suspense = x, V.isAsyncMode = K, V.isConcurrentMode = k, V.isContextConsumer = H, V.isContextProvider = q, V.isElement = G, V.isForwardRef = J, V.isFragment = yt, V.isLazy = ht, V.isMemo = mt, V.isPortal = gt, V.isProfiler = vt, V.isStrictMode = St, V.isSuspense = Et, V.isValidElementType = s, V.typeOf = i;
-  }()), V;
+    F.AsyncMode = c, F.ConcurrentMode = _, F.ContextConsumer = b, F.ContextProvider = w, F.Element = R, F.ForwardRef = T, F.Fragment = A, F.Lazy = C, F.Memo = P, F.Portal = I, F.Profiler = D, F.StrictMode = $, F.Suspense = q, F.isAsyncMode = K, F.isConcurrentMode = k, F.isContextConsumer = H, F.isContextProvider = z, F.isElement = G, F.isForwardRef = J, F.isFragment = yt, F.isLazy = ht, F.isMemo = mt, F.isPortal = gt, F.isProfiler = vt, F.isStrictMode = St, F.isSuspense = Et, F.isValidElementType = s, F.typeOf = i;
+  }()), F;
 }
 process.env.NODE_ENV === "production" ? Bt.exports = Mi() : Bt.exports = Ni();
 var Pi = Bt.exports, gn = Pi, Ii = {
@@ -4093,7 +4093,7 @@ var Pi = Bt.exports, gn = Pi, Ii = {
 }, vn = {};
 vn[gn.ForwardRef] = Ii;
 vn[gn.Memo] = Di;
-var F = {};
+var L = {};
 /**
  * @license React
  * react-is.production.min.js
@@ -4106,7 +4106,7 @@ var F = {};
 var Fr;
 function $i() {
   if (Fr)
-    return F;
+    return L;
   Fr = 1;
   var e = Symbol.for("react.element"), t = Symbol.for("react.portal"), r = Symbol.for("react.fragment"), n = Symbol.for("react.strict_mode"), o = Symbol.for("react.profiler"), u = Symbol.for("react.provider"), d = Symbol.for("react.context"), v = Symbol.for("react.server_context"), O = Symbol.for("react.forward_ref"), E = Symbol.for("react.suspense"), S = Symbol.for("react.suspense_list"), g = Symbol.for("react.memo"), y = Symbol.for("react.lazy"), l = Symbol.for("react.offscreen"), a;
   a = Symbol.for("react.module.reference");
@@ -4140,39 +4140,39 @@ function $i() {
       }
     }
   }
-  return F.ContextConsumer = d, F.ContextProvider = u, F.Element = e, F.ForwardRef = O, F.Fragment = r, F.Lazy = y, F.Memo = g, F.Portal = t, F.Profiler = o, F.StrictMode = n, F.Suspense = E, F.SuspenseList = S, F.isAsyncMode = function() {
+  return L.ContextConsumer = d, L.ContextProvider = u, L.Element = e, L.ForwardRef = O, L.Fragment = r, L.Lazy = y, L.Memo = g, L.Portal = t, L.Profiler = o, L.StrictMode = n, L.Suspense = E, L.SuspenseList = S, L.isAsyncMode = function() {
     return !1;
-  }, F.isConcurrentMode = function() {
+  }, L.isConcurrentMode = function() {
     return !1;
-  }, F.isContextConsumer = function(f) {
+  }, L.isContextConsumer = function(f) {
     return p(f) === d;
-  }, F.isContextProvider = function(f) {
+  }, L.isContextProvider = function(f) {
     return p(f) === u;
-  }, F.isElement = function(f) {
+  }, L.isElement = function(f) {
     return typeof f == "object" && f !== null && f.$$typeof === e;
-  }, F.isForwardRef = function(f) {
+  }, L.isForwardRef = function(f) {
     return p(f) === O;
-  }, F.isFragment = function(f) {
+  }, L.isFragment = function(f) {
     return p(f) === r;
-  }, F.isLazy = function(f) {
+  }, L.isLazy = function(f) {
     return p(f) === y;
-  }, F.isMemo = function(f) {
+  }, L.isMemo = function(f) {
     return p(f) === g;
-  }, F.isPortal = function(f) {
+  }, L.isPortal = function(f) {
     return p(f) === t;
-  }, F.isProfiler = function(f) {
+  }, L.isProfiler = function(f) {
     return p(f) === o;
-  }, F.isStrictMode = function(f) {
+  }, L.isStrictMode = function(f) {
     return p(f) === n;
-  }, F.isSuspense = function(f) {
+  }, L.isSuspense = function(f) {
     return p(f) === E;
-  }, F.isSuspenseList = function(f) {
+  }, L.isSuspenseList = function(f) {
     return p(f) === S;
-  }, F.isValidElementType = function(f) {
+  }, L.isValidElementType = function(f) {
     return typeof f == "string" || typeof f == "function" || f === r || f === o || f === n || f === E || f === S || f === l || typeof f == "object" && f !== null && (f.$$typeof === y || f.$$typeof === g || f.$$typeof === u || f.$$typeof === d || f.$$typeof === O || f.$$typeof === a || f.getModuleId !== void 0);
-  }, F.typeOf = p, F;
+  }, L.typeOf = p, L;
 }
-var L = {};
+var Q = {};
 /**
  * @license React
  * react-is.development.js
@@ -4199,16 +4199,16 @@ function ki() {
         var Re = N.$$typeof;
         switch (Re) {
           case u:
-            var Ze = N.type;
-            switch (Ze) {
+            var Xe = N.type;
+            switch (Xe) {
               case v:
               case E:
               case O:
               case a:
               case p:
-                return Ze;
+                return Xe;
               default:
-                var ir = Ze && Ze.$$typeof;
+                var ir = Xe && Xe.$$typeof;
                 switch (ir) {
                   case y:
                   case g:
@@ -4226,14 +4226,14 @@ function ki() {
         }
       }
     }
-    var _ = g, b = S, w = u, R = l, T = v, A = m, C = f, P = d, I = E, D = O, $ = a, x = p, j = !1, K = !1;
+    var _ = g, b = S, w = u, R = l, T = v, A = m, C = f, P = d, I = E, D = O, $ = a, q = p, j = !1, K = !1;
     function k(N) {
       return j || (j = !0, console.warn("The ReactIs.isAsyncMode() alias has been deprecated, and will be removed in React 18+.")), !1;
     }
     function H(N) {
       return K || (K = !0, console.warn("The ReactIs.isConcurrentMode() alias has been deprecated, and will be removed in React 18+.")), !1;
     }
-    function q(N) {
+    function z(N) {
       return c(N) === g;
     }
     function G(N) {
@@ -4269,8 +4269,8 @@ function ki() {
     function $e(N) {
       return c(N) === p;
     }
-    L.ContextConsumer = _, L.ContextProvider = b, L.Element = w, L.ForwardRef = R, L.Fragment = T, L.Lazy = A, L.Memo = C, L.Portal = P, L.Profiler = I, L.StrictMode = D, L.Suspense = $, L.SuspenseList = x, L.isAsyncMode = k, L.isConcurrentMode = H, L.isContextConsumer = q, L.isContextProvider = G, L.isElement = J, L.isForwardRef = yt, L.isFragment = ht, L.isLazy = mt, L.isMemo = gt, L.isPortal = vt, L.isProfiler = St, L.isStrictMode = Et, L.isSuspense = M, L.isSuspenseList = $e, L.isValidElementType = i, L.typeOf = c;
-  }()), L;
+    Q.ContextConsumer = _, Q.ContextProvider = b, Q.Element = w, Q.ForwardRef = R, Q.Fragment = T, Q.Lazy = A, Q.Memo = C, Q.Portal = P, Q.Profiler = I, Q.StrictMode = D, Q.Suspense = $, Q.SuspenseList = q, Q.isAsyncMode = k, Q.isConcurrentMode = H, Q.isContextConsumer = z, Q.isContextProvider = G, Q.isElement = J, Q.isForwardRef = yt, Q.isFragment = ht, Q.isLazy = mt, Q.isMemo = gt, Q.isPortal = vt, Q.isProfiler = St, Q.isStrictMode = Et, Q.isSuspense = M, Q.isSuspenseList = $e, Q.isValidElementType = i, Q.typeOf = c;
+  }()), Q;
 }
 process.env.NODE_ENV === "production" ? $i() : ki();
 function Qr(e, t) {
@@ -4322,7 +4322,7 @@ function qi(e) {
 function zi(e) {
   return e.type === "mutation";
 }
-function ot(e, ...t) {
+function nt(e, ...t) {
   return Object.assign(e, ...t);
 }
 function Pt(e) {
@@ -4460,22 +4460,22 @@ function Qi({
       }), I = ie(!1), D = ie();
       let {
         queryCacheKey: $,
-        requestId: x
+        requestId: q
       } = D.current || {}, j = !1;
-      $ && x && (j = A.current.isRequestSubscribed($, x));
+      $ && q && (j = A.current.isRequestSubscribed($, q));
       const K = !j && I.current;
       return E(() => {
         I.current = j;
       }), E(() => {
         K && (D.current = void 0);
       }, [K]), E(() => {
-        var q;
+        var z;
         const k = D.current;
         if (typeof process < "u" && process.env.NODE_ENV === "removeMeOnCompilation" && console.log(K), C === ve) {
           k == null || k.unsubscribe(), D.current = void 0;
           return;
         }
-        const H = (q = D.current) == null ? void 0 : q.subscriptionOptions;
+        const H = (z = D.current) == null ? void 0 : z.subscriptionOptions;
         if (!k || k.arg !== C) {
           k == null || k.unsubscribe();
           const G = T(R(C, {
@@ -4525,8 +4525,8 @@ function Qi({
       const P = xe(function(I, D = !1) {
         let $;
         return t(() => {
-          var x;
-          (x = T.current) == null || x.unsubscribe(), T.current = $ = b(_(I, {
+          var q;
+          (q = T.current) == null || q.unsubscribe(), T.current = $ = b(_(I, {
             subscriptionOptions: C.current,
             forceRefetch: !D
           })), R(I);
@@ -4609,10 +4609,10 @@ function Qi({
         i != null && i.arg.fixedCacheKey || i == null || i.reset();
       }, [i]);
       const _ = xe(function(H) {
-        const q = s(h(H, {
+        const z = s(h(H, {
           fixedCacheKey: f
         }));
-        return c(q), q;
+        return c(z), z;
       }, [s, h, f]), {
         requestId: b
       } = i || {}, w = te(() => m({
@@ -4630,7 +4630,7 @@ function Qi({
         data: I,
         status: D,
         isLoading: $,
-        isSuccess: x,
+        isSuccess: q,
         isError: j,
         error: K
       } = T;
@@ -4639,7 +4639,7 @@ function Qi({
         data: I,
         status: D,
         isLoading: $,
-        isSuccess: x,
+        isSuccess: q,
         isError: j,
         error: K
       });
@@ -4697,9 +4697,9 @@ Hook ${v} was either not provided or not a function.`);
         serializeQueryArgs: d,
         context: v
       });
-      return ot(O, {
+      return nt(O, {
         usePrefetch: g
-      }), ot(v, {
+      }), nt(v, {
         batch: e
       }), {
         injectEndpoint(y, l) {
@@ -4711,7 +4711,7 @@ Hook ${v} was either not provided or not a function.`);
               useQueryState: m,
               useQuerySubscription: h
             } = E(y);
-            ot(O.endpoints[y], {
+            nt(O.endpoints[y], {
               useQuery: a,
               useLazyQuery: p,
               useLazyQuerySubscription: f,
@@ -4720,7 +4720,7 @@ Hook ${v} was either not provided or not a function.`);
             }), u[`use${Pt(y)}Query`] = a, u[`useLazy${Pt(y)}Query`] = p;
           } else if (zi(l)) {
             const a = S(y);
-            ot(O.endpoints[y], {
+            nt(O.endpoints[y], {
               useMutation: a
             }), u[`use${Pt(y)}Mutation`] = a;
           }
@@ -4728,19 +4728,19 @@ Hook ${v} was either not provided or not a function.`);
       };
     }
   };
-}, Bi = /* @__PURE__ */ ii(gi(), Ki()), Q = /* @__PURE__ */ ((e) => (e.Cashiers = "Cashiers", e.Orders = "Orders", e.Places = "Places", e.Organizations = "Organizations", e.Categories = "Categories", e.Additions = "Additions", e.Menu = "Menu", e))(Q || {});
+}, Bi = /* @__PURE__ */ ii(gi(), Ki()), x = /* @__PURE__ */ ((e) => (e.Cashiers = "Cashiers", e.Orders = "Orders", e.Places = "Places", e.Organizations = "Organizations", e.Categories = "Categories", e.Additions = "Additions", e.Menu = "Menu", e))(x || {});
 const Yi = (e) => {
   const t = Jo({ baseUrl: e });
   return async (r, n, o) => {
     const { data: u } = await t(r, n, o);
     return u.code ? (alert(`Ошибка: ${u.code}`), { error: u }) : { data: u };
   };
-}, Ps = (e) => (t) => async (r) => (Xe(r) && console.log(r), console.log(e), t(r)), he = Bi({
+}, he = Bi({
   reducerPath: "api",
-  tagTypes: Object.values(Q),
+  tagTypes: Object.values(x),
   baseQuery: Yi("/book-eat/api"),
   endpoints: () => ({})
-}), Is = he.injectEndpoints({
+}), Ps = he.injectEndpoints({
   endpoints: (e) => ({
     login: e.mutation({
       query: (t) => ({
@@ -4750,18 +4750,18 @@ const Yi = (e) => {
       })
     })
   })
-}), ct = we({
+}), st = we({
   selectId: (e) => e.id
 }), Hi = he.injectEndpoints({
   endpoints: (e) => ({
     getCashiers: e.query({
-      providesTags: [Q.Cashiers],
+      providesTags: [x.Cashiers],
       query: () => "/v1/users/organization",
-      transformResponse: (t) => ct.setAll(ct.getInitialState(), t)
+      transformResponse: (t) => st.setAll(st.getInitialState(), t)
     }),
     createCashier: e.mutation(
       {
-        invalidatesTags: [Q.Cashiers],
+        invalidatesTags: [x.Cashiers],
         query: (t) => ({
           url: "/v1/users/place",
           method: "POST",
@@ -4770,7 +4770,7 @@ const Yi = (e) => {
       }
     ),
     deleteCashiers: e.mutation({
-      invalidatesTags: [Q.Cashiers],
+      invalidatesTags: [x.Cashiers],
       query: (t) => ({
         url: "/v1/auth/cashier",
         method: "DELETE",
@@ -4994,19 +4994,27 @@ function ue() {
     throw new Error("pipe requires at least one argument");
   return _n(arguments[0].length, fs(ds, arguments[0], ms(arguments)));
 }
-const gs = Hi.endpoints.getCashiers.select(), Ds = ct.getSelectors(
-  ue(gs, (e) => e.data ?? ct.getInitialState())
-), ut = we({
+const gs = Hi.endpoints.getCashiers.select(), Is = st.getSelectors(
+  ue(gs, (e) => e.data ?? st.getInitialState())
+), ct = we({
   selectId: (e) => e.id,
   sortComparer: (e, t) => Number(e.id) - Number(t.id)
 }), vs = he.injectEndpoints({
   endpoints: (e) => ({
     getOrders: e.query({
-      providesTags: [Q.Orders],
+      providesTags: [x.Orders],
       query: () => ({
         url: "/v1/orders"
       }),
-      transformResponse: (t) => ut.setAll(ut.getInitialState(), t)
+      transformResponse: (t) => ct.setAll(ct.getInitialState(), t)
+    }),
+    createOrder: e.mutation({
+      query: (t) => ({
+        url: "/v1/orders",
+        method: "POST",
+        body: t
+      }),
+      invalidatesTags: [x.Orders]
     }),
     updateOrderStatus: e.mutation({
       query: ({ id: t, statusVal: r }) => ({
@@ -5014,11 +5022,11 @@ const gs = Hi.endpoints.getCashiers.select(), Ds = ct.getSelectors(
         url: `/v1/orders/${t}/status`,
         method: "PUT"
       }),
-      invalidatesTags: [Q.Orders]
+      invalidatesTags: [x.Orders]
     })
   })
-}), Ss = vs.endpoints.getOrders.select(), $s = ut.getSelectors(
-  ue(Ss, (e) => e.data ?? ut.getInitialState())
+}), Ss = vs.endpoints.getOrders.select(), Ds = ct.getSelectors(
+  ue(Ss, (e) => e.data ?? ct.getInitialState())
 ), re = we({
   selectId: (e) => e.id
 }), Rn = he.injectEndpoints({
@@ -5031,7 +5039,7 @@ const gs = Hi.endpoints.getCashiers.select(), Ds = ct.getSelectors(
         re.getInitialState(),
         t
       ),
-      providesTags: [Q.Organizations]
+      providesTags: [x.Organizations]
     }),
     getCurrentOrganisation: e.query({
       query: () => ({
@@ -5041,7 +5049,7 @@ const gs = Hi.endpoints.getCashiers.select(), Ds = ct.getSelectors(
         re.getInitialState(),
         t
       ),
-      providesTags: [Q.Organizations]
+      providesTags: [x.Organizations]
     }),
     getOrganisations: e.query({
       query: () => ({
@@ -5051,7 +5059,7 @@ const gs = Hi.endpoints.getCashiers.select(), Ds = ct.getSelectors(
         re.getInitialState(),
         t
       ),
-      providesTags: [Q.Organizations]
+      providesTags: [x.Organizations]
     }),
     updateOrg: e.mutation({
       query: (t) => ({
@@ -5064,15 +5072,15 @@ const gs = Hi.endpoints.getCashiers.select(), Ds = ct.getSelectors(
         re.getInitialState(),
         t
       ),
-      invalidatesTags: [Q.Organizations]
+      invalidatesTags: [x.Organizations]
     })
   })
-}), Es = Rn.endpoints.getOrganisations.select(), ks = re.getSelectors(
+}), Es = Rn.endpoints.getOrganisations.select(), $s = re.getSelectors(
   ue(
     Rn.endpoints.getCurrentOrganisation.select(),
     (e) => e.data ?? re.getInitialState()
   )
-), js = re.getSelectors(
+), ks = re.getSelectors(
   ue(
     Es,
     (e) => e.data ?? re.getInitialState()
@@ -5085,14 +5093,14 @@ const gs = Hi.endpoints.getCashiers.select(), Ds = ct.getSelectors(
       query: () => ({
         url: "/v1/places"
       }),
-      providesTags: [Q.Places],
+      providesTags: [x.Places],
       transformResponse: (t) => de.setAll(de.getInitialState(), t)
     }),
     fetchPlacesByOrganization: e.query({
       query: () => ({
         url: "/v1/places/organization"
       }),
-      providesTags: [Q.Places],
+      providesTags: [x.Places],
       transformResponse: (t) => de.setAll(de.getInitialState(), t)
     }),
     savePlace: e.mutation({
@@ -5101,7 +5109,7 @@ const gs = Hi.endpoints.getCashiers.select(), Ds = ct.getSelectors(
         method: "POST",
         body: t
       }),
-      invalidatesTags: [Q.Places]
+      invalidatesTags: [x.Places]
     }),
     editPlace: e.mutation({
       query: (t) => ({
@@ -5109,22 +5117,22 @@ const gs = Hi.endpoints.getCashiers.select(), Ds = ct.getSelectors(
         method: "PUT",
         body: t
       }),
-      invalidatesTags: [Q.Places]
+      invalidatesTags: [x.Places]
     }),
     deletePlace: e.mutation({
       query: (t) => ({
         url: `/v1/places/${t}`,
         method: "DELETE"
       }),
-      invalidatesTags: [Q.Places]
+      invalidatesTags: [x.Places]
     })
   })
-}), _s = Tn.endpoints.fetchPlaces.select(), xs = de.getSelectors(
+}), _s = Tn.endpoints.fetchPlaces.select(), js = de.getSelectors(
   ue(
     Tn.endpoints.fetchPlacesByOrganization.select(),
     (e) => e.data ?? de.getInitialState()
   )
-), qs = de.getSelectors(
+), xs = de.getSelectors(
   ue(_s, (e) => e.data ?? de.getInitialState())
 ), le = we({
   selectId: (e) => e.id
@@ -5133,17 +5141,17 @@ const gs = Hi.endpoints.getCashiers.select(), Ds = ct.getSelectors(
     getMenuByPlaceId: e.query({
       query: (t) => `/v1/products/place/${t}`,
       transformResponse: (t) => le.setMany(le.getInitialState(), t),
-      providesTags: [Q.Menu]
+      providesTags: [x.Menu]
     }),
     getMenuByPlaces: e.query({
       query: () => "/v1/products/place",
       transformResponse: (t) => le.setAll(le.getInitialState(), t),
-      providesTags: [Q.Menu]
+      providesTags: [x.Menu]
     }),
     getMenuByOrganization: e.query({
       query: () => "/v1/products/organization",
       transformResponse: (t) => le.setAll(le.getInitialState(), t),
-      providesTags: [Q.Menu]
+      providesTags: [x.Menu]
     }),
     saveMenu: e.mutation({
       query: (t) => ({
@@ -5151,7 +5159,7 @@ const gs = Hi.endpoints.getCashiers.select(), Ds = ct.getSelectors(
         method: "POST",
         body: t
       }),
-      invalidatesTags: [Q.Menu]
+      invalidatesTags: [x.Menu]
     }),
     editMenu: e.mutation({
       query: (t) => ({
@@ -5159,26 +5167,26 @@ const gs = Hi.endpoints.getCashiers.select(), Ds = ct.getSelectors(
         method: "PUT",
         body: t
       }),
-      invalidatesTags: [Q.Menu]
+      invalidatesTags: [x.Menu]
     }),
     deleteMenu: e.mutation({
       query: (t) => ({
         url: `/menu/${t}`,
         method: "DELETE"
       }),
-      invalidatesTags: [Q.Menu]
+      invalidatesTags: [x.Menu]
     })
   })
-}), Os = bs.endpoints.getMenuByOrganization.select(), zs = le.getSelectors(
+}), Os = bs.endpoints.getMenuByOrganization.select(), qs = le.getSelectors(
   ue(Os, (e) => e.data ?? le.getInitialState())
-), at = we({
+), ut = we({
   selectId: (e) => e.id
 }), ws = he.injectEndpoints({
   endpoints: (e) => ({
     fetchAdditions: e.query({
       query: () => "/v1/additions/organization?activeOnly=false",
-      providesTags: [Q.Additions],
-      transformResponse: (t) => at.setAll(at.getInitialState(), t)
+      providesTags: [x.Additions],
+      transformResponse: (t) => ut.setAll(ut.getInitialState(), t)
     }),
     saveAddition: e.mutation({
       query: (t) => ({
@@ -5186,7 +5194,7 @@ const gs = Hi.endpoints.getCashiers.select(), Ds = ct.getSelectors(
         method: "POST",
         body: t
       }),
-      invalidatesTags: [Q.Additions]
+      invalidatesTags: [x.Additions]
     }),
     editAddition: e.mutation({
       query: (t) => ({
@@ -5194,19 +5202,19 @@ const gs = Hi.endpoints.getCashiers.select(), Ds = ct.getSelectors(
         method: "PUT",
         body: t
       }),
-      invalidatesTags: [Q.Additions]
+      invalidatesTags: [x.Additions]
     }),
     deleteAddition: e.mutation({
       query: (t) => ({
         url: `/v1/additions/${t}`,
         method: "DELETE"
       }),
-      invalidatesTags: [Q.Additions]
+      invalidatesTags: [x.Additions]
     })
   })
-}), Rs = ws.endpoints.fetchAdditions.select(), Vs = at.getSelectors(
-  ue(Rs, (e) => e.data ?? at.getInitialState())
-), lt = we({
+}), Rs = ws.endpoints.fetchAdditions.select(), zs = ut.getSelectors(
+  ue(Rs, (e) => e.data ?? ut.getInitialState())
+), at = we({
   selectId: (e) => e.id
 }), Ts = he.injectEndpoints({
   endpoints: (e) => ({
@@ -5214,8 +5222,8 @@ const gs = Hi.endpoints.getCashiers.select(), Ds = ct.getSelectors(
       query: () => ({
         url: "/v1/categories/organization?activeOnly=false"
       }),
-      transformResponse: (t) => lt.setAll(lt.getInitialState(), t),
-      providesTags: [Q.Categories]
+      transformResponse: (t) => at.setAll(at.getInitialState(), t),
+      providesTags: [x.Categories]
     }),
     updateCategory: e.mutation({
       query: (t) => ({
@@ -5223,7 +5231,7 @@ const gs = Hi.endpoints.getCashiers.select(), Ds = ct.getSelectors(
         method: "PUT",
         body: t
       }),
-      invalidatesTags: [Q.Categories]
+      invalidatesTags: [x.Categories]
     }),
     createCategory: e.mutation({
       query: (t) => ({
@@ -5231,41 +5239,40 @@ const gs = Hi.endpoints.getCashiers.select(), Ds = ct.getSelectors(
         method: "POST",
         body: { ...t, description: "test" }
       }),
-      invalidatesTags: [Q.Categories]
+      invalidatesTags: [x.Categories]
     }),
     deleteCategory: e.mutation({
       query: (t) => ({
         url: `/v1/categories/${t}`,
         method: "DELETE"
       }),
-      invalidatesTags: [Q.Categories]
+      invalidatesTags: [x.Categories]
     })
   })
-}), Cs = Ts.endpoints.fetchCategories.select(), Fs = lt.getSelectors(
+}), Cs = Ts.endpoints.fetchCategories.select(), Vs = at.getSelectors(
   ue(
     Cs,
-    (e) => e.data ?? lt.getInitialState()
+    (e) => e.data ?? at.getInitialState()
   )
 );
 export {
   In as DayOfWeek,
   ws as additionsEndpoints,
-  Vs as additionsSelectors,
+  zs as additionsSelectors,
   he as api,
   Hi as cashiersEndpoints,
-  Ds as cashiersSelectors,
+  Is as cashiersSelectors,
   Ts as categoriesEndpoints,
-  Fs as categoriesSelectors,
-  ks as currentOrganizationSelector,
-  Is as loginApi,
+  Vs as categoriesSelectors,
+  $s as currentOrganizationSelector,
+  Ps as loginApi,
   bs as menuEndpoints,
-  zs as menuSelectors,
+  qs as menuSelectors,
   vs as ordersEndpoints,
-  $s as ordersSelectors,
+  Ds as ordersSelectors,
   Rn as organizationsEndpoints,
-  js as organizationsSelectors,
-  xs as placesByOrganizationSelectors,
+  ks as organizationsSelectors,
+  js as placesByOrganizationSelectors,
   Tn as placesEndpoints,
-  qs as placesSelectors,
-  Ps as rtkQueryErrorLogger
+  xs as placesSelectors
 };

@@ -1,7 +1,5 @@
 import { BaseQueryApi, FetchArgs } from "@reduxjs/toolkit/query/react";
 import { ApiTags } from '../enums';
-import { Middleware } from "@reduxjs/toolkit";
-export declare const rtkQueryErrorLogger: Middleware;
 export declare const api: import("@reduxjs/toolkit/query/react").Api<(args: string | FetchArgs, api: BaseQueryApi, extraOptions: NonNullable<unknown>) => Promise<{
     error: {
         code: string;

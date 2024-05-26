@@ -1,28 +1,64 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { BackIcon24, Button, Flex, Grid, Page, theme } from "@book-eat/ui";
 import { FormProvider, useForm } from "react-hook-form";
-import { isNil } from "ramda";
 import { IFormValues } from "./models.ts";
-import {
-  Address,
-  Comment,
-  DeliveryType,
-  Name,
-  PersonsCount,
-  Phone,
-} from "./Fields";
+import { Comment, Name, PersonsCount, Phone } from "./Fields";
+import { Methods } from "./Methods";
+import { IOrder, ordersEndpoints } from "@book-eat/api";
+import { TakeUpVariants } from "$enums";
+import { useSelector } from "$hooks";
 
 export const Create = () => {
   const navigate = useNavigate();
-  const { id: orgId } = useParams();
+  const [triggerCreateOrder] = ordersEndpoints.useCreateOrderMutation();
+  const cartItems = useSelector((state) => state.cart);
 
   const methods = useForm<IFormValues>({
-    defaultValues: { personsCount: 1 },
+    defaultValues: { personsCount: 1, deliveryType: TakeUpVariants.Delivery },
   });
 
   const onBackClick = () => navigate("/");
 
-  const handleSubmit = async (data: IFormValues) => {};
+  const handleSubmit = async (data: IFormValues) => {
+    const {
+      personsCount,
+      apartments,
+      floor,
+      entrance,
+      intercom,
+      address,
+      comment,
+      takeUpTime,
+      name,
+      phone,
+    } = data;
+
+    const products = cartItems.map((item) => ({
+      id: item.productId,
+      amount: item.col,
+    }));
+
+    const places = cartItems[0].shopId;
+
+    const payload: IOrder = {
+      personsCount,
+      comment,
+      customerInfo: name,
+      customerPhone: phone,
+      readyTime: takeUpTime,
+      delivery: {
+        flat: apartments,
+        floor,
+        porch: entrance,
+        address,
+        doorCode: intercom,
+      },
+      products,
+      places,
+    };
+
+    await triggerCreateOrder(payload);
+  };
 
   return (
     <FormProvider {...methods}>
@@ -47,10 +83,7 @@ export const Create = () => {
               <Comment />
             </Grid>
             <PersonsCount />
-            <Grid gap={3}>
-              <DeliveryType />
-              <Address />
-            </Grid>
+            <Methods />
             <Button onClick={methods.handleSubmit(handleSubmit)}>
               Рассчитать стоимость доставки
             </Button>
