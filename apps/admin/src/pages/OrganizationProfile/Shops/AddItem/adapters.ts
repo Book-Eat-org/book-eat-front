@@ -1,7 +1,7 @@
 import { IFormValues } from "./models";
 import { prop, values } from "ramda";
 import { DAYS_ITEMS } from "$constants";
-import { DayOfWeek, IPlace, PickPartial } from "@book-eat/api";
+import { DayOfWeek, IOrganization, IPlace, PickPartial } from "@book-eat/api";
 import { EntityId } from "@reduxjs/toolkit";
 
 export const inputAdapter = (input: IPlace): IFormValues => {
@@ -36,6 +36,7 @@ export const inputAdapter = (input: IPlace): IFormValues => {
 
 export const ouptutAdapter = (
   data: IFormValues,
+  organization: IOrganization,
   id?: EntityId,
 ): PickPartial<IPlace, "id"> => {
   return {
@@ -64,5 +65,6 @@ export const ouptutAdapter = (
     isInPlaceAvailable: data.isInPlaceAvailable,
     isOnPlaceAvailable: data?.isOutsideAvailable,
     logoUrl: data.image!,
+    organization,
   };
 };

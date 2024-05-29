@@ -1,9 +1,8 @@
 .wrapper {
     background: #59AC4B;
-    position: fixed;
     top: 0;
     left: 0;
-    height: 100vh;
+    height: calc(100% - 75px);
     width: 100vw;
     display: flex;
     flex-direction: column;

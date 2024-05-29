@@ -1,14 +1,7 @@
 import { FC, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
-import {
-  BackIcon24,
-  Button,
-  Flex,
-  theme,
-  UIButton,
-  UIGrid,
-} from "@book-eat/ui";
+import { BackIcon24, Button, Flex, theme, UIGrid } from "@book-eat/ui";
 
 import { inputAdapter, ouptutAdapter } from "./adapters";
 import classes from "./AddItem.module.css";
@@ -23,13 +16,18 @@ import {
 } from "./Fields";
 import { IFormValues } from "./models";
 import { useSelector } from "react-redux";
-import { placesByOrganizationSelectors, placesEndpoints } from "$api";
+import {
+  currentOrganizationSelector,
+  placesByOrganizationSelectors,
+  placesEndpoints,
+} from "$api";
 import { Page } from "$components";
 import { useNavigate, useParams } from "react-router-dom";
 
 const AddItem: FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [organization] = useSelector(currentOrganizationSelector.selectAll);
 
   const [mapOpened, setMapOpened] = useState(false);
   const [savePlace, { isLoading }] = placesEndpoints.useSavePlaceMutation();
@@ -47,7 +45,7 @@ const AddItem: FC = () => {
 
   const navigateBack = () => navigate("..");
   const handleSubmit = async (data: IFormValues) => {
-    const payload = ouptutAdapter(data, id);
+    const payload = ouptutAdapter(data, organization, id);
 
     const result = await (id ? editPlace(payload) : savePlace(payload));
     if (result.error) {

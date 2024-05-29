@@ -35,7 +35,7 @@ const Nav: FC = () => {
     <Grid
       className={classes.wrapper}
       height={75}
-      backgroundColor="grayLight"
+      backgroundColor="white"
       gap={3}
       p={3}
       gridTemplateColumns="1fr 1fr 1fr 1fr"
