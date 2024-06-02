@@ -7,8 +7,8 @@ export const Totals = () => {
   const cartItems = useSelector(cartSelector);
   const products = useSelector((state) => menuSelectors.selectEntities(state));
 
-  const sum = cartItems.reduce((acc, curr) => {
-    const product: IProduct = products[curr.productId];
+  const sum = cartItems.products.reduce((acc, curr) => {
+    const product: IProduct = products[curr.id];
     return acc + product.price * curr.col;
   }, 0);
 

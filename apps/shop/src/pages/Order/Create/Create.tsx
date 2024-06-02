@@ -11,7 +11,7 @@ import { useSelector } from "$hooks";
 export const Create = () => {
   const navigate = useNavigate();
   const [triggerCreateOrder] = ordersEndpoints.useCreateOrderMutation();
-  const cartItems = useSelector((state) => state.cart);
+  const cartState = useSelector((state) => state.cart);
 
   const methods = useForm<IFormValues>({
     defaultValues: { personsCount: 1, deliveryType: TakeUpVariants.Delivery },
@@ -33,19 +33,22 @@ export const Create = () => {
       phone,
     } = data;
 
-    const products = cartItems.map((item) => ({
-      id: item.productId,
+    const products = cartState.products.map((item) => ({
+      id: item.id,
       amount: item.col,
     }));
 
-    const places = cartItems[0].shopId;
+    const places = cartState.shopId;
 
     const payload: IOrder = {
       personsCount,
       comment,
-      customerInfo: name,
-      customerPhone: phone,
-      readyTime: takeUpTime,
+      customerInfo: {
+        customerName: name,
+        customerPhone: phone,
+        customerEmail: "",
+      },
+      readyTime: takeUpTime ?? "15:00",
       delivery: {
         flat: apartments,
         floor,

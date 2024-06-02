@@ -1,5 +1,4 @@
 import {
-  Button,
   CartIcon24,
   Flex,
   IconButton,
@@ -10,7 +9,11 @@ import {
 import { FC } from "react";
 import { EntityId } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, cartSelector } from "../../../../../store/cart";
+import {
+  addToCart,
+  cartSelector,
+  removeFromCart,
+} from "../../../../../store/cart";
 import { useParams } from "react-router-dom";
 import { useCard } from "../../../context.ts";
 
@@ -26,24 +29,22 @@ const Cart: FC<IProps> = ({ id }) => {
 
   const cartItems = useSelector(cartSelector);
 
-  const cartItem = cartItems.find(
-    (item) => item.shopId === shopId && item.productId === id,
+  const cartItem = cartItems.products.find(
+    (item) => cartItems.shopId === shopId && item.id === id,
   );
 
   const onAddCart = () =>
     dispatch(
       addToCart({
-        col: (cartItem?.col ?? 0) + 1,
-        productId: id,
+        id,
         shopId: shopId!,
       }),
     );
 
   const onDeleteCart = () =>
     dispatch(
-      addToCart({
-        col: (cartItem?.col ?? 0) - 1,
-        productId: id,
+      removeFromCart({
+        id,
         shopId: shopId!,
       }),
     );

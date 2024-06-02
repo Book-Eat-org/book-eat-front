@@ -1,6 +1,6 @@
 import { EntityId } from "@reduxjs/toolkit";
 import { IProduct } from "./product.ts";
-import { IPlace } from "$models";
+import { IOrganization, IPlace } from "$models";
 
 export interface IOrderStatus {
   id: string;
@@ -21,4 +21,5 @@ export interface IOrder {
   products: IProduct[];
   paymentUrl: string;
   places: IPlace[];
+  organization: IOrganization;
 }

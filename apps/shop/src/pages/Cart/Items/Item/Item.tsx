@@ -23,7 +23,7 @@ export const Item: FC<IProps> = (props) => {
   const dispatch = useDispatch();
   const { id } = props;
   const cartItems = useSelector((state) => state.cart);
-  const cartItem = cartItems.find(({ productId }) => productId === id)!;
+  const cartItem = cartItems.products.find((item) => item.id === id)!;
 
   const product: IProduct = useSelector((state) =>
     menuSelectors.selectById(state, id),

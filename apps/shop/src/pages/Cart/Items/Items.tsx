@@ -4,7 +4,5 @@ import { Item } from "./Item";
 export const Items = () => {
   const cartItems = useSelector((state) => state.cart);
 
-  return cartItems.map((item) => (
-    <Item id={item.productId} key={item.productId} />
-  ));
+  return cartItems.products.map((item) => <Item id={item.id} key={item.id} />);
 };

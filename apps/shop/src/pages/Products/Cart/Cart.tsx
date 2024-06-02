@@ -8,7 +8,7 @@ export const Cart: FC = () => {
   const navigate = useNavigate();
   const items = useSelector((store) => store.cart);
 
-  const col = items.reduce((acc, curr) => acc + curr.col ?? 0, 0);
+  const col = items.products.reduce((acc, curr) => acc + curr.col ?? 0, 0);
 
   const onSubmit = () => navigate(navigateToPage(PageURLS.CART, {}));
 

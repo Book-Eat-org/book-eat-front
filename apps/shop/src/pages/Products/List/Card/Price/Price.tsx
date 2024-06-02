@@ -17,9 +17,11 @@ const Price: FC<IProps> = ({ id }) => {
 
   const cartItems = useSelector(cartSelector);
 
-  const cartItem = cartItems.find(
-    (item) => item.shopId === shopId && item.productId === id,
+  const cartItem = cartItems.products.find(
+    (item) => cartItems.shopId === shopId && item.id === id,
   );
+
+  console.log(cartItems);
 
   const hasSelectedItem = (cartItem?.col ?? 0) === 0;
 

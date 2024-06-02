@@ -1,16 +1,24 @@
 import { createAction, EntityId } from "@reduxjs/toolkit";
 
 export interface ICartState {
-  shopId: EntityId;
+  shopId?: EntityId;
   products: {
     id: EntityId;
     additions: EntityId[];
     col: number;
   }[];
 }
-export interface ICartPayload {
-  productId: EntityId;
+
+export interface IAddProductToCart {
+  id: EntityId;
   shopId: EntityId;
-  col: number;
 }
-export const addToCart = createAction<ICartPayload>("ADD_TO_CART");
+
+export interface IRemoveProductToCart {
+  id: EntityId;
+  shopId: EntityId;
+}
+
+export const addToCart = createAction<IAddProductToCart>("ADD_TO_CART");
+export const removeFromCart =
+  createAction<IRemoveProductToCart>("REMOVE_FROM_CART");
