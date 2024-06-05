@@ -11,7 +11,7 @@ export const cartMiddleware: Middleware = ({ getState }) => {
     const isCartAction = cartActions.some((cartAction) =>
       cartAction.match(action),
     );
-    console.log(isCartAction);
+
     localStorage.setItem("cartData", JSON.stringify(state.cart));
     return result;
   };

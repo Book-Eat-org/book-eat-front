@@ -1,10 +1,8 @@
 import { EntityId } from "@reduxjs/toolkit";
 import { FC } from "react";
 import { useSelector } from "$hooks";
-import { IProduct, menuSelectors } from "@book-eat/api";
+import { createMenuSelectorsByPlaceId, IProduct } from "@book-eat/api";
 import {
-  Box,
-  Button,
   Flex,
   Grid,
   IconButton,
@@ -12,8 +10,7 @@ import {
   PlusIcon24,
   Typography,
 } from "@book-eat/ui";
-import { F } from "ramda";
-import { addToCart, cartSelector } from "../../../../store/cart";
+import { addToCart, removeFromCart } from "../../../../store/cart";
 import { useDispatch } from "react-redux";
 
 interface IProps {
@@ -25,8 +22,10 @@ export const Item: FC<IProps> = (props) => {
   const cartItems = useSelector((state) => state.cart);
   const cartItem = cartItems.products.find((item) => item.id === id)!;
 
+  const selectors = createMenuSelectorsByPlaceId(cartItems.shopId!);
+
   const product: IProduct = useSelector((state) =>
-    menuSelectors.selectById(state, id),
+    selectors.selectById(state, id),
   );
 
   const { title, mainImageUrl, price } = product;
@@ -34,18 +33,16 @@ export const Item: FC<IProps> = (props) => {
   const onAddCart = () =>
     dispatch(
       addToCart({
-        col: (cartItem?.col ?? 0) + 1,
-        productId: id,
-        shopId: cartItem.shopId!,
+        id,
+        shopId: cartItems.shopId!,
       }),
     );
 
   const onDeleteCart = () =>
     dispatch(
-      addToCart({
-        col: (cartItem?.col ?? 0) - 1,
-        productId: id,
-        shopId: cartItem.shopId!,
+      removeFromCart({
+        id,
+        shopId: cartItems.shopId!,
       }),
     );
 

@@ -2,14 +2,27 @@ import { EntityId, EntityState } from "@reduxjs/toolkit";
 import { ApiTags } from "$enums";
 import { menuAdapter } from "./adapter";
 import { api } from "../api";
-import { IProduct } from "$models";
+import { ICategory, IProduct } from "$models";
+import { flatten, prop, uniqBy } from "ramda";
+import { categoriesAdapters } from "../categories/adapter.ts";
+
+type IGetBlaBlaResponse = (ICategory & { products: IProduct[] })[];
 
 export const menuEndpoints = api.injectEndpoints({
   endpoints: (build) => ({
     getMenuByPlaceId: build.query<EntityState<IProduct>, EntityId>({
       query: (id) => `/v1/products/place/${id}`,
-      transformResponse: (res: IProduct[]) =>
-        menuAdapter.setMany(menuAdapter.getInitialState(), res),
+      transformResponse: (res: IGetBlaBlaResponse) => {
+        const products = uniqBy(prop("id"), flatten(res.map(prop("products"))));
+        categoriesAdapters.addMany(categoriesAdapters.getInitialState(), res);
+        return menuAdapter.setMany(menuAdapter.getInitialState(), products);
+      },
+      providesTags: [ApiTags.Menu],
+    }),
+    getMenuById: build.query<EntityState<IProduct>, EntityId>({
+      query: (id) => `/v1/products/${id}`,
+      transformResponse: (res: IProduct) =>
+        menuAdapter.setOne(menuAdapter.getInitialState(), res),
       providesTags: [ApiTags.Menu],
     }),
     getMenuByPlaces: build.query<EntityState<IProduct>, void>({

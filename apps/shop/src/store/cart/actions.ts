@@ -12,6 +12,7 @@ export interface ICartState {
 export interface IAddProductToCart {
   id: EntityId;
   shopId: EntityId;
+  additions: EntityId[];
 }
 
 export interface IRemoveProductToCart {

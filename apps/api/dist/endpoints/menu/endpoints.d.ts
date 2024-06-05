@@ -23,6 +23,17 @@ export declare const menuEndpoints: import("@reduxjs/toolkit/query").Api<(args: 
         };
         error?: undefined;
     }>, ApiTags, any, "api">;
+    getMenuById: import("@reduxjs/toolkit/query").QueryDefinition<EntityId, (args: string | import("@reduxjs/toolkit/query").FetchArgs, api: import("@reduxjs/toolkit/query").BaseQueryApi, extraOptions: {}) => Promise<{
+        error: {
+            code: string;
+        };
+        data?: undefined;
+    } | {
+        data: {
+            code: string;
+        };
+        error?: undefined;
+    }>, ApiTags, any, "api">;
     getMenuByPlaces: import("@reduxjs/toolkit/query").QueryDefinition<void, (args: string | import("@reduxjs/toolkit/query").FetchArgs, api: import("@reduxjs/toolkit/query").BaseQueryApi, extraOptions: {}) => Promise<{
         error: {
             code: string;

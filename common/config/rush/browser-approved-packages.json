@@ -4,10 +4,14 @@
   "packages": [
     {
       "name": "@book-eat/api",
-      "allowedCategories": [ "production" ]
+      "allowedCategories": [ "production", "tools" ]
     },
     {
       "name": "@book-eat/ui",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@book-eat/utils",
       "allowedCategories": [ "production" ]
     },
     {

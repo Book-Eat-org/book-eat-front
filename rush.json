@@ -342,6 +342,12 @@
       "projectFolder": "apps/ui",
       "reviewCategory": "tools",
       "tags": [ "tools" ]
+    },
+    {
+      "packageName": "@book-eat/utils",
+      "projectFolder": "libraries/utils",
+      "reviewCategory": "tools",
+      "tags": [ "tools" ]
     }
   ]
 }

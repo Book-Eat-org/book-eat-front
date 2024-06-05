@@ -1,14 +1,9 @@
 import { ordersAdapter } from "./adapter.ts";
 import { pipe } from "ramda";
-import { IGetOrderParams, ordersEndpoints } from "./endpoints.ts";
+import { ordersEndpoints } from "./endpoints.ts";
 
-export const ordersSelectorsFactory = ({ rows, orgId }: IGetOrderParams) => {
-  const selector = ordersEndpoints.endpoints.getOrders.select({
-    rows,
-    orgId,
-  });
+const endpointsSelector = ordersEndpoints.endpoints.getOrders.select();
 
-  return ordersAdapter.getSelectors(
-    pipe(selector, (a) => a.data ?? ordersAdapter.getInitialState()),
-  );
-};
+export const ordersSelectors = ordersAdapter.getSelectors(
+  pipe(endpointsSelector, (a) => a.data ?? ordersAdapter.getInitialState()),
+);

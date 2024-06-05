@@ -14,7 +14,6 @@ export const Product: FC<IProps> = (props) => {
   const { id } = props;
   const item = ORDER_DATA.products.find((product) => product.id === id)!;
   const product = useSelector((state) => menuSelectors.selectById(state, id));
-  console.log(product, id);
 
   return (
     <Grid gap={2}>

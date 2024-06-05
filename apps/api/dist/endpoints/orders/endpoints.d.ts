@@ -1,3 +1,4 @@
+import { EntityId } from "@reduxjs/toolkit";
 import { ApiTags } from '../../enums';
 import { IOrder, IOrderStatus } from '../../models';
 export interface IUpdateOrderRequestPayload {
@@ -16,6 +17,17 @@ export declare const ordersEndpoints: import("@reduxjs/toolkit/query").Api<(args
     error?: undefined;
 }>, {
     getOrders: import("@reduxjs/toolkit/query").QueryDefinition<void, (args: string | import("@reduxjs/toolkit/query").FetchArgs, api: import("@reduxjs/toolkit/query").BaseQueryApi, extraOptions: {}) => Promise<{
+        error: {
+            code: string;
+        };
+        data?: undefined;
+    } | {
+        data: {
+            code: string;
+        };
+        error?: undefined;
+    }>, ApiTags, any, "api">;
+    getOrder: import("@reduxjs/toolkit/query").QueryDefinition<EntityId, (args: string | import("@reduxjs/toolkit/query").FetchArgs, api: import("@reduxjs/toolkit/query").BaseQueryApi, extraOptions: {}) => Promise<{
         error: {
             code: string;
         };

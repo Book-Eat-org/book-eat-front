@@ -16,6 +16,7 @@ export enum PageURLS {
   CategoriesCreate = "CategoriesCreate",
   CategoriesEdit = "CategoriesEdit",
   Orders = "Orders",
+  OrdersEdit = "OrdersEdit",
   Menu = "Menu",
   MenuList = "MenuList",
   MenuListCreate = "MenuListCreate",
@@ -27,6 +28,7 @@ export enum PageURLS {
 export interface IPagesNavigatePayload {
   [PageURLS.ShopsEdit]: { id: EntityId };
   [PageURLS.UsersEdit]: { id: EntityId };
+  [PageURLS.OrdersEdit]: { id: EntityId };
 }
 export const PAGES: Record<PageURLS, string> = {
   [PageURLS.ROOT]: "/",
@@ -44,6 +46,7 @@ export const PAGES: Record<PageURLS, string> = {
   [PageURLS.CategoriesCreate]: "/menu/categories/create",
   [PageURLS.CategoriesEdit]: "/menu/categories/:id",
   [PageURLS.Orders]: "orders",
+  [PageURLS.OrdersEdit]: "/orders/:id",
   [PageURLS.Menu]: "menu",
   [PageURLS.Profile]: "profile",
   [PageURLS.Organization]: "organization",

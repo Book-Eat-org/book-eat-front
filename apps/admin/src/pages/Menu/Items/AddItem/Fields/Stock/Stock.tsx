@@ -30,8 +30,8 @@ export const Stock: FC = () => {
         placeholder="Наличие на точках"
         error={errorMessage}
       >
-        {places?.map(({ title, placeId }) => (
-          <UIMultipleSelectOption key={placeId} value={String(placeId)}>
+        {places?.map(({ title, id }) => (
+          <UIMultipleSelectOption key={id} value={String(id)}>
             {title}
           </UIMultipleSelectOption>
         ))}

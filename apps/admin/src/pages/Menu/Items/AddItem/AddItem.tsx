@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
 import { BackIcon24, Button, Flex, Grid, theme } from "@book-eat/ui";
@@ -20,6 +20,7 @@ import { IFormValues } from "./models";
 import {
   additionsEndpoints,
   categoriesEndpoints,
+  menuByIdSelectorsFactory,
   menuEndpoints,
   menuSelectors,
   placesEndpoints,
@@ -34,10 +35,22 @@ const AddItem: FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const item = useSelector((state) => menuSelectors.selectById(state, id));
+  const selectors = menuByIdSelectorsFactory(id);
+
+  const item = useSelector((state) => selectors?.selectById(state, id));
   categoriesEndpoints.useFetchCategoriesQuery();
   additionsEndpoints.useFetchAdditionsQuery();
   placesEndpoints.useFetchPlacesByOrganizationQuery();
+  const [triggerGetDetailMenu] = menuEndpoints.useLazyGetMenuByIdQuery();
+  const [triggerLinkWithCategory] = menuEndpoints.useLinkWithCategoryMutation();
+  const [triggerLinkWithPlace] = menuEndpoints.useLinkWithPlaceMutation();
+  const [triggerLinkWithAddition] = menuEndpoints.useLinkWithAdditionMutation();
+
+  useEffect(() => {
+    if (id) {
+      triggerGetDetailMenu(id);
+    }
+  }, [id]);
 
   const methods = useForm<IFormValues>({
     defaultValues: isNil(item) ? undefined : inputAdapter(item),
@@ -51,7 +64,27 @@ const AddItem: FC = () => {
   const handleSubmit = async (data: IFormValues) => {
     const payload = outputAdapter(data);
 
-    isNil(id) ? await saveMenu(payload) : await editMenu({ ...payload, id });
+    const result = isNil(id)
+      ? await saveMenu(payload)
+      : await editMenu({ ...payload, id });
+
+    const resultId = result.data.id;
+
+    await triggerLinkWithPlace({
+      placesIds: data.stock,
+      productId: resultId,
+    });
+
+    await triggerLinkWithCategory({
+      categoriesIds: data.categories,
+      productId: resultId,
+    });
+
+    await triggerLinkWithAddition({
+      additionsIds: data.additionals,
+      productId: resultId,
+    });
+
     navigateBack();
   };
 

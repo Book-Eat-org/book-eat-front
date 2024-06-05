@@ -1,13 +1,15 @@
 import { BackIcon24, Button, Flex, Grid, Page, theme } from "@book-eat/ui";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Composition } from "./Composition";
 import { Details } from "./Details";
-import { menuEndpoints } from "@book-eat/api";
+import { menuEndpoints, ordersEndpoints } from "@book-eat/api";
 
 export const Detail = () => {
+  const { id: orderId } = useParams();
   const navigate = useNavigate();
   const onBackClick = () => navigate("/");
   const { isFetching } = menuEndpoints.useGetMenuByOrganizationQuery();
+  ordersEndpoints.useGetOrderQuery(orderId!);
 
   if (isFetching) {
     return null;

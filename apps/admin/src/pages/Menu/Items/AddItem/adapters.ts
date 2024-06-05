@@ -1,5 +1,6 @@
 import { IProduct } from "@book-eat/api";
 import { IFormValues } from "./models.ts";
+import { prop } from "ramda";
 
 export const inputAdapter = (data: IProduct): IFormValues => {
   const {
@@ -10,9 +11,12 @@ export const inputAdapter = (data: IProduct): IFormValues => {
     price,
     weight = 0,
     additions = [],
-    quantity,
+    placesIds = [],
+    categoriesIds = [],
     mainImageUrl,
   } = data;
+
+  const additionals = additions?.map(prop("id")) ?? [];
 
   return {
     image: mainImageUrl,
@@ -21,9 +25,9 @@ export const inputAdapter = (data: IProduct): IFormValues => {
     discount,
     ingredients,
     price,
-    additionals: [],
-    categories: [],
-    stock: [],
+    additionals,
+    categories: categoriesIds ?? [],
+    stock: placesIds ?? [],
     weight,
   };
 };

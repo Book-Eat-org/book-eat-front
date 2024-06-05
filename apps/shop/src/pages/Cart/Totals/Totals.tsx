@@ -1,11 +1,13 @@
 import { Flex, Grid, theme, Typography } from "@book-eat/ui";
 import { useSelector } from "react-redux";
 import { cartSelector } from "../../../store/cart";
-import { IProduct, menuSelectors } from "@book-eat/api";
+import { createMenuSelectorsByPlaceId, IProduct } from "@book-eat/api";
 
 export const Totals = () => {
   const cartItems = useSelector(cartSelector);
-  const products = useSelector((state) => menuSelectors.selectEntities(state));
+  const selectors = createMenuSelectorsByPlaceId(cartItems.shopId!);
+
+  const products = useSelector(selectors.selectEntities);
 
   const sum = cartItems.products.reduce((acc, curr) => {
     const product: IProduct = products[curr.id];

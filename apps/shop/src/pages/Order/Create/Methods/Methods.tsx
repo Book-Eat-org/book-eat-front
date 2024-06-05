@@ -17,7 +17,6 @@ export const Methods = () => {
   const deliveryType = useWatch<IFormValues, "deliveryType">({
     name: "deliveryType",
   });
-  console.log(deliveryType);
 
   const Component = ComponentByType[deliveryType];
 

@@ -24,7 +24,8 @@
     "uuid": "~9.0.1",
     "@pbe/react-yandex-maps": "~1.2.5",
     "dayjs": "~1.11.10",
-    "@book-eat/api": "~0.0.0"
+    "@book-eat/api": "~0.0.0",
+    "@book-eat/utils": "~0.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

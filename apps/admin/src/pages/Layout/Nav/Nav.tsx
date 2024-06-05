@@ -14,7 +14,7 @@ import { PAGES, PageURLS } from "$constants";
 
 const items = [
   {
-    title: "Подключить",
+    title: "Кассиры",
     to: PAGES[PageURLS.Users],
     Icon: ConnectIcon24,
   },

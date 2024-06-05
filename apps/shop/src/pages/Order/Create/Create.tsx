@@ -7,11 +7,13 @@ import { Methods } from "./Methods";
 import { IOrder, ordersEndpoints } from "@book-eat/api";
 import { TakeUpVariants } from "$enums";
 import { useSelector } from "$hooks";
+import { menuSelectors } from "@book-eat/api";
 
 export const Create = () => {
   const navigate = useNavigate();
   const [triggerCreateOrder] = ordersEndpoints.useCreateOrderMutation();
   const cartState = useSelector((state) => state.cart);
+  const productssss = useSelector(menuSelectors.selectAll);
 
   const methods = useForm<IFormValues>({
     defaultValues: { personsCount: 1, deliveryType: TakeUpVariants.Delivery },
@@ -36,31 +38,42 @@ export const Create = () => {
     const products = cartState.products.map((item) => ({
       id: item.id,
       amount: item.col,
+      price: 100, // Поправить
+      title: "Test",
+      weight: 100,
     }));
 
-    const places = cartState.shopId;
+    const places = { id: cartState.shopId };
 
     const payload: IOrder = {
       personsCount,
       comment,
       customerInfo: {
         customerName: name,
-        customerPhone: phone,
-        customerEmail: "",
+        customerPhone: "79990960939",
+        customerEmail: "Test@yandex.ru",
       },
       readyTime: takeUpTime ?? "15:00",
       delivery: {
         flat: apartments,
+        status: "DELIVERING",
         floor,
         porch: entrance,
         address,
         doorCode: intercom,
+        type: {
+          id: 1,
+          name: "DELIVERY",
+        },
       },
       products,
       places,
     };
 
-    await triggerCreateOrder(payload);
+    const result = await triggerCreateOrder(payload);
+    if (result.data) {
+      window.location.replace(result.data.paymentUrl);
+    }
   };
 
   return (
