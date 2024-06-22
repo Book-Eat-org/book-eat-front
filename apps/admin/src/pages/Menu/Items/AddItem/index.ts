@@ -1,3 +1,1 @@
-import AddItem from "./AddItem";
-
-export default AddItem;
+export * from "./AddItem";
