@@ -37,7 +37,7 @@ jobs:
         uses: wlixcc/SFTP-Deploy-Action@v1.2.1
         with:
           username: root
-          server: ovz2.1usefulservice.meo8n.vps.myjino.ru
+          server: ovz2.1usefulservice.0n03n.vps.myjino.ru
           port: 49214 # default is 22
           ssh_private_key: ${{ secrets.SSH_PROM_KEY }}
 
