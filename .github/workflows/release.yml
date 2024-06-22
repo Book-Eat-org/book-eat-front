@@ -1,7 +1,7 @@
-name: CI
+name: Release
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "release" ]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,15 +22,14 @@ jobs:
         uses: wlixcc/SFTP-Deploy-Action@v1.2.1
         with:
           username: root
-          server: ovz2.1usefulservice.meo8n.vps.myjino.ru
+          server: ovz2.1usefulservice.0n03n.vps.myjino.ru
           port: 49374 # default is 22
-          ssh_private_key: ${{ secrets.SSH_IFT_KEY }}
-
+          ssh_private_key: ${{ secrets.SSH_PROM_KEY }}
 
           # will put all file under this path
           local_path: ./apps/admin/dist/*
           # files will copy to under remote_path
-          remote_path: /home/book-eat-pl/admin
+          remote_path: /home/pl/admin
 
           # sftp args
           args: '-o ConnectTimeout=5'
@@ -40,31 +39,13 @@ jobs:
           username: root
           server: ovz2.1usefulservice.meo8n.vps.myjino.ru
           port: 49374 # default is 22
-          ssh_private_key: ${{ secrets.SSH_IFT_KEY }}
+          ssh_private_key: ${{ secrets.SSH_PROM_KEY }}
 
 
           # will put all file under this path
           local_path: ./apps/shop/dist/*
           # files will copy to under remote_path
-          remote_path: /home/book-eat-pl/shop
-
-          # sftp args
-          args: '-o ConnectTimeout=5'
-      - name: Build storybook
-        run: npm run build-storybook --prefix apps/ui
-      - name: Deploy Storybook
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.1
-        with:
-          username: root
-          server: ovz2.1usefulservice.meo8n.vps.myjino.ru
-          port: 49374 # default is 22
-          ssh_private_key: ${{ secrets.SSH_IFT_KEY }}
-
-
-          # will put all file under this path
-          local_path: ./apps/ui/storybook-static/*
-          # files will copy to under remote_path
-          remote_path: /home/book-eat-pl/ui
+          remote_path: /home/pl/shop
 
           # sftp args
           args: '-o ConnectTimeout=5'
