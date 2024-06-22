@@ -23,7 +23,7 @@ jobs:
         with:
           username: root
           server: ovz2.1usefulservice.0n03n.vps.myjino.ru
-          port: 49374 # default is 22
+          port: 49214 # default is 22
           ssh_private_key: ${{ secrets.SSH_PROM_KEY }}
 
           # will put all file under this path
@@ -38,7 +38,7 @@ jobs:
         with:
           username: root
           server: ovz2.1usefulservice.meo8n.vps.myjino.ru
-          port: 49374 # default is 22
+          port: 49214 # default is 22
           ssh_private_key: ${{ secrets.SSH_PROM_KEY }}
 
 
