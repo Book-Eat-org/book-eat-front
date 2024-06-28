@@ -1,11 +1,13 @@
+import { DayOfWeek } from "@book-eat/api";
+
 export const DAYS_ITEMS = [
-  { id: 1, name: "Пн" },
-  { id: 2, name: "Вт" },
-  { id: 3, name: "Ср" },
-  { id: 4, name: "Чт" },
-  { id: 5, name: "Пт" },
-  { id: 6, name: "Сб" },
-  { id: 7, name: "Вс" },
+  { id: DayOfWeek.Monday, name: "Пн" },
+  { id: DayOfWeek.Tuesday, name: "Вт" },
+  { id: DayOfWeek.Wednesday, name: "Ср" },
+  { id: DayOfWeek.Thursday, name: "Чт" },
+  { id: DayOfWeek.Friday, name: "Пт" },
+  { id: DayOfWeek.Saturday, name: "Сб" },
+  { id: DayOfWeek.Sunday, name: "Вс" },
 ];
 
 export const DAYS_ITEMS_API = {

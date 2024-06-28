@@ -1,8 +1,7 @@
 import { IFormValues } from "./models";
-import { prop, values } from "ramda";
-import { DAYS_ITEMS } from "$constants";
 import { DayOfWeek, IOrganization, IPlace, PickPartial } from "@book-eat/api";
 import { EntityId } from "@reduxjs/toolkit";
+import { eqProps, innerJoin, values } from "ramda";
 
 export const inputAdapter = (input: IPlace): IFormValues => {
   return {
@@ -10,27 +9,17 @@ export const inputAdapter = (input: IPlace): IFormValues => {
     image: input?.logoUrl,
     address: input?.info?.address ?? "",
     phone: input?.info?.phone ?? "",
-    contactName: input?.info.contactName,
-    workingDays: DAYS_ITEMS.map(prop("id")),
-    differentTimeDaily: false,
-    isDeliveryAvailable: input?.isDeliveryAvailable,
-    isInPlaceAvailable: input?.isInPlaceAvailable,
-    isOutsideAvailable: input?.isOnPlaceAvailable,
-    workingHoursDaily:
-      input?.schedule?.map((item) => ({
-        dayOfWeek: item.dayOfWeek,
-        timeTo: item.timeTo,
-        timeFrom: item.timeFrom,
-      })) ??
-      DAYS_ITEMS.map(({ id }) => ({
-        dayOfWeek: id,
-        timeFrom: "09:00",
+    schedule:
+      input?.schedule ??
+      values(DayOfWeek).map((day) => ({
+        dayOfWeek: day,
         timeTo: "22:00",
+        timeFrom: "09:00",
       })),
-    workingHoursAllDays: {
-      timeFrom: "09:00",
-      timeTo: "22:00",
-    },
+    contactName: input?.info.contactName,
+    isDeliveryAvailable: input?.isDeliveryAvailable ?? false,
+    isInPlaceAvailable: input?.isInPlaceAvailable ?? false,
+    isOutsideAvailable: input?.isOnPlaceAvailable ?? false,
   };
 };
 
@@ -49,17 +38,7 @@ export const ouptutAdapter = (
     city: {
       name: "Москва",
     },
-    schedule: data.differentTimeDaily
-      ? data.workingHoursDaily.map(({ dayOfWeek }) => ({
-          dayOfWeek,
-          timeFrom: data.workingHoursAllDays.timeFrom,
-          timeTo: data.workingHoursAllDays.timeTo,
-        }))
-      : values(DayOfWeek).map((dayOfWeek) => ({
-          dayOfWeek,
-          timeFrom: data.workingHoursAllDays.timeFrom,
-          timeTo: data.workingHoursAllDays.timeTo,
-        })),
+    schedule: data.schedule,
     title: data.title,
     isDeliveryAvailable: data.isDeliveryAvailable,
     isInPlaceAvailable: data.isInPlaceAvailable,

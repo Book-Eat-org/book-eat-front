@@ -16,5 +16,13 @@ export const loginApi = api.injectEndpoints({
         };
       },
     }),
+    logout: build.mutation<void, void>({
+      query: () => {
+        return {
+          url: "/v1/auth/logout",
+          method: "POST",
+        };
+      },
+    }),
   }),
 });

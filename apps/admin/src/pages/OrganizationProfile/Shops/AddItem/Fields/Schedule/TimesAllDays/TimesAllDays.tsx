@@ -8,20 +8,20 @@ import { IFormValues } from "../../../models";
 import classes from "./TimesAllDays.module.css";
 
 const TimesAllDays: FC = () => {
-  const { field } = useController<IFormValues, "workingHoursAllDays">({
-    name: "workingHoursAllDays",
+  const { field } = useController<IFormValues, "schedule">({
+    name: "schedule",
   });
   const { onChange, value } = field;
 
-  const { timeFrom, timeTo } = value;
-
   const handleToTimeChange = (eventValue: string) => {
-    onChange({ ...value, timeTo: eventValue });
+    onChange(value.map((item) => ({ ...item, timeTo: eventValue })));
   };
 
   const handleFromTimeChange = (eventValue: string) => {
-    onChange({ ...value, timeFrom: eventValue });
+    onChange(value.map((item) => ({ ...item, timeFrom: eventValue })));
   };
+
+  const { timeFrom, timeTo } = value[0];
 
   return (
     <Grid gridTemplateColumns="1fr auto 1fr" gap={6} alignItems="center">

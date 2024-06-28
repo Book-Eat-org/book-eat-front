@@ -7,8 +7,8 @@ import { WORK_TIME } from "../../../../List/Item/constants.ts";
 import { DayOfWeek } from "@book-eat/api";
 
 const Day: FC<{ day: DayOfWeek }> = ({ day }) => {
-  const { field } = useController<IFormValues, "workingHoursDaily">({
-    name: "workingHoursDaily",
+  const { field } = useController<IFormValues, "schedule">({
+    name: "schedule",
   });
   const { onChange, value } = field;
 

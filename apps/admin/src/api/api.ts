@@ -6,11 +6,7 @@ import {
 } from "@reduxjs/toolkit/query/react";
 import { values } from "ramda";
 import { ApiTags } from "$enums";
-import {
-  isRejectedWithValue,
-  Middleware,
-  MiddlewareAPI,
-} from "@reduxjs/toolkit";
+import { Middleware } from "@reduxjs/toolkit";
 
 const baseQueryToasts = (baseUrl: string) => {
   const baseQuery = fetchBaseQuery({ baseUrl });
@@ -23,7 +19,7 @@ const baseQueryToasts = (baseUrl: string) => {
       data: { code: string };
     };
 
-    if (data.code) {
+    if (data.code && data.code !== "AUTH_004") {
       alert(`Ошибка: ${data.code}`);
       return { error: data };
     }

@@ -2,7 +2,7 @@ import { FC } from "react";
 import { useSelector } from "react-redux";
 import { menuEndpoints, menuSelectors } from "$api";
 import { EntityId } from "@reduxjs/toolkit";
-import { Flex, Grid, Switch, theme, Typography } from "@book-eat/ui";
+import { Flex, Grid, Switch, theme } from "@book-eat/ui";
 import { useNavigate } from "react-router-dom";
 import { navigateToPage, PageURLS } from "$constants";
 import { MenuListItemContext } from "./context.ts";
@@ -20,9 +20,9 @@ const Item: FC<IProps> = ({ id }) => {
     return null;
   }
 
-  const isActiveOnOrganization = true;
+  const { isActiveOnOrganization } = item;
 
-  const [saveMenu] = menuEndpoints.useSaveMenuMutation();
+  const [saveMenu] = menuEndpoints.useEditMenuMutation(id);
 
   const toggleEnabled = (checked: boolean) =>
     saveMenu({ ...item, isActiveOnOrganization: checked });
