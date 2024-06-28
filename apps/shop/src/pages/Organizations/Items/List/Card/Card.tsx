@@ -1,11 +1,11 @@
 import { EntityId } from "@reduxjs/toolkit";
-import { FC } from "react";
+import { FC, SyntheticEvent } from "react";
 import { useSelector } from "react-redux";
 import { isNil } from "ramda";
-import { Box, Grid, Typography } from "@book-eat/ui";
+import { Box, Grid, theme, Typography } from "@book-eat/ui";
 import TimeTag from "./TimeTag";
 import classes from "./Card.module.css";
-import { navigateToPage, PageURLS } from "../../../../constants/urls.ts";
+import { navigateToPage, PageURLS } from "../../../../../constants/urls.ts";
 import { useNavigate } from "react-router-dom";
 import { organizationsSelectors } from "@book-eat/api";
 
@@ -24,10 +24,18 @@ const Card: FC<IProps> = (props) => {
     return null;
   }
 
-  const { logoUrl, title } = item;
+  const { logoUrl, title, legalInfo } = item;
 
   const onClick = () => {
     const url = navigateToPage(PageURLS.SHOPS, { id: item.id });
+    navigate(url);
+  };
+
+  const onLegalInfoClick = (e: SyntheticEvent) => {
+    e.stopPropagation();
+    const url = navigateToPage(PageURLS.ORGANIZATION_LEGAL_INFO, {
+      id: item.id,
+    });
     navigate(url);
   };
 
@@ -51,8 +59,18 @@ const Card: FC<IProps> = (props) => {
           className={classes.image}
         />
         <Grid padding="5px 10px" gap={1}>
-          <Typography size="20/24">{title}</Typography>
-          <Typography size="14/14">Адрес</Typography>
+          <Typography size="18/18" fontWeight={700}>
+            {title}
+          </Typography>
+          <Typography size="14/14">{legalInfo.actualAddress}</Typography>
+          <Typography
+            size="12/12"
+            onClick={onLegalInfoClick}
+            textDecoration="underline"
+            color={theme.colors.general90}
+          >
+            Юридическая информация
+          </Typography>
         </Grid>
       </Box>
     </Box>

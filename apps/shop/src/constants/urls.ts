@@ -8,10 +8,12 @@ export enum PageURLS {
   CART = "CART",
   ORDERS_DETAIL = "ORDERS_DETAIL",
   ORDERS_CREATE = "ORDERS_CREATE",
+  ORGANIZATION_LEGAL_INFO = "ORGANIZATION_LEGAL_INFO",
 }
 export interface IPagesNavigatePayload {
   [PageURLS.SHOPS]: { id: EntityId };
   [PageURLS.PRODUCTS]: { id: EntityId };
+  [PageURLS.ORGANIZATION_LEGAL_INFO]: { id: EntityId };
 }
 export const PAGES: Record<PageURLS, unknown> = {
   [PageURLS.ROOT]: "/",
@@ -20,6 +22,7 @@ export const PAGES: Record<PageURLS, unknown> = {
   [PageURLS.CART]: "/cart",
   [PageURLS.ORDERS_CREATE]: "/orders/create",
   [PageURLS.ORDERS_DETAIL]: "/orders/detail",
+  [PageURLS.ORGANIZATION_LEGAL_INFO]: "/legal-info/:id",
 };
 export const navigateToPage = <T extends PageURLS>(
   page: T,
