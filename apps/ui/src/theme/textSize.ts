@@ -26,6 +26,10 @@ export const textSize = {
     font-size: 12px;
     line-height: 12px;
   `,
+  "10/10": css`
+    font-size: 10px;
+    line-height: 10px;
+  `,
 };
 
 export interface TextSizeProps<ThemeType extends Theme = RequiredTheme> {

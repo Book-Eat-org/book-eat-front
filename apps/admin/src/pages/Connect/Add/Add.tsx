@@ -1,7 +1,16 @@
 import { FC } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
-import { Name, Phone, Place } from "./Fields";
+import {
+  BirthDate,
+  ConfirmPassword,
+  Email,
+  Name,
+  Password,
+  Phone,
+  Place,
+  UserName,
+} from "./Fields";
 import { IFormValues } from "./models";
 import { cashiersEndpoints, cashiersSelectors } from "$api";
 import { Button, UIGrid } from "@book-eat/ui";
@@ -9,7 +18,7 @@ import { Page } from "$components";
 import { inputAdapter, outputAdapter } from "./adapters.ts";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { isNil } from "ramda";
+import { isNil, isNotNil } from "ramda";
 
 const Add: FC = () => {
   const { id } = useParams();
@@ -26,7 +35,11 @@ const Add: FC = () => {
 
   const handleSubmit = async (data: IFormValues) => {
     const payload = outputAdapter(data);
-    await trigger(payload);
+    const result = await trigger(payload);
+
+    if (isNotNil(result.error)) {
+      return;
+    }
     navigateBack();
   };
 
@@ -39,9 +52,14 @@ const Add: FC = () => {
         <FormProvider {...methods}>
           <UIGrid gap="30px">
             <UIGrid gap="30px">
+              <UserName />
               <Name />
               <Place />
               <Phone />
+              <Email />
+              <BirthDate />
+              <Password />
+              <ConfirmPassword />
             </UIGrid>
             <UIGrid
               justifyContent="space-between"

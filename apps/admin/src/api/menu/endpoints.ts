@@ -81,8 +81,8 @@ export const menuEndpoints = api.injectEndpoints({
         menuAdapter.updateOne(menuAdapter.getInitialState(), res),
     }),
     deleteMenu: build.mutation<{ success: boolean }, EntityId>({
-      query: (guid) => ({
-        url: `/menu/${guid}`,
+      query: (id) => ({
+        url: `/v1/products/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: [ApiTags.Menu],

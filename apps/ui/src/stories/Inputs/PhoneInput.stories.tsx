@@ -1,29 +1,26 @@
-
-import { UIGrid, UINumberInput, UIPhoneInput} from "$components";
-import {Meta, StoryObj} from "@storybook/react";
-import {useState} from "react";
-
+import { UIGrid, UINumberInput, UIPhoneInput } from "$components";
+import { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
 
 export const PhoneInput = () => {
-    const [value,setValue] = useState<string | undefined>();
+  const [value, setValue] = useState<string | undefined>();
+  console.log(value);
 
-    return   (
-        <UIGrid>
-            <UIPhoneInput title="Цена" value={value} onChange={setValue}/>
-            <UIPhoneInput title="Цена" value={value} onChange={setValue}/>
-        </UIGrid>
-    )
-}
-
-
+  return (
+    <UIGrid>
+      <UIPhoneInput title="Цена" value={value} onChange={setValue} />
+      <UIPhoneInput title="Цена" value={value} onChange={setValue} />
+    </UIGrid>
+  );
+};
 
 type Story = StoryObj<typeof PhoneInput>;
 
 export const Test: Story = {
-    render:PhoneInput,
+  render: PhoneInput,
 };
 
 const meta: Meta<typeof UINumberInput> = {
-    component: UINumberInput,
+  component: UINumberInput,
 };
 export default meta;

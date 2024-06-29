@@ -10,6 +10,7 @@ import { currentOrganizationSelector, organizationsEndpoints } from "$api";
 import { useSelector } from "react-redux";
 import LegalInfo from "./LegalInfo";
 import { Page } from "$components";
+import Header from "./Header";
 
 const Content: FC = () => {
   const [data] = useSelector(currentOrganizationSelector.selectAll);
@@ -52,6 +53,7 @@ const Content: FC = () => {
       <Page.Body>
         <FormProvider {...methods}>
           <Grid gap={7}>
+            <Header />
             <LegalInfo />
             <UIGrid colSizes="1fr 2fr" gap="68px">
               <Button onClick={navigateBack}>Отменить</Button>

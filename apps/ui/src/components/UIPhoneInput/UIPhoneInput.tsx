@@ -11,14 +11,18 @@ interface IProps
 }
 
 const UIPhoneInput: FC<IProps> = (props) => {
-  const { onChange, ...restProps } = props;
+  const { onChange, value, ...restProps } = props;
 
   const { ref } = useIMask<HTMLInputElement, FactoryOpts>(
     {
       mask: "+{7}(000)000-00-00",
       lazy: false,
     },
-    { onAccept: (e) => onChange?.(e) },
+    {
+      onAccept: (_, maskRef) => {
+        return onChange?.(maskRef.unmaskedValue);
+      },
+    },
   );
 
   return <UIBaseInput {...restProps} ref={ref} />;

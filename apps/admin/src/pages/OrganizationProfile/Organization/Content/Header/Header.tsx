@@ -1,15 +1,14 @@
-import { Flex, UITypography } from "@book-eat/ui";
+import { Grid, Typography } from "@book-eat/ui";
 import { Image } from "./Image";
 
 const Header = () => {
   return (
-    <Flex gap={4}>
+    <Grid gap={4}>
+      <Typography size="14/14">
+        Загрузите фото сети и логотип в формате Jpg, до 2 MB
+      </Typography>
       <Image />
-      <UITypography variant="textMd" color="gray">
-        Пожалуйста, введите актуальные контактные данные. Они будут отображаться
-        на главной странице и передаваться в службу доставки.
-      </UITypography>
-    </Flex>
+    </Grid>
   );
 };
 

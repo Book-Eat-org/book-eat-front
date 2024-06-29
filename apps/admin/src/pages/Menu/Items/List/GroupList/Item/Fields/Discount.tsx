@@ -15,10 +15,16 @@ export const Discount = () => {
       padding="5px 8px"
       position="absolute"
       backgroundColor={theme.colors.red100}
-      top="10px"
-      left="13px"
+      top="5px"
+      left="5px"
+      display="flex"
     >
-      <Typography color={theme.colors.general30} size="10/10">
+      <Typography
+        color={theme.colors.general30}
+        size="10/10"
+        fontWeight={500}
+        fontFamily="Poppins"
+      >
         -{discount} %
       </Typography>
     </Box>
