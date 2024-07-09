@@ -1,4 +1,5 @@
 export * from "./Comment.tsx";
+export * from "./Email.tsx";
 export * from "./Address.tsx";
 export * from "./DeliveryType.tsx";
 export * from "./Name.tsx";

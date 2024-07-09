@@ -3,7 +3,8 @@ import { theme } from "@book-eat/ui";
 import { useOrder } from "../../useOrder.ts";
 
 export const Totals = () => {
-  const { totalCost } = useOrder();
+  const { totalCost, delivery } = useOrder();
+  const deliveryPrice = delivery.price;
   return (
     <Grid gap={2}>
       <Flex justifyContent="space-between" alignItems="center">
@@ -18,6 +19,16 @@ export const Totals = () => {
         </Typography>
         <Typography color={theme.colors.general80}>2000 р</Typography>
       </Flex>
+      {deliveryPrice && (
+        <Flex justifyContent="space-between" alignItems="center">
+          <Typography color={theme.colors.general80}>
+            Стоимость доставки:
+          </Typography>
+          <Typography color={theme.colors.general80}>
+            {deliveryPrice}
+          </Typography>
+        </Flex>
+      )}
       <Flex justifyContent="space-between" alignItems="center">
         <Typography fontWeight={700}>Общая сумма:</Typography>
         <Typography fontWeight={700}>{totalCost} р</Typography>

@@ -1,81 +1,28 @@
 import { EntityId } from "@reduxjs/toolkit";
 import { FC } from "react";
-import { useSelector } from "$hooks";
-import { createMenuSelectorsByPlaceId, IProduct } from "@book-eat/api";
-import {
-  Flex,
-  Grid,
-  IconButton,
-  MinusIcon24,
-  PlusIcon24,
-  Typography,
-} from "@book-eat/ui";
-import { addToCart, removeFromCart } from "../../../../store/cart";
-import { useDispatch } from "react-redux";
+
+import { Flex, Grid } from "@book-eat/ui";
+import { Additions, Footer, Header, Image } from "./Fields";
+import { ItemContext } from "./context.ts";
 
 interface IProps {
   id: EntityId;
 }
 export const Item: FC<IProps> = (props) => {
-  const dispatch = useDispatch();
   const { id } = props;
-  const cartItems = useSelector((state) => state.cart);
-  const cartItem = cartItems.products.find((item) => item.id === id)!;
-
-  const selectors = createMenuSelectorsByPlaceId(cartItems.shopId!);
-
-  const product: IProduct = useSelector((state) =>
-    selectors.selectById(state, id),
-  );
-
-  const { title, mainImageUrl, price } = product;
-
-  const onAddCart = () =>
-    dispatch(
-      addToCart({
-        id,
-        shopId: cartItems.shopId!,
-      }),
-    );
-
-  const onDeleteCart = () =>
-    dispatch(
-      removeFromCart({
-        id,
-        shopId: cartItems.shopId!,
-      }),
-    );
 
   return (
-    <Flex justifyContent="space-between">
-      <Flex gap={6}>
-        <img
-          src={mainImageUrl}
-          alt=""
-          width={80}
-          height={80}
-          style={{ borderRadius: "20px" }}
-        />
-        <Grid gap={3}>
-          <Typography fontWeight={600} size="14/14">
-            {title}
-          </Typography>
-          <Flex gap={4} justifyContent="space-between" alignItems="center">
-            <IconButton onClick={onDeleteCart}>
-              <MinusIcon24 />
-            </IconButton>
-            <Typography size="14/14">{cartItem.col}</Typography>
-            <IconButton onClick={onAddCart}>
-              <PlusIcon24 />
-            </IconButton>
-          </Flex>
-        </Grid>
+    <ItemContext.Provider value={{ cartItemId: id }}>
+      <Flex justifyContent="space-between">
+        <Flex gap={6}>
+          <Image />
+          <Grid gap={3}>
+            <Header />
+            <Footer />
+            <Additions />
+          </Grid>
+        </Flex>
       </Flex>
-      <Grid>
-        <Typography fontWeight={600} size="14/14">
-          {price} ₽
-        </Typography>
-      </Grid>
-    </Flex>
+    </ItemContext.Provider>
   );
 };

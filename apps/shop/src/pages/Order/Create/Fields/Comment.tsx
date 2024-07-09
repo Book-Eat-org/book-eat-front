@@ -7,7 +7,6 @@ import { UIInput } from "@book-eat/ui";
 export const Comment: FC = () => {
   const { field, fieldState } = useController<IFormValues, "comment">({
     name: "comment",
-    rules: { required: { value: true, message: "Укажите имя" } },
   });
   const { onChange, value } = field;
   const errorMessage = fieldState.error?.message;

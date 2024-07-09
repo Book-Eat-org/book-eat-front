@@ -3,11 +3,20 @@ import { BackIcon24, Button, Flex, Grid, Page, theme } from "@book-eat/ui";
 import { Items } from "./Items";
 import { Totals } from "./Totals";
 import { navigateToPage, PageURLS } from "../../constants/urls.ts";
+import { useSelector } from "$hooks";
+import { menuEndpoints } from "@book-eat/api";
 
 const Cart = () => {
   const navigate = useNavigate();
-  const onBackClick = () => navigate("..");
+  const onBackClick = () => navigate(-1);
   const onSubmit = () => navigate(navigateToPage(PageURLS.ORDERS_CREATE, {}));
+  const cart = useSelector((state) => state.cart);
+
+  const { isSuccess } = menuEndpoints.useGetMenuByPlaceIdQuery(cart.shopId);
+
+  if (!isSuccess) {
+    return null;
+  }
 
   return (
     <Page>

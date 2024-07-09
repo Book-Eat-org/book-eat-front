@@ -28,7 +28,7 @@ export const ordersEndpoints = api.injectEndpoints({
         };
       },
       transformResponse: (res: IOrder[]) =>
-        ordersAdapter.setAll(ordersAdapter.getInitialState(), res),
+        ordersAdapter.setOne(ordersAdapter.getInitialState(), res),
     }),
     createOrder: build.mutation<{ success: boolean }, IOrder>({
       query: (body) => ({

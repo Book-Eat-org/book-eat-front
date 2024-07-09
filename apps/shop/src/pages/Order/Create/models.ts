@@ -1,11 +1,12 @@
-import { TakeUpVariants } from "$enums";
+import { DeliveryTypeName } from "@book-eat/api/src";
 
 export interface IFormValues {
   name: string;
   phone: string;
+  email: string;
   comment: string;
   personsCount: number;
-  deliveryType: TakeUpVariants;
+  deliveryType: DeliveryTypeName;
   address: string;
   floor: string;
   intercom: string;

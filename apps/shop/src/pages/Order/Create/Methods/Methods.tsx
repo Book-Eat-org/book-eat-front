@@ -5,12 +5,12 @@ import { Grid } from "@book-eat/ui";
 import { DeliveryType } from "../Fields";
 import { Inside } from "./Inside.tsx";
 import { Outside } from "./Outside.tsx";
-import { TakeUpVariants } from "$enums";
+import { DeliveryTypeName } from "@book-eat/api/src";
 
 const ComponentByType = {
-  [TakeUpVariants.Delivery]: Delivery,
-  [TakeUpVariants.Inside]: Inside,
-  [TakeUpVariants.Outside]: Outside,
+  [DeliveryTypeName.DELIVERY]: Delivery,
+  [DeliveryTypeName.ON_PLACE]: Inside,
+  [DeliveryTypeName.TO_OUTSIDE]: Outside,
 };
 
 export const Methods = () => {

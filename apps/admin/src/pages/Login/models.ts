@@ -1,5 +1,5 @@
 export interface IFormState {
-  phone?: string;
+  username?: string;
   password?: string;
   confirmation: boolean;
 }

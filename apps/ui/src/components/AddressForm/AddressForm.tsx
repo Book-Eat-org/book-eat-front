@@ -7,17 +7,17 @@ import {
 } from "@pbe/react-yandex-maps";
 import { FC, useState } from "react";
 
-import UIButton from "../UIButton";
 import Grid from "../Grid";
 import Street from "./Street";
 import { AddressContext, IAddress } from "./context.ts";
 import { isNotNil } from "ramda";
 import { getAddressByGeo } from "./utils.ts";
 import { MapEvent } from "yandex-maps";
+import Button from "../Button";
 
 interface IProps {
   value?: string;
-  onChange: (value?: string) => void;
+  onChange: (value?: string, state?: IAddress) => void;
 }
 
 const NewAddress: FC<IProps> = (props) => {
@@ -45,7 +45,7 @@ const NewAddress: FC<IProps> = (props) => {
   };
 
   const submitHandler = () => {
-    onChange(state.street);
+    onChange(state.street, state);
   };
 
   return (
@@ -59,7 +59,7 @@ const NewAddress: FC<IProps> = (props) => {
           <GeolocationControl />
         </Map>
         <Street />
-        <UIButton onClick={submitHandler}>Сохранить</UIButton>
+        <Button onClick={submitHandler}>Сохранить</Button>
       </Grid>
     </AddressContext.Provider>
   );

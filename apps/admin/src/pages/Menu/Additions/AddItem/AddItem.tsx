@@ -58,10 +58,9 @@ const AddItem: FC = () => {
           <UIGrid gap="30px">
             <UIGrid gap="20px">
               <Title />
-              <UIGrid gap="8px" colSizes="1fr 1fr 2fr">
+              <UIGrid gap="8px" colSizes="1fr 1fr">
                 <Weight />
                 <Price />
-                <Category />
               </UIGrid>
             </UIGrid>
             <UIGrid colSizes="1fr 2fr" gap="64px">

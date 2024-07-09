@@ -4,8 +4,8 @@ import { IFormState } from "../../models";
 import { UIInput } from "@book-eat/ui";
 
 const Phone = () => {
-  const { field, fieldState } = useController<IFormState, "phone">({
-    name: "phone",
+  const { field, fieldState } = useController<IFormState, "username">({
+    name: "username",
     rules: { required: { value: true, message: "Поле не должно быть пустым" } },
   });
 
@@ -14,7 +14,7 @@ const Phone = () => {
 
   return (
     <UIInput
-      placeholder="Телефон/почта"
+      placeholder="Логин"
       value={value}
       onChange={onChange}
       error={error?.message}

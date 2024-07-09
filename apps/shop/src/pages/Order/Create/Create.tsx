@@ -2,24 +2,31 @@ import { useNavigate } from "react-router-dom";
 import { BackIcon24, Button, Flex, Grid, Page, theme } from "@book-eat/ui";
 import { FormProvider, useForm } from "react-hook-form";
 import { IFormValues } from "./models.ts";
-import { Comment, Name, PersonsCount, Phone } from "./Fields";
+import { Comment, Email, Name, PersonsCount, Phone } from "./Fields";
 import { Methods } from "./Methods";
-import { IOrder, ordersEndpoints } from "@book-eat/api";
-import { TakeUpVariants } from "$enums";
+import {
+  DeliveryTypeName,
+  IOrder,
+  menuEndpoints,
+  ordersEndpoints,
+} from "@book-eat/api";
 import { useSelector } from "$hooks";
 import { menuSelectors } from "@book-eat/api";
+import { values } from "ramda";
 
 export const Create = () => {
   const navigate = useNavigate();
   const [triggerCreateOrder] = ordersEndpoints.useCreateOrderMutation();
   const cartState = useSelector((state) => state.cart);
-  const productssss = useSelector(menuSelectors.selectAll);
+  const { data: menuData, isSuccess } = menuEndpoints.useGetMenuByPlaceIdQuery(
+    cartState.shopId,
+  );
 
   const methods = useForm<IFormValues>({
-    defaultValues: { personsCount: 1, deliveryType: TakeUpVariants.Delivery },
+    defaultValues: { personsCount: 1, deliveryType: DeliveryTypeName.DELIVERY },
   });
 
-  const onBackClick = () => navigate("/");
+  const onBackClick = () => navigate(-1);
 
   const handleSubmit = async (data: IFormValues) => {
     const {
@@ -33,14 +40,17 @@ export const Create = () => {
       takeUpTime,
       name,
       phone,
+      email,
     } = data;
-
-    const products = cartState.products.map((item) => ({
-      id: item.id,
+    const psdadssda = values(cartState.items);
+    const products = psdadssda.map((item) => ({
+      ...menuData.entities[item.productId],
+      additions: item?.additionIds?.map((id) => ({
+        additionId: id,
+        amount: 1,
+      })),
       amount: item.col,
-      price: 100, // Поправить
-      title: "Test",
-      weight: 100,
+      productId: item.productId,
     }));
 
     const places = { id: cartState.shopId };
@@ -50,20 +60,18 @@ export const Create = () => {
       comment,
       customerInfo: {
         customerName: name,
-        customerPhone: "79990960939",
-        customerEmail: "Test@yandex.ru",
+        customerPhone: phone,
+        customerEmail: email,
       },
-      readyTime: takeUpTime ?? "15:00",
+      readyTime: takeUpTime,
       delivery: {
         flat: apartments,
-        status: "DELIVERING",
         floor,
         porch: entrance,
         address,
         doorCode: intercom,
         type: {
-          id: 1,
-          name: "DELIVERY",
+          name: data.deliveryType,
         },
       },
       products,
@@ -96,6 +104,7 @@ export const Create = () => {
             <Grid gap={3}>
               <Name />
               <Phone />
+              <Email />
               <Comment />
             </Grid>
             <PersonsCount />

@@ -1,11 +1,12 @@
 import { Box, Grid, Typography } from "@book-eat/ui";
 import { Product } from "./Product";
 import { colors } from "@book-eat/ui";
-import { ORDER_DATA } from "../data.ts";
 import { Totals } from "./Totals";
+import { useOrder } from "../useOrder.ts";
 
 export const Composition = () => {
-  const { products } = ORDER_DATA;
+  const order = useOrder();
+
   return (
     <Grid gap={3}>
       <Typography size="24/24" fontWeight={600}>
@@ -13,9 +14,7 @@ export const Composition = () => {
       </Typography>
       <Box background={colors.general30} p={3} borderRadius={15}>
         <Grid gap={6}>
-          {products.map((product) => (
-            <Product id={product.id} />
-          ))}
+          {order?.products?.map((product) => <Product id={product.id} />)}
         </Grid>
       </Box>
       <Totals />

@@ -34,10 +34,10 @@ const Login = () => {
   });
 
   const handleSubmit = async (data: IFormState) => {
-    const { phone, password } = data;
+    const { username, password } = data;
 
-    if (phone && password) {
-      trigger({ username: phone, password: password });
+    if (username && password) {
+      trigger({ username, password });
     }
   };
 

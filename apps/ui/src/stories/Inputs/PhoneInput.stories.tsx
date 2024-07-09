@@ -4,7 +4,6 @@ import { useState } from "react";
 
 export const PhoneInput = () => {
   const [value, setValue] = useState<string | undefined>();
-  console.log(value);
 
   return (
     <UIGrid>

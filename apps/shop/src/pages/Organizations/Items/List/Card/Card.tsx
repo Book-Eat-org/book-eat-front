@@ -3,7 +3,6 @@ import { FC, SyntheticEvent } from "react";
 import { useSelector } from "react-redux";
 import { isNil } from "ramda";
 import { Box, Grid, theme, Typography } from "@book-eat/ui";
-import TimeTag from "./TimeTag";
 import classes from "./Card.module.css";
 import { navigateToPage, PageURLS } from "../../../../../constants/urls.ts";
 import { useNavigate } from "react-router-dom";
@@ -47,7 +46,6 @@ const Card: FC<IProps> = (props) => {
       className={classes.wrapper}
       onClick={onClick}
     >
-      <TimeTag />
       <Box p="2px" borderRadius="20px">
         <img
           src={

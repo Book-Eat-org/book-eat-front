@@ -25,12 +25,30 @@ export interface IOrder {
     totalCost: number;
     readyTime: string;
     createdAt: string;
-    customerName: string;
-    customerEmail: string;
-    customerPhone: string;
+    customerInfo: {
+        customerName: string;
+        customerEmail: string;
+        customerPhone: string;
+    };
     status: OrderStatus;
     delivery: {
         type: IDeliveryType;
+        address: string;
+        courier: {
+            name: string;
+            car: string;
+            carNumber: string;
+        };
+        doorCode: string;
+        externalId: EntityId;
+        flat: string;
+        floor: string;
+        id: EntityId;
+        pickupCode: string;
+        porch: string;
+        price: number;
+        status: null;
+        trackingUrl: string;
     };
     products: IProduct[];
     paymentUrl: string;

@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { createMenuSelectorsById } from "@book-eat/api";
 import { useSelector } from "$hooks";
 import {
@@ -9,18 +9,25 @@ import {
   UICheckbox,
   Flex,
   Button,
+  IconButton,
+  MinusIcon24,
+  PlusIcon24,
 } from "@book-eat/ui";
 import { EntityId } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../../../../store/cart";
+import { addToCartNew } from "../../../../store/cart";
 import { activeShopSelector } from "../../../../store/shop";
+import { dec, inc } from "ramda";
+import { navigateToPage, PageURLS } from "../../../../constants/urls.ts";
 
 export const Body: FC = () => {
-  const [additionsIds, setAdditionsIds] = useState<EntityId[]>([]);
+  const [col, setCol] = useState<number>(1);
+  const [additionIds, setAdditionIds] = useState<EntityId[]>([]);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const selectors = createMenuSelectorsById(id!);
-  const shopId = useSelector(activeShopSelector);
+  const shopId = useSelector(activeShopSelector)!;
 
   const item = useSelector((state) => selectors.selectById(state, id));
 
@@ -36,8 +43,13 @@ export const Body: FC = () => {
 
   const dispatch = useDispatch();
 
-  const submit = () =>
-    dispatch(addToCart({ id, shopId, additions: additionsIds }));
+  const submit = () => {
+    dispatch(addToCartNew({ col, shopId, additionIds, productId: id! }));
+    navigate(navigateToPage(PageURLS.PRODUCTS, { id: shopId }));
+  };
+
+  const incrementCol = () => setCol(inc);
+  const decrementCol = () => setCol(dec);
 
   return (
     <Grid gap={2}>
@@ -91,12 +103,12 @@ export const Body: FC = () => {
                 <UICheckbox
                   onChange={(value) =>
                     value
-                      ? setAdditionsIds([...additionsIds, id])
-                      : setAdditionsIds(
-                          additionsIds.filter((item) => item !== id),
+                      ? setAdditionIds([...additionIds, id])
+                      : setAdditionIds(
+                          additionIds.filter((item) => item !== id),
                         )
                   }
-                  selected={additionsIds.includes(id)}
+                  selected={additionIds.includes(id)}
                 />
                 <Typography>{title}</Typography>
               </Flex>
@@ -105,7 +117,20 @@ export const Body: FC = () => {
           ))}
         </Grid>
 
-        <Button onClick={submit}>Добавить</Button>
+        <Flex gap={8}>
+          <Flex gap={4} justifyContent="space-between" alignItems="center">
+            <IconButton onClick={decrementCol}>
+              <MinusIcon24 />
+            </IconButton>
+            <Typography size="14/14">{col}</Typography>
+            <IconButton onClick={incrementCol}>
+              <PlusIcon24 />
+            </IconButton>
+          </Flex>
+          <Button onClick={submit} width="100%">
+            Добавить
+          </Button>
+        </Flex>
       </Grid>
     </Grid>
   );

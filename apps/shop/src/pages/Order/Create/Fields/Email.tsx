@@ -7,6 +7,7 @@ import { UIInput } from "@book-eat/ui";
 export const Email: FC = () => {
   const { field, fieldState } = useController<IFormValues, "email">({
     name: "email",
+    rules: { required: { value: true, message: "Укажите имя" } },
   });
   const { onChange, value } = field;
   const errorMessage = fieldState.error?.message;
@@ -15,7 +16,7 @@ export const Email: FC = () => {
     <UIInput
       type="text"
       onChange={onChange}
-      placeholder="Email"
+      placeholder="Почта*"
       value={value}
       error={errorMessage}
     />

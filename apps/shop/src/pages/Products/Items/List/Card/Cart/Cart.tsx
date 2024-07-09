@@ -9,13 +9,14 @@ import {
 import { FC } from "react";
 import { EntityId } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useCard } from "../../../context.ts";
 import {
   addToCart,
   cartSelector,
   removeFromCart,
 } from "../../../../../../store/cart";
+import { navigateToPage, PageURLS } from "../../../../../../constants/urls.ts";
 
 interface IProps {
   id: EntityId;
@@ -24,6 +25,7 @@ interface IProps {
 const Cart: FC<IProps> = ({ id }) => {
   const dispatch = useDispatch();
   const { id: shopId } = useParams();
+  const navigate = useNavigate();
 
   const { price } = useCard(id);
 
@@ -34,12 +36,7 @@ const Cart: FC<IProps> = ({ id }) => {
   );
 
   const onAddCart = () =>
-    dispatch(
-      addToCart({
-        id,
-        shopId: shopId!,
-      }),
-    );
+    navigate(navigateToPage(PageURLS.PRODUCTS_CARD, { id }));
 
   const onDeleteCart = () =>
     dispatch(

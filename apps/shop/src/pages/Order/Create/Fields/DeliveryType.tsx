@@ -4,8 +4,8 @@ import { useController } from "react-hook-form";
 import { IFormValues } from "../models";
 import { UIOption, UISelect } from "@book-eat/ui";
 import { keys } from "ramda";
-import { TakeUpVariants } from "$enums";
 import { TakeUpConfig } from "$constants";
+import { DeliveryTypeName } from "@book-eat/api/src";
 
 export const DeliveryType: FC = () => {
   const { field, fieldState } = useController<IFormValues, "deliveryType">({
@@ -20,9 +20,9 @@ export const DeliveryType: FC = () => {
       value={value}
       onChange={onChange}
       placeholder="Способ получения"
-      renderValue={(value) => TakeUpConfig[value]}
+      renderValue={(value: DeliveryTypeName) => TakeUpConfig[value]}
     >
-      {keys(TakeUpVariants).map((key) => (
+      {keys(DeliveryTypeName).map((key) => (
         <UIOption value={key} key={key}>
           {TakeUpConfig[key]}
         </UIOption>

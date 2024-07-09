@@ -5,6 +5,7 @@ export enum PageURLS {
   ROOT = "ROOT",
   SHOPS = "SHOPS",
   PRODUCTS = "PRODUCTS",
+  PRODUCTS_CARD = "PRODUCTS_CARD",
   CART = "CART",
   ORDERS_DETAIL = "ORDERS_DETAIL",
   ORDERS_CREATE = "ORDERS_CREATE",
@@ -13,12 +14,14 @@ export enum PageURLS {
 export interface IPagesNavigatePayload {
   [PageURLS.SHOPS]: { id: EntityId };
   [PageURLS.PRODUCTS]: { id: EntityId };
+  [PageURLS.PRODUCTS_CARD]: { id: EntityId };
   [PageURLS.ORGANIZATION_LEGAL_INFO]: { id: EntityId };
 }
 export const PAGES: Record<PageURLS, unknown> = {
   [PageURLS.ROOT]: "/",
   [PageURLS.SHOPS]: "/organizations/:id/shops",
   [PageURLS.PRODUCTS]: "/products/:id",
+  [PageURLS.PRODUCTS_CARD]: "/products/detail/:id",
   [PageURLS.CART]: "/cart",
   [PageURLS.ORDERS_CREATE]: "/orders/create",
   [PageURLS.ORDERS_DETAIL]: "/orders/detail",
