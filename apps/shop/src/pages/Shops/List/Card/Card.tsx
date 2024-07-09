@@ -8,6 +8,8 @@ import { navigateToPage, PageURLS } from "../../../../constants/urls";
 import { useNavigate } from "react-router-dom";
 import { placesSelectors } from "@book-eat/api";
 import { useSelector } from "$hooks";
+import { CardContext } from "./context.ts";
+import { Address } from "./Address";
 
 interface IProps {
   id: EntityId;
@@ -32,30 +34,29 @@ const Card: FC<IProps> = (props) => {
   };
 
   return (
-    <Box
-      bg="white"
-      borderRadius="20px"
-      width="100%"
-      className={classes.wrapper}
-      onClick={onClick}
-    >
-      <TimeTag />
-      <Box p="2px" borderRadius="20px">
-        <img
-          src={
-            logoUrl ??
-            "https://archive.org/download/placeholder-image/placeholder-image.jpg"
-          }
-          alt=""
-          style={{ height: 194, width: "100%" }}
-          className={classes.image}
-        />
-        <Grid padding="5px 10px" gap={1}>
-          <Typography size="20/24">{title}</Typography>
-          <Typography size="14/14">Адрес</Typography>
-        </Grid>
+    <CardContext.Provider value={{ id }}>
+      <Box
+        bg="white"
+        borderRadius="20px"
+        width="100%"
+        className={classes.wrapper}
+        onClick={onClick}
+      >
+        <TimeTag />
+        <Box p="2px" borderRadius="20px">
+          <img
+            src={
+              logoUrl ??
+              "https://archive.org/download/placeholder-image/placeholder-image.jpg"
+            }
+            alt=""
+            style={{ height: 194, width: "100%" }}
+            className={classes.image}
+          />
+          <Address />
+        </Box>
       </Box>
-    </Box>
+    </CardContext.Provider>
   );
 };
 

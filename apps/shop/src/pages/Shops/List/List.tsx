@@ -3,7 +3,7 @@ import Card from "./Card";
 import { useShopsContext } from "../context.ts";
 import { placesEndpoints } from "@book-eat/api";
 import { useParams } from "react-router-dom";
-import { isNil, isNotNil, values } from "ramda";
+import { values } from "ramda";
 
 const List = () => {
   const { id } = useParams();
@@ -17,9 +17,15 @@ const List = () => {
     ({ organizationId }) => organizationId === id,
   );
 
+  const filteredData = places.filter((item) =>
+    searchValue
+      ? item?.title.toLowerCase().includes(searchValue.toLowerCase())
+      : true,
+  );
+
   return (
     <Grid gap={2} p="0 12px 12px">
-      {places.map(({ id }) => (
+      {filteredData.map(({ id }) => (
         <Card key={id} id={id} />
       ))}
     </Grid>

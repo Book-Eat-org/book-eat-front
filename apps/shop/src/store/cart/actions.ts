@@ -37,5 +37,8 @@ export interface IRemoveProductToCart {
 
 export const addToCart = createAction<IAddProductToCart>("ADD_TO_CART");
 export const addToCartNew = createAction<IAddProductToCartNew>("ADD_TO_CART");
-export const removeFromCart =
-  createAction<IRemoveProductToCart>("REMOVE_FROM_CART");
+export const removeFromCart = createAction<EntityId>("REMOVE_FROM_CART");
+
+export const incrementCart = createAction<EntityId>("INCREMENT_CART");
+
+export const decrementCart = createAction<EntityId>("DECREMENT_CART");

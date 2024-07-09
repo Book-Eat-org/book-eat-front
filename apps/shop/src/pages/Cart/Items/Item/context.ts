@@ -20,5 +20,5 @@ export const useData = () => {
     selectors.selectById(state, cartItem.productId),
   );
 
-  return { cart: cartItem, product };
+  return { cart: cartItem, product, cartItemId };
 };

@@ -13,10 +13,14 @@ export const Item: FC<IProps> = (props) => {
 
   return (
     <ItemContext.Provider value={{ cartItemId: id }}>
-      <Flex justifyContent="space-between">
-        <Flex gap={6}>
+      <Flex
+        justifyContent="space-between"
+        borderBottom="1px solid #D9D9D9"
+        paddingBottom={3}
+      >
+        <Flex gap={6} width="100%">
           <Image />
-          <Grid gap={3}>
+          <Grid gap={3} width="100%">
             <Header />
             <Footer />
             <Additions />

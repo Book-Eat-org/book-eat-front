@@ -5,19 +5,42 @@ import {
   IconButton,
   MinusIcon24,
   PlusIcon24,
+  TrashIcon,
   Typography,
 } from "@book-eat/ui";
+import { useDispatch } from "react-redux";
+import {
+  decrementCart,
+  incrementCart,
+  removeFromCart,
+} from "../../../../../store/cart";
 
 export const Footer: FC = () => {
-  const { cart } = useData();
+  const { cartItemId, cart } = useData();
+  const dispatch = useDispatch();
+
+  const onMinusIconClick = () => dispatch(decrementCart(cartItemId));
+  const onPlusIconClick = () => dispatch(incrementCart(cartItemId));
+
+  const onRemoveFromCart = () => dispatch(removeFromCart(cartItemId));
+
+  const col = cart.col;
+
+  console.log(col);
 
   return (
-    <Flex gap={4} justifyContent="space-between" alignItems="center">
-      <IconButton>
-        <MinusIcon24 />
-      </IconButton>
-      <Typography size="14/14">{cart.col}</Typography>
-      <IconButton>
+    <Flex gap={4} alignItems="center">
+      {col > 1 ? (
+        <IconButton onClick={onMinusIconClick}>
+          <MinusIcon24 />
+        </IconButton>
+      ) : (
+        <IconButton onClick={onRemoveFromCart}>
+          <TrashIcon />
+        </IconButton>
+      )}
+      <Typography size="14/14">{col}</Typography>
+      <IconButton onClick={onPlusIconClick}>
         <PlusIcon24 />
       </IconButton>
     </Flex>

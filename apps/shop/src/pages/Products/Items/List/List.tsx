@@ -17,6 +17,8 @@ const List = () => {
     searchValue ? item?.title.includes(searchValue) : true,
   );
 
+  console.log(filteredData);
+
   const ids = filteredData.map((item) => item?.id);
 
   return (
