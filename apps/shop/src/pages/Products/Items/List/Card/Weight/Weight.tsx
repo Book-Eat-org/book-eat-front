@@ -1,5 +1,5 @@
 import { useCard } from "../../../context.ts";
-import { Typography } from "@book-eat/ui";
+import { Typography, theme } from "@book-eat/ui";
 import { FC } from "react";
 import { EntityId } from "@reduxjs/toolkit";
 
@@ -11,7 +11,7 @@ const Weight: FC<IProps> = ({ id }) => {
   const { weight } = useCard(id);
 
   return (
-    <Typography size="12/14" color="#282828" opacity={0.5}>
+    <Typography size="12/12" color={theme.colors.general80}>
       {weight} г
     </Typography>
   );

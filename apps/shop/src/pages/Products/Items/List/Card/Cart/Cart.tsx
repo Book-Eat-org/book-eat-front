@@ -11,12 +11,10 @@ import { EntityId } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useCard } from "../../../context.ts";
-import {
-  addToCart,
-  cartSelector,
-  removeFromCart,
-} from "../../../../../../store/cart";
+import { cartSelector, removeFromCart } from "../../../../../../store/cart";
 import { navigateToPage, PageURLS } from "../../../../../../constants/urls.ts";
+import { values } from "ramda";
+import Price from "../Price";
 
 interface IProps {
   id: EntityId;
@@ -27,13 +25,13 @@ const Cart: FC<IProps> = ({ id }) => {
   const { id: shopId } = useParams();
   const navigate = useNavigate();
 
-  const { price } = useCard(id);
-
   const cartItems = useSelector(cartSelector);
 
-  const cartItem = cartItems.products.find(
-    (item) => cartItems.shopId === shopId && item.id === id,
+  const products = values(cartItems.items).filter(
+    (item) => item.productId === id,
   );
+
+  const col = products.reduce((acc, curr) => acc + curr.col, 0);
 
   const onAddCart = () =>
     navigate(navigateToPage(PageURLS.PRODUCTS_CARD, { id }));
@@ -46,20 +44,16 @@ const Cart: FC<IProps> = ({ id }) => {
       }),
     );
 
-  if (!cartItem || cartItem.col === 0) {
+  if (col === 0) {
     return (
       <Flex justifyContent="space-between" alignItems="center">
-        <Typography size="14/14" fontWeight={600}>
-          {price} ₽
-        </Typography>
+        <Price id={id} />
         <IconButton onClick={onAddCart}>
           <CartIcon24 />
         </IconButton>
       </Flex>
     );
   }
-
-  const { col } = cartItem;
 
   return (
     <Flex justifyContent="space-between" alignItems="center">

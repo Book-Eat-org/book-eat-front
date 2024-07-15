@@ -10,6 +10,17 @@ export declare const additionsSelectors: import("@reduxjs/toolkit").EntitySelect
         };
         error?: undefined;
     }>, import("../../enums").ApiTags, any, "api">;
+    fetchAdditionsByIds: import("@reduxjs/toolkit/query").MutationDefinition<import("@reduxjs/toolkit").EntityId[], (args: string | import("@reduxjs/toolkit/query").FetchArgs, api: import("@reduxjs/toolkit/query").BaseQueryApi, extraOptions: {}) => Promise<{
+        error: {
+            code: string;
+        };
+        data?: undefined;
+    } | {
+        data: {
+            code: string;
+        };
+        error?: undefined;
+    }>, import("../../enums").ApiTags, any, "api">;
     saveAddition: import("@reduxjs/toolkit/query").MutationDefinition<import("../..").IAddition, (args: string | import("@reduxjs/toolkit/query").FetchArgs, api: import("@reduxjs/toolkit/query").BaseQueryApi, extraOptions: {}) => Promise<{
         error: {
             code: string;

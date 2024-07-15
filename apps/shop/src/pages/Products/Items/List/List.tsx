@@ -14,7 +14,9 @@ const List = () => {
   }
 
   const filteredData = Object.values(data.entities).filter((item) =>
-    searchValue ? item?.title.includes(searchValue) : true,
+    searchValue
+      ? item?.title.toLowerCase().includes(searchValue.toLowerCase())
+      : true,
   );
 
   console.log(filteredData);

@@ -16,6 +16,7 @@
     "paths": {
       "$constants": ["./src/constants"],
       "$components": ["./src/components"],
+      "$selectors": ["./src/selectors"],
       "$hooks": ["./src/hooks"],
       "$models": ["./src/models"],
       "$api": ["./src/api"],

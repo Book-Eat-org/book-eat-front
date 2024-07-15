@@ -36,7 +36,7 @@ const TimeTag = () => {
   console.log(timeFromDate.diff(currentDate));
 
   const isWorking =
-    timeFromDate.isAfter(currentDate) && timeToDate.isBefore(currentDate);
+    currentDate.isAfter(timeFromDate) && currentDate.isBefore(timeToDate);
 
   const text = isWorking
     ? `Открыто до ${timeToDate.format("HH:mm")}`

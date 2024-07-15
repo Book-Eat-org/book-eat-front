@@ -3,10 +3,11 @@ import { useData } from "../context.ts";
 import { CloseIcon, Flex, Grid, Typography } from "@book-eat/ui";
 import { useDispatch } from "react-redux";
 import { removeFromCart } from "../../../../../store/cart";
+import { Price } from "./Price.tsx";
 
 export const Header: FC = () => {
   const { product, cartItemId } = useData();
-  const { title, price } = product;
+  const { title } = product;
 
   const dispatch = useDispatch();
 
@@ -18,9 +19,7 @@ export const Header: FC = () => {
         <Typography fontWeight={600} size="14/14">
           {title}
         </Typography>
-        <Typography fontWeight={600} size="14/14">
-          {price} ₽
-        </Typography>
+        <Price />
       </Grid>
       <CloseIcon onClick={handleRemove} />
     </Flex>

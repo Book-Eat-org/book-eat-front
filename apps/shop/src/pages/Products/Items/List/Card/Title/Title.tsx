@@ -11,7 +11,7 @@ const Title: FC<IProps> = ({ id }) => {
   const { title } = useCard(id);
 
   return (
-    <Typography size="14/16" fontWeight={600}>
+    <Typography size="14/14" fontWeight={600}>
       {title}
     </Typography>
   );

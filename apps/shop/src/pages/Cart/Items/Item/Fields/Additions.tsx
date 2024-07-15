@@ -1,30 +1,39 @@
 import { FC } from "react";
 import { useData } from "../context.ts";
-import { Flex, Typography } from "@book-eat/ui";
-import { innerJoin, isEmpty, isNil } from "ramda";
+import { Flex, Grid, Typography, theme } from "@book-eat/ui";
+import { isEmpty, isNil } from "ramda";
+import { SYMBOLS } from "@book-eat/utils/src";
 
 export const Additions: FC = () => {
-  const { cart, product } = useData();
+  const { additions } = useData();
 
-  const { additionIds } = cart;
-
-  if (isNil(additionIds) || isEmpty(additionIds)) {
+  if (isNil(additions) || isEmpty(additions)) {
     return null;
   }
 
-  const additions = innerJoin(
-    ({ id }, additionId) => id === additionId,
-    product.additions ?? [],
-    additionIds,
+  return (
+    <Grid color={theme.colors.general90}>
+      <Typography fontWeight={600} size="14/14">
+        Добавки:
+      </Typography>
+      <Grid width="100%">
+        {additions.map(({ price, title }) => (
+          <Flex
+            justifyContent="space-between"
+            alignItems="center"
+            borderBottom="1px solid #D9D9D9"
+            p={2}
+          >
+            <Flex gap={2}>
+              <Typography>•</Typography>
+              <Typography>{title}</Typography>
+            </Flex>
+            <Typography>
+              {price} {SYMBOLS.RUB}
+            </Typography>
+          </Flex>
+        ))}
+      </Grid>
+    </Grid>
   );
-
-  return additions.map(({ price, title }) => (
-    <Flex justifyContent="space-between" alignItems="center">
-      <Flex gap={2}>
-        <Typography>•</Typography>
-        <Typography>{title}</Typography>
-      </Flex>
-      <Typography>{price}</Typography>
-    </Flex>
-  ));
 };

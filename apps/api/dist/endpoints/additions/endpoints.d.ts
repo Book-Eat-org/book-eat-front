@@ -23,6 +23,17 @@ export declare const additionsEndpoints: import("@reduxjs/toolkit/query").Api<(a
         };
         error?: undefined;
     }>, ApiTags, any, "api">;
+    fetchAdditionsByIds: import("@reduxjs/toolkit/query").MutationDefinition<EntityId[], (args: string | import("@reduxjs/toolkit/query").FetchArgs, api: import("@reduxjs/toolkit/query").BaseQueryApi, extraOptions: {}) => Promise<{
+        error: {
+            code: string;
+        };
+        data?: undefined;
+    } | {
+        data: {
+            code: string;
+        };
+        error?: undefined;
+    }>, ApiTags, any, "api">;
     saveAddition: import("@reduxjs/toolkit/query").MutationDefinition<IAddition, (args: string | import("@reduxjs/toolkit/query").FetchArgs, api: import("@reduxjs/toolkit/query").BaseQueryApi, extraOptions: {}) => Promise<{
         error: {
             code: string;

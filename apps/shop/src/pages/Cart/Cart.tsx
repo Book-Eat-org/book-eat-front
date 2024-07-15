@@ -4,13 +4,27 @@ import { Items } from "./Items";
 import { Totals } from "./Totals";
 import { navigateToPage, PageURLS } from "../../constants/urls.ts";
 import { useSelector } from "$hooks";
-import { menuEndpoints } from "@book-eat/api";
+import { additionsEndpoints, menuEndpoints } from "@book-eat/api";
+import { flatten, isEmpty, values } from "ramda";
+import { useEffect, useMemo } from "react";
 
 const Cart = () => {
   const navigate = useNavigate();
   const onBackClick = () => navigate(-1);
   const onSubmit = () => navigate(navigateToPage(PageURLS.ORDERS_CREATE, {}));
   const cart = useSelector((state) => state.cart);
+  const aditionsIds = useMemo(
+    () => flatten(values(cart.items).map((item) => item.additionIds)),
+    [],
+  );
+  const [triggerAdditions] =
+    additionsEndpoints.useFetchAdditionsByIdsMutation();
+
+  useEffect(() => {
+    if (!isEmpty(aditionsIds)) {
+      triggerAdditions(aditionsIds);
+    }
+  }, [aditionsIds]);
 
   const { isSuccess } = menuEndpoints.useGetMenuByPlaceIdQuery(cart.shopId);
 

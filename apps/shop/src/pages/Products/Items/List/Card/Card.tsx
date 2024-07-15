@@ -1,6 +1,6 @@
 import { EntityId } from "@reduxjs/toolkit";
 import { FC } from "react";
-import { isNil } from "ramda";
+import { isNil, values } from "ramda";
 import { Box, Grid } from "@book-eat/ui";
 import classes from "./Card.module.css";
 import Price from "./Price";
@@ -11,6 +11,7 @@ import Cart from "./Cart";
 import { useSelector } from "react-redux";
 import { createMenuSelectorsByPlaceId } from "@book-eat/api";
 import { useParams } from "react-router-dom";
+import { cartSelector } from "../../../../../store/cart";
 
 interface IProps {
   id: EntityId;
@@ -20,6 +21,11 @@ const Card: FC<IProps> = (props) => {
   const { id } = props;
   const { id: placeId } = useParams();
   const selectors = createMenuSelectorsByPlaceId(placeId!);
+  const cart = useSelector(cartSelector);
+
+  const isSelected =
+    placeId === cart.shopId &&
+    values(cart.items).some((item) => item.productId === id);
 
   const item = useSelector((state) => selectors.selectById(state, id));
 
@@ -41,9 +47,7 @@ const Card: FC<IProps> = (props) => {
             <Weight id={id} />
             <Title id={id} />
           </Grid>
-          <Grid gap={1}>
-            <Price id={id} />
-          </Grid>
+          {isSelected && <Price id={id} />}
           <Cart id={id} />
         </Grid>
       </Box>

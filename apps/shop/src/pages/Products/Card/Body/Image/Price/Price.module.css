@@ -1,0 +1,9 @@
+.wrapper {
+    display: inline-flex;
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    background-color: #B60000;
+    z-index: 1;
+    border-radius: 12px;
+}

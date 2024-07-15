@@ -19,6 +19,10 @@ import { addToCartNew } from "../../../../store/cart";
 import { activeShopSelector } from "../../../../store/shop";
 import { dec, inc } from "ramda";
 import { navigateToPage, PageURLS } from "../../../../constants/urls.ts";
+import { SYMBOLS, getPriceWithDiscount } from "@book-eat/utils";
+import { Image } from "./Image";
+import { Title } from "./Title";
+import { useProduct } from "./hooks.ts";
 
 export const Body: FC = () => {
   const [col, setCol] = useState<number>(1);
@@ -26,19 +30,17 @@ export const Body: FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const selectors = createMenuSelectorsById(id!);
   const shopId = useSelector(activeShopSelector)!;
 
-  const item = useSelector((state) => selectors.selectById(state, id));
+  const item = useProduct();
 
   const {
-    mainImageUrl,
-    title,
     weight,
     description,
     ingredients,
-    additions,
+    additions = [],
     price,
+    discount,
   } = item;
 
   const dispatch = useDispatch();
@@ -50,27 +52,19 @@ export const Body: FC = () => {
 
   const incrementCol = () => setCol(inc);
   const decrementCol = () => setCol(dec);
+  const additionsSum =
+    additionIds.reduce(
+      (acc: number, curr) =>
+        acc + additions.find((item) => item.id === curr)!.price ?? 0,
+      0,
+    ) * col;
+
+  const totalPrice = col * getPriceWithDiscount(price, discount) + additionsSum;
 
   return (
     <Grid gap={2}>
-      <img
-        src={
-          mainImageUrl ??
-          "https://archive.org/download/placeholder-image/placeholder-image.jpg"
-        }
-        alt=""
-        style={{ height: 194, width: "100%" }}
-      />
-      <Grid
-        gap={1}
-        background={theme.colors.general30}
-        padding={10}
-        borderRadius={10}
-      >
-        <Typography size="12/12">{weight} г</Typography>
-        <Typography size="12/12">{price} р</Typography>
-        <Typography size="18/18">{title}</Typography>
-      </Grid>
+      <Image />
+      <Title />
       <Grid
         gap={1}
         background={theme.colors.general30}
@@ -95,9 +89,11 @@ export const Body: FC = () => {
         padding={10}
         borderRadius={10}
       >
-        <Typography size="12/12">Добавки</Typography>
+        <Typography size="14/14" fontWeight={600}>
+          Добавки
+        </Typography>
         <Grid gap={3}>
-          {additions.map(({ id, title, price }) => (
+          {additions?.map(({ id, title, price }) => (
             <Flex justifyContent="space-between" alignItems="center" key={id}>
               <Flex gap={2} alignItems="center">
                 <UICheckbox
@@ -110,16 +106,20 @@ export const Body: FC = () => {
                   }
                   selected={additionIds.includes(id)}
                 />
-                <Typography>{title}</Typography>
+                <Typography>
+                  {title}, {weight} г
+                </Typography>
               </Flex>
-              <Typography>{price} р</Typography>
+              <Typography>
+                {price} {SYMBOLS.RUB}
+              </Typography>
             </Flex>
           ))}
         </Grid>
 
         <Flex gap={8}>
           <Flex gap={4} justifyContent="space-between" alignItems="center">
-            <IconButton onClick={decrementCol}>
+            <IconButton onClick={decrementCol} disabled={col === 1}>
               <MinusIcon24 />
             </IconButton>
             <Typography size="14/14">{col}</Typography>
@@ -128,7 +128,7 @@ export const Body: FC = () => {
             </IconButton>
           </Flex>
           <Button onClick={submit} width="100%">
-            Добавить
+            Добавить {totalPrice} {SYMBOLS.RUB}
           </Button>
         </Flex>
       </Grid>

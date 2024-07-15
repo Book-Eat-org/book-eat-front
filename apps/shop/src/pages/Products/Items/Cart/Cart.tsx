@@ -3,12 +3,13 @@ import { FC } from "react";
 import { useSelector } from "$hooks";
 import { useNavigate } from "react-router-dom";
 import { navigateToPage, PageURLS } from "../../../../constants/urls.ts";
+import { keys } from "ramda";
 
 export const Cart: FC = () => {
   const navigate = useNavigate();
   const items = useSelector((store) => store.cart);
 
-  const col = items.products.reduce((acc, curr) => acc + curr.col ?? 0, 0);
+  const col = keys(items.items).length;
 
   const onSubmit = () => navigate(navigateToPage(PageURLS.CART, {}));
 

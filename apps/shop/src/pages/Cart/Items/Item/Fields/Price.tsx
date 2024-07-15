@@ -1,15 +1,11 @@
-import { useCard } from "../../../context.ts";
-import { Flex, theme, Typography } from "@book-eat/ui";
 import { FC } from "react";
-import { EntityId } from "@reduxjs/toolkit";
+import { useData } from "../context.ts";
+import { Flex, theme, Typography } from "@book-eat/ui";
 import { getPriceWithDiscount } from "@book-eat/utils";
 
-interface IProps {
-  id: EntityId;
-}
-
-const Price: FC<IProps> = ({ id }) => {
-  const { price, discount } = useCard(id);
+export const Price: FC = () => {
+  const { product } = useData();
+  const { price, discount } = product;
 
   if (discount) {
     return (
@@ -35,5 +31,3 @@ const Price: FC<IProps> = ({ id }) => {
     </Typography>
   );
 };
-
-export default Price;

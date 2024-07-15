@@ -12,6 +12,14 @@ export const additionsEndpoints = api.injectEndpoints({
       transformResponse: (res: IAddition[]) =>
         additionsAdapters.setAll(additionsAdapters.getInitialState(), res),
     }),
+    fetchAdditionsByIds: build.mutation<EntityState<IAddition>, EntityId[]>({
+      query: (ids) => ({
+        url: "/v1/additions/list",
+        method: "POST",
+        body: { ids },
+      }),
+      invalidatesTags: [ApiTags.Additions],
+    }),
     saveAddition: build.mutation<{ success: boolean }, IAddition>({
       query: (additions) => ({
         url: "/v1/additions",

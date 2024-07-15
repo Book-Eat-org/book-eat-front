@@ -12,7 +12,7 @@ const Image: FC<IProps> = ({ id }) => {
   const { mainImageUrl } = useCard(id);
 
   return (
-    <Box p={2}>
+    <Box p="2px">
       <img
         src={
           mainImageUrl ??

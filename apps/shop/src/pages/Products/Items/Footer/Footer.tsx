@@ -5,17 +5,16 @@ import {
   IProduct,
   menuEndpoints,
 } from "@book-eat/api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { cartSelector } from "../../../../store/cart";
 import { navigateToPage, PageURLS } from "../../../../constants/urls.ts";
 
 const Footer = () => {
   const navigate = useNavigate();
   const cartItems = useSelector(cartSelector);
+  const { id } = useParams();
 
-  const { isFetching } = menuEndpoints.useGetMenuByPlaceIdQuery(
-    cartItems.shopId!,
-  );
+  const { isFetching } = menuEndpoints.useGetMenuByPlaceIdQuery(id!);
 
   const selectors = createMenuSelectorsByPlaceId(cartItems.shopId!);
 

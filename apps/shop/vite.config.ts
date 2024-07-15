@@ -17,6 +17,7 @@ export default defineConfig({
     alias: {
       $constants: resolve(__dirname, "./src/constants"),
       $components: resolve(__dirname, "./src/components"),
+      $selectors: resolve(__dirname, "./src/selectors"),
       $hooks: resolve(__dirname, "./src/hooks"),
       $models: resolve(__dirname, "./src/models"),
       $api: resolve(__dirname, "./src/api"),

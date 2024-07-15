@@ -4,6 +4,7 @@ import { cartReducer } from "./cart";
 import { organizationsEndpoints } from "@book-eat/api";
 import { cartMiddleware, reHydrateStore } from "./middlewares";
 import { shopReducer } from "./shop";
+import { productsSlice, additionsSlice } from "./entities";
 
 export { setAuthorizedAction, authorizedSelector } from "./authorized";
 
@@ -12,8 +13,11 @@ const rootReducer = combineReducers({
   authorized: authorizedReducer,
   cart: cartReducer,
   activeShop: shopReducer,
+  additions: additionsSlice.reducer,
+  products: productsSlice.reducer,
 });
 export type IRootState = ReturnType<typeof rootReducer>;
+
 export const store = configureStore({
   reducer: rootReducer,
   preloadedState: reHydrateStore(),

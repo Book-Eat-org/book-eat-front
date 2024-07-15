@@ -1981,7 +1981,7 @@ function _i({
     i = {
       request: new Request(c, C)
     };
-    let $, x = !1, j = T && setTimeout(() => {
+    let $, x = !1, k = T && setTimeout(() => {
       x = !0, f.abort();
     }, T);
     try {
@@ -1995,7 +1995,7 @@ function _i({
         meta: i
       };
     } finally {
-      j && clearTimeout(j);
+      k && clearTimeout(k);
     }
     const W = $.clone();
     i.response = W;
@@ -2157,7 +2157,7 @@ You must add the middleware for RTK-Query to function correctly!`);
       l(T);
       const {
         requestId: x,
-        abort: j
+        abort: k
       } = D, W = $.requestId !== x, q = (G = u.get(T)) == null ? void 0 : G[C], H = () => P(A()), z = Object.assign(w ? (
         // a query has been forced (upsertQueryData)
         // -> we want to resolve it once data has been written with the data that will be written
@@ -2175,7 +2175,7 @@ You must add the middleware for RTK-Query to function correctly!`);
         requestId: x,
         subscriptionOptions: O,
         queryCacheKey: C,
-        abort: j,
+        abort: k,
         async unwrap() {
           const J = await z;
           if (J.isError)
@@ -3449,7 +3449,7 @@ var kr = /* @__PURE__ */ Symbol(), Li = ({
     invalidationBehavior: _
   }, g) {
     bo();
-    const y = (j) => (typeof process < "u" && process.env.NODE_ENV === "development" && (n.includes(j.type) || console.error(`Tag type '${j.type}' was used, but not specified in \`tagTypes\`!`)), j);
+    const y = (k) => (typeof process < "u" && process.env.NODE_ENV === "development" && (n.includes(k.type) || console.error(`Tag type '${k.type}' was used, but not specified in \`tagTypes\`!`)), k);
     Object.assign(t, {
       reducerPath: o,
       endpoints: {},
@@ -3551,18 +3551,18 @@ var kr = /* @__PURE__ */ Symbol(), Li = ({
       getRunningQueriesThunk: $
     }), {
       name: kr,
-      injectEndpoint(j, W) {
+      injectEndpoint(k, W) {
         var H;
         const q = t;
-        (H = q.endpoints)[j] ?? (H[j] = {}), An(W) ? de(q.endpoints[j], {
-          name: j,
-          select: w(j, W),
-          initiate: C(j, W)
-        }, s(f, j)) : Ei(W) && de(q.endpoints[j], {
-          name: j,
+        (H = q.endpoints)[k] ?? (H[k] = {}), An(W) ? de(q.endpoints[k], {
+          name: k,
+          select: w(k, W),
+          initiate: C(k, W)
+        }, s(f, k)) : Ei(W) && de(q.endpoints[k], {
+          name: k,
           select: R(),
-          initiate: N(j)
-        }, s(l, j));
+          initiate: N(k)
+        }, s(l, k));
       }
     };
   }
@@ -4033,9 +4033,9 @@ function Zi() {
         }
       }
     }
-    var c = b, E = S, O = v, w = a, R = t, T = _, A = n, C = l, N = f, P = r, D = u, $ = o, x = g, j = !1;
+    var c = b, E = S, O = v, w = a, R = t, T = _, A = n, C = l, N = f, P = r, D = u, $ = o, x = g, k = !1;
     function W(M) {
-      return j || (j = !0, console.warn("The ReactIs.isAsyncMode() alias has been deprecated, and will be removed in React 17+. Update your code to use ReactIs.isConcurrentMode() instead. It has the exact same API.")), q(M) || i(M) === b;
+      return k || (k = !0, console.warn("The ReactIs.isAsyncMode() alias has been deprecated, and will be removed in React 17+. Update your code to use ReactIs.isConcurrentMode() instead. It has the exact same API.")), q(M) || i(M) === b;
     }
     function q(M) {
       return i(M) === S;
@@ -4226,9 +4226,9 @@ function os() {
         }
       }
     }
-    var E = g, O = _, w = u, R = f, T = v, A = m, C = d, N = a, P = S, D = b, $ = l, x = p, j = !1, W = !1;
+    var E = g, O = _, w = u, R = f, T = v, A = m, C = d, N = a, P = S, D = b, $ = l, x = p, k = !1, W = !1;
     function q(I) {
-      return j || (j = !0, console.warn("The ReactIs.isAsyncMode() alias has been deprecated, and will be removed in React 18+.")), !1;
+      return k || (k = !0, console.warn("The ReactIs.isAsyncMode() alias has been deprecated, and will be removed in React 18+.")), !1;
     }
     function H(I) {
       return W || (W = !0, console.warn("The ReactIs.isConcurrentMode() alias has been deprecated, and will be removed in React 18+.")), !1;
@@ -4461,11 +4461,11 @@ function ds({
       let {
         queryCacheKey: $,
         requestId: x
-      } = D.current || {}, j = !1;
-      $ && x && (j = A.current.isRequestSubscribed($, x));
-      const W = !j && P.current;
+      } = D.current || {}, k = !1;
+      $ && x && (k = A.current.isRequestSubscribed($, x));
+      const W = !k && P.current;
       return S(() => {
-        P.current = j;
+        P.current = k;
       }), S(() => {
         W && (D.current = void 0);
       }, [W]), S(() => {
@@ -4631,7 +4631,7 @@ function ds({
         status: D,
         isLoading: $,
         isSuccess: x,
-        isError: j,
+        isError: k,
         error: W
       } = T;
       jt({
@@ -4640,7 +4640,7 @@ function ds({
         status: D,
         isLoading: $,
         isSuccess: x,
-        isError: j,
+        isError: k,
         error: W
       });
       const q = oe(() => ({
@@ -4728,7 +4728,7 @@ Hook ${v} was either not provided or not a function.`);
       };
     }
   };
-}, ms = /* @__PURE__ */ Ai(Li(), hs()), k = /* @__PURE__ */ ((e) => (e.Cashiers = "Cashiers", e.Orders = "Orders", e.Places = "Places", e.Organizations = "Organizations", e.Categories = "Categories", e.Additions = "Additions", e.Menu = "Menu", e))(k || {});
+}, ms = /* @__PURE__ */ Ai(Li(), hs()), j = /* @__PURE__ */ ((e) => (e.Cashiers = "Cashiers", e.Orders = "Orders", e.Places = "Places", e.Organizations = "Organizations", e.Categories = "Categories", e.Additions = "Additions", e.Menu = "Menu", e))(j || {});
 const gs = (e) => {
   const t = _i({ baseUrl: e });
   return async (r, n, o) => {
@@ -4737,7 +4737,7 @@ const gs = (e) => {
   };
 }, ge = ms({
   reducerPath: "api",
-  tagTypes: Object.values(k),
+  tagTypes: Object.values(j),
   baseQuery: gs("/book-eat/api"),
   endpoints: () => ({})
 }), Su = ge.injectEndpoints({
@@ -4755,13 +4755,13 @@ const gs = (e) => {
 }), vs = ge.injectEndpoints({
   endpoints: (e) => ({
     getCashiers: e.query({
-      providesTags: [k.Cashiers],
+      providesTags: [j.Cashiers],
       query: () => "/v1/users/organization",
       transformResponse: (t) => ct.setAll(ct.getInitialState(), t)
     }),
     createCashier: e.mutation(
       {
-        invalidatesTags: [k.Cashiers],
+        invalidatesTags: [j.Cashiers],
         query: (t) => ({
           url: "/v1/users/place",
           method: "POST",
@@ -4770,7 +4770,7 @@ const gs = (e) => {
       }
     ),
     deleteCashiers: e.mutation({
-      invalidatesTags: [k.Cashiers],
+      invalidatesTags: [j.Cashiers],
       query: (t) => ({
         url: "/v1/auth/cashier",
         method: "DELETE",
@@ -5304,14 +5304,14 @@ const uu = su, cu = vs.endpoints.getCashiers.select(), _u = ct.getSelectors(
 }), Un = ge.injectEndpoints({
   endpoints: (e) => ({
     getOrders: e.query({
-      providesTags: [k.Orders],
+      providesTags: [j.Orders],
       query: () => ({
         url: "/v1/orders"
       }),
       transformResponse: (t) => ae.setAll(ae.getInitialState(), t)
     }),
     getOrder: e.query({
-      providesTags: [k.Orders],
+      providesTags: [j.Orders],
       query: (t) => ({
         url: `/v1/orders/${t}`
       }),
@@ -5323,7 +5323,7 @@ const uu = su, cu = vs.endpoints.getCashiers.select(), _u = ct.getSelectors(
         method: "POST",
         body: t
       }),
-      invalidatesTags: [k.Orders]
+      invalidatesTags: [j.Orders]
     }),
     updateOrderStatus: e.mutation({
       query: ({ id: t, statusVal: r }) => ({
@@ -5331,7 +5331,7 @@ const uu = su, cu = vs.endpoints.getCashiers.select(), _u = ct.getSelectors(
         url: `/v1/orders/${t}/status`,
         method: "PUT"
       }),
-      invalidatesTags: [k.Orders]
+      invalidatesTags: [j.Orders]
     })
   })
 }), Bn = Un.endpoints.getOrders.select(), Eu = ae.getSelectors(
@@ -5355,7 +5355,7 @@ const uu = su, cu = vs.endpoints.getCashiers.select(), _u = ct.getSelectors(
         ie.getInitialState(),
         t
       ),
-      providesTags: [k.Organizations]
+      providesTags: [j.Organizations]
     }),
     getCurrentOrganisation: e.query({
       query: () => ({
@@ -5365,7 +5365,7 @@ const uu = su, cu = vs.endpoints.getCashiers.select(), _u = ct.getSelectors(
         ie.getInitialState(),
         t
       ),
-      providesTags: [k.Organizations]
+      providesTags: [j.Organizations]
     }),
     getOrganisations: e.query({
       query: () => ({
@@ -5375,7 +5375,7 @@ const uu = su, cu = vs.endpoints.getCashiers.select(), _u = ct.getSelectors(
         ie.getInitialState(),
         t
       ),
-      providesTags: [k.Organizations]
+      providesTags: [j.Organizations]
     }),
     updateOrg: e.mutation({
       query: (t) => ({
@@ -5388,7 +5388,7 @@ const uu = su, cu = vs.endpoints.getCashiers.select(), _u = ct.getSelectors(
         ie.getInitialState(),
         t
       ),
-      invalidatesTags: [k.Organizations]
+      invalidatesTags: [j.Organizations]
     })
   })
 }), au = Wn.endpoints.getOrganisations.select(), wu = ie.getSelectors(
@@ -5409,14 +5409,14 @@ const uu = su, cu = vs.endpoints.getCashiers.select(), _u = ct.getSelectors(
       query: () => ({
         url: "/v1/places"
       }),
-      providesTags: [k.Places],
+      providesTags: [j.Places],
       transformResponse: (t) => ye.setAll(ye.getInitialState(), t)
     }),
     fetchPlacesByOrganization: e.query({
       query: () => ({
         url: "/v1/places/organization"
       }),
-      providesTags: [k.Places],
+      providesTags: [j.Places],
       transformResponse: (t) => ye.setAll(ye.getInitialState(), t)
     }),
     savePlace: e.mutation({
@@ -5425,7 +5425,7 @@ const uu = su, cu = vs.endpoints.getCashiers.select(), _u = ct.getSelectors(
         method: "POST",
         body: t
       }),
-      invalidatesTags: [k.Places]
+      invalidatesTags: [j.Places]
     }),
     editPlace: e.mutation({
       query: (t) => ({
@@ -5433,14 +5433,14 @@ const uu = su, cu = vs.endpoints.getCashiers.select(), _u = ct.getSelectors(
         method: "PUT",
         body: t
       }),
-      invalidatesTags: [k.Places]
+      invalidatesTags: [j.Places]
     }),
     deletePlace: e.mutation({
       query: (t) => ({
         url: `/v1/places/${t}`,
         method: "DELETE"
       }),
-      invalidatesTags: [k.Places]
+      invalidatesTags: [j.Places]
     })
   })
 }), lu = Kn.endpoints.fetchPlaces.select(), Tu = ye.getSelectors(
@@ -5462,22 +5462,22 @@ const uu = su, cu = vs.endpoints.getCashiers.select(), _u = ct.getSelectors(
         const r = uu(un("id"), nu(t.map(un("products"))));
         return $e.addMany($e.getInitialState(), t), Z.setMany(Z.getInitialState(), r);
       },
-      providesTags: [k.Menu]
+      providesTags: [j.Menu]
     }),
     getMenuById: e.query({
       query: (t) => `/v1/products/${t}`,
       transformResponse: (t) => Z.setOne(Z.getInitialState(), t),
-      providesTags: [k.Menu]
+      providesTags: [j.Menu]
     }),
     getMenuByPlaces: e.query({
       query: () => "/v1/products/place",
       transformResponse: (t) => Z.setAll(Z.getInitialState(), t),
-      providesTags: [k.Menu]
+      providesTags: [j.Menu]
     }),
     getMenuByOrganization: e.query({
       query: () => "/v1/products/organization",
       transformResponse: (t) => Z.setAll(Z.getInitialState(), t),
-      providesTags: [k.Menu]
+      providesTags: [j.Menu]
     }),
     saveMenu: e.mutation({
       query: (t) => ({
@@ -5485,7 +5485,7 @@ const uu = su, cu = vs.endpoints.getCashiers.select(), _u = ct.getSelectors(
         method: "POST",
         body: t
       }),
-      invalidatesTags: [k.Menu]
+      invalidatesTags: [j.Menu]
     }),
     editMenu: e.mutation({
       query: (t) => ({
@@ -5493,14 +5493,14 @@ const uu = su, cu = vs.endpoints.getCashiers.select(), _u = ct.getSelectors(
         method: "PUT",
         body: t
       }),
-      invalidatesTags: [k.Menu]
+      invalidatesTags: [j.Menu]
     }),
     deleteMenu: e.mutation({
       query: (t) => ({
         url: `/menu/${t}`,
         method: "DELETE"
       }),
-      invalidatesTags: [k.Menu]
+      invalidatesTags: [j.Menu]
     })
   })
 }), fu = ar.endpoints.getMenuByOrganization.select(), Au = Z.getSelectors(
@@ -5521,8 +5521,16 @@ const uu = su, cu = vs.endpoints.getCashiers.select(), _u = ct.getSelectors(
   endpoints: (e) => ({
     fetchAdditions: e.query({
       query: () => "/v1/additions/organization?activeOnly=false",
-      providesTags: [k.Additions],
+      providesTags: [j.Additions],
       transformResponse: (t) => lt.setAll(lt.getInitialState(), t)
+    }),
+    fetchAdditionsByIds: e.mutation({
+      query: (t) => ({
+        url: "/v1/additions/list",
+        method: "POST",
+        body: { ids: t }
+      }),
+      invalidatesTags: [j.Additions]
     }),
     saveAddition: e.mutation({
       query: (t) => ({
@@ -5530,7 +5538,7 @@ const uu = su, cu = vs.endpoints.getCashiers.select(), _u = ct.getSelectors(
         method: "POST",
         body: t
       }),
-      invalidatesTags: [k.Additions]
+      invalidatesTags: [j.Additions]
     }),
     editAddition: e.mutation({
       query: (t) => ({
@@ -5538,14 +5546,14 @@ const uu = su, cu = vs.endpoints.getCashiers.select(), _u = ct.getSelectors(
         method: "PUT",
         body: t
       }),
-      invalidatesTags: [k.Additions]
+      invalidatesTags: [j.Additions]
     }),
     deleteAddition: e.mutation({
       query: (t) => ({
         url: `/v1/additions/${t}`,
         method: "DELETE"
       }),
-      invalidatesTags: [k.Additions]
+      invalidatesTags: [j.Additions]
     })
   })
 }), pu = du.endpoints.fetchAdditions.select(), Nu = lt.getSelectors(
@@ -5557,7 +5565,7 @@ const uu = su, cu = vs.endpoints.getCashiers.select(), _u = ct.getSelectors(
         url: "/v1/categories/organization?activeOnly=false"
       }),
       transformResponse: (t) => $e.setAll($e.getInitialState(), t),
-      providesTags: [k.Categories]
+      providesTags: [j.Categories]
     }),
     updateCategory: e.mutation({
       query: (t) => ({
@@ -5565,7 +5573,7 @@ const uu = su, cu = vs.endpoints.getCashiers.select(), _u = ct.getSelectors(
         method: "PUT",
         body: t
       }),
-      invalidatesTags: [k.Categories]
+      invalidatesTags: [j.Categories]
     }),
     createCategory: e.mutation({
       query: (t) => ({
@@ -5573,14 +5581,14 @@ const uu = su, cu = vs.endpoints.getCashiers.select(), _u = ct.getSelectors(
         method: "POST",
         body: { ...t, description: "test" }
       }),
-      invalidatesTags: [k.Categories]
+      invalidatesTags: [j.Categories]
     }),
     deleteCategory: e.mutation({
       query: (t) => ({
         url: `/v1/categories/${t}`,
         method: "DELETE"
       }),
-      invalidatesTags: [k.Categories]
+      invalidatesTags: [j.Categories]
     })
   })
 }), hu = yu.endpoints.fetchCategories.select(), Pu = $e.getSelectors(
