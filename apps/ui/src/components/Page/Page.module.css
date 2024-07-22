@@ -2,8 +2,8 @@
     background: #59AC4B;
     top: 0;
     left: 0;
-    height: calc(100% - 75px);
     width: 100vw;
+    height: 100%;
     display: flex;
     flex-direction: column;
     z-index: 2;

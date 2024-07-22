@@ -7,6 +7,7 @@ import Grid from "../../Grid";
 
 interface IProps {
   onClose: () => void;
+  withoutCurtain?: boolean;
 }
 
 const SwipeLine = styled.div`
@@ -17,11 +18,13 @@ const SwipeLine = styled.div`
   border-radius: 8px;
 `;
 
-const Header: FC<IProps> = ({ onClose }) => (
+const Header: FC<IProps> = ({ onClose, withoutCurtain }) => (
   <Grid gap={8} paddingRight={15}>
-    <UIGrid justifyContent="center">
-      <SwipeLine />
-    </UIGrid>
+    {!withoutCurtain && (
+      <UIGrid justifyContent="center">
+        <SwipeLine />
+      </UIGrid>
+    )}
     <UIGrid justifyContent="end">
       <UIIconButton Icon={CloseIcon} variant="secondary" onClick={onClose} />
     </UIGrid>

@@ -1,27 +1,17 @@
-import { BackIcon24, ExitIcon24, Flex, Grid, theme } from "@book-eat/ui";
+import { Grid } from "@book-eat/ui";
 import { ORGANIZATION_PROFILE_ROUTES } from "../constants";
 import { NavItem, Page } from "$components";
 import { useNavigate } from "react-router-dom";
-import { loginApi } from "$api";
+import { Logout } from "./Logout/Logout.tsx";
 
 const Main = () => {
   const navigate = useNavigate();
-  const [logout] = loginApi.useLogoutMutation();
-  const handleLogout = async () => {
-    await logout();
-    window.location.reload();
-  };
+
   return (
     <Page>
       <Page.Header>
         <Page.Header.Buttons>
-          <Flex
-            backgroundColor={theme.colors.primary90}
-            borderRadius={10}
-            padding="6px"
-          >
-            <ExitIcon24 onClick={handleLogout} />
-          </Flex>
+          <Logout />
         </Page.Header.Buttons>
         <Page.Header.Title>Профиль</Page.Header.Title>
       </Page.Header>

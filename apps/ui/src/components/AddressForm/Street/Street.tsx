@@ -1,44 +1,46 @@
 import { useAddressContext } from "../context.ts";
-import { useEffect, useId, useState } from "react";
-import { isNotNil, prop } from "ramda";
-import { Autocomplete } from "$components";
+import { useEffect, useId } from "react";
+import { isNil } from "ramda";
+import { UIInput } from "$components";
+import { parseAddressToString } from "../utils.ts";
 
 const Street = () => {
   const fieldId = useId();
-  const { value: stateValue, setValue, ymaps } = useAddressContext();
-  const [suggested, setSuggested] = useState([]);
-
-  const { street } = stateValue;
-  const onChange = (value: string) => {};
-
-  const onTextChange = (value: string) => {
-    setValue({ ...stateValue, street: value });
-  };
+  const {
+    setSearchValue,
+    searchValue,
+    ymaps,
+    setSuggestionsActive,
+    value,
+    setSuggestions,
+  } = useAddressContext();
 
   useEffect(() => {
-    if (isNotNil(street)) {
-      ymaps
-        ?.suggest(street, {
-          boundedBy: [
-            [55.232016, 38.765356],
-            [56.457481, 36.310508],
-          ],
-        })
-        .then(setSuggested);
+    const isValuesIdentity = searchValue === parseAddressToString(value);
+    if (isValuesIdentity || isNil(searchValue)) {
+      return;
     }
-  }, [street, ymaps]);
+    ymaps
+      ?.suggest(searchValue, {
+        boundedBy: [
+          [55.232016, 38.765356],
+          [56.457481, 36.310508],
+        ],
+      })
+      .then(setSuggestions);
+  }, [searchValue, ymaps, value]);
+
+  const onChange = (value: string) => {
+    setSuggestionsActive(true);
+    setSearchValue(value);
+  };
 
   return (
-    <Autocomplete
+    <UIInput
       id={fieldId}
-      renderValue={prop("value")}
-      valueExtractor={prop("value")}
-      onTextChange={onTextChange}
       placeholder="Город, улица, дом*"
-      value={street}
-      options={suggested}
+      value={searchValue}
       onChange={onChange}
-      textValue={street}
     />
   );
 };

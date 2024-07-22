@@ -2,14 +2,7 @@ import { FC, useState } from "react";
 import { useController } from "react-hook-form";
 
 import { IFormValues } from "../models";
-import {
-  AddressForm,
-  BackIcon24,
-  Flex,
-  Page,
-  theme,
-  UIInput,
-} from "@book-eat/ui";
+import { AddressForm, Flex, Page, UIInput } from "@book-eat/ui";
 import { not } from "ramda";
 
 export const Address: FC = () => {

@@ -10,10 +10,12 @@ import Menu from "./Menu";
 interface IProps {
   onClose: () => void;
   children: ReactNode;
+  height?: number | string;
+  withoutCurtain?: boolean;
 }
 
 const UIPopupMenu: FC<IProps> = (props) => {
-  const { children, onClose } = props;
+  const { children, onClose, height, withoutCurtain } = props;
 
   const ref = useRef<HTMLDivElement | null>(null);
 
@@ -21,8 +23,8 @@ const UIPopupMenu: FC<IProps> = (props) => {
 
   return createPortal(
     <Overlay onClick={(e) => e.stopPropagation()}>
-      <Menu ref={ref}>
-        <Header onClose={onClose} />
+      <Menu ref={ref} height={height ?? "100%"}>
+        <Header withoutCurtain={withoutCurtain} onClose={onClose} />
         <Content>{children}</Content>
       </Menu>
     </Overlay>,

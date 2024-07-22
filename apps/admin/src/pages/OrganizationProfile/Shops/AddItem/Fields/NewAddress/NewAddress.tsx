@@ -27,12 +27,7 @@ const NewAddress: FC<IProps> = (props) => {
 
   return (
     <div className={classes.wrapper}>
-      <UIIconButton
-        Icon={LeftArrowIcon}
-        onClick={onClose}
-        variant="secondary"
-      />
-      <AddressForm onChange={onSubmit} value={value} />
+      <AddressForm onChange={onSubmit} value={value} onBack={onClose} />
     </div>
   );
 };

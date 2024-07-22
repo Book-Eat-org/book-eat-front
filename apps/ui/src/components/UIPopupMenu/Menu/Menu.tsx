@@ -8,7 +8,6 @@ const Menu = styled.div`
   bottom: 0;
   background-color: white;
   width: 100%;
-  height: 100%;
   max-height: 50%;
   border-radius: 25px 25px 0 0;
 `;
