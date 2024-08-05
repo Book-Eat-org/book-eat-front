@@ -4,30 +4,37 @@ import { useOrder } from "../useOrder.ts";
 import { OrderStatus } from "@book-eat/api";
 import { isNil } from "ramda";
 
-const CONFIG = {
-  [OrderStatus.IN_PROGRESS]: [
-    {
-      status: OrderStatus.CANCELLED_BY_PROVIDER,
-      title: "Отменить",
-    },
-  ],
+const BUTTONS_ACTIONS_CONFIG: Record<
+  OrderStatus,
+  { title: string; variant: string }
+> = {
+  [OrderStatus.CANCELLED_BY_PROVIDER]: {
+    title: "Отменить заказ",
+    variant: "danger",
+  },
+  [OrderStatus.IN_PROGRESS]: {
+    title: "Взять в работу",
+    variant: "primary",
+  },
+};
+
+const CONFIG_ACTION_MAP: Record<OrderStatus, OrderStatus[]> = {
+  [OrderStatus.IN_PROGRESS]: [],
   [OrderStatus.NEW]: [
-    {
-      status: OrderStatus.IN_PROGRESS,
-      title: "В работу",
-    },
-    {
-      status: OrderStatus.CANCELLED_BY_PROVIDER,
-      title: "Отменить",
-    },
+    OrderStatus.CANCELLED_BY_PROVIDER,
+    OrderStatus.IN_PROGRESS,
   ],
+  [OrderStatus.ERROR]: [],
+  [OrderStatus.CANCELLED_BY_CLIENT]: [],
+  [OrderStatus.COMPLETED]: [],
+  [OrderStatus.CANCELLED_BY_PROVIDER]: [],
 };
 
 export const Submit = () => {
   const [trigger] = ordersEndpoints.useUpdateOrderStatusMutation();
   const { id, status } = useOrder();
 
-  const configItem = CONFIG[status];
+  const configItem = CONFIG_ACTION_MAP[status];
 
   if (isNil(configItem)) {
     return <Button>Оплатить</Button>;
@@ -35,9 +42,14 @@ export const Submit = () => {
 
   return (
     <Flex gap={4} width="100%">
-      {configItem.map(({ title, status }) => (
-        <Button width="100%" onClick={() => trigger({ id, status })}>
-          {title}
+      {configItem.map((status) => (
+        <Button
+          key={status}
+          width="100%"
+          variant={BUTTONS_ACTIONS_CONFIG[status].variant}
+          onClick={() => trigger({ id, status })}
+        >
+          {BUTTONS_ACTIONS_CONFIG[status].title}
         </Button>
       ))}
     </Flex>

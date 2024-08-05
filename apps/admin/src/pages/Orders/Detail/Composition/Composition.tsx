@@ -1,11 +1,24 @@
 import { Box, Grid, Typography } from "@book-eat/ui";
 import { Product } from "./Product";
 import { colors } from "@book-eat/ui";
-import { ORDER_DATA } from "../data.ts";
 import { Totals } from "./Totals";
+import { useParams } from "react-router-dom";
+import { ordersSelectors } from "$api";
+import { useSelector } from "react-redux";
+import { isNil } from "ramda";
 
 export const Composition = () => {
-  const { products } = ORDER_DATA;
+  const { id: orderId } = useParams();
+
+  const order = useSelector((state) =>
+    ordersSelectors.selectById(state, orderId),
+  )!;
+
+  if (isNil(order)) {
+    return null;
+  }
+
+  const { products } = order ?? {};
   return (
     <Grid gap={3}>
       <Typography size="24/24" fontWeight={600}>
@@ -14,7 +27,7 @@ export const Composition = () => {
       <Box background={colors.general30} p={3} borderRadius={15}>
         <Grid gap={6}>
           {products.map((product) => (
-            <Product id={product.id} />
+            <Product key={product.id} id={product.id} />
           ))}
         </Grid>
       </Box>

@@ -8,6 +8,7 @@ export interface IProduct {
     description: string;
     price: number;
     discount: number;
+    amount: number;
     quantity: number;
     isRecommend: boolean;
     mainImageUrl: string;

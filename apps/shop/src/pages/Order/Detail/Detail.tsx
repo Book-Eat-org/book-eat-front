@@ -1,10 +1,11 @@
-import { BackIcon24, Button, Flex, Grid, Page, theme } from "@book-eat/ui";
+import { BackIcon24, Flex, Grid, Page, theme } from "@book-eat/ui";
 import { useNavigate, useParams } from "react-router-dom";
 import { Composition } from "./Composition";
 import { Details } from "./Details";
 import { ordersEndpoints, menuEndpoints } from "@book-eat/api";
 import { useEffect } from "react";
 import { isNil, values } from "ramda";
+import { Submit } from "./Submit.tsx";
 
 export const Detail = () => {
   const { id: orderId } = useParams();
@@ -17,8 +18,6 @@ export const Detail = () => {
     menuEndpoints.useLazyGetMenuByPlaceIdQuery();
 
   const placeId = values(orderData?.entities ?? {})[0]?.places?.id;
-
-  console.log(productsData);
 
   useEffect(() => {
     if (placeId) {
@@ -50,7 +49,7 @@ export const Detail = () => {
             <Details />
             <Composition />
           </Grid>
-          <Button>Оплатить</Button>
+          <Submit />
         </Grid>
       </Page.Body>
     </Page>

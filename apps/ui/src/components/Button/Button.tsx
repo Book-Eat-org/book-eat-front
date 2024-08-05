@@ -4,7 +4,7 @@ import { theme } from "$theme";
 import { styledCommonFn } from "$utils";
 
 interface IProps {
-  variant?: "primary";
+  variant?: "primary" | "danger";
   disabled?: boolean;
   loading?: boolean;
   size?: "lg" | "md" | "sm";
@@ -20,9 +20,16 @@ const loadingCss = css`
   color: ${theme.colors.general30};
 `;
 
-const cssByVariants = {
+const cssByVariants: Record<
+  NonNullable<IProps["variant"]>,
+  SerializedStyles
+> = {
   primary: css`
     background-color: ${theme.colors.primary100};
+    color: ${theme.colors.general40};
+  `,
+  danger: css`
+    background-color: ${theme.colors.red100};
     color: ${theme.colors.general40};
   `,
 };
@@ -40,6 +47,7 @@ const Button = styled.button<IProps>`
   ${(props) => sizesProps[props.size ?? "md"]}
   border:none;
   border-radius: 10px;
+  font-weight: 600;
   cursor: pointer;
   text-transform: uppercase;
   ${styledCommonFn}

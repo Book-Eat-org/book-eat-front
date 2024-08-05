@@ -1,8 +1,8 @@
 import { api } from "$api";
 import { EntityId, EntityState } from "@reduxjs/toolkit";
-import { ApiTags, OrderStatus } from "$enums";
+import { ApiTags } from "$enums";
 import { ordersAdapter } from "./adapter";
-import { IOrder } from "@book-eat/api";
+import { IOrder, OrderStatus } from "@book-eat/api";
 
 interface IUpdateOrderRequestPayload {
   id: EntityId;
@@ -20,15 +20,13 @@ export const ordersEndpoints = api.injectEndpoints({
       transformResponse: (res: IOrder[]) =>
         ordersAdapter.setAll(ordersAdapter.getInitialState(), res),
     }),
-    getOrder: build.query<EntityState<IOrder>, EntityId>({
+    getOrder: build.query<IOrder, EntityId>({
       providesTags: [ApiTags.Orders],
       query: (id) => {
         return {
           url: `/v1/orders/${id}`,
         };
       },
-      transformResponse: (res: IOrder) =>
-        ordersAdapter.setOne(ordersAdapter.getInitialState(), res),
     }),
     updateOrderStatus: build.mutation<void, IUpdateOrderRequestPayload>({
       query: ({ id, status }) => ({

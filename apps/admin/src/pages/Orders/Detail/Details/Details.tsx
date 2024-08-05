@@ -2,10 +2,16 @@ import { Box, Grid, Typography } from "@book-eat/ui";
 import { Item } from "./Item";
 import { colors } from "@book-eat/ui";
 import { useOrder } from "../useOrder.ts";
-import { isNotNil } from "ramda";
+import { isNil, isNotNil } from "ramda";
 
 export const Details = () => {
-  const { customerInfo, delivery, personsCount, comment } = useOrder();
+  const order = useOrder();
+
+  if (isNil(order)) {
+    return null;
+  }
+
+  const { customerInfo, delivery, personsCount, comment } = order;
 
   const addressFields = [
     { title: delivery.address },

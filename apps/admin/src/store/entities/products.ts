@@ -1,7 +1,7 @@
 import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
-import { IMenu, menuEndpoints, ordersEndpoints } from "@book-eat/api";
+import { IMenu } from "@book-eat/api";
 import { IRootState } from "../index.ts";
-import { flatten, prop, uniqBy, values } from "ramda";
+import { menuEndpoints, ordersEndpoints } from "$api";
 
 const productsAdapter = createEntityAdapter({
   selectId: (item: IMenu) => item.id,
@@ -28,19 +28,15 @@ export const productsSlice = createSlice({
       },
     );
     builder.addMatcher(
-      menuEndpoints.endpoints.getMenuById.matchFulfilled,
+      ordersEndpoints.endpoints.getOrders.matchFulfilled,
       (state, { payload }) => {
-        return productsAdapter.setOne(state, values(payload.entities)[0]);
+        return productsAdapter.addMany(state, payload.entities);
       },
     );
     builder.addMatcher(
       ordersEndpoints.endpoints.getOrder.matchFulfilled,
       (state, { payload }) => {
-        const products = uniqBy(
-          prop("id"),
-          flatten(values(payload.entities).map(prop("products"))),
-        );
-        return productsAdapter.setMany(state, products);
+        return productsAdapter.addMany(state, payload.products);
       },
     );
   },

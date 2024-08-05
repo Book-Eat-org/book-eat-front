@@ -18,7 +18,7 @@ export const Item: FC<IProps> = (props) => {
       </Typography>
       <Typography
         size="14/14"
-        color={gray ? theme.colors.general80 : undefined}
+        color={gray ? theme.colors.general90 : undefined}
       >
         {children}
       </Typography>

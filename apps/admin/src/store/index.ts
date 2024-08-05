@@ -7,15 +7,17 @@ import {
   rtkQueryErrorLogger,
 } from "$api";
 import { authorizedReducer } from "./authorized";
+import { additionsSlice, productsSlice } from "./entities";
 
 export { setAuthorizedAction, authorizedSelector } from "./authorized";
 
 const rootReducer = combineReducers({
   [cashiersEndpoints.reducerPath]: cashiersEndpoints.reducer,
-  [additionsEndpoints.reducerPath]: additionsEndpoints.reducer,
   [menuEndpoints.reducerPath]: menuEndpoints.reducer,
   [loginApi.reducerPath]: loginApi.reducer,
   authorized: authorizedReducer,
+  additions: additionsSlice.reducer,
+  products: productsSlice.reducer,
 });
 export type IRootState = ReturnType<typeof rootReducer>;
 export const store = configureStore({

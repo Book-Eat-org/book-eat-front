@@ -1,13 +1,37 @@
 import { Grid, Typography } from "@book-eat/ui";
 import { Addition } from "./Addition";
 import { theme } from "@book-eat/ui";
+import { FC } from "react";
+import { useSelector } from "react-redux";
+import { productsSelectors } from "../../../../../../store/entities";
+import { isEmpty, isNil } from "ramda";
+import { EntityId } from "@reduxjs/toolkit";
 
-export const Additions = () => (
-  <Grid gap={1}>
-    <Typography size="14/14" color={theme.colors.general80}>
-      Добавки:
-    </Typography>
-    <Addition />
-    <Addition />
-  </Grid>
-);
+interface IProps {
+  productId: EntityId;
+}
+
+export const Additions: FC<IProps> = (props) => {
+  const { productId } = props;
+
+  const { additions } =
+    useSelector((state) => productsSelectors.selectById(state, productId)) ??
+    {};
+
+  console.log(additions);
+
+  if (isEmpty(additions) || isNil(additions)) {
+    return null;
+  }
+
+  return (
+    <Grid gap={1}>
+      <Typography size="14/14" color={theme.colors.general90}>
+        Добавки:
+      </Typography>
+      {additions.map(({ id }) => (
+        <Addition key={id} id={id} />
+      ))}
+    </Grid>
+  );
+};
