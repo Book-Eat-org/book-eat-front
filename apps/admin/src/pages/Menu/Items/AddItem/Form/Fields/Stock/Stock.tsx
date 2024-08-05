@@ -21,7 +21,7 @@ export const Stock: FC = () => {
   const { data: productsData } =
     placesEndpoints.useFetchPlacesByOrganizationQuery(data.ids[0]);
 
-  const places = values(productsData.entities);
+  const places = values(productsData?.entities ?? {});
 
   const handleChange = (item: string) =>
     onChange(symmetricDifference(value, [item]));
