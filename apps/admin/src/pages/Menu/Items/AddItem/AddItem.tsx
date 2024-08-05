@@ -27,6 +27,10 @@ export const AddItem = () => {
     navigateBack();
   };
 
+  const loading = isNotNil(id) && !isSuccess;
+
+  console.log(loading);
+
   return (
     <Page>
       <Page.Header>
@@ -50,7 +54,7 @@ export const AddItem = () => {
         </Page.Header.Buttons>
         <Page.Header.Title>Карточка товара</Page.Header.Title>
       </Page.Header>
-      <Page.Body>{isSuccess ? <Form /> : <Loader />}</Page.Body>
+      <Page.Body>{loading ? <Loader /> : <Form />}</Page.Body>
     </Page>
   );
 };
