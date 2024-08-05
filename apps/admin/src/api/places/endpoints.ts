@@ -14,9 +14,9 @@ export const placesEndpoints = api.injectEndpoints({
       transformResponse: (res: IPlace[]) =>
         placesAdapter.setAll(placesAdapter.getInitialState(), res),
     }),
-    fetchPlacesByOrganization: build.query<EntityState<IPlace>, void>({
-      query: () => ({
-        url: "/v1/places/organization",
+    fetchPlacesByOrganization: build.query<EntityState<IPlace>, EntityId>({
+      query: (organizationId: EntityId) => ({
+        url: `/v1/places/organization/${organizationId}`,
       }),
       providesTags: [ApiTags.Places],
       transformResponse: (res: IPlace[]) =>

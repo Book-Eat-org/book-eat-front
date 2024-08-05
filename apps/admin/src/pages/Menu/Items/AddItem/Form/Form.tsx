@@ -22,6 +22,7 @@ import {
   categoriesEndpoints,
   menuByIdSelectorsFactory,
   menuEndpoints,
+  organizationsEndpoints,
   placesEndpoints,
 } from "$api";
 import { useSelector } from "react-redux";
@@ -36,10 +37,11 @@ export const Form: FC = () => {
   const selectors = menuByIdSelectorsFactory(id);
 
   const item = useSelector((state) => selectors?.selectById(state, id));
+  const { data } = organizationsEndpoints.useGetCurrentOrganisationQuery();
 
   categoriesEndpoints.useFetchCategoriesQuery();
   additionsEndpoints.useFetchAdditionsQuery();
-  placesEndpoints.useFetchPlacesByOrganizationQuery();
+  placesEndpoints.useFetchPlacesByOrganizationQuery(data.ids[0]);
   const [triggerLinkWithCategory] = menuEndpoints.useLinkWithCategoryMutation();
   const [triggerLinkWithPlace] = menuEndpoints.useLinkWithPlaceMutation();
   const [triggerLinkWithAddition] = menuEndpoints.useLinkWithAdditionMutation();

@@ -1,4 +1,4 @@
-import { symmetricDifference } from "ramda";
+import { symmetricDifference, values } from "ramda";
 import { FC } from "react";
 import { useController } from "react-hook-form";
 
@@ -7,7 +7,11 @@ import { UIMultipleSelect, UIMultipleSelectOption } from "@book-eat/ui";
 import { IFormValues } from "../../models";
 import classes from "./Stock.module.css";
 import { useSelector } from "react-redux";
-import { placesByOrganizationSelectors } from "$api";
+import {
+  organizationsEndpoints,
+  placesByOrganizationSelectors,
+  placesEndpoints,
+} from "$api";
 
 export const Stock: FC = () => {
   const { field, fieldState } = useController<IFormValues, "stock">({
@@ -17,7 +21,12 @@ export const Stock: FC = () => {
   const { onChange, value = [] } = field;
   const errorMessage = fieldState.error?.message;
 
-  const places = useSelector(placesByOrganizationSelectors.selectAll);
+  const { data } = organizationsEndpoints.useGetCurrentOrganisationQuery();
+
+  const { data: productsData } =
+    placesEndpoints.useFetchPlacesByOrganizationQuery(data.ids[0]);
+
+  const places = values(productsData.entities);
 
   const handleChange = (item: string) =>
     onChange(symmetricDifference(value, [item]));

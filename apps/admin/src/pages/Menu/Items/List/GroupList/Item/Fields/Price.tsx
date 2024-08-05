@@ -18,7 +18,7 @@ export const Price = () => {
       <Typography
         color={theme.colors.general90}
         size="14/14"
-        textDecoration="line-through"
+        textDecoration={priceWithDiscount ? "line-through" : undefined}
       >
         {price} ₽
       </Typography>
