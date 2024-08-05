@@ -10,14 +10,16 @@ import { FC, useState } from "react";
 import Grid from "../Grid";
 import Street from "./Street";
 import { AddressContext, IAddress } from "./context.ts";
-import { isEmpty, isNotNil, not } from "ramda";
+import { isEmpty, not } from "ramda";
 import { checkArea, getAddressByGeo, parseAddressToString } from "./utils.ts";
 import { MapEvent } from "yandex-maps";
 import Button from "../Button";
 import { Dialog } from "./Dialog";
 import Page from "../Page";
 import { Suggestions } from "./Suggestions";
-import { BackIcon24, Flex, theme } from "../../../dist";
+import { theme } from "$theme";
+import { BackIcon24 } from "$assets";
+import Flex from "../Flex";
 
 interface IProps {
   value?: string;
