@@ -1,14 +1,18 @@
-import { Box, Flex, theme, Typography } from "@book-eat/ui";
+import { Flex, theme, Typography } from "@book-eat/ui";
 import classes from "./Price.module.css";
 
 import { useProduct } from "../../hooks.ts";
 import { getPriceWithDiscount } from "@book-eat/utils";
+import { isNotNil } from "ramda";
 
 export const Price = () => {
   const { price, discount } = useProduct();
+
+  const discountActive = isNotNil(discount) && discount > 0;
+
   return (
     <Flex px={2} py={1} className={classes.wrapper} gap={1}>
-      {discount && (
+      {discountActive && (
         <Typography
           fontWeight={600}
           size="14/14"
