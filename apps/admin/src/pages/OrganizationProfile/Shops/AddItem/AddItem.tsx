@@ -25,7 +25,7 @@ import { IFormValues } from "./models";
 import { useSelector } from "react-redux";
 import {
   currentOrganizationSelector,
-  placesByOrganizationSelectors,
+  placesByOrganizationSelectorsFactory,
   placesEndpoints,
 } from "$api";
 import { Page } from "$components";
@@ -41,9 +41,9 @@ const AddItem: FC = () => {
   const [editPlace] = placesEndpoints.useEditPlaceMutation();
   const [deletePlace] = placesEndpoints.useDeletePlaceMutation();
 
-  const item = useSelector((state) =>
-    placesByOrganizationSelectors.selectById(state, id),
-  );
+  const selector = placesByOrganizationSelectorsFactory(organization.id);
+
+  const item = useSelector((state) => selector.selectById(state, id));
 
   const defaultValues = inputAdapter(item!);
 

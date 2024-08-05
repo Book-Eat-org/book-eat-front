@@ -5,7 +5,7 @@ import { IFormValues } from "../models";
 import { UIOption, UISelect } from "@book-eat/ui";
 import {
   organizationsEndpoints,
-  placesByOrganizationSelectors,
+  placesByOrganizationSelectorsFactory,
   placesEndpoints,
 } from "$api";
 import { EntityId } from "@reduxjs/toolkit";
@@ -13,8 +13,14 @@ import { useSelector } from "react-redux";
 import { isNil } from "ramda";
 
 const OptionItem: FC<{ id: EntityId }> = ({ id }) => {
+  const { data: organizaitionsData } =
+    organizationsEndpoints.useGetCurrentOrganisationQuery();
+
   const item = useSelector((state) =>
-    placesByOrganizationSelectors.selectById(state, id),
+    placesByOrganizationSelectorsFactory(organizaitionsData.ids[0]).selectById(
+      state,
+      id,
+    ),
   );
 
   if (isNil(item)) {
@@ -29,9 +35,6 @@ export const Place: FC = () => {
     name: "place",
     rules: { required: { value: true, message: "Укажите заведение" } },
   });
-
-  const { data: organizaitionsData } =
-    organizationsEndpoints.useGetCurrentOrganisationQuery();
 
   const { data } = placesEndpoints.useFetchPlacesByOrganizationQuery(
     organizaitionsData.ids[0],

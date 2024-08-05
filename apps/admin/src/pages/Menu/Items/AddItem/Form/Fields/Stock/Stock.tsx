@@ -6,12 +6,7 @@ import { UIMultipleSelect, UIMultipleSelectOption } from "@book-eat/ui";
 
 import { IFormValues } from "../../models";
 import classes from "./Stock.module.css";
-import { useSelector } from "react-redux";
-import {
-  organizationsEndpoints,
-  placesByOrganizationSelectors,
-  placesEndpoints,
-} from "$api";
+import { organizationsEndpoints, placesEndpoints } from "$api";
 
 export const Stock: FC = () => {
   const { field, fieldState } = useController<IFormValues, "stock">({

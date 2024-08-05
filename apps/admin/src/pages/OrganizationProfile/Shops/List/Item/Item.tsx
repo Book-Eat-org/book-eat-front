@@ -9,7 +9,11 @@ import {
   Typography,
 } from "@book-eat/ui";
 
-import { placesByOrganizationSelectors, placesEndpoints } from "$api";
+import {
+  organizationsEndpoints,
+  placesByOrganizationSelectorsFactory,
+  placesEndpoints,
+} from "$api";
 import { useSelector } from "react-redux";
 import { EntityId } from "@reduxjs/toolkit";
 import { useNavigate } from "react-router-dom";
@@ -24,9 +28,14 @@ const Item: FC<IProps> = (props) => {
   const [fetchEditPlace] = placesEndpoints.endpoints.editPlace.useMutation();
   const navigate = useNavigate();
 
-  const item = useSelector((state) =>
-    placesByOrganizationSelectors.selectById(state, id),
+  const { data: organizationsData } =
+    organizationsEndpoints.useGetCurrentOrganisationQuery();
+
+  const selector = placesByOrganizationSelectorsFactory(
+    organizationsData.ids[0],
   );
+
+  const item = useSelector((state) => selector.selectById(state, id));
 
   if (!item) {
     return;
