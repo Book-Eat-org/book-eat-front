@@ -37,6 +37,12 @@ export const productsSlice = createSlice({
       },
     );
     builder.addMatcher(
+      menuEndpoints.endpoints.saveMenu.matchFulfilled,
+      (state, { payload }) => {
+        return productsAdapter.upsertMany(state, payload.entities);
+      },
+    );
+    builder.addMatcher(
       ordersEndpoints.endpoints.getOrders.matchFulfilled,
       (state, { payload }) => {
         return productsAdapter.addMany(state, payload.entities);

@@ -1,6 +1,7 @@
 import { Flex, Grid, Typography, theme } from "@book-eat/ui";
 import { useOrder } from "../../useOrder.ts";
 import { getTotalProductsPrices, SYMBOLS } from "@book-eat/utils";
+import { isNotNil } from "ramda";
 
 export const Totals = () => {
   const { totalCost, products, delivery } = useOrder();
@@ -9,6 +10,8 @@ export const Totals = () => {
     getTotalProductsPrices(products);
 
   const { price: deliveryPrice } = delivery ?? {};
+
+  const dipiveryPriceAvailable = isNotNil(deliveryPrice) && deliveryPrice > 0;
 
   return (
     <Grid gap={2}>
@@ -28,7 +31,7 @@ export const Totals = () => {
           {productsSum} {SYMBOLS.RUB}
         </Typography>
       </Flex>
-      {deliveryPrice && (
+      {dipiveryPriceAvailable && (
         <Flex justifyContent="space-between" alignItems="center">
           <Typography color={theme.colors.general90}>
             Стоимость доставки:

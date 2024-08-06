@@ -36,6 +36,8 @@ export const menuEndpoints = api.injectEndpoints({
         method: "POST",
         body: menu,
       }),
+      transformResponse: (res: IProduct) =>
+        menuAdapter.addOne(menuAdapter.getInitialState(), res),
       invalidatesTags: [ApiTags.Menu],
     }),
     linkWithPlace: build.mutation<
