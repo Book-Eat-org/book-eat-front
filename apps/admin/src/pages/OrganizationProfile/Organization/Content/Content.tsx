@@ -6,14 +6,16 @@ import { BackIcon24, Button, Flex, Grid, theme, UIGrid } from "@book-eat/ui";
 import { IFormValues } from "./models";
 import { useNavigate } from "react-router-dom";
 import { inputAdapter, outputAdapter } from "./adapters";
-import { currentOrganizationSelector, organizationsEndpoints } from "$api";
+import { organizationsEndpoints } from "$api";
 import { useSelector } from "react-redux";
 import LegalInfo from "./LegalInfo";
 import { Page } from "$components";
 import Header from "./Header";
+import { getCurrentOrganizationSelector } from "../../../../store/entities";
 
 const Content: FC = () => {
-  const [data] = useSelector(currentOrganizationSelector.selectAll);
+  const data = useSelector(getCurrentOrganizationSelector);
+  console.dir(data);
   const [saveOrganization] = organizationsEndpoints.useUpdateOrgMutation();
 
   const navigate = useNavigate();

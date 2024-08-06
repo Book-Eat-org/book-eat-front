@@ -5,11 +5,6 @@ import {
   fetchBaseQuery,
 } from "@reduxjs/toolkit/query/react";
 import { ApiTags } from "$enums";
-import {
-  isRejectedWithValue,
-  Middleware,
-  MiddlewareAPI,
-} from "@reduxjs/toolkit";
 
 const baseQueryToasts = (baseUrl: string) => {
   const baseQuery = fetchBaseQuery({ baseUrl });

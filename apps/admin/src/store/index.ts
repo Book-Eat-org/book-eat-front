@@ -7,7 +7,12 @@ import {
   rtkQueryErrorLogger,
 } from "$api";
 import { authorizedReducer } from "./authorized";
-import { additionsSlice, productsSlice } from "./entities";
+import {
+  additionsSlice,
+  organizationsSlice,
+  placesSlices,
+  productsSlice,
+} from "./entities";
 
 export { setAuthorizedAction, authorizedSelector } from "./authorized";
 
@@ -18,6 +23,8 @@ const rootReducer = combineReducers({
   authorized: authorizedReducer,
   additions: additionsSlice.reducer,
   products: productsSlice.reducer,
+  organizations: organizationsSlice.reducer,
+  places: placesSlices.reducer,
 });
 export type IRootState = ReturnType<typeof rootReducer>;
 export const store = configureStore({

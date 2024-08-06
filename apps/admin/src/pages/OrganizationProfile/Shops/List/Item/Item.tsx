@@ -9,15 +9,12 @@ import {
   Typography,
 } from "@book-eat/ui";
 
-import {
-  organizationsEndpoints,
-  placesByOrganizationSelectorsFactory,
-  placesEndpoints,
-} from "$api";
+import { placesEndpoints } from "$api";
 import { useSelector } from "react-redux";
 import { EntityId } from "@reduxjs/toolkit";
 import { useNavigate } from "react-router-dom";
 import { navigateToPage, PageURLS } from "$constants";
+import { placesSelectors } from "../../../../../store/entities";
 
 interface IProps {
   id: EntityId;
@@ -28,14 +25,7 @@ const Item: FC<IProps> = (props) => {
   const [fetchEditPlace] = placesEndpoints.endpoints.editPlace.useMutation();
   const navigate = useNavigate();
 
-  const { data: organizationsData } =
-    organizationsEndpoints.useGetCurrentOrganisationQuery();
-
-  const selector = placesByOrganizationSelectorsFactory(
-    organizationsData.ids[0],
-  );
-
-  const item = useSelector((state) => selector.selectById(state, id));
+  const item = useSelector((state) => placesSelectors.selectById(state, id));
 
   if (!item) {
     return;

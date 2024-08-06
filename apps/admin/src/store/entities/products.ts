@@ -1,10 +1,10 @@
 import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
-import { IMenu } from "@book-eat/api";
+import { IProduct } from "@book-eat/api";
 import { IRootState } from "../index.ts";
 import { menuEndpoints, ordersEndpoints } from "$api";
 
 const productsAdapter = createEntityAdapter({
-  selectId: (item: IMenu) => item.id,
+  selectId: (item: IProduct) => item.id,
 });
 
 export const productsSelectors = productsAdapter.getSelectors<IRootState>(
@@ -13,10 +13,7 @@ export const productsSelectors = productsAdapter.getSelectors<IRootState>(
 
 export const productsSlice = createSlice({
   name: "products",
-  initialState: {
-    ids: [],
-    entities: {},
-  },
+  initialState: productsAdapter.getInitialState(),
   reducers: {
     addOne: productsAdapter.addOne,
   },
@@ -25,6 +22,18 @@ export const productsSlice = createSlice({
       menuEndpoints.endpoints.getMenuByPlaceId.matchFulfilled,
       (state, { payload }) => {
         return productsAdapter.addMany(state, payload.entities);
+      },
+    );
+    builder.addMatcher(
+      menuEndpoints.endpoints.getMenuByOrganization.matchFulfilled,
+      (state, { payload }) => {
+        return productsAdapter.addMany(state, payload.entities);
+      },
+    );
+    builder.addMatcher(
+      menuEndpoints.endpoints.editMenu.matchFulfilled,
+      (state, { payload }) => {
+        return productsAdapter.upsertMany(state, payload.entities);
       },
     );
     builder.addMatcher(

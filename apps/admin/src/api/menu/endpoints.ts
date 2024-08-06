@@ -71,14 +71,14 @@ export const menuEndpoints = api.injectEndpoints({
       }),
       invalidatesTags: [ApiTags.Menu],
     }),
-    editMenu: build.mutation<{ success: boolean }, IProduct>({
+    editMenu: build.mutation<EntityState<IProduct>, IProduct>({
       query: (menu) => ({
         url: `/v1/products/${menu.id}`,
         method: "PUT",
         body: menu,
       }),
       transformResponse: (res: IProduct) =>
-        menuAdapter.updateOne(menuAdapter.getInitialState(), res),
+        menuAdapter.upsertOne(menuAdapter.getInitialState(), res),
     }),
     deleteMenu: build.mutation<{ success: boolean }, EntityId>({
       query: (id) => ({

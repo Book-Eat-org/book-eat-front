@@ -1,7 +1,7 @@
 import { EntityId } from "@reduxjs/toolkit";
 import { createContext, useContext } from "react";
 import { useSelector } from "react-redux";
-import { menuSelectors } from "$api";
+import { productsSelectors } from "../../../../../../store/entities";
 
 interface IMenuListItemContext {
   id: EntityId;
@@ -14,5 +14,5 @@ export const MenuListItemContext = createContext<IMenuListItemContext>({
 export const useMenuData = () => {
   const { id } = useContext(MenuListItemContext);
 
-  return useSelector((state) => menuSelectors.selectById(state, id))!;
+  return useSelector((state) => productsSelectors.selectById(state, id))!;
 };

@@ -22,13 +22,13 @@ import {
   categoriesEndpoints,
   menuByIdSelectorsFactory,
   menuEndpoints,
-  organizationsEndpoints,
   placesEndpoints,
 } from "$api";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { isNil } from "ramda";
 import { inputAdapter, outputAdapter } from "./adapters.ts";
+import { getCurrentOrganizationSelector } from "../../../../../store/entities";
 
 export const Form: FC = () => {
   const { id } = useParams();
@@ -37,11 +37,11 @@ export const Form: FC = () => {
   const selectors = menuByIdSelectorsFactory(id);
 
   const item = useSelector((state) => selectors?.selectById(state, id));
-  const { data } = organizationsEndpoints.useGetCurrentOrganisationQuery();
+  const organization = useSelector(getCurrentOrganizationSelector);
 
   categoriesEndpoints.useFetchCategoriesQuery();
   additionsEndpoints.useFetchAdditionsQuery();
-  placesEndpoints.useFetchPlacesByOrganizationQuery(data.ids[0]);
+  placesEndpoints.useFetchPlacesByOrganizationQuery(organization.id);
   const [triggerLinkWithCategory] = menuEndpoints.useLinkWithCategoryMutation();
   const [triggerLinkWithPlace] = menuEndpoints.useLinkWithPlaceMutation();
   const [triggerLinkWithAddition] = menuEndpoints.useLinkWithAdditionMutation();
@@ -62,7 +62,7 @@ export const Form: FC = () => {
       ? await saveMenu(payload)
       : await editMenu({ ...payload, id });
 
-    const resultId = result.data.id;
+    const resultId = result?.data?.ids[0];
 
     await triggerLinkWithPlace({
       placesIds: data.stock,
@@ -98,7 +98,9 @@ export const Form: FC = () => {
           <Stock />
         </Grid>
         <div className={classes.footer}>
-          <Button onClick={navigateBack}>Отменить</Button>
+          <Button variant="danger" onClick={navigateBack}>
+            Отменить
+          </Button>
           <Button onClick={methods.handleSubmit(handleSubmit)}>
             Сохранить
           </Button>

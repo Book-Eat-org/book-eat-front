@@ -1,12 +1,13 @@
 import { FC } from "react";
 import { useSelector } from "react-redux";
-import { menuEndpoints, menuSelectors } from "$api";
+import { menuEndpoints } from "$api";
 import { EntityId } from "@reduxjs/toolkit";
 import { Flex, Grid, Switch, theme } from "@book-eat/ui";
 import { useNavigate } from "react-router-dom";
 import { navigateToPage, PageURLS } from "$constants";
 import { MenuListItemContext } from "./context.ts";
 import { Image, Price, Title, Weight } from "./Fields";
+import { productsSelectors } from "../../../../../../store/entities";
 
 interface IProps {
   id: EntityId;
@@ -14,7 +15,7 @@ interface IProps {
 
 const Item: FC<IProps> = ({ id }) => {
   const navigate = useNavigate();
-  const item = useSelector((state) => menuSelectors.selectById(state, id));
+  const item = useSelector((state) => productsSelectors.selectById(state, id));
 
   if (!item) {
     return null;
@@ -22,7 +23,7 @@ const Item: FC<IProps> = ({ id }) => {
 
   const { isActiveOnOrganization } = item;
 
-  const [saveMenu] = menuEndpoints.useEditMenuMutation(id);
+  const [saveMenu] = menuEndpoints.useEditMenuMutation();
 
   const toggleEnabled = (checked: boolean) =>
     saveMenu({ ...item, isActiveOnOrganization: checked });

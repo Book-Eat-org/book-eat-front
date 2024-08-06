@@ -1,17 +1,18 @@
 import { FC, useCallback } from "react";
 import Item from "./Item";
 import { BackIcon24, Flex, Grid, PlusIcon24, theme } from "@book-eat/ui";
-import { organizationsEndpoints, placesEndpoints } from "$api";
+import { placesEndpoints } from "$api";
 import { useNavigate } from "react-router-dom";
 import { Page } from "$components";
 import { navigateToPage, PageURLS } from "$constants";
+import { getCurrentOrganizationSelector } from "../../../../store/entities";
+import { useSelector } from "react-redux";
 
 export const List: FC = () => {
-  const { data: organizationsData } =
-    organizationsEndpoints.useGetCurrentOrganisationQuery();
+  const organization = useSelector(getCurrentOrganizationSelector);
 
   const { data } = placesEndpoints.useFetchPlacesByOrganizationQuery(
-    organizationsData.ids[0],
+    organization.id,
   );
 
   const navigate = useNavigate();

@@ -4,16 +4,14 @@ import Item from "./Item";
 import classes from "./GroupList.module.css";
 import { useSelector } from "react-redux";
 import { categoriesSelectors, menuSelectors } from "$api";
-import { EntityId } from "@reduxjs/toolkit";
 import { Grid } from "@book-eat/ui";
 
 interface IProps {
   groupId: string;
-  points: EntityId[];
 }
 
 const GroupList: FC<IProps> = (props) => {
-  const { groupId, points } = props;
+  const { groupId } = props;
 
   const data = useSelector(menuSelectors.selectAll);
   const categories = useSelector(categoriesSelectors.selectAll);

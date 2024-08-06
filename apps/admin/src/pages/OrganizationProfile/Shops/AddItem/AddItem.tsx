@@ -67,7 +67,7 @@ const AddItem: FC = () => {
   const handleCloseDetailAddress = () => setMapOpened(false);
 
   const handleDelete = async () => {
-    await deletePlace(id);
+    await deletePlace(id!);
     navigateBack();
   };
 
