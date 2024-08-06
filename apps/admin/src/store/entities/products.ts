@@ -43,6 +43,12 @@ export const productsSlice = createSlice({
       },
     );
     builder.addMatcher(
+      menuEndpoints.endpoints.deleteMenu.matchFulfilled,
+      (state, { meta }) => {
+        return productsAdapter.removeOne(state, meta.arg.originalArgs);
+      },
+    );
+    builder.addMatcher(
       ordersEndpoints.endpoints.getOrders.matchFulfilled,
       (state, { payload }) => {
         return productsAdapter.addMany(state, payload.entities);

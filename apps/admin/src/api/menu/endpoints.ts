@@ -87,7 +87,6 @@ export const menuEndpoints = api.injectEndpoints({
         url: `/v1/products/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: [ApiTags.Menu],
     }),
   }),
 });
