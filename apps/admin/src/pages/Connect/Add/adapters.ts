@@ -2,10 +2,19 @@ import { ICashier, PickPartial } from "@book-eat/api";
 import { IFormValues } from "./models.ts";
 
 export const inputAdapter = (data: ICashier): IFormValues => {
-  const { secondName, firstName, middleName, phone, email, birthDate } = data;
+  const {
+    secondName,
+    firstName,
+    middleName,
+    phone,
+    email,
+    birthDate,
+    username,
+    placeId,
+  } = data;
   const name = [secondName, firstName, middleName].join(" ");
 
-  return { name, phone, email, birthDate };
+  return { name, phone, email, birthDate, username, place: placeId };
 };
 
 export const outputAdapter = (

@@ -8,6 +8,5 @@ export const Additions = () => (
       Добавки:
     </Typography>
     <Addition />
-    <Addition />
   </Grid>
 );

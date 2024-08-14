@@ -17,11 +17,6 @@ export enum DeliveryTypeName {
   ON_PLACE = "ON_PLACE",
 }
 
-export interface IDeliveryType {
-  id: EntityId;
-  name: DeliveryTypeName;
-}
-
 export interface IOrder {
   id: EntityId;
   comment: string;
@@ -36,7 +31,7 @@ export interface IOrder {
   };
   status: OrderStatus;
   delivery: {
-    type: IDeliveryType;
+    type: DeliveryTypeName;
     address: string;
     courier: { name: string; car: string; carNumber: string };
     doorCode: string;

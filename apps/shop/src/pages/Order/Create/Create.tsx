@@ -70,9 +70,7 @@ export const Create = () => {
         porch: entrance,
         address,
         doorCode: intercom,
-        type: {
-          name: data.deliveryType,
-        },
+        type: data.deliveryType,
       },
       products,
       places,

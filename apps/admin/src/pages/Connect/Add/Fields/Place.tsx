@@ -4,6 +4,7 @@ import { useController } from "react-hook-form";
 import { IFormValues } from "../models";
 import { UIOption, UISelect } from "@book-eat/ui";
 import {
+  currentOrganizationSelector,
   organizationsEndpoints,
   placesByOrganizationSelectorsFactory,
   placesEndpoints,
@@ -11,6 +12,7 @@ import {
 import { EntityId } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 import { isNil } from "ramda";
+import { getCurrentOrganizationSelector } from "../../../../store/entities";
 
 const OptionItem: FC<{ id: EntityId }> = ({ id }) => {
   const { data: organizaitionsData } =
@@ -36,8 +38,10 @@ export const Place: FC = () => {
     rules: { required: { value: true, message: "Укажите заведение" } },
   });
 
+  const organization = useSelector(getCurrentOrganizationSelector);
+
   const { data } = placesEndpoints.useFetchPlacesByOrganizationQuery(
-    organizaitionsData.ids[0],
+    organization.id,
   );
 
   const { onChange, value } = field;

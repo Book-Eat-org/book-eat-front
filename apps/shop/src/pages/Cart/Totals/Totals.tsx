@@ -1,6 +1,7 @@
 import { Flex, Grid, Typography } from "@book-eat/ui";
 import { useSelector } from "react-redux";
 import { cartSumSelector } from "$selectors";
+import { SYMBOLS } from "@book-eat/utils";
 
 export const Totals = () => {
   const { totalSum } = useSelector(cartSumSelector);
@@ -12,7 +13,7 @@ export const Totals = () => {
           Общая сумма:
         </Typography>
         <Typography fontWeight={700} size="24/24">
-          {totalSum}
+          {totalSum} {SYMBOLS.RUB}
         </Typography>
       </Flex>
     </Grid>

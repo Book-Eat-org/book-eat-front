@@ -22,7 +22,7 @@ export const Items: FC = () => {
     dispatch(setActiveShop(id!));
   }, [id]);
 
-  const onBackClick = () => navigate("..");
+  const onBackClick = () => navigate(-1);
 
   return (
     <OrganizationsContext.Provider value={{ searchValue, setSearchValue }}>

@@ -9,8 +9,7 @@ export const Inn: FC = () => {
     name: "legalInfoInn",
     rules: {
       required: { value: true, message: "Введите ИНН" },
-      maxLength: { value: 10, message: "ИНН должен состять из 10 цифр" },
-      minLength: { value: 10, message: "ИНН должен состять из 10 цифр" },
+      maxLength: { value: 12, message: "ИНН не должен превышать 12 цифр" },
     },
   });
   const { onChange, value } = field;
@@ -19,7 +18,7 @@ export const Inn: FC = () => {
   return (
     <UINumberInput
       onChange={onChange}
-      maxLength={10}
+      maxLength={12}
       placeholder="ИНН*"
       value={value}
       error={errorMessage}

@@ -43,6 +43,8 @@ const Add: FC = () => {
     navigateBack();
   };
 
+  const isCashierNotCreated = isNil(id);
+
   return (
     <Page>
       <Page.Header>
@@ -58,19 +60,27 @@ const Add: FC = () => {
               <Phone />
               <Email />
               <BirthDate />
-              <Password />
-              <ConfirmPassword />
+              {isCashierNotCreated && (
+                <>
+                  <Password />
+                  <ConfirmPassword />
+                </>
+              )}
             </UIGrid>
-            <UIGrid
-              justifyContent="space-between"
-              colSizes="1fr 1fr"
-              gap="31px"
-            >
-              <Button onClick={navigateBack}>Отменить</Button>
-              <Button onClick={methods.handleSubmit(handleSubmit)}>
-                Добавить
-              </Button>
-            </UIGrid>
+            {isCashierNotCreated && (
+              <UIGrid
+                justifyContent="space-between"
+                colSizes="1fr 1fr"
+                gap="31px"
+              >
+                <Button variant="danger" onClick={navigateBack}>
+                  Отменить
+                </Button>
+                <Button onClick={methods.handleSubmit(handleSubmit)}>
+                  Добавить
+                </Button>
+              </UIGrid>
+            )}
           </UIGrid>
         </FormProvider>
       </Page.Body>

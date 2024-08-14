@@ -22,7 +22,6 @@ export const menuEndpoints = api.injectEndpoints({
       query: (id) => `/v1/products/${id}`,
       transformResponse: (res: IProduct) =>
         menuAdapter.setOne(menuAdapter.getInitialState(), res),
-      providesTags: [ApiTags.Menu],
     }),
     getMenuByOrganization: build.query<EntityState<IProduct>, void>({
       query: () => `/v1/products/organization`,
@@ -87,6 +86,7 @@ export const menuEndpoints = api.injectEndpoints({
         url: `/v1/products/${id}`,
         method: "DELETE",
       }),
+      invalidatesTags: [ApiTags.Menu],
     }),
   }),
 });
