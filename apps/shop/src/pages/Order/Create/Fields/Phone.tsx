@@ -7,7 +7,7 @@ import { UIPhoneInput } from "@book-eat/ui";
 export const Phone: FC = () => {
   const { field, fieldState } = useController<IFormValues, "phone">({
     name: "phone",
-    rules: { required: { value: true, message: "Укажите имя" } },
+    rules: { required: { value: true, message: "Укажите телефон" } },
   });
   const { onChange, value } = field;
   const errorMessage = fieldState.error?.message;

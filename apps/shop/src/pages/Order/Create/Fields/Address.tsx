@@ -8,7 +8,7 @@ import { not } from "ramda";
 export const Address: FC = () => {
   const { field, fieldState } = useController<IFormValues, "address">({
     name: "address",
-    rules: { required: { value: true, message: "Укажите имя" } },
+    rules: { required: { value: true, message: "Укажите адрес" } },
   });
   const [opened, setOpened] = useState(false);
   const { onChange, value } = field;

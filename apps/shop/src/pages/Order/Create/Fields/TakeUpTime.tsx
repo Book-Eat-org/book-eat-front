@@ -26,7 +26,7 @@ const getItems = (closeTime: Dayjs) => {
 export const TakeUpTime: FC = () => {
   const { field, fieldState } = useController<IFormValues, "takeUpTime">({
     name: "takeUpTime",
-    rules: { required: { value: true, message: "Укажите имя" } },
+    rules: { required: { value: true, message: "Укажите время " } },
   });
   const { onChange, value } = field;
   const errorMessage = fieldState.error?.message;

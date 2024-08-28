@@ -7,7 +7,7 @@ import { UIInput } from "@book-eat/ui";
 export const Entrance: FC = () => {
   const { field, fieldState } = useController<IFormValues, "entrance">({
     name: "entrance",
-    rules: { required: { value: true, message: "Укажите имя" } },
+    rules: { required: { value: true, message: "Укажите вход" } },
   });
   const { onChange, value } = field;
   const errorMessage = fieldState.error?.message;

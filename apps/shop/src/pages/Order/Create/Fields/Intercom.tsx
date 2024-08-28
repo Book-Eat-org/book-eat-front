@@ -7,7 +7,7 @@ import { UIInput } from "@book-eat/ui";
 export const Intercom: FC = () => {
   const { field, fieldState } = useController<IFormValues, "intercom">({
     name: "intercom",
-    rules: { required: { value: true, message: "Укажите имя" } },
+    rules: { required: { value: true, message: "Укажите домофон" } },
   });
   const { onChange, value } = field;
   const errorMessage = fieldState.error?.message;

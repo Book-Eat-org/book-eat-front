@@ -7,7 +7,7 @@ import { UIInput } from "@book-eat/ui";
 export const PlaceAddress: FC = () => {
   const { field, fieldState } = useController<IFormValues, "placeAddress">({
     name: "placeAddress",
-    rules: { required: { value: true, message: "Укажите имя" } },
+    rules: { required: { value: true, message: "Укажите адрес" } },
   });
   const { onChange, value } = field;
   const errorMessage = fieldState.error?.message;

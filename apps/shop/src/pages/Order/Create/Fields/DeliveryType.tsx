@@ -10,7 +10,7 @@ import { DeliveryTypeName } from "@book-eat/api/src";
 export const DeliveryType: FC = () => {
   const { field, fieldState } = useController<IFormValues, "deliveryType">({
     name: "deliveryType",
-    rules: { required: { value: true, message: "Укажите имя" } },
+    rules: { required: { value: true, message: "Укажите способ доставки" } },
   });
   const { onChange, value } = field;
   const errorMessage = fieldState.error?.message;

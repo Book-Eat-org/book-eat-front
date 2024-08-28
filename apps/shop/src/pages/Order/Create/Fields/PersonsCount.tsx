@@ -14,7 +14,7 @@ import {
 export const PersonsCount: FC = () => {
   const { field, fieldState } = useController<IFormValues, "personsCount">({
     name: "personsCount",
-    rules: { required: { value: true, message: "Укажите имя" } },
+    rules: { required: { value: true, message: "Укажите количество персон" } },
   });
   const { onChange, value } = field;
   const errorMessage = fieldState.error?.message;
