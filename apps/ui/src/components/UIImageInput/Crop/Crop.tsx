@@ -20,7 +20,18 @@ const Crop: FC<IProps> = (props) => {
 
   const onCrop = () => {
     const cropper = cropperRef.current?.cropper;
-    cropper?.getCroppedCanvas().toBlob((res) => res && onChange(res));
+    const dataURL = cropper
+      ?.getCroppedCanvas({
+        width: cropperRef?.current?.width ?? 0,
+        height: cropperRef?.current?.height ?? 0,
+      })
+      .toDataURL("image/jpeg");
+
+    if (dataURL) {
+      fetch(dataURL)
+        .then((res) => res.blob())
+        .then(onChange);
+    }
   };
 
   return (
