@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { Box, Flex, Switch, TrashIcon, Typography } from "@book-eat/ui";
+import { Flex, Switch, TrashIcon, Typography } from "@book-eat/ui";
 
 import { EntityId } from "@reduxjs/toolkit";
 import { categoriesEndpoints, categoriesSelectors } from "$api";
@@ -37,7 +37,7 @@ const Item: FC<IProps> = (props) => {
   return (
     <Flex gap={2}>
       <Flex
-        backgroundColor={theme.colors.general30}
+        backgroundColor={theme.colors.general50}
         borderRadius={10}
         padding={9}
         alignItems="center"
@@ -48,7 +48,7 @@ const Item: FC<IProps> = (props) => {
         width="100%"
         justifyContent="space-between"
         alignItems="center"
-        backgroundColor={theme.colors.general30}
+        backgroundColor={theme.colors.general50}
         borderRadius={10}
         padding="6px 15px"
       >

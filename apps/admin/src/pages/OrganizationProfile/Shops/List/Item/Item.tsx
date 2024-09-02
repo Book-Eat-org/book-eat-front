@@ -51,8 +51,9 @@ const Item: FC<IProps> = (props) => {
       gap={2}
       padding="10px"
       backgroundColor={
-        isActive ? theme.colors.general30 : theme.colors.general40
+        isActive ? theme.colors.general50 : theme.colors.general300
       }
+      opacity={isActive ? 1 : 0.5}
       borderRadius={15}
       onClick={onCLick}
     >
@@ -66,30 +67,14 @@ const Item: FC<IProps> = (props) => {
       <Flex justifyContent="space-between" width="100%">
         <Grid>
           <Grid>
-            <Typography
-              size="12/12"
-              fontWeight={600}
-              color={
-                isActive ? theme.colors.general100 : theme.colors.general90
-              }
-            >
+            <Typography size="12/12" fontWeight={600}>
               {title}
             </Typography>
-            <Typography
-              size="12/12"
-              color={isActive ? theme.colors.general90 : theme.colors.general80}
-            >
-              {address ?? "address"}
-            </Typography>
+            <Typography size="12/12">{address ?? "address"}</Typography>
           </Grid>
           <Flex alignItems="center" gap={1}>
             <PhoneIcon20 />
-            <Typography
-              color={isActive ? theme.colors.general90 : theme.colors.general80}
-              size="12/12"
-            >
-              {phone ?? "phone"}
-            </Typography>
+            <Typography size="12/12">{phone ?? "phone"}</Typography>
           </Flex>
         </Grid>
         <Flex alignItems="center">

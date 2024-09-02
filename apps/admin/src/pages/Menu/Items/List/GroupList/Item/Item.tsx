@@ -39,9 +39,10 @@ const Item: FC<IProps> = ({ id }) => {
         padding="10px"
         backgroundColor={
           isActiveOnOrganization
-            ? theme.colors.general30
-            : theme.colors.general40
+            ? theme.colors.general50
+            : theme.colors.general300
         }
+        opacity={isActiveOnOrganization ? 1 : 0.5}
         borderRadius={15}
         onClick={onCLick}
       >

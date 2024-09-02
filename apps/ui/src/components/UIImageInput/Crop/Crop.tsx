@@ -41,7 +41,6 @@ const Crop: FC<IProps> = (props) => {
           src={url}
           initialAspectRatio={16 / 9}
           guides={false}
-          style={{ maxHeight: "400px" }}
           viewMode={3}
           ref={cropperRef}
         />

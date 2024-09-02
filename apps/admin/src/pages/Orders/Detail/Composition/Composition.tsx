@@ -24,7 +24,7 @@ export const Composition = () => {
       <Typography size="24/24" fontWeight={600}>
         Состав заказа
       </Typography>
-      <Box background={colors.general30} p={3} borderRadius={15}>
+      <Box background={colors.general500} p={3} borderRadius={15}>
         <Grid gap={6}>
           {products.map((product) => (
             <Product key={product.id} id={product.id} />

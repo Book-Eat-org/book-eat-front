@@ -1,6 +1,8 @@
 export interface IFormValues {
+  chainLogo?: string;
   image?: string;
   title?: string;
+  legalInfoName: string;
   legalInfoInn: string;
   legalInfoOgrn: string;
   legalInfoActualAddress: string;

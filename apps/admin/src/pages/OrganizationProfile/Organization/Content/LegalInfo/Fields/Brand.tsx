@@ -3,9 +3,9 @@ import { useController } from "react-hook-form";
 
 import { UIInput } from "@book-eat/ui";
 
-export const Title: FC = () => {
+export const Brand: FC = () => {
   const { field, fieldState } = useController({
-    name: "title",
+    name: "legalName",
     // rules: { required: { value: true, message: "Введите название" } },
   });
   const { onChange, value } = field;
@@ -15,7 +15,7 @@ export const Title: FC = () => {
     <UIInput
       type="text"
       onChange={onChange}
-      placeholder="Наименование юридического лица"
+      placeholder="Название бренда*"
       value={value}
       error={errorMessage}
     />

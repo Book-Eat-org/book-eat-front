@@ -1,4 +1,4 @@
-import { ChangeEvent, ComponentProps, FC } from "react";
+import { ChangeEvent, ComponentProps, FC, useEffect } from "react";
 import UIBaseInput from "../UIBaseInput";
 import { useIMask } from "react-imask";
 import { FactoryOpts } from "imask";
@@ -13,7 +13,7 @@ interface IProps
 const UIPhoneInput: FC<IProps> = (props) => {
   const { onChange, value, ...restProps } = props;
 
-  const { ref } = useIMask<HTMLInputElement, FactoryOpts>(
+  const { ref, setUnmaskedValue } = useIMask<HTMLInputElement, FactoryOpts>(
     {
       mask: "+{7}(000)000-00-00",
       lazy: false,
@@ -24,6 +24,10 @@ const UIPhoneInput: FC<IProps> = (props) => {
       },
     },
   );
+
+  useEffect(() => {
+    setUnmaskedValue(value);
+  }, [value]);
 
   return <UIBaseInput {...restProps} ref={ref} />;
 };

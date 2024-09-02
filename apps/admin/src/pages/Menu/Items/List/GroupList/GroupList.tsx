@@ -3,8 +3,11 @@ import { FC } from "react";
 import Item from "./Item";
 import classes from "./GroupList.module.css";
 import { useSelector } from "react-redux";
-import { categoriesSelectors, menuSelectors } from "$api";
 import { Grid } from "@book-eat/ui";
+import {
+  categoriesSelectors,
+  productsSelectors,
+} from "../../../../../store/entities";
 
 interface IProps {
   groupId: string;
@@ -13,7 +16,7 @@ interface IProps {
 const GroupList: FC<IProps> = (props) => {
   const { groupId } = props;
 
-  const data = useSelector(menuSelectors.selectAll);
+  const data = useSelector(productsSelectors.selectAll);
   const categories = useSelector(categoriesSelectors.selectAll);
 
   const category = categories?.find((item) => item.id === groupId);

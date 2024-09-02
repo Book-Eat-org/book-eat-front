@@ -1,9 +1,11 @@
 import classNames from "classnames";
-import { ComponentProps, forwardRef, ReactNode } from "react";
+import { ComponentProps, forwardRef, ReactNode, useState } from "react";
 
 import classes from "./UIBaseInput.module.css";
 import UITypography from "../UITypography";
 import Grid from "../Grid";
+import { theme } from "$theme";
+import { Typography } from "$components";
 
 interface IProps extends ComponentProps<"input"> {
   variant?: "underline" | "outline";
@@ -12,12 +14,18 @@ interface IProps extends ComponentProps<"input"> {
 }
 
 const UIBaseInput = forwardRef<HTMLInputElement, IProps>((props, ref) => {
+  const [focused, setFocused] = useState<boolean>(false);
+
+  const onFocus = () => setFocused(true);
+  const onBlur = () => setFocused(false);
+
   const {
     variant = "outline",
     title,
     className,
     error,
     postfix,
+    placeholder,
     ...restProps
   } = props;
 
@@ -26,23 +34,37 @@ const UIBaseInput = forwardRef<HTMLInputElement, IProps>((props, ref) => {
     [classes.outline]: variant === "outline",
   });
 
+  const titleActive = focused && title;
+
   return (
     <Grid gap={1} width="100%">
-      <fieldset className={classes.fieldset}>
-        <legend className={classes.legend}>
-          <UITypography variant="textXs">
-            {title ?? props.placeholder}
-          </UITypography>
-        </legend>
+      <Grid
+        border={`1px solid ${theme.colors.general300}`}
+        p={3}
+        borderRadius="10px"
+        backgroundColor={theme.colors.general50}
+      >
+        {titleActive && (
+          <Typography size="12/12" className={classes.title}>
+            {title}
+          </Typography>
+        )}
         <Grid
           gridTemplateColumns={postfix ? "auto max-content" : undefined}
           gap={5}
           alignItems="center"
         >
-          <input className={inputClasses} {...restProps} ref={ref} />
+          <input
+            className={inputClasses}
+            placeholder={focused ? placeholder : title}
+            {...restProps}
+            ref={ref}
+            onFocus={onFocus}
+            onBlur={onBlur}
+          />
           {postfix && <div className={classes.postfix}>{postfix}</div>}
         </Grid>
-      </fieldset>
+      </Grid>
       <UITypography variant="textXs" className={classes.error}>
         {error}
       </UITypography>

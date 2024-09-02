@@ -11,6 +11,8 @@ import classes from "./UIImageInput.module.css";
 import Crop from "./Crop";
 import classNames from "classnames";
 import { Add } from "./Add";
+import { Typography } from "$components";
+import Grid from "../Grid";
 
 interface IProps extends Omit<ComponentProps<"input">, "value" | "onChange"> {
   value?: string;
@@ -19,7 +21,7 @@ interface IProps extends Omit<ComponentProps<"input">, "value" | "onChange"> {
 }
 
 const UIImageInput: FC<IProps> = (props) => {
-  const { value, onChange, ...restProps } = props;
+  const { value, onChange, title, ...restProps } = props;
 
   const [selected, setSelected] = useState<File | undefined>();
   const [cropping, setCropping] = useState(false);
@@ -66,7 +68,7 @@ const UIImageInput: FC<IProps> = (props) => {
   });
 
   return (
-    <div className={classes.wrapper}>
+    <Grid gap={1} justifyItems="center">
       <label className={classes.label} htmlFor="file-input">
         {isNil(value) ? (
           <Add />
@@ -82,10 +84,15 @@ const UIImageInput: FC<IProps> = (props) => {
         className={classes.imageInput}
         {...restProps}
       />
+      {title && (
+        <Typography size="12/12" fontWeight={600} textTransform="uppercase">
+          {title}
+        </Typography>
+      )}
       {cropping && selected && (
         <Crop file={selected} onChange={handleSubmit} onCancel={onCancel} />
       )}
-    </div>
+    </Grid>
   );
 };
 

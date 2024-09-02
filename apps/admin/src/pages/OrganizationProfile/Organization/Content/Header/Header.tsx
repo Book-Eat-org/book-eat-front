@@ -1,5 +1,6 @@
-import { Grid, Typography } from "@book-eat/ui";
+import { Flex, Grid, Typography } from "@book-eat/ui";
 import { Image } from "./Image";
+import { ChainLogo } from "./ChainLogo";
 
 const Header = () => {
   return (
@@ -7,7 +8,10 @@ const Header = () => {
       <Typography size="14/14">
         Загрузите фото сети и логотип в формате Jpg, до 2 MB
       </Typography>
-      <Image />
+      <Flex gap={5} alignItems="center">
+        <Image />
+        <ChainLogo />
+      </Flex>
     </Grid>
   );
 };

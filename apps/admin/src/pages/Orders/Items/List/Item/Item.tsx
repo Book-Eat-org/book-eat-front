@@ -28,7 +28,7 @@ export const Item: FC<IProps> = (props) => {
       gap={6}
       padding={16}
       borderRadius={15}
-      background={theme.colors.general30}
+      background={theme.colors.general500}
       onClick={handleClick}
     >
       <Id id={id} />

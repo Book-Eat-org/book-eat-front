@@ -5,6 +5,7 @@ import { placesEndpoints } from "$api";
 
 const placesAdapter = createEntityAdapter({
   selectId: (entity: IPlace) => entity.id,
+  sortComparer: (a, b) => a.title.localeCompare(b.title),
 });
 
 export const placesSelectors = placesAdapter.getSelectors<IRootState>(

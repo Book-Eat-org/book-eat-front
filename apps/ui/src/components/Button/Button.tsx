@@ -11,13 +11,13 @@ interface IProps {
 }
 
 const disabledCss = css`
-  background-color: ${theme.colors.general80};
-  color: ${theme.colors.general30};
+  background-color: ${theme.colors.general500};
+  color: ${theme.colors.general50};
 `;
 
 const loadingCss = css`
   background-color: ${theme.colors.red100};
-  color: ${theme.colors.general30};
+  color: ${theme.colors.general50};
 `;
 
 const cssByVariants: Record<
@@ -25,12 +25,12 @@ const cssByVariants: Record<
   SerializedStyles
 > = {
   primary: css`
-    background-color: ${theme.colors.primary100};
-    color: ${theme.colors.general40};
+    background-color: ${theme.colors.accent600};
+    color: ${theme.colors.general50};
   `,
   danger: css`
     background-color: ${theme.colors.red100};
-    color: ${theme.colors.general40};
+    color: ${theme.colors.general50};
   `,
 };
 

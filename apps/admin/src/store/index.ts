@@ -9,6 +9,7 @@ import {
 import { authorizedReducer } from "./authorized";
 import {
   additionsSlice,
+  categoriesSlice,
   organizationsSlice,
   placesSlices,
   productsSlice,
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   [loginApi.reducerPath]: loginApi.reducer,
   authorized: authorizedReducer,
   additions: additionsSlice.reducer,
+  categories: categoriesSlice.reducer,
   products: productsSlice.reducer,
   organizations: organizationsSlice.reducer,
   places: placesSlices.reducer,

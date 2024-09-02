@@ -22,7 +22,7 @@ export const Cart: FC = () => {
     >
       {col > 0 && (
         <Box
-          backgroundColor={theme.colors.general30}
+          backgroundColor={theme.colors.general500}
           borderRadius="50%"
           padding="5px 10px"
           position="absolute"

@@ -6,11 +6,13 @@ import {
   Title,
   Address,
   ActualAdress,
+  Brand,
 } from "./Fields";
 import Block from "../Block";
 
 const LegalInfo = () => (
   <Block>
+    <Brand />
     <Title />
     <Inn />
     <Ogrnip />

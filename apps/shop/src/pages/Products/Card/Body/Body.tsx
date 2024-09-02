@@ -67,7 +67,7 @@ export const Body: FC = () => {
       <Title />
       <Grid
         gap={1}
-        background={theme.colors.general30}
+        background={theme.colors.general500}
         padding={10}
         borderRadius={10}
       >
@@ -76,7 +76,7 @@ export const Body: FC = () => {
       </Grid>
       <Grid
         gap={1}
-        background={theme.colors.general30}
+        background={theme.colors.general500}
         padding={10}
         borderRadius={10}
       >
@@ -85,7 +85,7 @@ export const Body: FC = () => {
       </Grid>
       <Grid
         gap={5}
-        background={theme.colors.general30}
+        background={theme.colors.general500}
         padding={10}
         borderRadius={10}
       >

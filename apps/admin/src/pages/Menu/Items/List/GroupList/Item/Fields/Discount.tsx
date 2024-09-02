@@ -14,13 +14,13 @@ export const Discount = () => {
       borderRadius={15}
       padding="5px 8px"
       position="absolute"
-      backgroundColor={theme.colors.red100}
+      backgroundColor={theme.colors.red500}
       top="5px"
       left="5px"
       display="flex"
     >
       <Typography
-        color={theme.colors.general30}
+        color={theme.colors.general50}
         size="10/10"
         fontWeight={500}
         fontFamily="Poppins"

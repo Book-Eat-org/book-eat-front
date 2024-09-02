@@ -42,7 +42,7 @@ const Item: FC<IProps> = (props) => {
   return (
     <Flex gap={2} onClick={handleClick}>
       <Flex
-        backgroundColor={theme.colors.general30}
+        backgroundColor={theme.colors.general50}
         borderRadius={10}
         padding={9}
         alignItems="center"
@@ -53,11 +53,11 @@ const Item: FC<IProps> = (props) => {
         width="100%"
         justifyContent="space-between"
         alignItems="center"
-        backgroundColor={theme.colors.general30}
+        backgroundColor={theme.colors.general50}
         borderRadius={10}
         padding="6px 15px"
       >
-        <Typography size="12/12" fontWeight={600}>
+        <Typography size="12/12" fontWeight={600} textTransform="uppercase">
           {title}
         </Typography>
         <Switch checked={isActive} onChange={toggleActive} />

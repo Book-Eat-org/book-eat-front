@@ -3,11 +3,13 @@ import { IOrganization } from "@book-eat/api";
 import { EntityId } from "@reduxjs/toolkit";
 
 export const inputAdapter = (input: IOrganization): IFormValues => {
-  const { title, logoUrl, legalInfo } = input ?? {};
+  const { title, logoUrl, legalInfo, imageUrl } = input ?? {};
 
   return {
     title,
     image: logoUrl,
+    chainLogo: imageUrl,
+    legalInfoName: legalInfo?.legalName,
     legalInfoEmail: legalInfo?.email,
     legalInfoLegalAddress: legalInfo?.legalAddress,
     legalInfoPhone: legalInfo?.phone,
@@ -25,7 +27,9 @@ export const outputAdapter = (
     id,
     title: data.title,
     logoUrl: data.image,
+    imageUrl: data.chainLogo,
     legalInfo: {
+      legalName: data.legalInfoName,
       inn: String(data.legalInfoInn),
       ogrn: String(data.legalInfoOgrn),
       email: data.legalInfoEmail,

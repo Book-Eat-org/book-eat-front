@@ -5,3 +5,4 @@ export * from "./Phone";
 export * from "./Email";
 export * from "./Address";
 export * from "./ActualAddress";
+export * from "./Brand.tsx";

@@ -18,11 +18,11 @@ export const NavItem: FC<IProps> = (props) => {
       gridTemplateColumns="auto max-content"
       alignItems="center"
       padding="15px"
-      backgroundColor={theme.colors.general30}
+      backgroundColor={theme.colors.general50}
       borderRadius={10}
       onClick={onClick}
     >
-      <Typography size="14/14" fontWeight={500}>
+      <Typography size="14/14" fontWeight={500} textTransform="uppercase">
         {children}
       </Typography>
       <ArrowRightIcon24 />

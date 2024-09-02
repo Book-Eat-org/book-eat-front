@@ -6,7 +6,7 @@ export const Title = () => {
   return (
     <Grid
       gap={1}
-      background={theme.colors.general30}
+      background={theme.colors.general500}
       padding={10}
       borderRadius={10}
     >

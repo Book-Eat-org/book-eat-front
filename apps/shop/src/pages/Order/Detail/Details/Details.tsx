@@ -13,7 +13,7 @@ export const Details = () => {
       <Typography size="24/24" fontWeight={600}>
         Детали заказа
       </Typography>
-      <Box background={colors.general30} p={3} borderRadius={15}>
+      <Box background={colors.general500} p={3} borderRadius={15}>
         <Grid gap={6}>
           <Item title="Статус заказа:">
             Готовится. Ссылка для отслеживания появится позже

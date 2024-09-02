@@ -6,6 +6,7 @@ import { flatten } from "ramda";
 
 const additionsAdapter = createEntityAdapter({
   selectId: (addition: IAddition) => addition.id,
+  sortComparer: (a, b) => a.title.localeCompare(b.title),
 });
 
 export const additionsSelectors = additionsAdapter.getSelectors<IRootState>(
@@ -26,6 +27,12 @@ export const additionsSlice = createSlice({
       additionsEndpoints.endpoints.fetchAdditionsByIds.matchFulfilled,
       (state, { payload }) => {
         return additionsAdapter.addMany(state, payload.additions);
+      },
+    );
+    builder.addMatcher(
+      additionsEndpoints.endpoints.fetchAdditions.matchFulfilled,
+      (state, { payload }) => {
+        return additionsAdapter.addMany(state, payload.entities);
       },
     );
     builder.addMatcher(

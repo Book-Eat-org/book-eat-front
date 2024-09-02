@@ -3,7 +3,6 @@ import { FC, ReactNode, SyntheticEvent } from "react";
 
 import UIGrid from "../UIGrid";
 import classes from "./UICheckbox.module.css";
-import styled from "@emotion/styled";
 import Box from "../Box";
 import { theme } from "$theme";
 
@@ -39,10 +38,10 @@ const UICheckbox: FC<IProps> = (props) => {
       <Box
         width={20}
         height={20}
-        background={selected ? theme.colors.primary100 : theme.colors.general30}
+        background={selected ? theme.colors.accent600 : theme.colors.general500}
         borderRadius={5}
         boxShadow="0 4px 4px 0 rgba(0, 0, 0, 0.1) inset"
-        border={`1px solid ${theme.colors.general70}`}
+        border={`1px solid ${theme.colors.general50}`}
       />
       <span className={textClasses}>{children}</span>
     </UIGrid>
