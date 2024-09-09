@@ -22,7 +22,7 @@ const Circle = styled.span<{ checked?: boolean }>`
   right: 0;
   bottom: 0;
   background-color: ${(props) =>
-    props.checked ? theme.colors.accent500 : theme.colors.general500};
+    props.checked ? theme.colors.accent500 : theme.colors.general400};
   transition: 0.4s;
   border-radius: 34px;
   :before {

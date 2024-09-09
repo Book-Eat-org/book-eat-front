@@ -16,7 +16,7 @@ export const Intercom: FC = () => {
     <UIInput
       type="text"
       onChange={onChange}
-      placeholder="Домофон*"
+      title="Домофон*"
       value={value}
       error={errorMessage}
     />

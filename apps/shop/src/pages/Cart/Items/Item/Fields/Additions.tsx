@@ -12,7 +12,7 @@ export const Additions: FC = () => {
   }
 
   return (
-    <Grid color={theme.colors.general90}>
+    <Grid color={theme.colors.general600}>
       <Typography fontWeight={600} size="14/14">
         Добавки:
       </Typography>

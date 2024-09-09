@@ -6,7 +6,7 @@ import { useOrder } from "../useOrder.ts";
 export const Details = () => {
   const { delivery, customerInfo } = useOrder();
 
-  const { address } = delivery;
+  const { address, trackingUrl } = delivery;
   const { customerPhone, customerName } = customerInfo;
   return (
     <Grid gap={4}>

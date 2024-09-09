@@ -18,7 +18,7 @@ const Shops: FC = () => {
         <Page.Header>
           <Page.Header.Buttons>
             <Flex
-              backgroundColor={theme.colors.primary90}
+              backgroundColor={theme.colors.accent50}
               borderRadius={10}
               padding="6px"
             >

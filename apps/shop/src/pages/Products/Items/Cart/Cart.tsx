@@ -15,16 +15,16 @@ export const Cart: FC = () => {
 
   return (
     <Flex
-      backgroundColor={theme.colors.primary90}
+      backgroundColor={theme.colors.accent50}
       borderRadius={10}
       padding="6px"
       onClick={onSubmit}
     >
       {col > 0 && (
         <Box
-          backgroundColor={theme.colors.general500}
+          backgroundColor={theme.colors.general50}
           borderRadius="50%"
-          padding="5px 10px"
+          padding="5px 12px"
           position="absolute"
           bottom={-10}
           left={-8}

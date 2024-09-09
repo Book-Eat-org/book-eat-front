@@ -16,7 +16,7 @@ export const PlaceAddress: FC = () => {
     <UIInput
       type="text"
       onChange={onChange}
-      placeholder="Адрес точки на карте*"
+      title="Адрес точки на карте*"
       value={value}
       error={errorMessage}
     />

@@ -16,7 +16,7 @@ export const Apartments: FC = () => {
     <UIInput
       type="text"
       onChange={onChange}
-      placeholder="Квартира*"
+      title="Квартира*"
       value={value}
       error={errorMessage}
     />

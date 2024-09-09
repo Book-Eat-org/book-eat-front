@@ -6,6 +6,7 @@ import UITypography from "../UITypography";
 import Grid from "../Grid";
 import { theme } from "$theme";
 import { Typography } from "$components";
+import { isNotNil } from "ramda";
 
 interface IProps extends ComponentProps<"input"> {
   variant?: "underline" | "outline";
@@ -34,13 +35,13 @@ const UIBaseInput = forwardRef<HTMLInputElement, IProps>((props, ref) => {
     [classes.outline]: variant === "outline",
   });
 
-  const titleActive = focused && title;
+  const titleActive = focused || restProps.value;
 
   return (
     <Grid gap={1} width="100%">
       <Grid
         border={`1px solid ${theme.colors.general300}`}
-        p={3}
+        p={titleActive ? "20px 15px 8px" : 3}
         borderRadius="10px"
         backgroundColor={theme.colors.general50}
       >

@@ -25,7 +25,7 @@ const cssByVariants: Record<
   SerializedStyles
 > = {
   primary: css`
-    background-color: ${theme.colors.accent600};
+    background-color: ${theme.colors.accent500};
     color: ${theme.colors.general50};
   `,
   danger: css`

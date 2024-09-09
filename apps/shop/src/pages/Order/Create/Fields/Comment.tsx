@@ -15,7 +15,7 @@ export const Comment: FC = () => {
     <UIInput
       type="text"
       onChange={onChange}
-      placeholder="Примечание к заказу"
+      title="Примечание к заказу"
       value={value}
       error={errorMessage}
     />

@@ -16,7 +16,7 @@ export const Floor: FC = () => {
     <UIInput
       type="text"
       onChange={onChange}
-      placeholder="Этаж*"
+      title="Этаж*"
       value={value}
       error={errorMessage}
     />

@@ -16,7 +16,7 @@ export const Email: FC = () => {
     <UIInput
       type="text"
       onChange={onChange}
-      placeholder="Почта*"
+      title="Почта*"
       value={value}
       error={errorMessage}
     />

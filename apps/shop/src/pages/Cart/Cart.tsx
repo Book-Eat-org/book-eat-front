@@ -13,7 +13,7 @@ const Cart = () => {
   const onBackClick = () => navigate(-1);
   const onSubmit = () => navigate(navigateToPage(PageURLS.ORDERS_CREATE, {}));
   const cart = useSelector((state) => state.cart);
-  const aditionsIds = useMemo(
+  const additionsIds = useMemo(
     () => flatten(values(cart.items).map((item) => item.additionIds)),
     [],
   );
@@ -21,10 +21,10 @@ const Cart = () => {
     additionsEndpoints.useFetchAdditionsByIdsMutation();
 
   useEffect(() => {
-    if (!isEmpty(aditionsIds)) {
-      triggerAdditions(aditionsIds);
+    if (!isEmpty(additionsIds)) {
+      triggerAdditions(additionsIds);
     }
-  }, [aditionsIds]);
+  }, [additionsIds]);
 
   const { isSuccess } = menuEndpoints.useGetMenuByPlaceIdQuery(cart.shopId);
 
@@ -37,7 +37,7 @@ const Cart = () => {
       <Page.Header>
         <Page.Header.Buttons>
           <Flex
-            backgroundColor={theme.colors.primary90}
+            backgroundColor={theme.colors.accent50}
             borderRadius={10}
             padding="6px"
           >

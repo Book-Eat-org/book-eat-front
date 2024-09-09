@@ -14,7 +14,7 @@ import { useSelector } from "react-redux";
 import { EntityId } from "@reduxjs/toolkit";
 import { useNavigate } from "react-router-dom";
 import { navigateToPage, PageURLS } from "$constants";
-import { placesSelectors } from "../../../../../store/entities";
+import { placesSelectors } from "../../../../../../store/entities";
 
 interface IProps {
   id: EntityId;
@@ -62,19 +62,23 @@ const Item: FC<IProps> = (props) => {
         alt=""
         width={80}
         height={80}
-        style={{ borderRadius: "15px" }}
+        style={{ borderRadius: "10px" }}
       />
       <Flex justifyContent="space-between" width="100%">
-        <Grid>
-          <Grid>
+        <Grid alignContent="space-between">
+          <Grid gap={1}>
             <Typography size="12/12" fontWeight={600}>
               {title}
             </Typography>
-            <Typography size="12/12">{address ?? "address"}</Typography>
+            <Typography size="12/12" color={theme.colors.general600}>
+              {address ?? "address"}
+            </Typography>
           </Grid>
           <Flex alignItems="center" gap={1}>
             <PhoneIcon20 />
-            <Typography size="12/12">{phone ?? "phone"}</Typography>
+            <Typography size="12/12" color={theme.colors.general600}>
+              {phone ?? "phone"}
+            </Typography>
           </Flex>
         </Grid>
         <Flex alignItems="center">

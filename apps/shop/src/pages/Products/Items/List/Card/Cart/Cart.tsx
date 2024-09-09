@@ -5,6 +5,7 @@ import {
   MinusIcon24,
   PlusIcon24,
   Typography,
+  theme,
 } from "@book-eat/ui";
 import { FC } from "react";
 import { EntityId } from "@reduxjs/toolkit";

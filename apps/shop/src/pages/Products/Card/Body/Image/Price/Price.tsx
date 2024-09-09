@@ -11,12 +11,18 @@ export const Price = () => {
   const discountActive = isNotNil(discount) && discount > 0;
 
   return (
-    <Flex px={2} py={1} className={classes.wrapper} gap={1}>
+    <Flex
+      px={2}
+      py={1}
+      className={classes.wrapper}
+      gap={1}
+      background={discountActive ? theme.colors.red500 : theme.colors.accent500}
+    >
       {discountActive && (
         <Typography
           fontWeight={600}
           size="14/14"
-          color={theme.colors.general500}
+          color={theme.colors.general50}
         >
           {getPriceWithDiscount(price, discount)} ₽
         </Typography>
@@ -25,7 +31,7 @@ export const Price = () => {
         fontWeight={400}
         size="14/14"
         textDecoration={discount ? "line-through" : undefined}
-        color={theme.colors.general500}
+        color={theme.colors.general400}
       >
         {price} ₽
       </Typography>

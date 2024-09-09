@@ -14,14 +14,14 @@ const Price: FC<IProps> = ({ id }) => {
   if (discount) {
     return (
       <Flex gap={1}>
-        <Typography fontWeight={600} size="14/14" color={theme.colors.red100}>
+        <Typography fontWeight={600} size="14/14" color={theme.colors.red600}>
           {getPriceWithDiscount(price, discount)} ₽
         </Typography>
         <Typography
           fontWeight={400}
           size="14/14"
           textDecoration="line-through"
-          color={theme.colors.general80}
+          color={theme.colors.general600}
         >
           {price} ₽
         </Typography>

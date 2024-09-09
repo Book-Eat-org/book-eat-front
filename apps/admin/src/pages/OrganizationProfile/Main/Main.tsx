@@ -1,4 +1,4 @@
-import { Grid } from "@book-eat/ui";
+import { Grid, Typography } from "@book-eat/ui";
 import { ORGANIZATION_PROFILE_ROUTES } from "../constants";
 import { NavItem, Page } from "$components";
 import { useNavigate } from "react-router-dom";
@@ -10,10 +10,14 @@ const Main = () => {
   return (
     <Page>
       <Page.Header>
-        <Page.Header.Buttons>
+        <Page.Header.Buttons reverse>
           <Logout />
         </Page.Header.Buttons>
-        <Page.Header.Title>Профиль</Page.Header.Title>
+        <Page.Header.Title>
+          <Typography fontWeight={600} size="26/26">
+            Профиль
+          </Typography>
+        </Page.Header.Title>
       </Page.Header>
       <Page.Body>
         <Grid gap={3}>

@@ -32,11 +32,11 @@ const NewAdminPage: FC = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route path="connect/*" element={<Connect />} />
+        {/*<Route path="connect/*" element={<Connect />} />*/}
         <Route path="orders/*" element={<Orders />} />
         <Route path="profile/*" element={<OrganizationProfile />} />
         <Route path="menu/*" element={<Menu />} />
-        <Route path="*" element={<Navigate to="connect" replace />} />
+        <Route path="*" element={<Navigate to="orders" replace />} />
       </Route>
     </Routes>
   );

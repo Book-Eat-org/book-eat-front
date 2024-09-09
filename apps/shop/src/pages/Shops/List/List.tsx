@@ -1,4 +1,4 @@
-import { Grid } from "@book-eat/ui";
+import { Grid, Skeleton } from "@book-eat/ui";
 import Card from "./Card";
 import { useShopsContext } from "../context.ts";
 import { placesEndpoints } from "@book-eat/api";
@@ -11,7 +11,7 @@ const List = () => {
   const { searchValue } = useShopsContext();
 
   if (isFetching || !data) {
-    return <div>loading...</div>;
+    return <Skeleton count={4} gap={2} height={250} />;
   }
   const places = values(data.entities).filter(
     ({ organizationId }) => organizationId === id,

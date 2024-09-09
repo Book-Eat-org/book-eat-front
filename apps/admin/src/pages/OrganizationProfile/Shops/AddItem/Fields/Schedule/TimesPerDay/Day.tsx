@@ -3,8 +3,8 @@ import { useController } from "react-hook-form";
 import { Grid, TimeInput } from "@book-eat/ui";
 import classes from "./Day.module.css";
 import { IFormValues } from "../../../models.ts";
-import { WORK_TIME } from "../../../../List/Item/constants.ts";
 import { DayOfWeek } from "@book-eat/api";
+import { WORK_TIME } from "../../../../List/Body/Item/constants.ts";
 
 const Day: FC<{ day: DayOfWeek }> = ({ day }) => {
   const { field } = useController<IFormValues, "schedule">({

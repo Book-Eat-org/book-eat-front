@@ -23,6 +23,7 @@ import { SYMBOLS, getPriceWithDiscount } from "@book-eat/utils";
 import { Image } from "./Image";
 import { Title } from "./Title";
 import { useProduct } from "./hooks.ts";
+import { Description } from "./Description";
 
 export const Body: FC = () => {
   const [col, setCol] = useState<number>(1);
@@ -34,14 +35,7 @@ export const Body: FC = () => {
 
   const item = useProduct();
 
-  const {
-    weight,
-    description,
-    ingredients,
-    additions = [],
-    price,
-    discount,
-  } = item;
+  const { weight, ingredients, additions = [], price, discount } = item;
 
   const dispatch = useDispatch();
 
@@ -65,27 +59,10 @@ export const Body: FC = () => {
     <Grid gap={2}>
       <Image />
       <Title />
-      <Grid
-        gap={1}
-        background={theme.colors.general500}
-        padding={10}
-        borderRadius={10}
-      >
-        <Typography size="12/12">Описание</Typography>
-        <Typography>{description}</Typography>
-      </Grid>
-      <Grid
-        gap={1}
-        background={theme.colors.general500}
-        padding={10}
-        borderRadius={10}
-      >
-        <Typography size="12/12">Состав</Typography>
-        <Typography>{ingredients}</Typography>
-      </Grid>
+      <Description />
       <Grid
         gap={5}
-        background={theme.colors.general500}
+        background={theme.colors.general50}
         padding={10}
         borderRadius={10}
       >

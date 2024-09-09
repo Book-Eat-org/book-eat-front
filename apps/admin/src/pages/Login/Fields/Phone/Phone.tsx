@@ -14,7 +14,7 @@ const Phone = () => {
 
   return (
     <UIInput
-      placeholder="Логин"
+      title="Логин"
       value={value}
       onChange={onChange}
       error={error?.message}

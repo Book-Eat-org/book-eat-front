@@ -25,7 +25,7 @@ export const Address: FC = () => {
       <UIInput
         type="text"
         onClick={toggleOpened}
-        placeholder="Адрес*"
+        title="Адрес*"
         value={value}
         error={errorMessage}
       />
@@ -44,7 +44,11 @@ export const Address: FC = () => {
               <Page.Header.Title>Адрес</Page.Header.Title>
             </Page.Header>
             <Page.Body>
-              <AddressForm onChange={handleChange} value={value} />
+              <AddressForm
+                onChange={handleChange}
+                value={value}
+                onBack={toggleOpened}
+              />
             </Page.Body>
           </Page>
         </Flex>

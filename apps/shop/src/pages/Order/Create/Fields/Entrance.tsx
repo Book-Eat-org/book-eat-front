@@ -16,7 +16,7 @@ export const Entrance: FC = () => {
     <UIInput
       type="text"
       onChange={onChange}
-      placeholder="Подъезд*"
+      title="Подъезд*"
       value={value}
       error={errorMessage}
     />

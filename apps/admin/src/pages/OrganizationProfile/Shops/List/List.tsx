@@ -1,20 +1,11 @@
 import { FC, useCallback } from "react";
-import Item from "./Item";
-import { BackIcon24, Flex, Grid, PlusIcon24, theme } from "@book-eat/ui";
-import { placesEndpoints } from "$api";
+import { BackIcon24, Flex, PlusIcon24, theme, Typography } from "@book-eat/ui";
 import { useNavigate } from "react-router-dom";
 import { Page } from "$components";
 import { navigateToPage, PageURLS } from "$constants";
-import { getCurrentOrganizationSelector } from "../../../../store/entities";
-import { useSelector } from "react-redux";
+import { Body } from "./Body";
 
 export const List: FC = () => {
-  const organization = useSelector(getCurrentOrganizationSelector);
-
-  const { data } = placesEndpoints.useFetchPlacesByOrganizationQuery(
-    organization.id,
-  );
-
   const navigate = useNavigate();
 
   const onBackClick = useCallback(() => navigate(".."), []);
@@ -40,10 +31,14 @@ export const List: FC = () => {
             <PlusIcon24 onClick={handleAddCLick} />
           </Flex>
         </Page.Header.Buttons>
-        <Page.Header.Title>Заведения</Page.Header.Title>
+        <Page.Header.Title>
+          <Typography fontWeight={500} size="52/52">
+            Заведения
+          </Typography>
+        </Page.Header.Title>
       </Page.Header>
       <Page.Body>
-        <Grid gap={3}>{data?.ids.map((id) => <Item key={id} id={id} />)}</Grid>
+        <Body />
       </Page.Body>
     </Page>
   );

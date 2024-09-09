@@ -3,7 +3,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 
 export const PhoneInput = () => {
-  const [value, setValue] = useState<string | undefined>("79990960939");
+  const [value, setValue] = useState<string | undefined>(undefined);
 
   return (
     <UIGrid>

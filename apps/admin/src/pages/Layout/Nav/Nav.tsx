@@ -13,11 +13,11 @@ import {
 import { PAGES, PageURLS } from "$constants";
 
 const items = [
-  {
-    title: "Кассиры",
-    to: PAGES[PageURLS.Users],
-    Icon: ConnectIcon24,
-  },
+  // {
+  //   title: "Кассиры",
+  //   to: PAGES[PageURLS.Users],
+  //   Icon: ConnectIcon24,
+  // },
   { title: "Заказы", to: PAGES[PageURLS.Orders], Icon: OrdersIcon24 },
 
   { title: "Меню", to: PAGES[PageURLS.Menu], Icon: MenuIcon24 },

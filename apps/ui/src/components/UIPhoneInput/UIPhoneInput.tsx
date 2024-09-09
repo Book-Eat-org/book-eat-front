@@ -11,9 +11,13 @@ interface IProps
 }
 
 const UIPhoneInput: FC<IProps> = (props) => {
-  const { onChange, value, ...restProps } = props;
+  const { onChange, value = "", ...restProps } = props;
 
-  const { ref, setUnmaskedValue } = useIMask<HTMLInputElement, FactoryOpts>(
+  const {
+    ref,
+    setUnmaskedValue,
+    value: maskedValue,
+  } = useIMask<HTMLInputElement, FactoryOpts>(
     {
       mask: "+{7}(000)000-00-00",
       lazy: false,
@@ -24,12 +28,11 @@ const UIPhoneInput: FC<IProps> = (props) => {
       },
     },
   );
-
   useEffect(() => {
     setUnmaskedValue(value);
   }, [value]);
 
-  return <UIBaseInput {...restProps} ref={ref} />;
+  return <UIBaseInput {...restProps} ref={ref} value={maskedValue} />;
 };
 
 export default UIPhoneInput;

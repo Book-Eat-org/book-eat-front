@@ -19,7 +19,7 @@ const PageHeader = () => {
         className={classes.image}
       />
       <Grid>
-        <Typography className={classes.header} size="26/32">
+        <Typography className={classes.header} size="26/26">
           Сеть ресторанов
         </Typography>
         <Typography className={classes.title} size="26/32">

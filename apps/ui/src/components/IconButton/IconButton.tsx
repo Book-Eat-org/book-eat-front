@@ -11,23 +11,23 @@ interface IProps {
 }
 
 const disabledCss = css`
-  background-color: ${theme.colors.general80};
-  color: ${theme.colors.general500};
+  background-color: ${theme.colors.general500};
+  color: ${theme.colors.general50};
 `;
 
 const loadingCss = css`
   background-color: ${theme.colors.red100};
-  color: ${theme.colors.general500};
+  color: ${theme.colors.general50};
 `;
 
 const cssByVariants = {
   primary: css`
-    background-color: ${theme.colors.accent600};
-    fill: ${theme.colors.general500};
+    background-color: ${theme.colors.accent500};
+    fill: ${theme.colors.general50};
   `,
   primaryLight: css`
-    background-color: ${theme.colors.primary90};
-    fill: ${theme.colors.general500};
+    background-color: ${theme.colors.accent100};
+    fill: ${theme.colors.general50};
   `,
 };
 

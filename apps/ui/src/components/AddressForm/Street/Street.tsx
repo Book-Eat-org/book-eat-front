@@ -38,7 +38,7 @@ const Street = () => {
   return (
     <UIInput
       id={fieldId}
-      placeholder="Город, улица, дом*"
+      title="Город, улица, дом*"
       value={searchValue}
       onChange={onChange}
     />

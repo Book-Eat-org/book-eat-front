@@ -23,7 +23,7 @@ const Card: FC<IProps> = (props) => {
     return null;
   }
 
-  const { logoUrl, title, legalInfo } = item;
+  const { imageUrl, title, legalInfo } = item;
 
   const onClick = () => {
     const url = navigateToPage(PageURLS.SHOPS, { id: item.id });
@@ -49,7 +49,7 @@ const Card: FC<IProps> = (props) => {
       <Box p="2px" borderRadius="20px">
         <img
           src={
-            logoUrl ??
+            imageUrl ??
             "https://archive.org/download/placeholder-image/placeholder-image.jpg"
           }
           alt=""
@@ -65,7 +65,7 @@ const Card: FC<IProps> = (props) => {
             size="12/12"
             onClick={onLegalInfoClick}
             textDecoration="underline"
-            color={theme.colors.general90}
+            color={theme.colors.general900}
           >
             Юридическая информация
           </Typography>

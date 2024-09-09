@@ -11,7 +11,6 @@ import {
   ordersEndpoints,
 } from "@book-eat/api";
 import { useSelector } from "$hooks";
-import { menuSelectors } from "@book-eat/api";
 import { values } from "ramda";
 
 export const Create = () => {
@@ -88,7 +87,7 @@ export const Create = () => {
         <Page.Header>
           <Page.Header.Buttons>
             <Flex
-              backgroundColor={theme.colors.primary90}
+              backgroundColor={theme.colors.accent50}
               borderRadius={10}
               padding="6px"
             >

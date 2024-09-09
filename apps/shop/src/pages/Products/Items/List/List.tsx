@@ -1,4 +1,4 @@
-import { Grid } from "@book-eat/ui";
+import { Flex, Grid, Skeleton } from "@book-eat/ui";
 import Card from "./Card";
 import { useOrganizationsContext } from "../context.ts";
 import { menuEndpoints } from "@book-eat/api";
@@ -10,7 +10,12 @@ const List = () => {
   const { searchValue } = useOrganizationsContext();
 
   if (isFetching || !data) {
-    return <div>loading...</div>;
+    return (
+      <Flex gap={3}>
+        <Skeleton count={4} gap={3} height={330} />
+        <Skeleton count={4} gap={3} height={330} />
+      </Flex>
+    );
   }
 
   const filteredData = Object.values(data.entities).filter((item) =>
@@ -18,8 +23,6 @@ const List = () => {
       ? item?.title.toLowerCase().includes(searchValue.toLowerCase())
       : true,
   );
-
-  console.log(filteredData);
 
   const ids = filteredData.map((item) => item?.id);
 

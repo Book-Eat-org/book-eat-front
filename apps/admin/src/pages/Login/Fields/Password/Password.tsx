@@ -1,6 +1,5 @@
 import { useController } from "react-hook-form";
 
-
 import { IFormState } from "../../models";
 import { UIInput } from "@book-eat/ui";
 
@@ -16,7 +15,7 @@ const Password = () => {
 
   return (
     <UIInput
-      placeholder="Пароль"
+      title="Пароль"
       value={value}
       type="password"
       error={error?.message}
