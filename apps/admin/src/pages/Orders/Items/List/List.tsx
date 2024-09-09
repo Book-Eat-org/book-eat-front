@@ -6,7 +6,6 @@ import { ORDER_STATUSES_TITLES_CONFIG } from "@book-eat/utils/src";
 
 const List = () => {
   const { isFetching, data } = ordersEndpoints.useGetOrdersQuery();
-
   const { entities } = data ?? {};
 
   if (isFetching || isNil(entities)) {

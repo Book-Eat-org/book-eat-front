@@ -8,7 +8,7 @@ interface IProps {
 
 export const Id: FC<IProps> = ({ id }) => {
   return (
-    <Typography fontWeight={700} size="14/14" color={theme.colors.general90}>
+    <Typography fontWeight={700} size="14/14" color={theme.colors.general600}>
       №{String(id).slice(0, 6)}
     </Typography>
   );

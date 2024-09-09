@@ -16,13 +16,16 @@ export const Cost: FC<IProps> = ({ id }) => {
 
   return (
     <Flex gap={3}>
-      <Typography size="14/14" color={theme.colors.general80}>
+      <Typography size="14/14" color={theme.colors.general600}>
         •
       </Typography>
       <Typography size="14/14">
-        {totalCost} {SYMBOLS.RUB}
+        {totalCost}{" "}
+        <Typography size="14/14" color={theme.colors.general600}>
+          {SYMBOLS.RUB}
+        </Typography>
       </Typography>
-      <Typography size="14/14" color={theme.colors.general80}>
+      <Typography size="14/14" color={theme.colors.general600}>
         •
       </Typography>
     </Flex>

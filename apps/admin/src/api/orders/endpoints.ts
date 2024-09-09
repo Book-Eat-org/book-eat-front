@@ -17,8 +17,9 @@ export const ordersEndpoints = api.injectEndpoints({
           url: `/v1/orders`,
         };
       },
-      transformResponse: (res: IOrder[]) =>
-        ordersAdapter.setAll(ordersAdapter.getInitialState(), res),
+      transformResponse: (res: IOrder[]) => {
+        return ordersAdapter.setAll(ordersAdapter.getInitialState(), res);
+      },
     }),
     getOrder: build.query<IOrder, EntityId>({
       providesTags: [ApiTags.Orders],

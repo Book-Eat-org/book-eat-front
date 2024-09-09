@@ -5,7 +5,7 @@ import { menuEndpoints, ordersEndpoints } from "$api";
 
 const productsAdapter = createEntityAdapter({
   selectId: (item: IProduct) => item.id,
-  sortComparer: (a, b) => a.title.localeCompare(b.title),
+  sortComparer: (a, b) => a?.title.localeCompare(b?.title),
 });
 
 export const productsSelectors = productsAdapter.getSelectors<IRootState>(
@@ -47,12 +47,6 @@ export const productsSlice = createSlice({
       menuEndpoints.endpoints.deleteMenu.matchFulfilled,
       (state, { meta }) => {
         return productsAdapter.removeOne(state, meta.arg.originalArgs);
-      },
-    );
-    builder.addMatcher(
-      ordersEndpoints.endpoints.getOrders.matchFulfilled,
-      (state, { payload }) => {
-        return productsAdapter.addMany(state, payload.entities);
       },
     );
     builder.addMatcher(
