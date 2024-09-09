@@ -5,6 +5,7 @@ import { IFormValues } from "../../../../models.ts";
 import { DayOfWeek } from "@book-eat/api";
 import { FC } from "react";
 import { DAYS_ITEMS } from "$constants";
+import { Typography } from "@book-eat/ui";
 
 interface IProps {
   day: DayOfWeek;
@@ -33,13 +34,14 @@ export const Day: FC<IProps> = (props) => {
   };
 
   return (
-    <span
+    <Typography
+      size="14/14"
       onClick={handleChange}
       className={classNames(classes.item, {
         [classes.selected]: selected,
       })}
     >
       {item.name}
-    </span>
+    </Typography>
   );
 };
