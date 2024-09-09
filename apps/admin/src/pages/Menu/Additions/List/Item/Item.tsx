@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { ChangeEvent, FC } from "react";
 
 import { Flex, Switch, theme, TrashIcon, Typography } from "@book-eat/ui";
 
@@ -20,7 +20,7 @@ const Item: FC<IProps> = (props) => {
   const [triggerEdit] = additionsEndpoints.useEditAdditionMutation();
   const [triggerDelete] = additionsEndpoints.useDeleteAdditionMutation();
 
-  const handleClick = () =>
+  const openDetail = () =>
     navigate(navigateToPage(PageURLS.AdditionsEdit, { id }));
 
   const item = data.find((item) => item.id === id);
@@ -31,7 +31,8 @@ const Item: FC<IProps> = (props) => {
 
   const { title, isActive, price, weight } = item;
 
-  const toggleActive = (checked: boolean) => {
+  const toggleActive = (checked: boolean, event: ChangeEvent) => {
+    event.stopPropagation();
     triggerEdit({ id, isActive: checked, title, price, weight });
   };
 
@@ -40,7 +41,7 @@ const Item: FC<IProps> = (props) => {
   };
 
   return (
-    <Flex gap={2} onClick={handleClick}>
+    <Flex gap={2}>
       <Flex
         backgroundColor={theme.colors.general50}
         borderRadius={10}
@@ -56,6 +57,7 @@ const Item: FC<IProps> = (props) => {
         backgroundColor={theme.colors.general50}
         borderRadius={10}
         padding="6px 15px"
+        onClick={openDetail}
       >
         <Typography size="12/12" fontWeight={600} textTransform="uppercase">
           {title}

@@ -25,5 +25,11 @@ export const placesSlices = createSlice({
         return placesAdapter.addMany(state, payload.entities);
       },
     );
+    builder.addMatcher(
+      placesEndpoints.endpoints.editPlace.matchFulfilled,
+      (state, { payload }) => {
+        return placesAdapter.upsertOne(state, payload);
+      },
+    );
   },
 });

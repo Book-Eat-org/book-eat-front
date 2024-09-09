@@ -41,7 +41,6 @@ export const additionsSlice = createSlice({
         const additions = flatten(
           payload.products.map(({ additions }) => additions),
         );
-        console.log(payload, additions);
         return additionsAdapter.addMany(state, additions);
       },
     );

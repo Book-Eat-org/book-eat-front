@@ -38,7 +38,7 @@ const Nav: FC = () => {
       backgroundColor="white"
       gap={3}
       p={3}
-      gridTemplateColumns="1fr 1fr 1fr 1fr"
+      gridTemplateColumns="repeat(3, 1fr)"
     >
       {items.map(({ title, Icon, to }) => (
         <Link key={title} to={to}>

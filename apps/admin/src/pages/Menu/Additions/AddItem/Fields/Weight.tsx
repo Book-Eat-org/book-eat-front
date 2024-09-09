@@ -17,8 +17,7 @@ export const Weight: FC = () => {
     <UINumberInput
       value={value}
       onChange={onChange}
-      placeholder="Вес *"
-      title="Грамм"
+      title="Вес *"
       type="text"
       error={errorMessage}
     />

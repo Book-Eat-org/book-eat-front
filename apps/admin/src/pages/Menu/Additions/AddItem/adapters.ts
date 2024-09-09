@@ -13,5 +13,5 @@ export const outputAdapter = (
 ): PickPartial<IAddition, "id" | "isActive"> => {
   const { categoryId, weight = 0, title = "", price = 0 } = data;
 
-  return { price, weight, title, id, categoryId };
+  return { price, weight, title, id, categoryId, isActive: true };
 };
