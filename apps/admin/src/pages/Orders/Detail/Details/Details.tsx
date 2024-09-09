@@ -31,7 +31,7 @@ export const Details = () => {
       <Typography size="24/24" fontWeight={600}>
         Инфо о клиенте
       </Typography>
-      <Box background={colors.general500} p={3} borderRadius={15}>
+      <Box background={colors.general50} p={3} borderRadius={15}>
         <Grid gap={6}>
           <Item title="Клиент:">{customerInfo?.customerName}</Item>
           <Item title="Адрес доставки">{addressFields}</Item>

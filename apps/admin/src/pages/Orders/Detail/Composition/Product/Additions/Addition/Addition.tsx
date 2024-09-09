@@ -20,10 +20,10 @@ export const Addition: FC<IProps> = (props) => {
 
   return (
     <Flex justifyContent="space-between" alignItems="center">
-      <Typography size="14/14" color={theme.colors.general90}>
+      <Typography size="14/14" color={theme.colors.general600}>
         {title}
       </Typography>
-      <Typography size="14/14" color={theme.colors.general90}>
+      <Typography size="14/14" color={theme.colors.general600}>
         {price} {SYMBOLS.RUB}
       </Typography>
     </Flex>

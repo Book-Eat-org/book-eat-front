@@ -28,7 +28,7 @@ export const Product: FC<IProps> = (props) => {
       <Flex justifyContent="space-between" alignItems="center">
         <Flex gap={3} alignItems="center">
           <Flex
-            background={theme.colors.accent600}
+            background={theme.colors.accent500}
             padding={"4px 8px"}
             borderRadius={5}
             alignItems="center"
@@ -36,7 +36,7 @@ export const Product: FC<IProps> = (props) => {
             <Typography
               fontWeight={600}
               size="12/12"
-              color={theme.colors.general500}
+              color={theme.colors.general50}
             >
               x {amount}
             </Typography>

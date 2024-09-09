@@ -18,15 +18,13 @@ export const Additions: FC<IProps> = (props) => {
     useSelector((state) => productsSelectors.selectById(state, productId)) ??
     {};
 
-  console.log(additions);
-
   if (isEmpty(additions) || isNil(additions)) {
     return null;
   }
 
   return (
     <Grid gap={1}>
-      <Typography size="14/14" color={theme.colors.general90}>
+      <Typography size="14/14" color={theme.colors.general600}>
         Добавки:
       </Typography>
       {additions.map(({ id }) => (

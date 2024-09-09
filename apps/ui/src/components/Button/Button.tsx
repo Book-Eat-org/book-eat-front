@@ -29,7 +29,7 @@ const cssByVariants: Record<
     color: ${theme.colors.general50};
   `,
   danger: css`
-    background-color: ${theme.colors.red100};
+    background-color: ${theme.colors.red500};
     color: ${theme.colors.general50};
   `,
 };
