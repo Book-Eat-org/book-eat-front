@@ -3,7 +3,7 @@ import { EntityId } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 import { ordersSelectors } from "$api";
 import { Typography } from "@book-eat/ui";
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 import { isNil } from "ramda";
 
 interface IProps {

@@ -18,14 +18,15 @@ const NewAdminPage: FC = () => {
 
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
+      <Route path="*" element={<Layout />}>
         {/*<Route path="connect/*" element={<Connect />} />*/}
         <Route path="orders/*" element={<Orders />} />
         <Route path="profile/*" element={<OrganizationProfile />} />
         <Route path="menu/*" element={<Menu />} />
-        <Route path={PAGES[PageURLS.Login]} element={<Login />} />
         <Route path="*" element={<Navigate to="orders" replace />} />
       </Route>
+      <Route path="*" element={<Navigate to="/orders" replace />} />
+      <Route path={PAGES[PageURLS.Login]} element={<Login />} />
     </Routes>
   );
 };
