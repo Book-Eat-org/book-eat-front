@@ -14,7 +14,7 @@ export const Discont: FC = () => {
   return (
     <UINumberInput
       onChange={onChange}
-      placeholder="Cкидка %"
+      title="Cкидка %"
       value={value}
       error={errorMessage}
     />

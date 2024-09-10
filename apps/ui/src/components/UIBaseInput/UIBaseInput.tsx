@@ -6,7 +6,7 @@ import UITypography from "../UITypography";
 import Grid from "../Grid";
 import { theme } from "$theme";
 import { Typography } from "$components";
-import { isNotNil } from "ramda";
+import { isEmpty, isNotNil } from "ramda";
 
 interface IProps extends ComponentProps<"input"> {
   variant?: "underline" | "outline";
@@ -35,7 +35,8 @@ const UIBaseInput = forwardRef<HTMLInputElement, IProps>((props, ref) => {
     [classes.outline]: variant === "outline",
   });
 
-  const titleActive = focused || restProps.value;
+  const titleActive =
+    focused || (isNotNil(restProps.value) && !isEmpty(restProps.value));
 
   return (
     <Grid gap={1} width="100%">

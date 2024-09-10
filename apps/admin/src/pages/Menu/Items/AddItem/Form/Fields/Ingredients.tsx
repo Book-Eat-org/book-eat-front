@@ -17,7 +17,7 @@ export const Ingredients: FC = () => {
     <UIInput
       value={value}
       onChange={onChange}
-      placeholder="Состав"
+      title="Состав"
       type="text"
       error={errorMessage}
     />

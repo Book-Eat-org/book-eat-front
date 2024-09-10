@@ -15,7 +15,7 @@ export const Title: FC = () => {
     <UIInput
       type="text"
       onChange={onChange}
-      placeholder="Название"
+      title="Название"
       value={value}
       error={errorMessage}
     />

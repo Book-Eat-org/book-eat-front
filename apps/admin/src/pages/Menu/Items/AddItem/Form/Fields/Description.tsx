@@ -17,7 +17,7 @@ export const Description: FC = () => {
     <UIInput
       value={value}
       onChange={onChange}
-      placeholder="Описание"
+      title="Описание"
       type="text"
       error={errorMessage}
     />

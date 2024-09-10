@@ -21,7 +21,7 @@ export const Price: FC = () => {
   return (
     <UINumberInput
       onChange={onChange}
-      placeholder="Цена/Р*"
+      title="Цена/Р*"
       value={value}
       error={errorMessage}
     />
