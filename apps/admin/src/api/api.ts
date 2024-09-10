@@ -20,7 +20,9 @@ const baseQueryToasts = (baseUrl: string) => {
     };
 
     if (data?.code) {
-      data.code !== "AUTH_004" && alert(`Ошибка: ${data.code}`);
+      if (data.code !== "AUTH_004") {
+        alert(`Ошибка: ${data.code}`);
+      }
       return { error: data };
     }
 

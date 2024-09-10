@@ -1,4 +1,5 @@
 import { api } from "$api";
+import { ApiTags } from "$enums";
 
 export interface ILoginRequest {
   username: string;
@@ -15,6 +16,7 @@ export const loginApi = api.injectEndpoints({
           body,
         };
       },
+      invalidatesTags: [ApiTags.Organizations],
     }),
     logout: build.mutation<void, void>({
       query: () => {

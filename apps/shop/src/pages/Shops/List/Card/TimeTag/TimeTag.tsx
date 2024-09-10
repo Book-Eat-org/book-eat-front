@@ -33,8 +33,6 @@ const TimeTag = () => {
     .set("hour", Number(timeFromHours))
     .set("minute", Number(timeFromMinutes));
 
-  console.log(timeFromDate.diff(currentDate));
-
   const isWorking =
     currentDate.isAfter(timeFromDate) && currentDate.isBefore(timeToDate);
 

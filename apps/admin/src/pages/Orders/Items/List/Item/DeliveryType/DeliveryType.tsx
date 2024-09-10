@@ -12,8 +12,6 @@ interface IProps {
 export const DeliveryType: FC<IProps> = ({ id }) => {
   const order = useSelector((state) => ordersSelectors.selectById(state, id))!;
 
-  console.log(order);
-
   return (
     <Typography size="14/14">
       {DELIVERY_TITLES_CONFIG[order.delivery.type]}

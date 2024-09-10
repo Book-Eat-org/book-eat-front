@@ -1,30 +1,29 @@
 import { organizationsEndpoints } from "$api";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { authorizedSelector, setAuthorizedAction } from "../store";
-import { isEmpty, isNotNil } from "ramda";
-import { PageURLS } from "$constants";
+import { useDispatch } from "react-redux";
+import { setAuthorizedAction } from "../store";
+import { PAGES, PageURLS } from "$constants";
 
 export const useCheckAuth = () => {
+  const location = useLocation();
   const dispatch = useDispatch();
-  const { data, isSuccess, isLoading } =
+  const { error, isLoading } =
     organizationsEndpoints.useGetCurrentOrganisationQuery();
-  const authorized = useSelector(authorizedSelector);
   const navigate = useNavigate();
 
-  const checkAuthAuthorized = Boolean(
-    Array.isArray(data?.ids) && !isEmpty(data.ids.filter(isNotNil)),
-  );
+  const unauthorized = error?.code === "AUTH_004";
+
+  const isOnLoginPage = location.pathname.includes(PAGES[PageURLS.Login]);
 
   useEffect(() => {
-    if (isSuccess && !checkAuthAuthorized) {
-      navigate(PageURLS[PageURLS.Login]);
-    }
-    if (checkAuthAuthorized) {
+    if (unauthorized) {
+      navigate(PAGES[PageURLS.Login]);
+    } else {
+      isOnLoginPage && navigate(PAGES[PageURLS.Orders]);
       dispatch(setAuthorizedAction(true));
     }
-  }, [checkAuthAuthorized, isSuccess]);
+  }, [unauthorized]);
 
-  return { authorized, isLoading };
+  return { isLoading };
 };

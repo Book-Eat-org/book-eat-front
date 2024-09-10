@@ -3,6 +3,7 @@ import { ordersEndpoints } from "$api";
 import { Item } from "./Item";
 import { groupBy, isNil, isNotNil, keys, prop, values } from "ramda";
 import { ORDER_STATUSES_TITLES_CONFIG } from "@book-eat/utils/src";
+import { getOrderLeftTime } from "$utils";
 
 const List = () => {
   const { isFetching, data } = ordersEndpoints.useGetOrdersQuery();
@@ -14,7 +15,14 @@ const List = () => {
 
   const groupedData = groupBy(
     prop("status"),
-    values(entities).filter(isNotNil),
+    values(entities)
+      .filter(isNotNil)
+      .sort((a, b) => {
+        return (
+          getOrderLeftTime(a.readyTime ?? "00:00:00") -
+          getOrderLeftTime(b.readyTime ?? "00:00:00")
+        );
+      }),
   );
 
   return (

@@ -62,8 +62,6 @@ export const Form: FC = () => {
       ? await saveMenu(payload)
       : await editMenu({ ...payload, id });
 
-    console.log(result);
-
     const resultId = result?.data?.ids[0];
 
     await triggerLinkWithPlace({

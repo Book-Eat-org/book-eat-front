@@ -29,8 +29,6 @@ export const AddItem = () => {
 
   const loading = isNotNil(id) && !isSuccess;
 
-  console.log(loading);
-
   return (
     <Page>
       <Page.Header>
