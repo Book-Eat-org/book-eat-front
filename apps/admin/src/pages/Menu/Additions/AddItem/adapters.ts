@@ -11,7 +11,7 @@ export const outputAdapter = (
   data: IFormValues,
   id?: EntityId,
 ): PickPartial<IAddition, "id" | "isActive"> => {
-  const { categoryId, weight = 0, title = "", price = 0 } = data;
+  const { weight = 0, title = "", price = 0 } = data;
 
-  return { price, weight, title, id, categoryId, isActive: true };
+  return { price, weight, title, id, isActive: true };
 };

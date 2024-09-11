@@ -3,7 +3,7 @@ import { FormProvider, useForm } from "react-hook-form";
 
 import { BackIcon24, Button, Flex, theme, UIGrid } from "@book-eat/ui";
 
-import { Category, Price, Title, Weight } from "./Fields";
+import { Price, Title, Weight } from "./Fields";
 import { IFormValues } from "./models";
 import {
   additionsEndpoints,
@@ -13,7 +13,7 @@ import {
 import { Page } from "$components";
 import { useNavigate, useParams } from "react-router-dom";
 import { inputAdapter, outputAdapter } from "./adapters.ts";
-import { isNil } from "ramda";
+import { isNil, isNotNil } from "ramda";
 import { useSelector } from "react-redux";
 
 const AddItem: FC = () => {
@@ -31,11 +31,18 @@ const AddItem: FC = () => {
 
   categoriesEndpoints.useFetchCategoriesQuery();
   const [saveAddition] = additionsEndpoints.useSaveAdditionMutation();
+  const [editAddition] = additionsEndpoints.useEditAdditionMutation();
+
+  const isExist = isNotNil(id);
 
   const handleSubmit = async (data: IFormValues) => {
     const payload = outputAdapter(data);
 
-    await saveAddition(payload);
+    console.log("handle", id);
+
+    isExist
+      ? await editAddition({ ...payload, id })
+      : await saveAddition(payload);
     navigateBack();
   };
 
@@ -66,7 +73,7 @@ const AddItem: FC = () => {
             <UIGrid colSizes="1fr 2fr" gap="64px">
               <Button onClick={navigateBack}>Отменить</Button>
               <Button onClick={methods.handleSubmit(handleSubmit)}>
-                Создать
+                {isExist ? "Сохранить" : "Создать"}
               </Button>
             </UIGrid>
           </UIGrid>

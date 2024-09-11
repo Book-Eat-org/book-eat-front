@@ -5,7 +5,7 @@ import { UIInput } from "@book-eat/ui";
 
 export const Brand: FC = () => {
   const { field, fieldState } = useController({
-    name: "legalName",
+    name: "title",
     // rules: { required: { value: true, message: "Введите название" } },
   });
   const { onChange, value } = field;
@@ -15,7 +15,7 @@ export const Brand: FC = () => {
     <UIInput
       type="text"
       onChange={onChange}
-      placeholder="Название бренда*"
+      title="Название бренда*"
       value={value}
       error={errorMessage}
     />

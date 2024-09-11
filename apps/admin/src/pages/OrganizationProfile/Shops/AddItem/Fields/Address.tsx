@@ -23,7 +23,7 @@ export const Address: FC<IProps> = (props) => {
     <UIInput
       value={value}
       onClick={onClick}
-      placeholder="Адрес"
+      title="Адрес"
       type="text"
       error={errorMessage}
     />

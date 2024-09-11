@@ -62,23 +62,6 @@ export const Form: FC = () => {
       ? await saveMenu(payload)
       : await editMenu({ ...payload, id });
 
-    const resultId = result?.data?.ids[0];
-
-    await triggerLinkWithPlace({
-      placesIds: data.stock,
-      productId: resultId,
-    });
-
-    await triggerLinkWithCategory({
-      categoriesIds: data.categories,
-      productId: resultId,
-    });
-
-    await triggerLinkWithAddition({
-      additionsIds: data.additionals,
-      productId: resultId,
-    });
-
     navigateBack();
   };
 

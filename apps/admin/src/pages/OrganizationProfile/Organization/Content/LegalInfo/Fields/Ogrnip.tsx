@@ -19,7 +19,7 @@ export const Ogrnip: FC = () => {
   return (
     <UINumberInput
       onChange={onChange}
-      placeholder="ОГРНП/ОГРНИП*"
+      title="ОГРНП/ОГРНИП*"
       value={value}
       error={errorMessage}
       maxLength={15}

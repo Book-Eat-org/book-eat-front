@@ -19,7 +19,7 @@ export const Inn: FC = () => {
     <UINumberInput
       onChange={onChange}
       maxLength={12}
-      placeholder="ИНН*"
+      title="ИНН*"
       value={value}
       error={errorMessage}
     />

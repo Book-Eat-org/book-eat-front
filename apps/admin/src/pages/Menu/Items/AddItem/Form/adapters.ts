@@ -10,13 +10,11 @@ export const inputAdapter = (data: IProduct): IFormValues => {
     ingredients,
     price,
     weight = 0,
-    additions = [],
+    additionsIds = [],
     placesIds = [],
     categoriesIds = [],
     mainImageUrl,
   } = data;
-
-  const additionals = additions?.map(prop("id")) ?? [];
 
   return {
     image: mainImageUrl,
@@ -25,7 +23,7 @@ export const inputAdapter = (data: IProduct): IFormValues => {
     discount,
     ingredients,
     price,
-    additionals,
+    additionals: additionsIds,
     categories: categoriesIds ?? [],
     stock: placesIds ?? [],
     weight,
@@ -49,6 +47,9 @@ export const outputAdapter = (data: IFormValues): IProduct => {
   return {
     title,
     description,
+    categoriesIds: categories,
+    placesIds: stock,
+    additionsIds: additionals,
     mainImageUrl: image!,
     price,
     ingredients,

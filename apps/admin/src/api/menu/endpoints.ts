@@ -19,12 +19,12 @@ export const menuEndpoints = api.injectEndpoints({
       providesTags: [ApiTags.Menu],
     }),
     getMenuById: build.query<EntityState<IProduct>, EntityId>({
-      query: (id) => `/v1/products/${id}`,
+      query: (id) => `/v2/products/${id}`,
       transformResponse: (res: IProduct) =>
         menuAdapter.setOne(menuAdapter.getInitialState(), res),
     }),
     getMenuByOrganization: build.query<EntityState<IProduct>, void>({
-      query: () => `/v1/products/organization`,
+      query: () => `/v2/products/organization`,
       transformResponse: (res: IProduct[]) =>
         menuAdapter.setAll(menuAdapter.getInitialState(), res),
       providesTags: [ApiTags.Menu],
