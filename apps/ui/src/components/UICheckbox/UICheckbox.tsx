@@ -38,10 +38,10 @@ const UICheckbox: FC<IProps> = (props) => {
       <Box
         width={20}
         height={20}
-        background={selected ? theme.colors.accent600 : theme.colors.general500}
+        background={selected ? theme.colors.accent600 : theme.colors.general50}
         borderRadius={5}
         boxShadow="0 4px 4px 0 rgba(0, 0, 0, 0.1) inset"
-        border={`1px solid ${theme.colors.general50}`}
+        border={`1px solid ${theme.colors.general400}`}
       />
       <span className={textClasses}>{children}</span>
     </UIGrid>

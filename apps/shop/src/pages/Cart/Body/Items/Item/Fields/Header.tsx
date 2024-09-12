@@ -2,8 +2,8 @@ import { FC } from "react";
 import { useData } from "../context.ts";
 import { CloseIcon, Flex, Grid, Typography } from "@book-eat/ui";
 import { useDispatch } from "react-redux";
-import { removeFromCart } from "../../../../../store/cart";
 import { Price } from "./Price.tsx";
+import { removeFromCart } from "../../../../../../store/cart";
 
 export const Header: FC = () => {
   const { product, cartItemId } = useData();

@@ -5,6 +5,7 @@ import {
   BackIcon24,
   Button,
   Flex,
+  Grid,
   theme,
   TrashIcon,
   UIGrid,
@@ -96,19 +97,21 @@ const AddItem: FC = () => {
           <Page.Header.Title>Заведения</Page.Header.Title>
         </Page.Header>
         <Page.Body>
-          <UIGrid gap="20px" className={classes.content}>
+          <Grid gap={4} className={classes.content}>
             <Image />
-            <UIGrid gap="15px">
-              <UIGrid gap="15px">
+            <Grid gap={3}>
+              <Grid gap={3}>
                 <Title />
                 <Address onClick={handleAddressClick} />
                 <Phone />
-              </UIGrid>
-            </UIGrid>
+              </Grid>
+            </Grid>
             <Schedule />
             <DeliveryMethod />
             <UIGrid colSizes="1fr 1fr" gap="30px">
-              <Button onClick={navigateBack}>Отменить</Button>
+              <Button onClick={navigateBack} variant="danger">
+                Отменить
+              </Button>
               <Button
                 loading={isLoading}
                 onClick={methods.handleSubmit(handleSubmit)}
@@ -117,7 +120,7 @@ const AddItem: FC = () => {
               </Button>
             </UIGrid>
             {mapOpened && <NewAddress onClose={handleCloseDetailAddress} />}
-          </UIGrid>
+          </Grid>
         </Page.Body>
       </Page>
     </FormProvider>

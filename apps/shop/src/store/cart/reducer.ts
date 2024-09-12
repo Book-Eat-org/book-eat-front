@@ -16,12 +16,25 @@ export const cartReducer = createReducer<ICartState>(
   (builder) => {
     builder.addCase(addToCartNew, (state, { payload }) => {
       const { shopId, additionIds, productId, col = 1 } = payload;
+      if (shopId !== state.shopId) {
+        return {
+          shopId,
+          products: [],
+          items: {
+            [Date.now()]: {
+              additionIds,
+              col,
+              productId,
+            },
+          },
+        };
+      }
       return {
         ...state,
         shopId,
         items: {
           ...state.items,
-          [(Math.random() * 1000).toFixed(10)]: {
+          [Date.now()]: {
             additionIds,
             col,
             productId,

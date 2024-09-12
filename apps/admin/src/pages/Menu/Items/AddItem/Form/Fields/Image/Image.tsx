@@ -1,6 +1,6 @@
 import { useController } from "react-hook-form";
 
-import { UIImageInput } from "@book-eat/ui";
+import { Flex, theme, Typography, UIImageInput } from "@book-eat/ui";
 
 import { IFormValues } from "../../models";
 
@@ -15,6 +15,11 @@ export const Image = () => {
   const errorMessage = fieldState.error?.message;
 
   return (
-    <UIImageInput value={value} onChange={onChange} error={errorMessage} />
+    <Flex gap={5} alignItems="center">
+      <UIImageInput value={value} onChange={onChange} />
+      <Typography color={theme.colors.general600}>
+        Загрузите фото товара, jpg, до 2 МB
+      </Typography>
+    </Flex>
   );
 };

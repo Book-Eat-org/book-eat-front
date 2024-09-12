@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useProduct } from "../hooks.ts";
 
 export const Description = () => {
-  const [descriptionActive, setDescriptionActive] = useState<boolean>(false);
+  const [descriptionActive, setDescriptionActive] = useState<boolean>(true);
 
   const { description, ingredients } = useProduct();
 

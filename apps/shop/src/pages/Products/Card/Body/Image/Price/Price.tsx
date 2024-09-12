@@ -28,10 +28,12 @@ export const Price = () => {
         </Typography>
       )}
       <Typography
-        fontWeight={400}
+        fontWeight={discountActive ? 400 : 600}
         size="14/14"
-        textDecoration={discount ? "line-through" : undefined}
-        color={theme.colors.general400}
+        textDecoration={discountActive ? "line-through" : undefined}
+        color={
+          discountActive ? theme.colors.general400 : theme.colors.general50
+        }
       >
         {price} ₽
       </Typography>

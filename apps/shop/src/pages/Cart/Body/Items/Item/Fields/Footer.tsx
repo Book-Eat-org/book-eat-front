@@ -13,7 +13,7 @@ import {
   decrementCart,
   incrementCart,
   removeFromCart,
-} from "../../../../../store/cart";
+} from "../../../../../../store/cart";
 import { isEmpty, isNil } from "ramda";
 
 export const Footer: FC = () => {

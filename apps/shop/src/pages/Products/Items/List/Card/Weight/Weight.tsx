@@ -16,7 +16,7 @@ const Weight: FC<IProps> = ({ id }) => {
   }
 
   return (
-    <Typography size="12/12" color={theme.colors.general80}>
+    <Typography size="12/12" color={theme.colors.general600}>
       {weight} г
     </Typography>
   );

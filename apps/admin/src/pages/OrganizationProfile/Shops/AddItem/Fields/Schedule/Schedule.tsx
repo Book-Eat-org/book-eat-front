@@ -11,7 +11,9 @@ export const Schedule = () => {
 
   return (
     <UIGrid gap="25px">
-      <Typography>График работы</Typography>
+      <Typography size="24/24" fontWeight={600}>
+        График работы
+      </Typography>
       <Days />
       {differentTimeDaily ? <TimesPerDay /> : <TimesAllDays />}
       <DifferentTimes />

@@ -1,17 +1,14 @@
 import { useNavigate } from "react-router-dom";
-import { BackIcon24, Button, Flex, Grid, Page, theme } from "@book-eat/ui";
-import { Items } from "./Items";
-import { Totals } from "./Totals";
-import { navigateToPage, PageURLS } from "../../constants/urls.ts";
+import { BackIcon24, Flex, Page, theme } from "@book-eat/ui";
 import { useSelector } from "$hooks";
 import { additionsEndpoints, menuEndpoints } from "@book-eat/api";
 import { flatten, isEmpty, values } from "ramda";
 import { useEffect, useMemo } from "react";
+import { Body } from "./Body";
 
 const Cart = () => {
   const navigate = useNavigate();
   const onBackClick = () => navigate(-1);
-  const onSubmit = () => navigate(navigateToPage(PageURLS.ORDERS_CREATE, {}));
   const cart = useSelector((state) => state.cart);
   const additionsIds = useMemo(
     () => flatten(values(cart.items).map((item) => item.additionIds)),
@@ -47,15 +44,7 @@ const Cart = () => {
         <Page.Header.Title>Корзина</Page.Header.Title>
       </Page.Header>
       <Page.Body>
-        <div>
-          <Grid gap={4}>
-            <Grid gap={6}>
-              <Items />
-            </Grid>
-            <Totals />
-            <Button onClick={onSubmit}>Продолжить</Button>
-          </Grid>
-        </div>
+        <Body />
       </Page.Body>
     </Page>
   );

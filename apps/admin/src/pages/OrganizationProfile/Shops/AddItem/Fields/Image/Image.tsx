@@ -1,6 +1,6 @@
 import { useController } from "react-hook-form";
 
-import { Flex, Typography, UIImageInput } from "@book-eat/ui";
+import { Flex, Typography, UIImageInput, theme } from "@book-eat/ui";
 
 import { IFormValues } from "../../models";
 
@@ -12,9 +12,11 @@ export const Image = () => {
   const { onChange, value } = field;
 
   return (
-    <Flex gap={3} alignContent="center">
+    <Flex gap={5} alignItems="center">
       <UIImageInput value={value} onChange={onChange} />
-      <Typography>Загрузите фото заведения в формате Jpg, до 2 MB</Typography>
+      <Typography color={theme.colors.general600}>
+        Загрузите фото заведения в формате Jpg, до 2 MB
+      </Typography>
     </Flex>
   );
 };
