@@ -4,6 +4,7 @@ import {
   ChangeEventHandler,
   ComponentProps,
   FC,
+  useId,
   useState,
 } from "react";
 
@@ -21,6 +22,7 @@ interface IProps extends Omit<ComponentProps<"input">, "value" | "onChange"> {
 }
 
 const UIImageInput: FC<IProps> = (props) => {
+  const id = useId();
   const { value, onChange, title, ...restProps } = props;
 
   const [selected, setSelected] = useState<File | undefined>();
@@ -69,7 +71,7 @@ const UIImageInput: FC<IProps> = (props) => {
 
   return (
     <Grid gap={1} justifyItems="center">
-      <label className={classes.label} htmlFor="file-input">
+      <label className={classes.label} htmlFor={id}>
         {isNil(value) ? (
           <Add />
         ) : (
@@ -77,7 +79,7 @@ const UIImageInput: FC<IProps> = (props) => {
         )}
       </label>
       <input
-        id="file-input"
+        id={id}
         type="file"
         accept=".jpg, .jpeg"
         onChange={handleChange}

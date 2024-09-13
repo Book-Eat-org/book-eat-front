@@ -15,10 +15,11 @@ import { getCurrentOrganizationSelector } from "../../../../store/entities";
 
 const Content: FC = () => {
   const data = useSelector(getCurrentOrganizationSelector);
-  console.dir(data);
   const [saveOrganization] = organizationsEndpoints.useUpdateOrgMutation();
 
   const navigate = useNavigate();
+
+  console.log(data);
 
   const defaultValues: IFormValues = inputAdapter(data);
 

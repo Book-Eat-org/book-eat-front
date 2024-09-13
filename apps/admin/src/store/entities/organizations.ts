@@ -32,7 +32,7 @@ export const organizationsSlice = createSlice({
     builder.addMatcher(
       organizationsEndpoints.endpoints.getCurrentOrganisation.matchFulfilled,
       (state, { payload }) => {
-        return organizationsAdapter.addMany(state, payload.entities);
+        return organizationsAdapter.setMany(state, payload.entities);
       },
     );
   },

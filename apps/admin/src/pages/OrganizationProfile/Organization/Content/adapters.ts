@@ -5,8 +5,6 @@ import { EntityId } from "@reduxjs/toolkit";
 export const inputAdapter = (input: IOrganization): IFormValues => {
   const { title, logoUrl, legalInfo, imageUrl } = input ?? {};
 
-  console.log(legalInfo);
-
   return {
     title,
     image: logoUrl,

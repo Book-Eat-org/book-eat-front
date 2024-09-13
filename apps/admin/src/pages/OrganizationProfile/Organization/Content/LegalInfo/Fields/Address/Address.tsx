@@ -38,8 +38,8 @@ const Address: FC = () => {
       <UIInput
         value={value}
         onClick={handleAddressClick}
-        title="Фактический адрес*"
-        placeholder="Фактический адрес"
+        title="Юридический адрес*"
+        placeholder="Юридический адрес"
         type="text"
         error={errorMessage}
       />
