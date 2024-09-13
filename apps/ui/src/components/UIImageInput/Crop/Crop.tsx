@@ -66,11 +66,11 @@ const Crop: FC<IProps> = (props) => {
       <div className={classes.content}>
         <Cropper
           src={url}
-          aspectRatio={1}
           guides={false}
-          viewMode={3}
+          viewMode={2}
           ref={cropperRef}
-          height={size.height - 400}
+          responsive
+          height={size.height / 2}
         />
         <UIGrid colSizes="1fr 1fr" gap="20px">
           <UIButton variant="secondary" onClick={onCancel}>
