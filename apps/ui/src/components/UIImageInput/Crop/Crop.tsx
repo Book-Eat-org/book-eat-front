@@ -67,6 +67,7 @@ const Crop: FC<IProps> = (props) => {
         <Cropper
           src={url}
           guides={false}
+          aspectRatio={1}
           viewMode={2}
           ref={cropperRef}
           responsive

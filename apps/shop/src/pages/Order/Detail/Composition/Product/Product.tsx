@@ -17,7 +17,7 @@ export const Product: FC<IProps> = (props) => {
       <Flex justifyContent="space-between" alignItems="center">
         <Flex gap={3} alignItems="center">
           <Flex
-            background={theme.colors.accent600}
+            background={theme.colors.accent500}
             padding={1}
             borderRadius={5}
             alignItems="center"
@@ -25,7 +25,7 @@ export const Product: FC<IProps> = (props) => {
             <Typography
               fontWeight={600}
               size="12/12"
-              color={theme.colors.general500}
+              color={theme.colors.general50}
             >
               {product.amount}
             </Typography>
@@ -38,7 +38,7 @@ export const Product: FC<IProps> = (props) => {
           {product?.price} р
         </Typography>
       </Flex>
-      <Additions />
+      <Additions productId={product.id} />
     </Grid>
   );
 };

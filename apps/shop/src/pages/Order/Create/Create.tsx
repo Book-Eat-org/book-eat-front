@@ -12,6 +12,7 @@ import {
 } from "@book-eat/api";
 import { useSelector } from "$hooks";
 import { values } from "ramda";
+import { navigateToPage, PageURLS } from "../../../constants/urls.ts";
 
 export const Create = () => {
   const navigate = useNavigate();
@@ -77,7 +78,11 @@ export const Create = () => {
 
     const result = await triggerCreateOrder(payload);
     if (result.data) {
-      window.location.replace(result.data.paymentUrl);
+      const url = navigateToPage(PageURLS.ORDERS_DETAIL, {
+        id: result.data.id,
+      });
+
+      navigate(`${url}?paymentUrl=${result.data.paymentUrl}`);
     }
   };
 

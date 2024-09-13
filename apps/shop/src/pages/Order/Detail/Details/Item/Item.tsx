@@ -15,7 +15,7 @@ export const Item: FC<IProps> = (props) => {
       <Typography size="12/12" fontWeight={600}>
         {title}
       </Typography>
-      <Typography size="14/14" color={theme.colors.general80}>
+      <Typography size="14/14" color={theme.colors.general600}>
         {children}
       </Typography>
     </Grid>

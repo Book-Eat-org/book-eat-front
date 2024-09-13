@@ -1,29 +1,29 @@
 import { useOrder } from "./useOrder.ts";
-import { Button } from "@book-eat/ui";
+import { Button, Flex } from "@book-eat/ui";
 import { useSearchParams } from "react-router-dom";
 import { OrderStatus, ordersEndpoints } from "@book-eat/api";
+import { isNotNil } from "ramda";
 
 export const Submit = () => {
-  const { paymentUrl, id } = useOrder();
+  const { id } = useOrder();
   const [searchParams] = useSearchParams();
   const status = searchParams.get("status");
+  const paymentUrl = searchParams.get("paymentUrl");
   const [updateStatus] = ordersEndpoints.useUpdateOrderStatusMutation();
 
-  if (status === "paid") {
-    const onClick = () =>
-      updateStatus({ id, statusVal: OrderStatus.CANCELLED_BY_CLIENT });
-    return (
-      <Button variant="danger" onClick={onClick}>
-        Отменить заказ
-      </Button>
-    );
-  }
-
-  if (!paymentUrl) {
-    return null;
-  }
+  const onCancel = () =>
+    updateStatus({ id, statusVal: OrderStatus.CANCELLED_BY_CLIENT });
 
   const onClick = () => window.open(paymentUrl, "_blank");
 
-  return <Button onClick={onClick}>Оплатить</Button>;
+  const paymentButtonAvailable = status === "paid" && isNotNil(paymentUrl);
+
+  return (
+    <Flex>
+      <Button variant="danger" onClick={onCancel}>
+        Отменить заказ
+      </Button>
+      {paymentButtonAvailable && <Button onClick={onClick}>Оплатить</Button>}
+    </Flex>
+  );
 };

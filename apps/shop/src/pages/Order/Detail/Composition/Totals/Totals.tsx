@@ -10,19 +10,21 @@ export const Totals = () => {
     getTotalProductsPrices(products);
   return (
     <Grid gap={2}>
+      {Boolean(additionsSum) && (
+        <Flex justifyContent="space-between" alignItems="center">
+          <Typography color={theme.colors.general600}>
+            Стоимость добавок:
+          </Typography>
+          <Typography color={theme.colors.general600}>
+            {additionsSum} {SYMBOLS.RUB}
+          </Typography>
+        </Flex>
+      )}
       <Flex justifyContent="space-between" alignItems="center">
-        <Typography color={theme.colors.general80}>
-          Стоимость добавок:
-        </Typography>
-        <Typography color={theme.colors.general80}>
-          {additionsSum} {SYMBOLS.RUB}
-        </Typography>
-      </Flex>
-      <Flex justifyContent="space-between" alignItems="center">
-        <Typography color={theme.colors.general80}>
+        <Typography color={theme.colors.general600}>
           Стоимость товаров:
         </Typography>
-        <Typography color={theme.colors.general80}>
+        <Typography color={theme.colors.general600}>
           {productsSum} {SYMBOLS.RUB}
         </Typography>
       </Flex>
