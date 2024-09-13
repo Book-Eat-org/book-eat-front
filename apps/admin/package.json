@@ -7,6 +7,7 @@
     "dev": "vite",
     "tsc": "tsc",
     "build": "vite build",
+    "postbuild": "shx cp -r ./pwa/* ./dist/",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
@@ -42,6 +43,7 @@
     "@types/ramda": "~0.29.8",
     "@types/uuid": "~9.0.7",
     "vite-plugin-mkcert": "~1.17.5",
-    "@vitejs/plugin-basic-ssl": "~1.1.0"
+    "@vitejs/plugin-basic-ssl": "~1.1.0",
+    "shx": "~0.3.4"
   }
 }

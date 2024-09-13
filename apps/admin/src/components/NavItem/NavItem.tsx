@@ -1,11 +1,5 @@
 import { FC, ReactNode } from "react";
-import {
-  ArrowRightIcon24,
-  Grid,
-  theme,
-  TrashIcon,
-  Typography,
-} from "@book-eat/ui";
+import { ArrowRightIcon24, Grid, theme, Typography } from "@book-eat/ui";
 
 interface IProps {
   children: ReactNode;

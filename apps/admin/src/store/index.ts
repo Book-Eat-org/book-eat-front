@@ -16,6 +16,7 @@ import {
 } from "./entities";
 
 export { setAuthorizedAction, authorizedSelector } from "./authorized";
+export * from "./entities";
 
 const rootReducer = combineReducers({
   [cashiersEndpoints.reducerPath]: cashiersEndpoints.reducer,

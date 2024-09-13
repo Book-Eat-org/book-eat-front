@@ -191,6 +191,10 @@
       "allowedCategories": [ "production" ]
     },
     {
+      "name": "shx",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "storybook",
       "allowedCategories": [ "tools" ]
     },

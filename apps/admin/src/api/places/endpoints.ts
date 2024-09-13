@@ -3,6 +3,7 @@ import { EntityId, EntityState } from "@reduxjs/toolkit";
 import { ApiTags } from "$enums";
 import { placesAdapter } from "./adapter.ts";
 import { IPlace } from "@book-eat/api";
+import { TFetchResponse } from "../models.ts";
 
 export const placesEndpoints = api.injectEndpoints({
   endpoints: (build) => ({
@@ -22,7 +23,7 @@ export const placesEndpoints = api.injectEndpoints({
       transformResponse: (res: IPlace[]) =>
         placesAdapter.setAll(placesAdapter.getInitialState(), res),
     }),
-    savePlace: build.mutation<{ success: boolean }, IPlace>({
+    savePlace: build.mutation<TFetchResponse, IPlace>({
       query: (place) => ({
         url: "/v1/places",
         method: "POST",
@@ -30,7 +31,7 @@ export const placesEndpoints = api.injectEndpoints({
       }),
       invalidatesTags: [ApiTags.Places],
     }),
-    editPlace: build.mutation<{ success: boolean }, IPlace>({
+    editPlace: build.mutation<TFetchResponse, IPlace>({
       query: (place) => ({
         url: `/v1/places/${place.id}`,
         method: "PUT",
@@ -38,7 +39,7 @@ export const placesEndpoints = api.injectEndpoints({
       }),
       invalidatesTags: [ApiTags.Places],
     }),
-    deletePlace: build.mutation<{ success: boolean }, EntityId>({
+    deletePlace: build.mutation<TFetchResponse, EntityId>({
       query: (placeId) => ({
         url: `/v1/places/${placeId}`,
         method: "DELETE",

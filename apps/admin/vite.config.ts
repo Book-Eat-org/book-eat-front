@@ -24,6 +24,7 @@ export default defineConfig({
       $enums: resolve(__dirname, "./src/enums"),
       $utils: resolve(__dirname, "./src/utils"),
       $components: resolve(__dirname, "./src/components"),
+      $store: resolve(__dirname, "./src/store"),
     },
   },
   plugins: [mkcert(), react()],

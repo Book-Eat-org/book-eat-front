@@ -1,6 +1,5 @@
 import { IProduct } from "@book-eat/api";
 import { IFormValues } from "./models.ts";
-import { prop } from "ramda";
 
 export const inputAdapter = (data: IProduct): IFormValues => {
   const {

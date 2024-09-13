@@ -20,10 +20,14 @@ export const Submit = () => {
 
   return (
     <Flex>
-      <Button variant="danger" onClick={onCancel}>
+      <Button variant="danger" onClick={onCancel} width="100%">
         Отменить заказ
       </Button>
-      {paymentButtonAvailable && <Button onClick={onClick}>Оплатить</Button>}
+      {paymentButtonAvailable && (
+        <Button onClick={onClick} width="100%">
+          Оплатить
+        </Button>
+      )}
     </Flex>
   );
 };

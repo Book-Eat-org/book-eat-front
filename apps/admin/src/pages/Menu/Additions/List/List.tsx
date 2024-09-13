@@ -1,4 +1,4 @@
-import { isNil, sortBy } from "ramda";
+import { isNil } from "ramda";
 import { useCallback } from "react";
 
 import Item from "./Item";
@@ -8,7 +8,7 @@ import { additionsEndpoints } from "$api";
 import { useSelector } from "react-redux";
 import { Page } from "$components";
 import { navigateToPage, PageURLS } from "$constants";
-import { additionsSelectors } from "../../../../store/entities";
+import { additionsSelectors } from "$store";
 
 export const List = () => {
   const navigate = useNavigate();

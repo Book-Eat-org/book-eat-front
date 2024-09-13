@@ -47,7 +47,6 @@ specifiers:
   storybook: ^7.5.3
   styled-system: ~5.1.5
   typescript: ^5.0.2
-  uuid: ~9.0.1
   vite: ^4.4.5
   yandex-maps: ~0.0.1
   ymaps: ~0.2.1
@@ -99,7 +98,6 @@ dependencies:
   storybook: 7.5.3
   styled-system: 5.1.5
   typescript: 5.0.2
-  uuid: 9.0.1
   vite: 4.4.5
   yandex-maps: 0.0.1
   ymaps: 0.2.1
@@ -6405,6 +6403,7 @@ packages:
 
   /glob/7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
+    deprecated: Glob versions prior to v9 are no longer supported
     dependencies:
       fs.realpath: 1.0.0
       inflight: 1.0.6
@@ -6637,6 +6636,7 @@ packages:
 
   /inflight/1.0.6:
     resolution: {integrity: sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA==}
+    deprecated: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
     dependencies:
       once: 1.4.0
       wrappy: 1.0.2
@@ -6653,6 +6653,11 @@ packages:
       get-intrinsic: 1.2.2
       hasown: 2.0.0
       side-channel: 1.0.4
+    dev: false
+
+  /interpret/1.4.0:
+    resolution: {integrity: sha512-agE4QfB2Lkp9uICn7BAqoscw4SZP9kTE2hxiFI3jBPmXJfdqiahTbUuKGsMoN2GtqL9AxhYioAcVvgsb1HvRbA==}
+    engines: {node: '>= 0.10'}
     dev: false
 
   /invariant/2.2.4:
@@ -8294,6 +8299,13 @@ packages:
       tslib: 2.6.2
     dev: false
 
+  /rechoir/0.6.2:
+    resolution: {integrity: sha512-HFM8rkZ+i3zrV+4LQjwQ0W+ez98pApMGM3HUrN04j3CqzPOzl9nmP15Y8YXNm8QHGv/eacOVEjqhmWpkRV0NAw==}
+    engines: {node: '>= 0.10'}
+    dependencies:
+      resolve: 1.22.8
+    dev: false
+
   /redux-thunk/2.4.2_redux@4.2.1:
     resolution: {integrity: sha512-+P3TjtnP0k/FEjcBL5FZpoovtvrTNT/UXd4/sluaSyrURlSlhLSzEdfsTBW7WsKB6yPvgd7q/iZPICFjW4o57Q==}
     peerDependencies:
@@ -8579,6 +8591,25 @@ packages:
   /shebang-regex/3.0.0:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
+    dev: false
+
+  /shelljs/0.8.5:
+    resolution: {integrity: sha512-TiwcRcrkhHvbrZbnRcFYMLl30Dfov3HKqzp5tO5b4pt6G/SezKcYhmDg15zXVBswHmctSAQKznqNW2LO5tTDow==}
+    engines: {node: '>=4'}
+    hasBin: true
+    dependencies:
+      glob: 7.2.3
+      interpret: 1.4.0
+      rechoir: 0.6.2
+    dev: false
+
+  /shx/0.3.4:
+    resolution: {integrity: sha512-N6A9MLVqjxZYcVn8hLmtneQWIJtp8IKzMP4eMnx+nqkvXoqinUPCbUFLp2UcWTEIUONhlk0ewxr/jaVGlc+J+g==}
+    engines: {node: '>=6'}
+    hasBin: true
+    dependencies:
+      minimist: 1.2.8
+      shelljs: 0.8.5
     dev: false
 
   /side-channel/1.0.4:
@@ -9577,7 +9608,7 @@ packages:
     dev: false
 
   file:projects/admin.tgz:
-    resolution: {integrity: sha512-U9RLRArURpeI6/xcwsdnds6IRKpk7PSwrOg+i8pLCwi386Ru7fX476/ihlYSl19q4dkuMplaWSE8Y8OvYY7S9w==, tarball: file:projects/admin.tgz}
+    resolution: {integrity: sha512-+i/GWpEygzNVxMqeS1jnqKE4L1rioVBDNEuuU8qxnkgsce7RaSmHC0eJoi/i0PYSxpeB3WGiwcBRQYLQsDUkog==, tarball: file:projects/admin.tgz}
     name: '@rush-temp/admin'
     version: 0.0.0
     dependencies:
@@ -9604,6 +9635,7 @@ packages:
       react-hook-form: 7.48.2_react@18.2.0
       react-redux: 8.1.3_uas4yajzsllemiyrexr66mus4q
       react-router-dom: 6.18.0_biqbaboplfbrettd7655fr4n2y
+      shx: 0.3.4
       typescript: 5.3.3
       uuid: 9.0.1
       vite: 4.4.5
@@ -9653,7 +9685,7 @@ packages:
     dev: false
 
   file:projects/shop.tgz:
-    resolution: {integrity: sha512-dW6jiBjojrByBYz7ZnCH6TXzkCN0TXMN10R4cH3bh/SkOLZ+Qqk8IoPtO94tPX7Dncdtra7B8mDpj8nR0x+aRA==, tarball: file:projects/shop.tgz}
+    resolution: {integrity: sha512-pZso+4yjWTb4KKxRhNsVSRJx+robyJE41tTzkmtQkKnBbTGJ572bbyGsWEpWppWLnS42+RCX9B33ImqspdRIeg==, tarball: file:projects/shop.tgz}
     name: '@rush-temp/shop'
     version: 0.0.0
     dependencies:
@@ -9834,7 +9866,6 @@ time:
   /storybook/7.5.3: '2023-11-06T15:26:49.203Z'
   /styled-system/5.1.5: '2020-02-17T20:32:50.368Z'
   /typescript/5.0.2: '2023-03-16T16:41:18.461Z'
-  /uuid/9.0.1: '2023-09-12T08:56:35.205Z'
   /vite/4.4.5: '2023-07-20T14:30:40.377Z'
   /yandex-maps/0.0.1: '2023-03-14T09:09:17.419Z'
   /ymaps/0.2.1: '2019-06-20T14:15:10.628Z'

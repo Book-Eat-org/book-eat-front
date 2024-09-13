@@ -4,7 +4,6 @@ import { useController } from "react-hook-form";
 import { IFormValues } from "../models";
 import { UIOption, UISelect } from "@book-eat/ui";
 import {
-  currentOrganizationSelector,
   organizationsEndpoints,
   placesByOrganizationSelectorsFactory,
   placesEndpoints,
@@ -12,7 +11,7 @@ import {
 import { EntityId } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 import { isNil } from "ramda";
-import { getCurrentOrganizationSelector } from "../../../../store/entities";
+import { getCurrentOrganizationSelector } from "$store";
 
 const OptionItem: FC<{ id: EntityId }> = ({ id }) => {
   const { data: organizaitionsData } =

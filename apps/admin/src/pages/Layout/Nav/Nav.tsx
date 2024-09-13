@@ -3,13 +3,7 @@ import { FC } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import classes from "./Nav.module.css";
-import {
-  ConnectIcon24,
-  Grid,
-  HomeIcon24,
-  MenuIcon24,
-  OrdersIcon24,
-} from "@book-eat/ui";
+import { Grid, HomeIcon24, MenuIcon24, OrdersIcon24 } from "@book-eat/ui";
 import { PAGES, PageURLS } from "$constants";
 
 const items = [

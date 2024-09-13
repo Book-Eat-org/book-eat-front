@@ -28,7 +28,7 @@ import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { isNil } from "ramda";
 import { inputAdapter, outputAdapter } from "./adapters.ts";
-import { getCurrentOrganizationSelector } from "../../../../../store/entities";
+import { getCurrentOrganizationSelector } from "$store";
 
 export const Form: FC = () => {
   const { id } = useParams();
@@ -42,9 +42,6 @@ export const Form: FC = () => {
   categoriesEndpoints.useFetchCategoriesQuery();
   additionsEndpoints.useFetchAdditionsQuery();
   placesEndpoints.useFetchPlacesByOrganizationQuery(organization.id);
-  const [triggerLinkWithCategory] = menuEndpoints.useLinkWithCategoryMutation();
-  const [triggerLinkWithPlace] = menuEndpoints.useLinkWithPlaceMutation();
-  const [triggerLinkWithAddition] = menuEndpoints.useLinkWithAdditionMutation();
 
   const methods = useForm<IFormValues>({
     defaultValues: isNil(item) ? undefined : inputAdapter(item),
@@ -58,9 +55,7 @@ export const Form: FC = () => {
   const handleSubmit = async (data: IFormValues) => {
     const payload = outputAdapter(data);
 
-    const result = isNil(id)
-      ? await saveMenu(payload)
-      : await editMenu({ ...payload, id });
+    isNil(id) ? await saveMenu(payload) : await editMenu({ ...payload, id });
 
     navigateBack();
   };

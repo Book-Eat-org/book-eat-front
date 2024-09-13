@@ -5,7 +5,7 @@ import { Details } from "./Details";
 import { ordersEndpoints, menuEndpoints } from "@book-eat/api";
 import { useEffect } from "react";
 import { isNil, values } from "ramda";
-import { Submit } from "./Submit.tsx";
+import { Submit } from "./Submit";
 
 export const Detail = () => {
   const { id: orderId } = useParams();

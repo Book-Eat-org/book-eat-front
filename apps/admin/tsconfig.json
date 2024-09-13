@@ -20,7 +20,8 @@
       "$models": ["./src/models"],
       "$api": ["./src/api"],
       "$enums": ["./src/enums"],
-      "$utils": ["./src/utils"]
+      "$utils": ["./src/utils"],
+      "$store": ["./src/store"]
     },
 
     /* Linting */

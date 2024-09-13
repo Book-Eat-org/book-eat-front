@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import { useController } from "react-hook-form";
 
-import { AddressForm, LeftArrowIcon, UIIconButton } from "@book-eat/ui";
+import { AddressForm } from "@book-eat/ui";
 import { IFormValues } from "../../models";
 
 import classes from "./NewAddress.module.css";

@@ -1,7 +1,7 @@
 import { IFormValues } from "./models";
 import { DayOfWeek, IOrganization, IPlace, PickPartial } from "@book-eat/api";
 import { EntityId } from "@reduxjs/toolkit";
-import { equals, evolve, join, pipe, split, take, values } from "ramda";
+import { evolve, join, pipe, split, take, values } from "ramda";
 
 const prepareTime = pipe(split(":"), take(2), join(":"));
 
