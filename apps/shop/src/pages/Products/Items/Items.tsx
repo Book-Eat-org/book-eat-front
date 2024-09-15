@@ -41,7 +41,7 @@ export const Items: FC = () => {
           <PageHeader />
         </Page.Header>
         <Page.Body>
-          <Grid>
+          <Grid paddingBottom={5}>
             <Header />
             <List />
             <Footer />

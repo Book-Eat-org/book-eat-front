@@ -26,9 +26,9 @@ const List = () => {
   );
 
   return (
-    <Grid gap={3}>
+    <Grid gap={9}>
       {keys(groupedData).map((key) => (
-        <Grid gap={3} key={key}>
+        <Grid gap={6} key={key}>
           <Typography size="24/24" fontWeight={600}>
             {ORDER_STATUSES_TITLES_CONFIG[key]}
           </Typography>

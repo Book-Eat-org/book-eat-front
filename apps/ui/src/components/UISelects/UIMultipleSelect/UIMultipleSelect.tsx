@@ -13,6 +13,7 @@ import { Typography } from "$components";
 interface IProps {
   title?: string;
   values: string[];
+  displayValue?: string;
   defaultOpened?: boolean;
   placeholder?: string;
   onChange: (value: string) => void;
@@ -30,6 +31,7 @@ const UIMultipleSelect: FC<IProps> = (props) => {
     defaultOpened = false,
     children,
     error,
+    displayValue,
   } = props;
   const [opened, setOpened] = useState(defaultOpened);
 
@@ -58,7 +60,7 @@ const UIMultipleSelect: FC<IProps> = (props) => {
           >
             {prefix && prefix}
             <UITypography variant="textMd">
-              {title ?? props.placeholder}
+              {displayValue ?? title ?? props.placeholder}
             </UITypography>
             <DownArrowIcon />
           </UIGrid>

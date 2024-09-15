@@ -2,13 +2,14 @@ import { useSelector } from "react-redux";
 import { Box, Button } from "@book-eat/ui";
 import { useNavigate } from "react-router-dom";
 import { cartSelector } from "../../../../store/cart";
-import { navigateToPage, PageURLS } from "../../../../constants/urls.ts";
+import { navigateToPage, PageURLS } from "$constants";
+import { isEmpty } from "ramda";
 
 const Footer = () => {
   const navigate = useNavigate();
   const cartItems = useSelector(cartSelector);
 
-  if (cartItems.products.length === 0) {
+  if (isEmpty(cartItems.items)) {
     return null;
   }
 

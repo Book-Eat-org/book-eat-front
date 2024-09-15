@@ -1,11 +1,16 @@
-import { symmetricDifference, values } from "ramda";
+import { innerJoin, isNotNil, prop, symmetricDifference, values } from "ramda";
 import { FC } from "react";
 import { useController } from "react-hook-form";
 
-import { UIMultipleSelect, UIMultipleSelectOption } from "@book-eat/ui";
+import {
+  Flex,
+  Grid,
+  Typography,
+  UIMultipleSelect,
+  UIMultipleSelectOption,
+} from "@book-eat/ui";
 
 import { IFormValues } from "../../models";
-import classes from "./Stock.module.css";
 import { organizationsEndpoints, placesEndpoints } from "$api";
 
 export const Stock: FC = () => {
@@ -21,17 +26,21 @@ export const Stock: FC = () => {
   const { data: productsData } =
     placesEndpoints.useFetchPlacesByOrganizationQuery(data.ids[0]);
 
-  const places = values(productsData?.entities ?? {});
+  const places = values(productsData?.entities ?? {}).filter(isNotNil);
+
+  const selectedPlaces = innerJoin((shop, id) => id === shop.id, places, value);
+  const title = selectedPlaces.map(prop("title")).join(" ,");
 
   const handleChange = (item: string) =>
     onChange(symmetricDifference(value, [item]));
 
   return (
-    <div className={classes.wrapper}>
+    <Grid gap={1}>
       <UIMultipleSelect
         values={value}
         onChange={handleChange}
-        placeholder="Наличие на точках"
+        title="Продается тут"
+        displayValue={title}
         error={errorMessage}
       >
         {places?.map(({ title, id }) => (
@@ -40,8 +49,7 @@ export const Stock: FC = () => {
           </UIMultipleSelectOption>
         ))}
       </UIMultipleSelect>
-      <span className={classes.description}>Выбрано: {value.length}</span>
-    </div>
+    </Grid>
   );
 };
 

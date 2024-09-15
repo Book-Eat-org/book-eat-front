@@ -4,7 +4,7 @@ import { useController } from "react-hook-form";
 import { UIMultipleSelect, UIMultipleSelectOption } from "@book-eat/ui";
 
 import { IFormValues } from "../models";
-import { symmetricDifference } from "ramda";
+import { innerJoin, prop, symmetricDifference } from "ramda";
 import { categoriesSelectors } from "$api";
 import { useSelector } from "react-redux";
 
@@ -20,11 +20,19 @@ export const Categories: FC = () => {
   const handleChange = (item: string) =>
     onChange(symmetricDifference(value, [item]));
 
+  const selectedCategories = innerJoin(
+    (category, id) => id === category.id,
+    data,
+    value,
+  );
+  const title = selectedCategories.map(prop("title")).join(", ");
+
   return (
     <UIMultipleSelect
       values={value}
       onChange={handleChange}
       placeholder="Категории"
+      displayValue={title}
       error={errorMessage}
     >
       {data?.map((item) => (

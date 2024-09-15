@@ -1,4 +1,4 @@
-import { symmetricDifference } from "ramda";
+import { innerJoin, prop, symmetricDifference } from "ramda";
 import { FC } from "react";
 import { useController } from "react-hook-form";
 
@@ -20,21 +20,26 @@ export const Additionals: FC = () => {
   const handleChange = (item: string) =>
     onChange(symmetricDifference(value, [item]));
 
+  const selectedAdditions = innerJoin(
+    (addition, id) => id === addition.id,
+    data,
+    value,
+  );
+  const title = selectedAdditions.map(prop("title")).join(", ");
+
   return (
-    <div className={classes.wrapper}>
-      <UIMultipleSelect
-        values={value}
-        onChange={handleChange}
-        placeholder="Наличие добавок"
-      >
-        {data?.map(({ title, id }) => (
-          <UIMultipleSelectOption key={id} value={id}>
-            {title}
-          </UIMultipleSelectOption>
-        ))}
-      </UIMultipleSelect>
-      <span className={classes.description}>Выбрано: {value.length}</span>
-    </div>
+    <UIMultipleSelect
+      values={value}
+      onChange={handleChange}
+      displayValue={title}
+      placeholder="Наличие добавок"
+    >
+      {data?.map(({ title, id }) => (
+        <UIMultipleSelectOption key={id} value={id}>
+          {title}
+        </UIMultipleSelectOption>
+      ))}
+    </UIMultipleSelect>
   );
 };
 

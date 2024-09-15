@@ -48,6 +48,7 @@ export const Body: FC = () => {
 
   const incrementCol = () => setCol(inc);
   const decrementCol = () => setCol(dec);
+
   const additionsSum =
     additionsIds.reduce(
       (acc: number, curr) =>
