@@ -37,7 +37,7 @@ export const DeliveryType: FC = () => {
     if (isNotNil(first)) {
       onChange(first);
     }
-  }, [...filteredKeys]);
+  }, [filteredKeys]);
 
   if (isNil(shop)) {
     return null;
