@@ -1,6 +1,5 @@
 import { FC, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { createMenuSelectorsById } from "@book-eat/api";
 import { useSelector } from "$hooks";
 import {
   Grid,

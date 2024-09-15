@@ -1,5 +1,5 @@
 import { BackIcon24, Flex, Page, theme } from "@book-eat/ui";
-import { menuEndpoints } from "@book-eat/api/src";
+import { menuEndpoints } from "@book-eat/api";
 import { useNavigate, useParams } from "react-router-dom";
 import { Body } from "./Body";
 

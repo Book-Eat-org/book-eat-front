@@ -9,6 +9,7 @@ import {
   IOrder,
   menuEndpoints,
   ordersEndpoints,
+  placesEndpoints,
 } from "@book-eat/api";
 import { useSelector } from "$hooks";
 import { values } from "ramda";
@@ -21,6 +22,7 @@ export const Create = () => {
   const { data: menuData, isSuccess } = menuEndpoints.useGetMenuByPlaceIdQuery(
     cartState.shopId,
   );
+  placesEndpoints.useFetchPlacesQuery();
 
   const methods = useForm<IFormValues>({
     defaultValues: { personsCount: 1, deliveryType: DeliveryTypeName.DELIVERY },

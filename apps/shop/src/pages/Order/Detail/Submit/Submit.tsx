@@ -7,7 +7,6 @@ import { useOrder } from "../useOrder.ts";
 export const Submit = () => {
   const { id } = useOrder();
   const [searchParams] = useSearchParams();
-  const status = searchParams.get("status");
   const paymentUrl = searchParams.get("paymentUrl");
   const [updateStatus] = ordersEndpoints.useUpdateOrderStatusMutation();
 
@@ -16,7 +15,7 @@ export const Submit = () => {
 
   const onClick = () => window.open(paymentUrl, "_blank");
 
-  const paymentButtonAvailable = status === "paid" && isNotNil(paymentUrl);
+  const paymentButtonAvailable = isNotNil(paymentUrl);
 
   return (
     <Flex>

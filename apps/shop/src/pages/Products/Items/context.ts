@@ -1,7 +1,7 @@
 import { createContext, useContext } from "react";
 import { EntityId } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
-import { createMenuSelectorsByPlaceId, menuSelectors } from "@book-eat/api";
+import { createMenuSelectorsByPlaceId } from "@book-eat/api";
 import { useParams } from "react-router-dom";
 
 export interface IContextState {

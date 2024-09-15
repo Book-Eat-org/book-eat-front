@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 
 const List = () => {
   const { id } = useParams();
-  const { data, isFetching } = menuEndpoints.useGetMenuByPlaceIdQuery(id);
+  const { data, isFetching } = menuEndpoints.useGetMenuByPlaceIdQuery(id!);
   const { searchValue } = useOrganizationsContext();
 
   if (isFetching || !data) {
