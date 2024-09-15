@@ -13,6 +13,7 @@ import {
   organizationsSlice,
   placesSlices,
   productsSlice,
+  ordersSlice,
 } from "./entities";
 
 export { setAuthorizedAction, authorizedSelector } from "./authorized";
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
   products: productsSlice.reducer,
   organizations: organizationsSlice.reducer,
   places: placesSlices.reducer,
+  orders: ordersSlice.reducer,
 });
 export type IRootState = ReturnType<typeof rootReducer>;
 export const store = configureStore({

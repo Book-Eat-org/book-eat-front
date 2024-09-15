@@ -2,17 +2,11 @@ import { Box, Grid, Typography } from "@book-eat/ui";
 import { Product } from "./Product";
 import { colors } from "@book-eat/ui";
 import { Totals } from "./Totals";
-import { useParams } from "react-router-dom";
-import { ordersSelectors } from "$api";
-import { useSelector } from "react-redux";
 import { isNil } from "ramda";
+import { useOrder } from "../useOrder.ts";
 
 export const Composition = () => {
-  const { id: orderId } = useParams();
-
-  const order = useSelector((state) =>
-    ordersSelectors.selectById(state, orderId),
-  )!;
+  const order = useOrder();
 
   if (isNil(order)) {
     return null;
