@@ -19,7 +19,7 @@ export interface IOrder {
     comment: string;
     personsCount: number;
     totalCost: number;
-    readyTime: string;
+    readyTime?: string;
     createdAt: string;
     customerInfo: {
         customerName: string;

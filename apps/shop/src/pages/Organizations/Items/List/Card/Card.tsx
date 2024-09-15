@@ -53,7 +53,6 @@ const Card: FC<IProps> = (props) => {
             "https://archive.org/download/placeholder-image/placeholder-image.jpg"
           }
           alt=""
-          style={{ height: 194, width: "100%" }}
           className={classes.image}
         />
         <Grid padding="5px 10px" gap={1}>

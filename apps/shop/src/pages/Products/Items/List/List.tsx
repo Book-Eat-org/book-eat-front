@@ -1,8 +1,9 @@
 import { Flex, Grid, Skeleton } from "@book-eat/ui";
 import Card from "./Card";
 import { useOrganizationsContext } from "../context.ts";
-import { menuEndpoints } from "@book-eat/api";
+import { IProduct, menuEndpoints } from "@book-eat/api";
 import { useParams } from "react-router-dom";
+import { prop } from "ramda";
 
 const List = () => {
   const { id } = useParams();
@@ -18,7 +19,11 @@ const List = () => {
     );
   }
 
-  const filteredData = Object.values(data.entities).filter((item) =>
+  const entities: IProduct[] = Object.values(data.entities);
+
+  const filteredByEnabled = entities.filter(prop("isActiveOnOrganization"));
+
+  const filteredData = filteredByEnabled.filter((item) =>
     searchValue
       ? item?.title.toLowerCase().includes(searchValue.toLowerCase())
       : true,

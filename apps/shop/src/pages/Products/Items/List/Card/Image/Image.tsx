@@ -1,7 +1,7 @@
 import { useCard } from "../../../context.ts";
 import { FC } from "react";
 import { EntityId } from "@reduxjs/toolkit";
-import classes from "../Card.module.css";
+import classes from "./Image.module.css";
 import { Box } from "@book-eat/ui";
 
 interface IProps {
@@ -19,7 +19,6 @@ const Image: FC<IProps> = ({ id }) => {
           "https://archive.org/download/placeholder-image/placeholder-image.jpg"
         }
         alt=""
-        style={{ height: 194, width: "100%" }}
         className={classes.image}
       />
     </Box>

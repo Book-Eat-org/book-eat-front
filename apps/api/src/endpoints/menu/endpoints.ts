@@ -11,16 +11,14 @@ type IGetBlaBlaResponse = (ICategory & { products: IProduct[] })[];
 export const menuEndpoints = api.injectEndpoints({
   endpoints: (build) => ({
     getMenuByPlaceId: build.query<EntityState<IProduct>, EntityId>({
-      query: (id) => `/v1/products/place/${id}`,
+      query: (id) => `/v2/products/place/${id}`,
       transformResponse: (res: IGetBlaBlaResponse) => {
-        const products = uniqBy(prop("id"), flatten(res.map(prop("products"))));
-        categoriesAdapters.addMany(categoriesAdapters.getInitialState(), res);
-        return menuAdapter.setMany(menuAdapter.getInitialState(), products);
+        return menuAdapter.setMany(menuAdapter.getInitialState(), res);
       },
       providesTags: [ApiTags.Menu],
     }),
     getMenuById: build.query<EntityState<IProduct>, EntityId>({
-      query: (id) => `/v1/products/${id}`,
+      query: (id) => `/v2/products/${id}`,
       transformResponse: (res: IProduct) =>
         menuAdapter.setOne(menuAdapter.getInitialState(), res),
       providesTags: [ApiTags.Menu],

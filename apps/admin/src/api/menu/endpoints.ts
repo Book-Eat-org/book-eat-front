@@ -7,7 +7,7 @@ import { IProduct } from "@book-eat/api";
 export const menuEndpoints = api.injectEndpoints({
   endpoints: (build) => ({
     getMenuByPlaceId: build.query<EntityState<IProduct>, EntityId>({
-      query: (id) => `/v1/products/place/${id}`,
+      query: (id) => `/v2/products/place/${id}`,
       transformResponse: (res: IProduct[]) =>
         menuAdapter.setMany(menuAdapter.getInitialState(), res),
       providesTags: [ApiTags.Menu],
