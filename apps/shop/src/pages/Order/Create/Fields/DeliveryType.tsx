@@ -1,9 +1,9 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { useController } from "react-hook-form";
 
 import { IFormValues } from "../models";
 import { UIOption, UISelect } from "@book-eat/ui";
-import { isNil, keys } from "ramda";
+import { isNil, isNotNil, keys } from "ramda";
 import { TakeUpConfig } from "$constants";
 import { DeliveryTypeName, IPlace, placesSelectors } from "@book-eat/api";
 import { useSelector } from "$hooks";
@@ -20,22 +20,30 @@ export const DeliveryType: FC = () => {
     placesSelectors.selectById(state, shopId!),
   );
 
-  if (isNil(shop)) {
-    return null;
-  }
+  const { onChange, value } = field;
 
   const ENABLED_METHODS = {
-    [DeliveryTypeName.ON_PLACE]: shop.isOnPlaceAvailable,
-    [DeliveryTypeName.DELIVERY]: shop.isDeliveryAvailable,
-    [DeliveryTypeName.TO_OUTSIDE]: shop.isInPlaceAvailable,
+    [DeliveryTypeName.ON_PLACE]: shop?.isInPlaceAvailable,
+    [DeliveryTypeName.DELIVERY]: shop?.isDeliveryAvailable,
+    [DeliveryTypeName.TO_OUTSIDE]: shop?.isOnPlaceAvailable,
   };
-
-  const { onChange, value } = field;
-  const errorMessage = fieldState.error?.message;
 
   const filteredKeys = keys(DeliveryTypeName).filter(
     (key) => ENABLED_METHODS[key],
   );
+
+  useEffect(() => {
+    const first = filteredKeys[0];
+    if (isNotNil(first)) {
+      onChange(first);
+    }
+  }, [...filteredKeys]);
+
+  if (isNil(shop)) {
+    return null;
+  }
+
+  const errorMessage = fieldState.error?.message;
 
   return (
     <UISelect

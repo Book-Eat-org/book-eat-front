@@ -18,15 +18,6 @@ export const ORDERS_ISSUING_MODE_CONFIG = {
   [OrdersIssuingMode.WITH_SELF]: "На вынос",
 };
 
-export const PLACE_SETTINGS_CONFIG: Record<
-  keyof IPlace["placeSetting"],
-  string
-> = {
-  deliveryAvailable: "Доставка",
-  onPlaceAvailable: "На месте",
-  toOutsideAvailable: "С собой",
-};
-
 export const ORDER_STATUS_ORDER_ARRAY = [
   OrderStatus.NEW,
   OrderStatus.ACCEPTED,
