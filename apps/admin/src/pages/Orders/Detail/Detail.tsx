@@ -1,42 +1,37 @@
-import { BackIcon24, Flex, Grid, Page, theme } from "@book-eat/ui";
-import { useNavigate, useParams } from "react-router-dom";
+import { Grid, Page } from "@book-eat/ui";
+import { useParams } from "react-router-dom";
 import { Composition } from "./Composition";
 import { Details } from "./Details";
 import { menuEndpoints, ordersEndpoints } from "$api";
 import { Submit } from "./Submit";
+import { useOrder } from "./useOrder.ts";
+import { isNil } from "ramda";
+import { PageHeader } from "./PageHeader";
+import { Header } from "./Header";
 
 export const Detail = () => {
   const { id: orderId } = useParams();
-  const navigate = useNavigate();
-  const onBackClick = () => navigate("..");
   const { isFetching } = menuEndpoints.useGetMenuByOrganizationQuery();
   ordersEndpoints.useGetOrderQuery(orderId!);
+  const order = useOrder();
 
-  if (isFetching) {
+  if (isFetching || isNil(order)) {
     return null;
   }
 
   return (
     <Page>
-      <Page.Header>
-        <Page.Header.Buttons>
-          <Flex
-            backgroundColor={theme.colors.accent50}
-            borderRadius={10}
-            padding="6px"
-          >
-            <BackIcon24 onClick={onBackClick} />
-          </Flex>
-        </Page.Header.Buttons>
-        <Page.Header.Title>Оформление заказа</Page.Header.Title>
-      </Page.Header>
+      <PageHeader />
       <Page.Body>
-        <Grid gap={12}>
-          <Grid gap={8}>
-            <Composition />
-            <Details />
+        <Grid gap={4}>
+          <Header />
+          <Grid gap={12}>
+            <Grid gap={8}>
+              <Composition />
+              <Details />
+            </Grid>
+            <Submit />
           </Grid>
-          <Submit />
         </Grid>
       </Page.Body>
     </Page>

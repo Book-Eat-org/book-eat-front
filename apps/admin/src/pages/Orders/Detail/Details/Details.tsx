@@ -37,9 +37,6 @@ export const Details = () => {
           <Item title="Адрес доставки">{addressFields}</Item>
           <Item title="Кол-во персон">{personsCount}</Item>
           <Item title="Комментарий">{comment}</Item>
-          <Item title="Статус банка" gray>
-            ЧТО УКАЗАТЬ?
-          </Item>
         </Grid>
       </Box>
     </Grid>

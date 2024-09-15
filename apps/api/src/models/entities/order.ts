@@ -23,6 +23,7 @@ export interface IOrder {
   personsCount: number;
   totalCost: number;
   readyTime?: string;
+  orderNumber: number;
   createdAt: string;
   customerInfo: {
     customerName: string;
