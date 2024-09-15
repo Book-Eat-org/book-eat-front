@@ -18,7 +18,7 @@ export const Submit = () => {
   const paymentButtonAvailable = isNotNil(paymentUrl);
 
   return (
-    <Flex>
+    <Flex gap={8}>
       <Button variant="danger" onClick={onCancel} width="100%">
         Отменить заказ
       </Button>

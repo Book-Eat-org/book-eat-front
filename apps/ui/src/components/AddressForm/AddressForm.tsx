@@ -64,7 +64,7 @@ const NewAddress: FC<IProps> = (props) => {
   };
 
   const submitHandler = () => {
-    onChange(state.street, state);
+    onChange(parseAddressToString(state), state);
   };
 
   return (
