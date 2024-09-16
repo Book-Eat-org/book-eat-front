@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { useController } from "react-hook-form";
 
 import { IFormValues } from "../models";
@@ -33,18 +33,18 @@ export const TakeUpTime: FC = () => {
 
   const closeTime = dayjs().hour(22);
 
-  const options = getItems(closeTime);
+  const options = useMemo(() => getItems(closeTime), []);
 
   return (
     <UISelect
       value={value}
       onChange={onChange}
       placeholder="Когда"
-      renderValue={identity}
+      renderValue={(item) => dayjs(item).format("H:mm")}
     >
       {options.map((item) => {
         const formatted = item.format("H:mm");
-        return <UIOption value={formatted}>{formatted}</UIOption>;
+        return <UIOption value={item.toISOString()}>{formatted}</UIOption>;
       })}
     </UISelect>
   );

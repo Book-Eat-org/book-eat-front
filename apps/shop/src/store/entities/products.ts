@@ -1,10 +1,10 @@
 import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
-import { IMenu, menuEndpoints, ordersEndpoints } from "@book-eat/api";
+import { IProduct, menuEndpoints, ordersEndpoints } from "@book-eat/api";
 import { IRootState } from "../index.ts";
 import { flatten, prop, uniqBy, values } from "ramda";
 
 const productsAdapter = createEntityAdapter({
-  selectId: (item: IMenu) => item.id,
+  selectId: (item: IProduct) => item.id,
 });
 
 export const productsSelectors = productsAdapter.getSelectors<IRootState>(

@@ -1,13 +1,30 @@
 import { useProduct } from "../hooks.ts";
-import { Grid } from "@book-eat/ui";
+import { Grid, theme, Typography } from "@book-eat/ui";
 import { Addition } from "./Addition";
+import { isEmpty } from "ramda";
 
 export const Additions = () => {
   const item = useProduct();
 
-  const { additions } = item;
+  const { additionsIds = [] } = item;
+
+  if (isEmpty(additionsIds)) {
+    return null;
+  }
 
   return (
-    <Grid gap={3}>{additions?.map(({ id }) => <Addition id={id} />)}</Grid>
+    <Grid
+      gap={5}
+      background={theme.colors.general50}
+      padding={10}
+      borderRadius={10}
+    >
+      <Typography size="14/14" fontWeight={600}>
+        Добавки
+      </Typography>
+      <Grid gap={3}>
+        {additionsIds?.map((id) => <Addition id={id} key={id} />)}
+      </Grid>
+    </Grid>
   );
 };

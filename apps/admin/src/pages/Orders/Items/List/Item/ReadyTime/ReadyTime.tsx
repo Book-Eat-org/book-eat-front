@@ -19,14 +19,10 @@ export const ReadyTime: FC<IProps> = ({ id }) => {
     return null;
   }
 
-  const [hours, minutes] = readyTime.split(":");
+  const currentDate = dayjs();
 
-  const readyTimeDay = dayjs()
-    .set("hours", Number(hours))
-    .set("minutes", Number(minutes));
-
-  const timeLeftInHours = readyTimeDay.diff(dayjs(), "hours");
-  const timeLeftInMinutes = readyTimeDay.diff(dayjs(), "minutes");
+  const timeLeftInHours = currentDate.diff(readyTime, "hours");
+  const timeLeftInMinutes = currentDate.diff(readyTime, "minutes");
   const timeLeft =
     timeLeftInHours > 1 ? `${timeLeftInHours}ч` : `${timeLeftInMinutes}м`;
 

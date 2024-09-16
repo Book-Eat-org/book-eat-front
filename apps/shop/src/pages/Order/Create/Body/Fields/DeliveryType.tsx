@@ -32,13 +32,6 @@ export const DeliveryType: FC = () => {
     (key) => ENABLED_METHODS[key],
   );
 
-  useEffect(() => {
-    const first = filteredKeys[0];
-    if (isNotNil(first)) {
-      onChange(first);
-    }
-  }, [filteredKeys]);
-
   if (isNil(shop)) {
     return null;
   }

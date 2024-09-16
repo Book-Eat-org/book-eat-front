@@ -1,10 +1,11 @@
 import { Flex, Typography, UICheckbox } from "@book-eat/ui";
 import { SYMBOLS } from "@book-eat/utils";
-import { useProduct } from "../../hooks.ts";
 import { EntityId } from "@reduxjs/toolkit";
 import { FC } from "react";
 import { isNil, isNotNil } from "ramda";
 import { useCardContext } from "../../context.ts";
+import { useSelector } from "$hooks";
+import { additionsSelectors } from "../../../../../../store/entities";
 
 interface IProps {
   id: EntityId;
@@ -12,11 +13,8 @@ interface IProps {
 
 export const Addition: FC<IProps> = (props) => {
   const { id } = props;
-  const product = useProduct();
 
-  const { additions } = product;
-
-  const item = additions.find((addition) => addition.id === id);
+  const item = useSelector((state) => additionsSelectors.selectById(state, id));
 
   const { additionsIds, setAdditionsIds } = useCardContext();
 
@@ -31,7 +29,7 @@ export const Addition: FC<IProps> = (props) => {
       ? setAdditionsIds([...additionsIds, id])
       : setAdditionsIds(additionsIds.filter((item) => item !== id));
 
-  const weightLabel = isNil(weight) ? undefined : `{weight} г`;
+  const weightLabel = isNil(weight) ? undefined : `${weight} г`;
 
   const titleLabel = [title, weightLabel].filter(isNotNil).join(", ");
 

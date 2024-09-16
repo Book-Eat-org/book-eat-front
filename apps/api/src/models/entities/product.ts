@@ -1,5 +1,4 @@
 import { EntityId } from "@reduxjs/toolkit";
-import { IAddition, ICategory, IPlace } from "$models";
 
 export interface IProduct {
   id: EntityId;
@@ -14,9 +13,9 @@ export interface IProduct {
   isRecommend: boolean;
   mainImageUrl: string;
   imagesUrls: string[];
-  additions: IAddition[];
-  placesIds: IPlace[];
-  categoriesIds: ICategory[];
+  additionsIds: EntityId[];
+  placesIds: EntityId[];
+  categoriesIds: EntityId[];
   weight: number;
   ingredients: string;
   isActiveOnOrganization: boolean;

@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "$hooks";
 import {
@@ -15,7 +15,7 @@ import { EntityId } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import { addToCartNew } from "../../../../store/cart";
 import { activeShopSelector } from "../../../../store/shop";
-import { dec, inc } from "ramda";
+import { dec, inc, isEmpty, isNotNil } from "ramda";
 import { navigateToPage, PageURLS } from "$constants";
 import { SYMBOLS, getPriceWithDiscount } from "@book-eat/utils";
 import { Image } from "./Image";
@@ -24,6 +24,8 @@ import { useProduct } from "./hooks.ts";
 import { Description } from "./Description";
 import { CardContext } from "./context.ts";
 import { Additions } from "./Additions";
+import { additionsEndpoints } from "@book-eat/api";
+import { additionsSelectors } from "../../../../store/entities";
 
 export const Body: FC = () => {
   const [col, setCol] = useState<number>(1);
@@ -31,11 +33,23 @@ export const Body: FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  const [fetchAdditions] = additionsEndpoints.useFetchAdditionsByIdsMutation();
+
   const shopId = useSelector(activeShopSelector)!;
 
   const item = useProduct();
 
-  const { additions = [], price, discount } = item;
+  const productAdditions = item.additionsIds;
+
+  const additionsStore = useSelector(additionsSelectors.selectAll);
+
+  useEffect(() => {
+    if (isNotNil(productAdditions) && !isEmpty(productAdditions)) {
+      fetchAdditions(productAdditions);
+    }
+  }, [productAdditions]);
+
+  const { price, discount } = item;
 
   const dispatch = useDispatch();
 
@@ -52,7 +66,7 @@ export const Body: FC = () => {
   const additionsSum =
     additionsIds.reduce(
       (acc: number, curr) =>
-        acc + additions.find((item) => item.id === curr)!.price ?? 0,
+        acc + additionsStore.find((item) => item.id === curr)!.price ?? 0,
       0,
     ) * col;
 
@@ -64,31 +78,21 @@ export const Body: FC = () => {
         <Image />
         <Title />
         <Description />
-        <Grid
-          gap={5}
-          background={theme.colors.general50}
-          padding={10}
-          borderRadius={10}
-        >
-          <Typography size="14/14" fontWeight={600}>
-            Добавки
-          </Typography>
-          <Additions />
-          <Flex gap={8}>
-            <Flex gap={4} justifyContent="space-between" alignItems="center">
-              <IconButton onClick={decrementCol} disabled={col === 1}>
-                <MinusIcon24 />
-              </IconButton>
-              <Typography size="14/14">{col}</Typography>
-              <IconButton onClick={incrementCol}>
-                <PlusIcon24 />
-              </IconButton>
-            </Flex>
-            <Button onClick={submit} width="100%">
-              Добавить {totalPrice} {SYMBOLS.RUB}
-            </Button>
+        <Additions />
+        <Flex gap={8}>
+          <Flex gap={4} justifyContent="space-between" alignItems="center">
+            <IconButton onClick={decrementCol} disabled={col === 1}>
+              <MinusIcon24 />
+            </IconButton>
+            <Typography size="14/14">{col}</Typography>
+            <IconButton onClick={incrementCol}>
+              <PlusIcon24 />
+            </IconButton>
           </Flex>
-        </Grid>
+          <Button onClick={submit} width="100%">
+            Добавить {totalPrice} {SYMBOLS.RUB}
+          </Button>
+        </Flex>
       </Grid>
     </CardContext.Provider>
   );

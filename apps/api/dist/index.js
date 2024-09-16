@@ -5030,6 +5030,13 @@ const bs = es.endpoints.getCashiers.select(), $s = ct.getSelectors(
         method: "PUT"
       }),
       invalidatesTags: [j.Orders]
+    }),
+    confirmOrder: e.mutation({
+      query: (t) => ({
+        url: `/v1/orders/${t}/confirm`,
+        method: "PUT"
+      }),
+      invalidatesTags: [j.Orders]
     })
   })
 }), Cn = Tn.endpoints.getOrders.select(), ks = ce.getSelectors(
