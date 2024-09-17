@@ -1,6 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 import {
   addToCartNew,
+  clearCart,
   decrementCart,
   ICartState,
   incrementCart,
@@ -8,18 +9,18 @@ import {
 } from "./actions.ts";
 import { omit } from "ramda";
 
+const initialState = {
+  items: {},
+};
+
 export const cartReducer = createReducer<ICartState>(
-  {
-    products: [],
-    items: {},
-  },
+  initialState,
   (builder) => {
     builder.addCase(addToCartNew, (state, { payload }) => {
       const { shopId, additionIds, productId, col = 1 } = payload;
       if (shopId !== state.shopId) {
         return {
           shopId,
-          products: [],
           items: {
             [Date.now()]: {
               additionIds,
@@ -69,5 +70,6 @@ export const cartReducer = createReducer<ICartState>(
     builder.addCase(removeFromCart, (state, { payload }) => {
       return { ...state, items: omit([payload], state.items) };
     });
+    builder.addCase(clearCart, () => initialState);
   },
 );

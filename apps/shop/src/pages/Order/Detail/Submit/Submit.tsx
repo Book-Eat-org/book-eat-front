@@ -4,8 +4,11 @@ import { ordersEndpoints, OrderStatus } from "@book-eat/api";
 import { isNotNil } from "ramda";
 import { useOrder } from "../useOrder.ts";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { clearCart } from "../../../../store/cart";
 
 export const Submit = () => {
+  const dispatch = useDispatch();
   const { id, status } = useOrder();
   const [searchParams, setSearchParams] = useSearchParams();
   const paymentUrl = searchParams.get("paymentUrl");
@@ -24,7 +27,12 @@ export const Submit = () => {
   const onCancel = () =>
     updateStatus({ id, statusVal: OrderStatus.CANCELLED_BY_CLIENT });
 
-  const onClick = () => window.open(paymentUrl, "_blank");
+  const onClick = () => {
+    if (paymentUrl) {
+      dispatch(clearCart());
+      window.open(paymentUrl, "_blank");
+    }
+  };
 
   const paymentButtonAvailable = isNotNil(paymentUrl);
 

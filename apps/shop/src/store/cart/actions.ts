@@ -10,11 +10,6 @@ export interface ICartState {
       col: number;
     }
   >;
-  products: {
-    id: EntityId;
-    additions: EntityId[];
-    col: number;
-  }[];
 }
 
 export interface IAddProductToCart {
@@ -30,13 +25,9 @@ export interface IAddProductToCartNew {
   col?: number;
 }
 
-export interface IRemoveProductToCart {
-  id: EntityId;
-  shopId: EntityId;
-}
-
 export const addToCart = createAction<IAddProductToCart>("ADD_TO_CART");
 export const addToCartNew = createAction<IAddProductToCartNew>("ADD_TO_CART");
+export const clearCart = createAction("CLEAR_CART");
 export const removeFromCart = createAction<EntityId>("REMOVE_FROM_CART");
 
 export const incrementCart = createAction<EntityId>("INCREMENT_CART");
