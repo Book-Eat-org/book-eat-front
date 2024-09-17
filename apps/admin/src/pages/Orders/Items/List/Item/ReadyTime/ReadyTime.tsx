@@ -5,6 +5,7 @@ import { ordersSelectors } from "$api";
 import { Typography } from "@book-eat/ui";
 import dayjs from "dayjs";
 import { isNil } from "ramda";
+import { getLeftTimeLabel } from "$utils";
 
 interface IProps {
   id: EntityId;
@@ -21,10 +22,14 @@ export const ReadyTime: FC<IProps> = ({ id }) => {
 
   const currentDate = dayjs();
 
-  const timeLeftInHours = currentDate.diff(readyTime, "hours");
-  const timeLeftInMinutes = currentDate.diff(readyTime, "minutes");
-  const timeLeft =
-    timeLeftInHours > 1 ? `${timeLeftInHours}ч` : `${timeLeftInMinutes}м`;
+  const timeLeftInMs = dayjs(readyTime).diff(currentDate);
 
-  return <Typography size="14/14">{timeLeft}</Typography>;
+  const timeLeft = getLeftTimeLabel(Math.abs(timeLeftInMs));
+
+  return (
+    <Typography size="14/14">
+      {timeLeftInMs < 0 ? "Просрочен на " : "До выдачи "}
+      {timeLeft}
+    </Typography>
+  );
 };

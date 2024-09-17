@@ -4,11 +4,11 @@ import { IOrganization, IPlace } from "$models";
 
 export enum OrderStatus {
   NEW = "NEW",
-  ERROR = "ERROR",
-  COMPLETED = "COMPLETED",
   IN_PROGRESS = "IN_PROGRESS",
   CANCELLED_BY_CLIENT = "CANCELLED_BY_CLIENT",
   CANCELLED_BY_PROVIDER = "CANCELLED_BY_PROVIDER",
+  ERROR = "ERROR",
+  COMPLETED = "COMPLETED",
 }
 
 export enum DeliveryTypeName {

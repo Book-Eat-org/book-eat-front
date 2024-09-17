@@ -13,8 +13,6 @@ export const Body = () => {
 
   const cartItems = useSelector((state) => state.cart);
 
-  console.log(cartItems);
-
   if (isEmpty(cartItems.items)) {
     return <Empty />;
   }

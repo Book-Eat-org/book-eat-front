@@ -38,8 +38,6 @@ const AddItem: FC = () => {
   const handleSubmit = async (data: IFormValues) => {
     const payload = outputAdapter(data);
 
-    console.log("handle", id);
-
     isExist
       ? await editAddition({ ...payload, id })
       : await saveAddition(payload);

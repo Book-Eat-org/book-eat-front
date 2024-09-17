@@ -5,10 +5,6 @@ import { ordersSelectors } from "$store";
 
 export const useOrder = (): IOrder => {
   const { id: orderId } = useParams();
-  const test = useSelector((state) =>
-    ordersSelectors.selectById(state, orderId!),
-  );
-  console.log(test);
 
   return useSelector((state) => ordersSelectors.selectById(state, orderId!));
 };

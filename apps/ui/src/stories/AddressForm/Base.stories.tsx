@@ -8,8 +8,6 @@ export const Base = () => {
     "Москва, Тестовая улица 25/16",
   );
 
-  console.log(value);
-
   return (
     <YMaps
       query={{

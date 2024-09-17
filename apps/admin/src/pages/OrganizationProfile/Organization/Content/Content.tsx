@@ -18,9 +18,6 @@ const Content: FC = () => {
   const [saveOrganization] = organizationsEndpoints.useUpdateOrgMutation();
 
   const navigate = useNavigate();
-
-  console.log(data);
-
   const defaultValues: IFormValues = inputAdapter(data);
 
   const methods = useForm<IFormValues>({

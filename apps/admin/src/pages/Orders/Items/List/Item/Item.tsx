@@ -11,6 +11,8 @@ import { useNavigate } from "react-router-dom";
 import { navigateToPage, PageURLS } from "$constants";
 import { getColorByReadyTime } from "./utils.ts";
 import { isNil } from "ramda";
+import dayjs from "dayjs";
+import { OrderStatus } from "@book-eat/api";
 
 interface IProps {
   id: EntityId;
@@ -19,7 +21,7 @@ interface IProps {
 export const Item: FC<IProps> = (props) => {
   const navigate = useNavigate();
   const { id } = props;
-  const { readyTime } = useSelector((state) =>
+  const { readyTime, status } = useSelector((state) =>
     ordersSelectors.selectById(state, id),
   )!;
 
@@ -27,9 +29,15 @@ export const Item: FC<IProps> = (props) => {
     navigate(navigateToPage(PageURLS.OrdersEdit, { id }));
   };
 
-  const color = isNil(readyTime)
-    ? theme.colors.general50
-    : getColorByReadyTime(readyTime);
+  const currentDate = dayjs();
+
+  const timeLeftInMs = dayjs(readyTime).diff(currentDate);
+
+  const color =
+    isNil(readyTime) ||
+    ![OrderStatus.IN_PROGRESS, OrderStatus.NEW].includes(status)
+      ? theme.colors.general50
+      : getColorByReadyTime(timeLeftInMs);
 
   return (
     <Grid

@@ -20,7 +20,6 @@ export const inputAdapter = (input: IPlace): IFormValues => {
     (acc, curr) => [...acc, curr.timeTo, curr.timeFrom],
     [] as string[],
   );
-  console.log(timesValues);
 
   const differentTimeDaily = [...new Set(timesValues)].length > 2;
 

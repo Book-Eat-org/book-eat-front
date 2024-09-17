@@ -30,7 +30,6 @@ export const ordersSlice = createSlice({
     builder.addMatcher(
       ordersEndpoints.endpoints.getOrder.matchFulfilled,
       (state, { payload }) => {
-        console.log(payload);
         return ordersAdapter.setOne(state, payload);
       },
     );

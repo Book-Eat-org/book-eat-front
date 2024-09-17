@@ -17,8 +17,6 @@ export const Additions: FC<IProps> = (props) => {
 
   const { additions } = product;
 
-  console.log(additions);
-
   if (isNil(additions) || isEmpty(additions)) {
     return null;
   }

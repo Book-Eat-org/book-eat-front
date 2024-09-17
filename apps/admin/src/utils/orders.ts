@@ -1,12 +1,16 @@
-import { IOrder } from "@book-eat/api";
-import dayjs from "dayjs";
+export const getLeftTimeLabel = (timesInMs: number) => {
+  const seconds = Math.floor(timesInMs / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
 
-export const getOrderLeftTime = (readyTime: IOrder["readyTime"]) => {
-  const [hours, minutes] = readyTime.split(":");
+  if (days >= 1) {
+    return `${days}д`;
+  }
 
-  const readyTimeDay = dayjs()
-    .set("hours", Number(hours))
-    .set("minutes", Number(minutes));
+  if (hours >= 1) {
+    return `${hours}ч`;
+  }
 
-  return readyTimeDay.diff(dayjs(), "minutes");
+  return `${minutes}м`;
 };

@@ -1,9 +1,18 @@
 import { Grid, Skeleton, Typography } from "@book-eat/ui";
 import { ordersEndpoints } from "$api";
 import { Item } from "./Item";
-import { groupBy, isNil, isNotNil, keys, prop, values } from "ramda";
-import { ORDER_STATUSES_TITLES_CONFIG } from "@book-eat/utils/src";
-import { getOrderLeftTime } from "$utils";
+import {
+  equals,
+  groupBy,
+  innerJoin,
+  isNil,
+  isNotNil,
+  keys,
+  prop,
+  values,
+} from "ramda";
+import { ORDER_STATUSES_TITLES_CONFIG } from "@book-eat/utils";
+import { OrderStatus } from "@book-eat/api/src";
 
 const List = () => {
   const { isFetching, data } = ordersEndpoints.useGetOrdersQuery();
@@ -18,16 +27,15 @@ const List = () => {
     values(entities)
       .filter(isNotNil)
       .sort((a, b) => {
-        return (
-          getOrderLeftTime(a.readyTime ?? "00:00:00") -
-          getOrderLeftTime(b.readyTime ?? "00:00:00")
-        );
+        return new Date(b.readyTime) - new Date(a.readyTime);
       }),
   );
 
+  const sortedKeys = innerJoin(equals, keys(OrderStatus), keys(groupedData));
+
   return (
     <Grid gap={9}>
-      {keys(groupedData).map((key) => (
+      {sortedKeys.map((key) => (
         <Grid gap={6} key={key}>
           <Typography size="24/24" fontWeight={600}>
             {ORDER_STATUSES_TITLES_CONFIG[key]}
