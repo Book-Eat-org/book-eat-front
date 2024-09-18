@@ -1,24 +1,12 @@
 import { FC, useEffect, useMemo } from "react";
 import { useController } from "react-hook-form";
 
-import { IFormValues } from "../models";
+import { IFormValues } from "../../models";
 import { UIOption, UISelect } from "@book-eat/ui";
-import { identity, isEmpty, values } from "ramda";
+import { values } from "ramda";
 import dayjs, { Dayjs } from "dayjs";
 import { useSelector } from "$hooks";
-import { IPlace, placesSelectors } from "@book-eat/api";
-import { DayOfWeek } from "@book-eat/api/src";
-import { isShopOpen } from "@book-eat/utils";
-
-export const DAYS_ITEMS = [
-  { id: DayOfWeek.Monday, name: "Пн" },
-  { id: DayOfWeek.Tuesday, name: "Вт" },
-  { id: DayOfWeek.Wednesday, name: "Ср" },
-  { id: DayOfWeek.Thursday, name: "Чт" },
-  { id: DayOfWeek.Friday, name: "Пт" },
-  { id: DayOfWeek.Saturday, name: "Сб" },
-  { id: DayOfWeek.Sunday, name: "Вс" },
-];
+import { IPlace, placesSelectors, DayOfWeek } from "@book-eat/api";
 
 const createNearestDate = () => {
   const time = dayjs();

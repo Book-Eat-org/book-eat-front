@@ -1,9 +1,32 @@
-import { DayOfWeek, IPlace } from "@book-eat/api";
+import { DayOfWeek, IPlace, ISchedule } from "@book-eat/api";
 import dayjs from "dayjs";
 import isBetween from "dayjs/plugin/isBetween";
 import { isNil, split, values } from "ramda";
 
 dayjs.extend(isBetween);
+
+export const prepareScheduleItem = (value: ISchedule): ISchedule => {
+  const { timeFrom, timeTo } = value;
+  const currentDate = dayjs();
+
+  const [[timeFromHours, timeFromMinutes], [timeToHours, timeToMinutes]] = [
+    timeFrom,
+    timeTo,
+  ].map(split(":"));
+
+  const timeFromDate = currentDate
+    .set("hours", Number(timeFromHours))
+    .set("minutes", Number(timeFromMinutes));
+  const timeToDate = currentDate
+    .set("hours", Number(timeToHours))
+    .set("minutes", Number(timeToMinutes));
+
+  return {
+    ...value,
+    timeTo: timeToDate.toISOString(),
+    timeFrom: timeFromDate.toISOString(),
+  };
+};
 
 export const isShopOpen = (shop: IPlace) => {
   const currentDate = dayjs();
@@ -18,17 +41,7 @@ export const isShopOpen = (shop: IPlace) => {
     return false;
   }
 
-  const [[timeFromHours, timeFromMinutes], [timeToHours, timeToMinutes]] = [
-    scheduleItem.timeFrom,
-    scheduleItem.timeTo,
-  ].map(split(":"));
+  const { timeFrom, timeTo } = prepareScheduleItem(scheduleItem);
 
-  const timeFromDate = currentDate
-    .set("hours", Number(timeFromHours))
-    .set("minutes", Number(timeFromMinutes));
-  const timeToDate = currentDate
-    .set("hours", Number(timeToHours))
-    .set("minutes", Number(timeToMinutes));
-
-  return currentDate.isBetween(timeFromDate, timeToDate);
+  return currentDate.isBetween(timeFrom, timeTo);
 };
