@@ -11,9 +11,9 @@ export const LegalInfo = () => {
     organizationsSelectors.selectById(state, id),
   );
 
-  const { legalInfo, title } = item;
+  const { legalInfo } = item;
 
-  const { inn, ogrn, legalAddress, actualAddress, email, phone } =
+  const { inn, ogrn, legalAddress, actualAddress, email, phone, legalName } =
     legalInfo ?? {};
 
   const onBackClick = () => navigate("/");
@@ -34,7 +34,7 @@ export const LegalInfo = () => {
       <Page.Body>
         <Grid gap={6} p={3}>
           <Grid gap={3}>
-            <Item title="Наименование организации">{title}</Item>
+            <Item title="Наименование юридического лица">{legalName}</Item>
             <Item title="ИНН">{inn}</Item>
             <Item title="ОГРН/ОГРНИП">{ogrn}</Item>
           </Grid>

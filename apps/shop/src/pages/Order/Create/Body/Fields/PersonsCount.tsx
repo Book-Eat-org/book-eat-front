@@ -8,7 +8,6 @@ import {
   MinusIcon24,
   PlusIcon24,
   Typography,
-  UINumberInput,
 } from "@book-eat/ui";
 
 export const PersonsCount: FC = () => {

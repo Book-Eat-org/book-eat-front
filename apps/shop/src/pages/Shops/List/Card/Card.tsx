@@ -1,15 +1,16 @@
 import { EntityId } from "@reduxjs/toolkit";
 import { FC } from "react";
 import { isNil } from "ramda";
-import { Box, Grid, Typography } from "@book-eat/ui";
+import { Box } from "@book-eat/ui";
 import TimeTag from "./TimeTag";
 import classes from "./Card.module.css";
-import { navigateToPage, PageURLS } from "../../../../constants/urls";
+import { navigateToPage, PageURLS } from "$constants";
 import { useNavigate } from "react-router-dom";
 import { placesSelectors } from "@book-eat/api";
 import { useSelector } from "$hooks";
 import { CardContext } from "./context.ts";
 import { Address } from "./Address";
+import { isShopOpen } from "@book-eat/utils";
 
 interface IProps {
   id: EntityId;
@@ -24,9 +25,14 @@ const Card: FC<IProps> = (props) => {
     return null;
   }
 
-  const { logoUrl, title } = item;
+  const isClosed = !isShopOpen(item);
+
+  const { logoUrl } = item;
 
   const onClick = () => {
+    if (isClosed) {
+      return;
+    }
     const url = navigateToPage(PageURLS.PRODUCTS, {
       id,
     });
@@ -41,6 +47,7 @@ const Card: FC<IProps> = (props) => {
         width="100%"
         className={classes.wrapper}
         onClick={onClick}
+        opacity={isClosed ? 0.7 : 1}
       >
         <TimeTag />
         <Box p="2px" borderRadius="20px">

@@ -44,6 +44,7 @@ specifiers:
   react-imask: ~7.1.3
   react-redux: ~8.1.3
   react-router-dom: ~6.18.0
+  shx: ~0.3.4
   storybook: ^7.5.3
   styled-system: ~5.1.5
   typescript: ^5.0.2
@@ -95,6 +96,7 @@ dependencies:
   react-imask: 7.1.3_react@18.2.0
   react-redux: 8.1.3_uas4yajzsllemiyrexr66mus4q
   react-router-dom: 6.18.0_biqbaboplfbrettd7655fr4n2y
+  shx: 0.3.4
   storybook: 7.5.3
   styled-system: 5.1.5
   typescript: 5.0.2
@@ -5490,6 +5492,10 @@ packages:
     resolution: {integrity: sha512-okzr3f11N6WuqYtZSvm+F776mB41wRZMhKP+hc34YdW+KmtYYK9iqvHSwo2k9FEH3fhGXvOPV6yz2IcSrfRUDg==}
     dev: false
 
+  /dayjs/1.11.13:
+    resolution: {integrity: sha512-oaMBel6gjolK862uaPQOVTA7q3TZhuSvuMQAAglQDOWYO9A91IrAOUJEyKVlqJlHE0vq5p5UXxzdPfMH/x6xNg==}
+    dev: false
+
   /de-indent/1.0.2:
     resolution: {integrity: sha512-e/1zu3xH5MQryN2zdVaF0OrdNLUbvWxzMbi+iNA6Bky7l1RoP8a2fIbRocyHclXt/arDrrR6lL3TqFD9pMQTsg==}
     dev: false
@@ -9794,7 +9800,7 @@ packages:
     dev: false
 
   file:projects/utils.tgz_reiadaay42xu3uk4bvhmtbk5mu:
-    resolution: {integrity: sha512-dMEveEwGDspmWs5kTpx3pMc7qij0mAH19sAgLEpL06hZHZt1YOLdn08XIcEJVmZvGAwqIhCaCt56X2u2qeaNoQ==, tarball: file:projects/utils.tgz}
+    resolution: {integrity: sha512-M5g/yiTWmioJ0dN77HxhTwCvEwjm4fQZHt/GXs5YnrKz+SZluVgVmy3S6Q6CmOIC/0rCvryyO0GjJVU9LgmGvA==, tarball: file:projects/utils.tgz}
     id: file:projects/utils.tgz
     name: '@rush-temp/utils'
     version: 0.0.0
@@ -9803,6 +9809,7 @@ packages:
       '@types/ramda': 0.30.0
       '@typescript-eslint/eslint-plugin': 6.0.0_qr7lyyvyor5rute5ubjtz7e77m
       '@typescript-eslint/parser': 6.0.0_d5a6zedifdtzynwhy3uykrjvoy
+      dayjs: 1.11.13
       eslint: 8.45.0
       prettier: 3.0.3
       ramda: 0.30.0
@@ -9863,6 +9870,7 @@ time:
   /react-redux/8.1.3: '2023-10-01T02:03:05.517Z'
   /react-router-dom/6.18.0: '2023-10-31T14:24:16.741Z'
   /react/18.2.0: '2022-06-14T19:46:38.369Z'
+  /shx/0.3.4: '2022-01-10T02:16:53.953Z'
   /storybook/7.5.3: '2023-11-06T15:26:49.203Z'
   /styled-system/5.1.5: '2020-02-17T20:32:50.368Z'
   /typescript/5.0.2: '2023-03-16T16:41:18.461Z'

@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import List from "./List";
 import Header from "./Header";
 import { BackIcon24, Flex, Grid, Page, theme } from "@book-eat/ui";

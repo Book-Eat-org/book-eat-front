@@ -29,6 +29,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "~2.2.1",
     "ramda": "~0.30.0",
-    "@book-eat/api": "~0.0.0"
+    "@book-eat/api": "~0.0.0",
+    "dayjs": "~1.11.13"
   }
 }

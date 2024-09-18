@@ -1,4 +1,4 @@
-import { Button, Grid } from "@book-eat/ui";
+import { Button, Flex, Grid } from "@book-eat/ui";
 import { Email, Name, Phone, Comment, PersonsCount } from "./Fields";
 import { Methods } from "./Methods";
 import { FormProvider, useForm } from "react-hook-form";
@@ -15,6 +15,7 @@ import { values } from "ramda";
 import { useSelector } from "$hooks";
 import { navigateToPage, PageURLS } from "$constants";
 import { useNavigate } from "react-router-dom";
+import { isShopOpen } from "@book-eat/utils";
 
 export const Body = () => {
   const navigate = useNavigate();
@@ -107,6 +108,16 @@ export const Body = () => {
     deliveryType === DeliveryTypeName.DELIVERY
       ? "Рассчитать стоимость доставки"
       : "Оформить заказ";
+
+  const isClosed = !isShopOpen(shop);
+
+  if (isClosed) {
+    return (
+      <Flex justifyContent="center" alignItems="center">
+        <div>Ресторан закрыт, зайдите попозже</div>
+      </Flex>
+    );
+  }
 
   return (
     <FormProvider {...methods}>

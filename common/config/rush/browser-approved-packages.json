@@ -124,7 +124,7 @@
     },
     {
       "name": "dayjs",
-      "allowedCategories": [ "production" ]
+      "allowedCategories": [ "production", "tools" ]
     },
     {
       "name": "eslint",

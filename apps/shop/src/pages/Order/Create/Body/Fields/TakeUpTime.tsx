@@ -3,11 +3,12 @@ import { useController } from "react-hook-form";
 
 import { IFormValues } from "../models";
 import { UIOption, UISelect } from "@book-eat/ui";
-import { identity, values } from "ramda";
+import { identity, isEmpty, values } from "ramda";
 import dayjs, { Dayjs } from "dayjs";
 import { useSelector } from "$hooks";
 import { IPlace, placesSelectors } from "@book-eat/api";
 import { DayOfWeek } from "@book-eat/api/src";
+import { isShopOpen } from "@book-eat/utils";
 
 export const DAYS_ITEMS = [
   { id: DayOfWeek.Monday, name: "Пн" },
@@ -41,6 +42,7 @@ export const TakeUpTime: FC = () => {
     name: "takeUpTime",
     rules: { required: { value: true, message: "Укажите время " } },
   });
+
   const { shopId } = useSelector((state) => state.cart);
 
   const { schedule }: IPlace = useSelector((state) =>
