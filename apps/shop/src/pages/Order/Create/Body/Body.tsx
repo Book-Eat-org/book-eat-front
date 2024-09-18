@@ -101,6 +101,13 @@ export const Body = () => {
     }
   };
 
+  const deliveryType = methods.watch("deliveryType");
+
+  const buttonLabel =
+    deliveryType === DeliveryTypeName.DELIVERY
+      ? "Рассчитать стоимость доставки"
+      : "Оформить заказ";
+
   return (
     <FormProvider {...methods}>
       <Grid gap={6}>
@@ -113,7 +120,7 @@ export const Body = () => {
         <PersonsCount />
         <Methods />
         <Button onClick={methods.handleSubmit(handleSubmit)}>
-          Рассчитать стоимость доставки
+          {buttonLabel}
         </Button>
       </Grid>
     </FormProvider>

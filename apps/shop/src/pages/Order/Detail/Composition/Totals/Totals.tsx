@@ -28,12 +28,12 @@ export const Totals = () => {
           {productsSum} {SYMBOLS.RUB}
         </Typography>
       </Flex>
-      {deliveryPrice && (
+      {Boolean(deliveryPrice) && (
         <Flex justifyContent="space-between" alignItems="center">
-          <Typography color={theme.colors.general80}>
+          <Typography color={theme.colors.general600}>
             Стоимость доставки:
           </Typography>
-          <Typography color={theme.colors.general80}>
+          <Typography color={theme.colors.general600}>
             {deliveryPrice} {SYMBOLS.RUB}
           </Typography>
         </Flex>

@@ -41,7 +41,9 @@ export const Detail = () => {
             <BackIcon24 onClick={onBackClick} />
           </Flex>
         </Page.Header.Buttons>
-        <Page.Header.Title>Оформление заказа</Page.Header.Title>
+        <Page.Header.Title>
+          Заказ №{values(orderData.entities)[0].orderNumber}
+        </Page.Header.Title>
       </Page.Header>
       <Page.Body>
         <Grid gap={12}>

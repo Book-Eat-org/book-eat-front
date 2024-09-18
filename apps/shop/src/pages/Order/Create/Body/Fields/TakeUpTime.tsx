@@ -1,10 +1,23 @@
-import { FC, useMemo } from "react";
+import { FC, useEffect, useMemo } from "react";
 import { useController } from "react-hook-form";
 
 import { IFormValues } from "../models";
 import { UIOption, UISelect } from "@book-eat/ui";
-import { identity } from "ramda";
+import { identity, values } from "ramda";
 import dayjs, { Dayjs } from "dayjs";
+import { useSelector } from "$hooks";
+import { IPlace, placesSelectors } from "@book-eat/api";
+import { DayOfWeek } from "@book-eat/api/src";
+
+export const DAYS_ITEMS = [
+  { id: DayOfWeek.Monday, name: "Пн" },
+  { id: DayOfWeek.Tuesday, name: "Вт" },
+  { id: DayOfWeek.Wednesday, name: "Ср" },
+  { id: DayOfWeek.Thursday, name: "Чт" },
+  { id: DayOfWeek.Friday, name: "Пт" },
+  { id: DayOfWeek.Saturday, name: "Сб" },
+  { id: DayOfWeek.Sunday, name: "Вс" },
+];
 
 const createNearestDate = () => {
   const time = dayjs();
@@ -28,12 +41,42 @@ export const TakeUpTime: FC = () => {
     name: "takeUpTime",
     rules: { required: { value: true, message: "Укажите время " } },
   });
+  const { shopId } = useSelector((state) => state.cart);
+
+  const { schedule }: IPlace = useSelector((state) =>
+    placesSelectors.selectById(state, shopId!),
+  );
+
+  const currentDate = useMemo(() => dayjs(), []);
+
+  const currentDay = useMemo(() => currentDate.day(), [currentDate]);
+
+  const scheduleToday = useMemo(
+    () =>
+      schedule.find(
+        ({ dayOfWeek }) => values(DayOfWeek)[currentDay] === dayOfWeek,
+      ),
+    [schedule],
+  );
+
   const { onChange, value } = field;
   const errorMessage = fieldState.error?.message;
 
-  const closeTime = dayjs().hour(22);
+  const options = useMemo(
+    () =>
+      getItems(
+        currentDate.set(
+          "hours",
+          Number(scheduleToday?.timeTo?.split(":")[0]) ?? 2,
+        ),
+      ),
+    [scheduleToday],
+  );
 
-  const options = useMemo(() => getItems(closeTime), []);
+  useEffect(() => {
+    const value = options[0].toISOString();
+    onChange(value);
+  }, [options]);
 
   return (
     <UISelect
