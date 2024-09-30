@@ -3,7 +3,7 @@
   "short_name": "Book-Eat",
   "theme_color": "#59ac4b",
   "background_color": "#000",
-  "display": "fullscreen",
+  "display": "standalone",
   "orientation": "portrait",
   "scope": "/",
   "start_url": "/",
