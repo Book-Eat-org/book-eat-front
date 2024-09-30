@@ -49,6 +49,6 @@ export interface IOrder {
   };
   products: IProduct[];
   paymentUrl: string;
-  places: IPlace[];
+  places: IPlace;
   organization: IOrganization;
 }

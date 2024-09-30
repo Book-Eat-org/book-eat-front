@@ -2,7 +2,7 @@ import { BackIcon24, Flex, Grid, Page, theme } from "@book-eat/ui";
 import { useNavigate, useParams } from "react-router-dom";
 import { Composition } from "./Composition";
 import { Details } from "./Details";
-import { ordersEndpoints, menuEndpoints } from "@book-eat/api";
+import { ordersEndpoints, menuEndpoints, placesEndpoints } from "@book-eat/api";
 import { useEffect } from "react";
 import { isNil, values } from "ramda";
 import { Submit } from "./Submit";
@@ -11,21 +11,22 @@ export const Detail = () => {
   const { id: orderId } = useParams();
   const navigate = useNavigate();
   const onBackClick = () => navigate("/");
-  const { data: orderData, isFetching } = ordersEndpoints.useGetOrderQuery(
-    orderId!,
-  );
-  const [trigger, { data: productsData }] =
+  const { data: orderData, isFetching: isFetchingOrder } =
+    ordersEndpoints.useGetOrderQuery(orderId!);
+  const [triggerProducts, { data: productsData }] =
     menuEndpoints.useLazyGetMenuByPlaceIdQuery();
+  const { isFetching: isFetchingPlaces } =
+    placesEndpoints.useFetchPlacesQuery();
 
   const placeId = values(orderData?.entities ?? {})[0]?.places?.id;
 
   useEffect(() => {
     if (placeId) {
-      trigger(placeId);
+      triggerProducts(placeId);
     }
   }, [placeId]);
 
-  if (isFetching || !placeId || isNil(productsData)) {
+  if (isFetchingOrder || isFetchingPlaces || !placeId || isNil(productsData)) {
     return null;
   }
 

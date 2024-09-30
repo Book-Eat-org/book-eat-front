@@ -1,11 +1,16 @@
-import { Box, Grid, Typography } from "@book-eat/ui";
+import { Box, Grid, Typography, colors } from "@book-eat/ui";
 import { Item } from "./Item";
-import { colors } from "@book-eat/ui";
 import { useOrder } from "../useOrder.ts";
 import { Status } from "./Status";
+import { useSelector } from "$hooks";
+import { placesSelectors } from "@book-eat/api";
+import { isNotNil } from "ramda";
 
 export const Details = () => {
-  const { delivery, customerInfo } = useOrder();
+  const { delivery, customerInfo, places } = useOrder();
+  const place = useSelector((state) =>
+    placesSelectors.selectById(state, places.id),
+  );
 
   const { address } = delivery;
   const { customerPhone, customerName } = customerInfo;
@@ -20,8 +25,8 @@ export const Details = () => {
           <Item title="Статус заказа:">
             <Status />
           </Item>
-          <Item title="Телефон ресторана:">8 (916) 777 66 55</Item>
-          <Item title="Адрес доставки">{address}</Item>
+          <Item title="Телефон ресторана:">{place.info.phone}</Item>
+          {isNotNil(address) && <Item title="Адрес доставки">{address}</Item>}
           <Item title="Клиент">
             {customerName}, {customerPhone}
           </Item>
