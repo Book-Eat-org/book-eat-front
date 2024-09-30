@@ -19,23 +19,23 @@ const baseQueryToasts = (baseUrl: string) => {
     api: BaseQueryApi,
     extraOptions: NonNullable<unknown>,
   ): Promise<TFetchWrapperResponse<T>> => {
-    const { data } = (await baseQuery(
+    const { data, error } = (await baseQuery(
       args,
       api,
       extraOptions,
     )) as QueryReturnValue<TFetchResponse<T>, any, any>;
-
-    if (checkIsErrorType(data)) {
-      if (data.code !== "AUTH_004") {
+    const anyData = data ?? error?.data;
+    if (checkIsErrorType(anyData)) {
+      if (anyData.code !== "AUTH_004") {
         alert(`Ошибка: ${data.code}`);
       }
 
       return {
-        error: data,
+        error: anyData,
       };
     }
 
-    return { data };
+    return { data: anyData };
   };
 };
 export const rtkQueryErrorLogger: Middleware =
