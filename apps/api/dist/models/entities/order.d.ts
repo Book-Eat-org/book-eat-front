@@ -3,11 +3,12 @@ import { IProduct } from "./product.ts";
 import { IOrganization, IPlace } from '..';
 export declare enum OrderStatus {
     NEW = "NEW",
-    ERROR = "ERROR",
-    COMPLETED = "COMPLETED",
     IN_PROGRESS = "IN_PROGRESS",
     CANCELLED_BY_CLIENT = "CANCELLED_BY_CLIENT",
-    CANCELLED_BY_PROVIDER = "CANCELLED_BY_PROVIDER"
+    CANCELLED_BY_PROVIDER = "CANCELLED_BY_PROVIDER",
+    ERROR = "ERROR",
+    PAID = "PAID",
+    COMPLETED = "COMPLETED"
 }
 export declare enum DeliveryTypeName {
     DELIVERY = "DELIVERY",

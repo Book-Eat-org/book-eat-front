@@ -13,6 +13,7 @@ import {
 } from "ramda";
 import { ORDER_STATUSES_TITLES_CONFIG } from "@book-eat/utils";
 import { OrderStatus } from "@book-eat/api/src";
+import { IOrder } from "@book-eat/api";
 
 const List = () => {
   const { isFetching, data } = ordersEndpoints.useGetOrdersQuery();
@@ -21,14 +22,23 @@ const List = () => {
   if (isFetching || isNil(entities)) {
     return <Skeleton count={12} gap={3} height={40} />;
   }
+  const filteredData: IOrder[] = values(entities).filter(
+    (item) =>
+      isNotNil(item) &&
+      [
+        OrderStatus.IN_PROGRESS,
+        OrderStatus.PAID,
+        OrderStatus.COMPLETED,
+        OrderStatus.CANCELLED_BY_CLIENT,
+        OrderStatus.CANCELLED_BY_PROVIDER,
+      ].includes(item.status),
+  );
 
   const groupedData = groupBy(
     prop("status"),
-    values(entities)
-      .filter(isNotNil)
-      .sort((a, b) => {
-        return new Date(b.readyTime) - new Date(a.readyTime);
-      }),
+    filteredData.sort((a, b) => {
+      return new Date(b.readyTime) - new Date(a.readyTime);
+    }),
   );
 
   const sortedKeys = innerJoin(equals, keys(OrderStatus), keys(groupedData));

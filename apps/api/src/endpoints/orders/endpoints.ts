@@ -46,6 +46,13 @@ export const ordersEndpoints = api.injectEndpoints({
       }),
       invalidatesTags: [ApiTags.Orders],
     }),
+    cancelOrder: build.mutation<void, EntityId>({
+      query: (id) => ({
+        url: `/v1/orders/${id}/cancel`,
+        method: "PUT",
+      }),
+      invalidatesTags: [ApiTags.Orders],
+    }),
     confirmOrder: build.mutation<void, EntityId>({
       query: (id) => ({
         url: `/v1/orders/${id}/confirm`,

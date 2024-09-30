@@ -46,6 +46,17 @@ export declare const ordersSelectors: import("@reduxjs/toolkit").EntitySelectors
         };
         error?: undefined;
     }>, import("../../enums/tags.ts").ApiTags, void, "api">;
+    cancelOrder: import("@reduxjs/toolkit/query").MutationDefinition<EntityId, (args: string | import("@reduxjs/toolkit/query").FetchArgs, api: import("@reduxjs/toolkit/query").BaseQueryApi, extraOptions: {}) => Promise<{
+        error: {
+            code: string;
+        };
+        data?: undefined;
+    } | {
+        data: {
+            code: string;
+        };
+        error?: undefined;
+    }>, import("../../enums/tags.ts").ApiTags, void, "api">;
     confirmOrder: import("@reduxjs/toolkit/query").MutationDefinition<EntityId, (args: string | import("@reduxjs/toolkit/query").FetchArgs, api: import("@reduxjs/toolkit/query").BaseQueryApi, extraOptions: {}) => Promise<{
         error: {
             code: string;
@@ -105,6 +116,17 @@ export declare const orderByIdSelectors: import("@reduxjs/toolkit").EntitySelect
         };
         error?: undefined;
     }>, import("../../enums/tags.ts").ApiTags, void, "api">;
+    cancelOrder: import("@reduxjs/toolkit/query").MutationDefinition<EntityId, (args: string | import("@reduxjs/toolkit/query").FetchArgs, api: import("@reduxjs/toolkit/query").BaseQueryApi, extraOptions: {}) => Promise<{
+        error: {
+            code: string;
+        };
+        data?: undefined;
+    } | {
+        data: {
+            code: string;
+        };
+        error?: undefined;
+    }>, import("../../enums/tags.ts").ApiTags, void, "api">;
     confirmOrder: import("@reduxjs/toolkit/query").MutationDefinition<EntityId, (args: string | import("@reduxjs/toolkit/query").FetchArgs, api: import("@reduxjs/toolkit/query").BaseQueryApi, extraOptions: {}) => Promise<{
         error: {
             code: string;
@@ -154,6 +176,17 @@ export declare const orderByIdSelectorsFactory: (id: EntityId) => import("@redux
         success: boolean;
     }, "api">;
     updateOrderStatus: import("@reduxjs/toolkit/query").MutationDefinition<import("./endpoints.ts").IUpdateOrderRequestPayload, (args: string | import("@reduxjs/toolkit/query").FetchArgs, api: import("@reduxjs/toolkit/query").BaseQueryApi, extraOptions: {}) => Promise<{
+        error: {
+            code: string;
+        };
+        data?: undefined;
+    } | {
+        data: {
+            code: string;
+        };
+        error?: undefined;
+    }>, import("../../enums/tags.ts").ApiTags, void, "api">;
+    cancelOrder: import("@reduxjs/toolkit/query").MutationDefinition<EntityId, (args: string | import("@reduxjs/toolkit/query").FetchArgs, api: import("@reduxjs/toolkit/query").BaseQueryApi, extraOptions: {}) => Promise<{
         error: {
             code: string;
         };
