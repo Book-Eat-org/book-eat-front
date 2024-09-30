@@ -1,6 +1,6 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 
-import { useController } from "react-hook-form";
+import { useController, useWatch } from "react-hook-form";
 
 import { Grid, TimeInput } from "@book-eat/ui";
 import { IFormValues } from "../../../models";
@@ -11,6 +11,7 @@ const TimesAllDays: FC = () => {
   const { field } = useController<IFormValues, "schedule">({
     name: "schedule",
   });
+  const { differentTimeDaily } = useWatch<IFormValues>();
   const { onChange, value } = field;
 
   const handleToTimeChange = (eventValue: string) => {
@@ -22,6 +23,12 @@ const TimesAllDays: FC = () => {
   };
 
   const { timeFrom, timeTo } = value[0];
+
+  useEffect(() => {
+    if (!differentTimeDaily) {
+      onChange(value.map((item) => ({ ...item, timeTo, timeFrom })));
+    }
+  }, [differentTimeDaily, timeFrom, timeTo]);
 
   return (
     <Grid gridTemplateColumns="1fr auto 1fr" gap={6} alignItems="center">
