@@ -35,7 +35,7 @@ export const Submit = () => {
 
   const paymentButtonAvailable = isNotNil(paymentUrl);
 
-  if (status !== OrderStatus.NEW) {
+  if (![OrderStatus.NEW, OrderStatus.PAID].includes(status)) {
     return null;
   }
 

@@ -17,6 +17,10 @@ export const Status = () => {
     return "Оплата не завершена";
   }
 
+  if (status === OrderStatus.PAID) {
+    return "Оплачен";
+  }
+
   if (status === OrderStatus.IN_PROGRESS) {
     if (isNotNil(delivery)) {
       return `Готовится. Ссылка для отслеживания: ${delivery.trackingUrl}`;
