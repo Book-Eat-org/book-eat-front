@@ -11,6 +11,9 @@ const Main = () => {
     console.log("click");
     navigator.serviceWorker.controller.postMessage("test message");
   };
+  const enableNotice = () => {
+    Notification.requestPermission();
+  };
 
   return (
     <Page>
@@ -19,6 +22,9 @@ const Main = () => {
           <Logout />
           <Button variant="primary" color="primary" onClick={sendNotice}>
             Pushh
+          </Button>
+          <Button variant="primary" color="primary" onClick={enableNotice}>
+            enable notice
           </Button>
         </Page.Header.Buttons>
         <Page.Header.Title>
