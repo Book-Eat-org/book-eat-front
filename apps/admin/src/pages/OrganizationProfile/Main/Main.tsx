@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@book-eat/ui";
+import { Button, Grid, Typography } from "@book-eat/ui";
 import { ORGANIZATION_PROFILE_ROUTES } from "../constants";
 import { NavItem, Page } from "$components";
 import { useNavigate } from "react-router-dom";
@@ -7,11 +7,19 @@ import { Logout } from "./Logout/Logout.tsx";
 const Main = () => {
   const navigate = useNavigate();
 
+  const sendNotice = () => {
+    console.log("click");
+    navigator.serviceWorker.controller.postMessage("test message");
+  };
+
   return (
     <Page>
       <Page.Header>
         <Page.Header.Buttons reverse>
           <Logout />
+          <Button variant="primary" color="primary" onClick={sendNotice}>
+            Push
+          </Button>
         </Page.Header.Buttons>
         <Page.Header.Title>
           <Typography fontWeight={600} size="26/26">
