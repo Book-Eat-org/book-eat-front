@@ -7,14 +7,19 @@
     <link rel="manifest" href="manifest.json" />
     <title>Book-Eat | Сервис доставки</title>
     <script>
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js')
-                .then(registration => {
-                  console.log('Service Worker registered with scope:', registration.scope);
-                })
-                .catch(error => {
-                  console.error('Service Worker registration failed:', error);
-                });
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("/sw.js")
+          .then((registration) => {
+            Notification.requestPermission();
+            console.log(
+              "Service Worker registered with scope:",
+              registration.scope,
+            );
+          })
+          .catch((error) => {
+            console.error("Service Worker registration failed:", error);
+          });
       }
     </script>
   </head>
