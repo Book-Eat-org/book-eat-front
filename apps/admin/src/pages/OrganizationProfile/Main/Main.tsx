@@ -18,7 +18,7 @@ const Main = () => {
         <Page.Header.Buttons reverse>
           <Logout />
           <Button variant="primary" color="primary" onClick={sendNotice}>
-            Push
+            Pushh
           </Button>
         </Page.Header.Buttons>
         <Page.Header.Title>
