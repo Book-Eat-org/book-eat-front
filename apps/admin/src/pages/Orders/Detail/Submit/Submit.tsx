@@ -24,6 +24,10 @@ const CONFIG_ACTION_MAP: Record<OrderStatus, OrderStatus[]> = {
     OrderStatus.CANCELLED_BY_PROVIDER,
     OrderStatus.IN_PROGRESS,
   ],
+  [OrderStatus.PAID]: [
+    OrderStatus.CANCELLED_BY_PROVIDER,
+    OrderStatus.IN_PROGRESS,
+  ],
   [OrderStatus.ERROR]: [],
   [OrderStatus.CANCELLED_BY_CLIENT]: [],
   [OrderStatus.COMPLETED]: [],
