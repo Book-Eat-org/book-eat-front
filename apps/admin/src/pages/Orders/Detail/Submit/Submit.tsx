@@ -37,7 +37,7 @@ export const Submit = () => {
   const configItem = CONFIG_ACTION_MAP[status];
 
   if (isNil(configItem)) {
-    return <Button>Оплатить</Button>;
+    return null;
   }
 
   return (

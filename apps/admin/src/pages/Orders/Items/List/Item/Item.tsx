@@ -35,7 +35,9 @@ export const Item: FC<IProps> = (props) => {
 
   const color =
     isNil(readyTime) ||
-    ![OrderStatus.IN_PROGRESS, OrderStatus.NEW].includes(status)
+    ![OrderStatus.IN_PROGRESS, OrderStatus.NEW, OrderStatus.PAID].includes(
+      status,
+    )
       ? theme.colors.general50
       : getColorByReadyTime(timeLeftInMs);
 

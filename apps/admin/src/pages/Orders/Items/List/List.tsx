@@ -42,6 +42,7 @@ const List = () => {
   );
 
   const sortedKeys = innerJoin(equals, keys(OrderStatus), keys(groupedData));
+  console.log(sortedKeys);
 
   return (
     <Grid gap={9}>
