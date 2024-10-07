@@ -83,6 +83,10 @@
       "allowedCategories": [ "tools" ]
     },
     {
+      "name": "@types/react-virtualized",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "@types/styled-system",
       "allowedCategories": [ "tools" ]
     },
@@ -125,6 +129,14 @@
     {
       "name": "dayjs",
       "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "esbuild",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "esbuild-plugin-react-virtualized",
+      "allowedCategories": [ "production" ]
     },
     {
       "name": "eslint",
@@ -188,6 +200,10 @@
     },
     {
       "name": "react-router-dom",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "react-virtualized",
       "allowedCategories": [ "production" ]
     },
     {

@@ -8,7 +8,7 @@ export const Image = () => {
   return (
     <Flex>
       <img
-        src={mainImageUrl}
+        src={mainImageUrl + "?resolution=400"}
         alt=""
         width={80}
         height={80}

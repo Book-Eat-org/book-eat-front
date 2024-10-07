@@ -14,10 +14,7 @@ const Image: FC<IProps> = ({ id }) => {
   return (
     <Box p="2px">
       <img
-        src={
-          mainImageUrl ??
-          "https://archive.org/download/placeholder-image/placeholder-image.jpg"
-        }
+        src={mainImageUrl + "?resolution=400"}
         alt=""
         className={classes.image}
       />

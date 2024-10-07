@@ -26,7 +26,8 @@
     "@pbe/react-yandex-maps": "~1.2.5",
     "dayjs": "~1.11.10",
     "@book-eat/api": "~0.0.0",
-    "@book-eat/utils": "~0.0.0"
+    "@book-eat/utils": "~0.0.0",
+    "react-virtualized": "~9.22.5"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
@@ -44,6 +45,9 @@
     "@types/uuid": "~9.0.7",
     "vite-plugin-mkcert": "~1.17.5",
     "@vitejs/plugin-basic-ssl": "~1.1.0",
-    "shx": "~0.3.4"
+    "shx": "~0.3.4",
+    "@types/react-virtualized": "~9.21.30",
+    "esbuild-plugin-react-virtualized": "~1.0.4",
+    "esbuild": "~0.24.0"
   }
 }
