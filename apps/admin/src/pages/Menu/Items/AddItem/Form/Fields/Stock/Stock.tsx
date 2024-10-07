@@ -26,7 +26,9 @@ export const Stock: FC = () => {
   const { data: productsData } =
     placesEndpoints.useFetchPlacesByOrganizationQuery(data.ids[0]);
 
-  const places = values(productsData?.entities ?? {}).filter(isNotNil);
+  const places = values(productsData?.entities ?? {})
+    .filter(isNotNil)
+    .sort((a, b) => a.title.localeCompare(b.title));
 
   const selectedPlaces = innerJoin((shop, id) => id === shop.id, places, value);
   const title = selectedPlaces.map(prop("title")).join(" ,");

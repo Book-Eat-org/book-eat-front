@@ -3,8 +3,6 @@ import { ApiTags } from "$enums";
 import { menuAdapter } from "./adapter";
 import { api } from "../api";
 import { ICategory, IProduct } from "$models";
-import { flatten, prop, uniqBy } from "ramda";
-import { categoriesAdapters } from "../categories/adapter.ts";
 
 type IGetBlaBlaResponse = (ICategory & { products: IProduct[] })[];
 

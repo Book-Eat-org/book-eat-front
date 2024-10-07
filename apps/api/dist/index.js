@@ -4,7 +4,7 @@ var _t = (e, t, r) => (Nn(e, typeof t != "symbol" ? t + "" : t, r), r);
 import * as et from "react";
 import lt, { useContext as Pn, useRef as ue, useCallback as qe, useDebugValue as $t, useMemo as ne, useState as cr, useEffect as fe, useLayoutEffect as Dn } from "react";
 import { unstable_batchedUpdates as $n } from "react-dom";
-var kn = /* @__PURE__ */ ((e) => (e.NEW = "NEW", e.IN_PROGRESS = "IN_PROGRESS", e.CANCELLED_BY_CLIENT = "CANCELLED_BY_CLIENT", e.CANCELLED_BY_PROVIDER = "CANCELLED_BY_PROVIDER", e.ERROR = "ERROR", e.PAID = "PAID", e.COMPLETED = "COMPLETED", e))(kn || {}), jn = /* @__PURE__ */ ((e) => (e.DELIVERY = "DELIVERY", e.TO_OUTSIDE = "TO_OUTSIDE", e.ON_PLACE = "ON_PLACE", e))(jn || {}), xn = /* @__PURE__ */ ((e) => (e.Monday = "Понедельник", e.Tuesday = "Вторник", e.Wednesday = "Среда", e.Thursday = "Четверг", e.Friday = "Пятница", e.Saturday = "Суббота", e.Sunday = "Воскресенье", e))(xn || {});
+var kn = /* @__PURE__ */ ((e) => (e.NEW = "NEW", e.PAID = "PAID", e.IN_PROGRESS = "IN_PROGRESS", e.CANCELLED_BY_CLIENT = "CANCELLED_BY_CLIENT", e.CANCELLED_BY_PROVIDER = "CANCELLED_BY_PROVIDER", e.ERROR = "ERROR", e.COMPLETED = "COMPLETED", e))(kn || {}), jn = /* @__PURE__ */ ((e) => (e.DELIVERY = "DELIVERY", e.TO_OUTSIDE = "TO_OUTSIDE", e.ON_PLACE = "ON_PLACE", e))(jn || {}), xn = /* @__PURE__ */ ((e) => (e.Monday = "Понедельник", e.Tuesday = "Вторник", e.Wednesday = "Среда", e.Thursday = "Четверг", e.Friday = "Пятница", e.Saturday = "Суббота", e.Sunday = "Воскресенье", e))(xn || {});
 function kt(e) {
   return `Minified Redux error #${e}; visit https://redux.js.org/Errors?code=${e} for the full message or use the non-minified dev environment for full errors. `;
 }
@@ -5163,7 +5163,8 @@ const bs = es.endpoints.getCashiers.select(), $s = ct.getSelectors(
 ), Vs = pe.getSelectors(
   re(Rs, (e) => e.data ?? pe.getInitialState())
 ), Z = we({
-  selectId: (e) => e.id
+  selectId: (e) => e.id,
+  sortComparer: (e, t) => e.title.localeCompare(t.title)
 }), ir = me.injectEndpoints({
   endpoints: (e) => ({
     getMenuByPlaceId: e.query({

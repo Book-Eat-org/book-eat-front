@@ -23,11 +23,13 @@ const List = () => {
 
   const filteredByEnabled = entities.filter(prop("isActiveOnOrganization"));
 
-  const filteredData = filteredByEnabled.filter((item) =>
-    searchValue
-      ? item?.title.toLowerCase().includes(searchValue.toLowerCase())
-      : true,
-  );
+  const filteredData = filteredByEnabled
+    .filter((item) =>
+      searchValue
+        ? item?.title.toLowerCase().includes(searchValue.toLowerCase())
+        : true,
+    )
+    .sort((a, b) => a.title.localeCompare(b.title));
 
   const ids = filteredData.map((item) => item?.id);
 

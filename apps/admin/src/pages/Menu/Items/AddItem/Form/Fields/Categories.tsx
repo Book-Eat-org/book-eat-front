@@ -9,7 +9,9 @@ import { categoriesSelectors } from "$api";
 import { useSelector } from "react-redux";
 
 export const Categories: FC = () => {
-  const data = useSelector(categoriesSelectors.selectAll);
+  const data = useSelector(categoriesSelectors.selectAll).sort((a, b) =>
+    a.title.localeCompare(b.title),
+  );
   const { field, fieldState } = useController<IFormValues, "categories">({
     name: "categories",
     rules: { required: { value: true, message: "Выберите категорию" } },

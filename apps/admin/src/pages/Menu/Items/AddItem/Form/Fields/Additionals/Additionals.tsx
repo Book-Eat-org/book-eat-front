@@ -15,7 +15,9 @@ export const Additionals: FC = () => {
   });
   const { onChange, value = [] } = field;
 
-  const data = useSelector(additionsSelectors.selectAll);
+  const data = useSelector(additionsSelectors.selectAll).sort((a, b) =>
+    a.title.localeCompare(b.title),
+  );
 
   const handleChange = (item: string) =>
     onChange(symmetricDifference(value, [item]));

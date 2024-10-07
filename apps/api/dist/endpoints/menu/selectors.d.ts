@@ -1,5 +1,5 @@
 import { EntityId } from "@reduxjs/toolkit";
-export declare const menuSelectors: import("@reduxjs/toolkit").EntitySelectors<IProduct, import("@reduxjs/toolkit/query").RootState<{
+export declare const menuSelectors: import("@reduxjs/toolkit").EntitySelectors<import("../../index.ts").IProduct, import("@reduxjs/toolkit/query").RootState<{
     getMenuByPlaceId: import("@reduxjs/toolkit/query").QueryDefinition<EntityId, (args: string | import("@reduxjs/toolkit/query").FetchArgs, api: import("@reduxjs/toolkit/query").BaseQueryApi, extraOptions: {}) => Promise<{
         error: {
             code: string;
@@ -84,7 +84,7 @@ export declare const menuSelectors: import("@reduxjs/toolkit").EntitySelectors<I
         success: boolean;
     }, "api">;
 }, import("../../enums/tags.ts").ApiTags, "api">, EntityId>;
-export declare const createMenuSelectorsByPlaceId: (id: EntityId) => import("@reduxjs/toolkit").EntitySelectors<IProduct, import("@reduxjs/toolkit/query").RootState<{
+export declare const createMenuSelectorsByPlaceId: (id: EntityId) => import("@reduxjs/toolkit").EntitySelectors<import("../../index.ts").IProduct, import("@reduxjs/toolkit/query").RootState<{
     getMenuByPlaceId: import("@reduxjs/toolkit/query").QueryDefinition<EntityId, (args: string | import("@reduxjs/toolkit/query").FetchArgs, api: import("@reduxjs/toolkit/query").BaseQueryApi, extraOptions: {}) => Promise<{
         error: {
             code: string;
@@ -169,7 +169,7 @@ export declare const createMenuSelectorsByPlaceId: (id: EntityId) => import("@re
         success: boolean;
     }, "api">;
 }, import("../../enums/tags.ts").ApiTags, "api">, EntityId>;
-export declare const createMenuSelectorsById: (id: EntityId) => import("@reduxjs/toolkit").EntitySelectors<IProduct, import("@reduxjs/toolkit/query").RootState<{
+export declare const createMenuSelectorsById: (id: EntityId) => import("@reduxjs/toolkit").EntitySelectors<import("../../index.ts").IProduct, import("@reduxjs/toolkit/query").RootState<{
     getMenuByPlaceId: import("@reduxjs/toolkit/query").QueryDefinition<EntityId, (args: string | import("@reduxjs/toolkit/query").FetchArgs, api: import("@reduxjs/toolkit/query").BaseQueryApi, extraOptions: {}) => Promise<{
         error: {
             code: string;

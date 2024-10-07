@@ -3,11 +3,11 @@ import { IProduct } from "./product.ts";
 import { IOrganization, IPlace } from '..';
 export declare enum OrderStatus {
     NEW = "NEW",
+    PAID = "PAID",
     IN_PROGRESS = "IN_PROGRESS",
     CANCELLED_BY_CLIENT = "CANCELLED_BY_CLIENT",
     CANCELLED_BY_PROVIDER = "CANCELLED_BY_PROVIDER",
     ERROR = "ERROR",
-    PAID = "PAID",
     COMPLETED = "COMPLETED"
 }
 export declare enum DeliveryTypeName {
@@ -50,6 +50,6 @@ export interface IOrder {
     };
     products: IProduct[];
     paymentUrl: string;
-    places: IPlace[];
+    places: IPlace;
     organization: IOrganization;
 }
