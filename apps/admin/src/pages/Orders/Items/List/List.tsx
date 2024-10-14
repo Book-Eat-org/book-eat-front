@@ -12,8 +12,7 @@ import {
   values,
 } from "ramda";
 import { ORDER_STATUSES_TITLES_CONFIG } from "@book-eat/utils";
-import { OrderStatus } from "@book-eat/api/src";
-import { IOrder } from "@book-eat/api";
+import { IOrder, OrderStatus } from "@book-eat/api";
 
 const List = () => {
   const { isFetching, data } = ordersEndpoints.useGetOrdersQuery();
@@ -42,7 +41,6 @@ const List = () => {
   );
 
   const sortedKeys = innerJoin(equals, keys(OrderStatus), keys(groupedData));
-  console.log(sortedKeys);
 
   return (
     <Grid gap={9}>

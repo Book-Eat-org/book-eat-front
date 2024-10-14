@@ -25,9 +25,13 @@ import Page from "./Page";
 import Button from "./Button";
 import Typography from "./Typography";
 import Switch from "./Switch";
+import Image from "./Image";
+import NewPage from "./NewPage";
 
 export {
   Button,
+  Image,
+  NewPage,
   UICheckbox,
   UIInput,
   UIButton,

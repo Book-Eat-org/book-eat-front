@@ -1,5 +1,5 @@
 import { useMenuData } from "../context.ts";
-import { Flex } from "@book-eat/ui";
+import { Flex, Image as ImageUI } from "@book-eat/ui";
 import { Discount } from "./Discount.tsx";
 
 export const Image = () => {
@@ -7,9 +7,9 @@ export const Image = () => {
 
   return (
     <Flex>
-      <img
-        src={mainImageUrl + "?resolution=400"}
-        alt=""
+      <ImageUI
+        src={mainImageUrl}
+        size={400}
         width={80}
         height={80}
         style={{ borderRadius: "15px" }}

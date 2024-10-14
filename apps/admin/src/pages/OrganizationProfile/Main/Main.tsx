@@ -7,25 +7,18 @@ import { Logout } from "./Logout/Logout.tsx";
 const Main = () => {
   const navigate = useNavigate();
 
-  const sendNotice = () => {
-    console.log("click");
-    navigator.serviceWorker.controller.postMessage("test message");
-  };
-  const enableNotice = () => {
-    Notification.requestPermission();
-  };
+  // const sendNotice = () => {
+  //   navigator.serviceWorker.controller.postMessage("test message");
+  // };
+  // const enableNotice = () => {
+  //   Notification.requestPermission();
+  // };
 
   return (
     <Page>
       <Page.Header>
         <Page.Header.Buttons reverse>
           <Logout />
-          <Button variant="primary" color="primary" onClick={sendNotice}>
-            Pushh
-          </Button>
-          <Button variant="primary" color="primary" onClick={enableNotice}>
-            enable notice
-          </Button>
         </Page.Header.Buttons>
         <Page.Header.Title>
           <Typography fontWeight={600} size="26/26">

@@ -1,0 +1,4 @@
+.wrapper {
+  display: grid;
+  grid-template-areas: "left central right";
+}
