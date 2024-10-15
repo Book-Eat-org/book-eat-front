@@ -1,4 +1,6 @@
 .wrapper {
     grid-area: right;
-    margin-left: auto;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
 }

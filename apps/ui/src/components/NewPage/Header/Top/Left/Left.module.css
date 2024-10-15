@@ -1,3 +1,4 @@
 .wrapper {
   grid-area: left;
+  width: 100%;
 }

@@ -13,7 +13,6 @@ export const Submit = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const paymentUrl = searchParams.get("paymentUrl");
   const paymentStatus = searchParams.get("status");
-  const [cancelOrder] = ordersEndpoints.useCancelOrderMutation();
   const [confirmOrder] = ordersEndpoints.useConfirmOrderMutation();
 
   useEffect(() => {
@@ -23,8 +22,6 @@ export const Submit = () => {
       confirmOrder(id);
     }
   }, [paymentStatus, id]);
-
-  const onCancel = () => cancelOrder(id);
 
   const onClick = () => {
     if (paymentUrl) {

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import { useSelector } from "react-redux";
 import { menuEndpoints } from "$api";
 import { EntityId } from "@reduxjs/toolkit";
@@ -7,13 +7,13 @@ import { useNavigate } from "react-router-dom";
 import { navigateToPage, PageURLS } from "$constants";
 import { MenuListItemContext } from "./context.ts";
 import { Image, Price, Title, Weight } from "./Fields";
-import { productsSelectors } from "../../../../../../store/entities";
+import { productsSelectors } from "$store";
 
 interface IProps {
   id: EntityId;
 }
 
-const Item: FC<IProps> = ({ id }) => {
+const Item: FC<IProps> = memo(({ id }) => {
   const navigate = useNavigate();
   const item = useSelector((state) => productsSelectors.selectById(state, id));
 
@@ -62,6 +62,6 @@ const Item: FC<IProps> = ({ id }) => {
       </Flex>
     </MenuListItemContext.Provider>
   );
-};
+});
 
 export default Item;

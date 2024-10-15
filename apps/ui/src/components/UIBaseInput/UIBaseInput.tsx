@@ -42,7 +42,7 @@ const UIBaseInput = forwardRef<HTMLInputElement, IProps>((props, ref) => {
     <Grid gap={1} width="100%">
       <Grid
         border={`1px solid ${theme.colors.general300}`}
-        p={titleActive ? "20px 15px 8px" : 3}
+        p={titleActive ? "20px 15px 8px" : "13px 14px"}
         borderRadius="10px"
         backgroundColor={theme.colors.general50}
       >

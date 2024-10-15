@@ -5,6 +5,7 @@ import {
   equals,
   groupBy,
   innerJoin,
+  isEmpty,
   isNil,
   isNotNil,
   keys,
@@ -13,8 +14,17 @@ import {
 } from "ramda";
 import { ORDER_STATUSES_TITLES_CONFIG } from "@book-eat/utils";
 import { IOrder, OrderStatus } from "@book-eat/api";
+import { memo } from "react";
+import { useOrdersPageContext } from "../context.ts";
+import { Empty } from "./Empty";
 
-const List = () => {
+const searchingTextEquals = (searchingText: string, targetText: string) =>
+  isEmpty(searchingText)
+    ? true
+    : targetText.toLowerCase().includes(searchingText.toLowerCase());
+
+const List = memo(() => {
+  const { searchValue } = useOrdersPageContext();
   const { isFetching, data } = ordersEndpoints.useGetOrdersQuery();
   const { entities } = data ?? {};
 
@@ -30,7 +40,9 @@ const List = () => {
         OrderStatus.COMPLETED,
         OrderStatus.CANCELLED_BY_CLIENT,
         OrderStatus.CANCELLED_BY_PROVIDER,
-      ].includes(item.status),
+      ].includes(item.status) &&
+      (searchingTextEquals(searchValue, String(item.orderNumber)) ||
+        searchingTextEquals(searchValue, item.customerInfo.customerPhone)),
   );
 
   const groupedData = groupBy(
@@ -41,6 +53,10 @@ const List = () => {
   );
 
   const sortedKeys = innerJoin(equals, keys(OrderStatus), keys(groupedData));
+
+  if (isEmpty(sortedKeys)) {
+    return <Empty />;
+  }
 
   return (
     <Grid gap={9}>
@@ -58,6 +74,6 @@ const List = () => {
       ))}
     </Grid>
   );
-};
+});
 
 export default List;
