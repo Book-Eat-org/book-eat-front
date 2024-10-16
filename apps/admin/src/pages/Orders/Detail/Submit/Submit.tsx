@@ -3,10 +3,11 @@ import { ordersEndpoints } from "$api";
 import { useOrder } from "../useOrder.ts";
 import { OrderStatus } from "@book-eat/api";
 import { isNil } from "ramda";
+import { useNavigate } from "react-router-dom";
+import { useCallback } from "react";
 
-const BUTTONS_ACTIONS_CONFIG: Record<
-  OrderStatus,
-  { title: string; variant: string }
+const BUTTONS_ACTIONS_CONFIG: Partial<
+  Record<OrderStatus, { title: string; variant: string }>
 > = {
   [OrderStatus.CANCELLED_BY_PROVIDER]: {
     title: "Отменить заказ",
@@ -22,7 +23,7 @@ const BUTTONS_ACTIONS_CONFIG: Record<
   },
 };
 
-const CONFIG_ACTION_MAP: Record<OrderStatus, OrderStatus[]> = {
+const CONFIG_ACTION_MAP: Partial<Record<OrderStatus, OrderStatus[]>> = {
   [OrderStatus.IN_PROGRESS]: [OrderStatus.COMPLETED],
   [OrderStatus.NEW]: [
     OrderStatus.CANCELLED_BY_PROVIDER,
@@ -32,20 +33,27 @@ const CONFIG_ACTION_MAP: Record<OrderStatus, OrderStatus[]> = {
     OrderStatus.CANCELLED_BY_PROVIDER,
     OrderStatus.IN_PROGRESS,
   ],
-  [OrderStatus.ERROR]: [],
   [OrderStatus.CANCELLED_BY_CLIENT]: [],
-  [OrderStatus.COMPLETED]: [],
   [OrderStatus.CANCELLED_BY_PROVIDER]: [],
 };
 
 export const Submit = () => {
   const [trigger] = ordersEndpoints.useUpdateOrderStatusMutation();
   const { id, status } = useOrder();
+  const navigate = useNavigate();
 
   const configItem = CONFIG_ACTION_MAP[status];
 
+  const navigateBack = useCallback(() => navigate(".."), []);
+
+  console.log(configItem);
+
   if (isNil(configItem)) {
-    return null;
+    return (
+      <Button width="100%" variant="primary" onClick={navigateBack}>
+        К списку заказов
+      </Button>
+    );
   }
 
   return (
