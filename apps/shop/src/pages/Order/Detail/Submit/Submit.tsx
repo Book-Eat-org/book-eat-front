@@ -13,6 +13,7 @@ export const Submit = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const paymentUrl = searchParams.get("paymentUrl");
   const paymentStatus = searchParams.get("status");
+  const [cancelOrder] = ordersEndpoints.useCancelOrderMutation();
   const [confirmOrder] = ordersEndpoints.useConfirmOrderMutation();
 
   useEffect(() => {
@@ -23,6 +24,8 @@ export const Submit = () => {
     }
   }, [paymentStatus, id]);
 
+  const onCancel = () => cancelOrder(id);
+
   const onClick = () => {
     if (paymentUrl) {
       dispatch(clearCart());
@@ -31,6 +34,7 @@ export const Submit = () => {
   };
 
   const paymentButtonAvailable = isNotNil(paymentUrl);
+  const cancelAvailable = status === OrderStatus.PAID;
 
   if (![OrderStatus.NEW, OrderStatus.PAID].includes(status)) {
     return null;
@@ -38,6 +42,11 @@ export const Submit = () => {
 
   return (
     <Flex gap={8}>
+      {cancelAvailable && (
+        <Button variant="danger" onClick={onCancel} width="100%">
+          Отменить заказ
+        </Button>
+      )}
       {paymentButtonAvailable && (
         <Button onClick={onClick} width="100%">
           Оплатить
