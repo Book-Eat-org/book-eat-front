@@ -36,9 +36,9 @@ export const Additionals: FC = () => {
       displayValue={title}
       placeholder="Наличие добавок"
     >
-      {data?.map(({ title, id }) => (
+      {data?.map(({ title, id, weight }) => (
         <UIMultipleSelectOption key={id} value={id}>
-          {title}
+          {title} {weight} гр.
         </UIMultipleSelectOption>
       ))}
     </UIMultipleSelect>
