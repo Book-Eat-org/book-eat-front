@@ -16,10 +16,14 @@ const BUTTONS_ACTIONS_CONFIG: Record<
     title: "Взять в работу",
     variant: "primary",
   },
+  [OrderStatus.COMPLETED]: {
+    title: "Завершить заказ",
+    variant: "primary",
+  },
 };
 
 const CONFIG_ACTION_MAP: Record<OrderStatus, OrderStatus[]> = {
-  [OrderStatus.IN_PROGRESS]: [],
+  [OrderStatus.IN_PROGRESS]: [OrderStatus.COMPLETED],
   [OrderStatus.NEW]: [
     OrderStatus.CANCELLED_BY_PROVIDER,
     OrderStatus.IN_PROGRESS,
