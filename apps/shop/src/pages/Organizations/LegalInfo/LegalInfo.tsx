@@ -50,7 +50,12 @@ export const LegalInfo = () => {
             </Flex>
           </NewPage.Header.Top.Left>
           <NewPage.Header.Top.Central>
-            <Grid gap={1} justifyContent="center" justifyItems="center">
+            <Grid
+              gap={1}
+              justifyContent="center"
+              justifyItems="center"
+              color={theme.colors.general50}
+            >
               <Typography size="16/16" fontWeight={600}>
                 Юридическая информация
               </Typography>
@@ -61,21 +66,21 @@ export const LegalInfo = () => {
           </NewPage.Header.Top.Central>
         </NewPage.Header.Top>
       </NewPage.Header>
-      <NewPage.Body>
-        <Grid gap={3} p={3}>
-          <Grid gap={3}>
+      <NewPage.Body padding="0">
+        <Grid>
+          <Grid gap={3} p={3}>
             <Item title="Наименование юридического лица">{legalName}</Item>
             <Item title="ИНН">{inn}</Item>
             <Item title="ОГРН/ОГРНИП">{ogrn}</Item>
           </Grid>
           <Separator />
-          <Grid gap={3}>
+          <Grid gap={3} p={3}>
             <Item title="Фактический адрес">{actualAddress}</Item>
             <Item title="Телефон">{phone}</Item>
             <Item title="E-mail">{email}</Item>
           </Grid>
           <Separator />
-          <Grid gap={3}>
+          <Grid gap={3} p={3}>
             <Item title="Юридический адрес">{legalAddress}</Item>
           </Grid>
         </Grid>

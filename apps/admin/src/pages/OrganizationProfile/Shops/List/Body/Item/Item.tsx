@@ -14,7 +14,8 @@ import { useSelector } from "react-redux";
 import { EntityId } from "@reduxjs/toolkit";
 import { useNavigate } from "react-router-dom";
 import { navigateToPage, PageURLS } from "$constants";
-import { placesSelectors } from "../../../../../../store/entities";
+import { placesSelectors } from "$store";
+import { formatPhoneNumber } from "@book-eat/utils";
 
 interface IProps {
   id: EntityId;
@@ -77,7 +78,7 @@ const Item: FC<IProps> = (props) => {
           <Flex alignItems="center" gap={1}>
             <PhoneIcon20 />
             <Typography size="12/12" color={theme.colors.general600}>
-              {phone ?? "phone"}
+              {formatPhoneNumber(phone ?? "")}
             </Typography>
           </Flex>
         </Grid>
