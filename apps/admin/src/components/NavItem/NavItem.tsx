@@ -16,7 +16,7 @@ export const NavItem: FC<IProps> = (props) => {
       borderRadius={10}
       onClick={onClick}
     >
-      <Typography size="14/14" fontWeight={500} textTransform="uppercase">
+      <Typography size="14/14" fontWeight={500}>
         {children}
       </Typography>
       <ArrowRightIcon24 />

@@ -59,7 +59,7 @@ const Item: FC<IProps> = (props) => {
         padding="6px 15px"
         onClick={openDetail}
       >
-        <Typography size="12/12" fontWeight={600} textTransform="uppercase">
+        <Typography size="12/12" fontWeight={600}>
           {title}
         </Typography>
         <Switch checked={isActive} onChange={toggleActive} />
