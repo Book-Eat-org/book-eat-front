@@ -30,8 +30,7 @@ const Card: FC<IProps> = (props) => {
   const { logoUrl } = item;
 
   const onClick = () => {
-    // TODO
-    if (!isClosed) {
+    if (isClosed) {
       return;
     }
     const url = navigateToPage(PageURLS.PRODUCTS, {
