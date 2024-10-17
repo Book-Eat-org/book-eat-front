@@ -1,6 +1,5 @@
 .wrapper {
-    padding: 15px;
-    min-height: 175px;
+    padding: 30px 15px 20px;
     display: flex;
     flex-direction: column;
     gap: 10px;

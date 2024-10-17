@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import List from "./List";
 import Header from "./Header";
-import { Grid, Page, Typography } from "@book-eat/ui";
+import { Flex, Grid, NewPage, theme, Typography } from "@book-eat/ui";
 import { OrganizationsContext } from "./context.ts";
 import { organizationsEndpoints } from "@book-eat/api";
 
@@ -11,21 +11,27 @@ export const Items: FC = () => {
 
   return (
     <OrganizationsContext.Provider value={{ searchValue, setSearchValue }}>
-      <Page>
-        <Page.Header>
-          <Page.Header.Title>
-            <Typography fontWeight={600} size="26/26">
-              Book-Eat
-            </Typography>
-          </Page.Header.Title>
-        </Page.Header>
-        <Page.Body>
+      <NewPage>
+        <NewPage.Header>
+          <NewPage.Header.Title>
+            <Flex paddingTop={10}>
+              <Typography
+                fontWeight={600}
+                size="26/26"
+                color={theme.colors.general50}
+              >
+                Book-Eat
+              </Typography>
+            </Flex>
+          </NewPage.Header.Title>
+        </NewPage.Header>
+        <NewPage.Body>
           <Grid>
             <Header />
             <List />
           </Grid>
-        </Page.Body>
-      </Page>
+        </NewPage.Body>
+      </NewPage>
     </OrganizationsContext.Provider>
   );
 };

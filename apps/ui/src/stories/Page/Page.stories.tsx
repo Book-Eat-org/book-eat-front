@@ -3,7 +3,7 @@ import { Meta, StoryObj } from "@storybook/react";
 
 export const Base = () => {
   return (
-    <div style={{ height: "1000px" }}>
+    <div style={{ height: "500px" }}>
       <NewPage>
         <NewPage.Header>
           <NewPage.Header.Top>

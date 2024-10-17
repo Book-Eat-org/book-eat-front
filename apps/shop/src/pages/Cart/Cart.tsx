@@ -1,19 +1,36 @@
 import { useNavigate } from "react-router-dom";
-import { BackIcon24, Flex, Page, theme } from "@book-eat/ui";
+import {
+  BackIcon24,
+  Flex,
+  Grid,
+  NewPage,
+  theme,
+  TrashIcon,
+  Typography,
+} from "@book-eat/ui";
 import { useSelector } from "$hooks";
-import { additionsEndpoints, menuEndpoints } from "@book-eat/api";
+import {
+  additionsEndpoints,
+  IPlace,
+  menuEndpoints,
+  placesEndpoints,
+} from "@book-eat/api";
 import { flatten, isEmpty, values } from "ramda";
 import { useEffect, useMemo } from "react";
 import { Body } from "./Body";
+import { useDispatch } from "react-redux";
+import { clearCart } from "../../store/cart";
 
 const Cart = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const onBackClick = () => navigate(-1);
   const cart = useSelector((state) => state.cart);
   const additionsIds = useMemo(
     () => flatten(values(cart.items).map((item) => item.additionIds)),
     [],
   );
+
   const [triggerAdditions] =
     additionsEndpoints.useFetchAdditionsByIdsMutation();
 
@@ -24,29 +41,65 @@ const Cart = () => {
   }, [additionsIds]);
 
   const { isSuccess } = menuEndpoints.useGetMenuByPlaceIdQuery(cart.shopId);
+  const { data, isSuccess: isShopSuccess } =
+    placesEndpoints.useFetchPlacesQuery();
 
-  if (!isSuccess) {
+  const onClearCart = () => dispatch(clearCart());
+
+  if (!isSuccess || !isShopSuccess) {
     return null;
   }
 
+  const place: IPlace = data.entities[cart.shopId];
+
   return (
-    <Page>
-      <Page.Header>
-        <Page.Header.Buttons>
-          <Flex
-            backgroundColor={theme.colors.accent50}
-            borderRadius={10}
-            padding="6px"
-          >
-            <BackIcon24 onClick={onBackClick} />
-          </Flex>
-        </Page.Header.Buttons>
-        <Page.Header.Title>Корзина</Page.Header.Title>
-      </Page.Header>
-      <Page.Body>
+    <NewPage>
+      <NewPage.Header>
+        <NewPage.Header.Top>
+          <NewPage.Header.Top.Left>
+            <Flex
+              backgroundColor={theme.colors.accent50}
+              borderRadius={10}
+              padding="6px"
+            >
+              <BackIcon24 onClick={onBackClick} />
+            </Flex>
+          </NewPage.Header.Top.Left>
+          <NewPage.Header.Top.Central>
+            <Grid gap={1} alignItems="center" justifyItems="center">
+              <img
+                src={place.logoUrl}
+                alt=""
+                width={80}
+                height={80}
+                style={{ borderRadius: "20px" }}
+              />
+              <Grid>
+                <Typography
+                  size="26/26"
+                  fontWeight={700}
+                  color={theme.colors.general50}
+                >
+                  {place.title}
+                </Typography>
+              </Grid>
+            </Grid>
+          </NewPage.Header.Top.Central>
+          <NewPage.Header.Top.Right>
+            <Flex
+              backgroundColor={theme.colors.accent50}
+              borderRadius={10}
+              padding="6px"
+            >
+              <TrashIcon onClick={onClearCart} />
+            </Flex>
+          </NewPage.Header.Top.Right>
+        </NewPage.Header.Top>
+      </NewPage.Header>
+      <NewPage.Body>
         <Body />
-      </Page.Body>
-    </Page>
+      </NewPage.Body>
+    </NewPage>
   );
 };
 

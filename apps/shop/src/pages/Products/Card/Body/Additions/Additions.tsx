@@ -14,7 +14,7 @@ export const Additions = () => {
 
   return (
     <Grid
-      gap={5}
+      gap={2}
       background={theme.colors.general50}
       padding={10}
       borderRadius={10}
@@ -22,7 +22,7 @@ export const Additions = () => {
       <Typography size="14/14" fontWeight={600}>
         Добавки
       </Typography>
-      <Grid gap={3}>
+      <Grid gap={1}>
         {additionsIds?.map((id) => <Addition id={id} key={id} />)}
       </Grid>
     </Grid>

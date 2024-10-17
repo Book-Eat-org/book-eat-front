@@ -1,4 +1,4 @@
-import { Flex, Grid, Typography } from "@book-eat/ui";
+import { theme, Grid, Typography } from "@book-eat/ui";
 import classes from "./PageHeader.module.css";
 import { useParams } from "react-router-dom";
 import { placesEndpoints } from "@book-eat/api";
@@ -10,7 +10,7 @@ const PageHeader = () => {
   const item = data?.entities[id!];
 
   return (
-    <Flex gap={2} alignItems="center">
+    <Grid gap={1} alignItems="center" justifyItems="center">
       <img
         src={item?.logoUrl}
         alt=""
@@ -19,11 +19,16 @@ const PageHeader = () => {
         className={classes.image}
       />
       <Grid>
-        <Typography className={classes.title} size="26/32">
+        <Typography
+          className={classes.title}
+          size="26/26"
+          fontWeight={700}
+          color={theme.colors.general50}
+        >
           {item?.title ?? "Товары"}
         </Typography>
       </Grid>
-    </Flex>
+    </Grid>
   );
 };
 

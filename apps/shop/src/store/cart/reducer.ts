@@ -70,6 +70,9 @@ export const cartReducer = createReducer<ICartState>(
     builder.addCase(removeFromCart, (state, { payload }) => {
       return { ...state, items: omit([payload], state.items) };
     });
-    builder.addCase(clearCart, () => initialState);
+    builder.addCase(clearCart, (state) => ({
+      shopId: state.shopId,
+      items: {},
+    }));
   },
 );

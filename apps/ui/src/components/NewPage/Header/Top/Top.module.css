@@ -1,5 +1,6 @@
 .wrapper {
   display: grid;
   grid-template-areas: "left central right";
-  grid-template-columns: minmax(0, max-content) minmax(0, max-content) minmax(0, auto);
+  grid-template-columns: minmax(36px, min-content) auto minmax(36px, min-content);
+  gap: 4px;
 }

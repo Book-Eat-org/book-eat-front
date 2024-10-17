@@ -1,3 +1,5 @@
 .wrapper {
     grid-area: central;
+    display: flex;
+    justify-content: center;
 }

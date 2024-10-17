@@ -1,4 +1,4 @@
-import { Flex, Typography, UICheckbox } from "@book-eat/ui";
+import { Flex, Typography, UICheckbox, theme } from "@book-eat/ui";
 import { SYMBOLS } from "@book-eat/utils";
 import { EntityId } from "@reduxjs/toolkit";
 import { FC } from "react";
@@ -34,7 +34,13 @@ export const Addition: FC<IProps> = (props) => {
   const titleLabel = [title, weightLabel].filter(isNotNil).join(", ");
 
   return (
-    <Flex justifyContent="space-between" alignItems="center" key={id}>
+    <Flex
+      justifyContent="space-between"
+      alignItems="flex-start"
+      key={id}
+      borderBottom={`1px solid ${theme.colors.general200}`}
+      padding="10px 0"
+    >
       <Flex gap={2} alignItems="center">
         <UICheckbox onChange={onChange} selected={additionsIds.includes(id)} />
         <Typography>{titleLabel}</Typography>
