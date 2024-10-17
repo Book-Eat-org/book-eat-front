@@ -187,6 +187,10 @@
       "allowedCategories": [ "production" ]
     },
     {
+      "name": "react-hook-form-persist",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "react-imask",
       "allowedCategories": [ "tools" ]
     },

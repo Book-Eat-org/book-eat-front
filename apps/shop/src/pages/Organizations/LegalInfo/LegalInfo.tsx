@@ -1,8 +1,18 @@
-import { BackIcon24, Flex, Grid, Page, theme } from "@book-eat/ui";
+import {
+  BackIcon24,
+  Flex,
+  Grid,
+  NewPage,
+  theme,
+  Typography,
+} from "@book-eat/ui";
 import { useSelector } from "react-redux";
-import { organizationsSelectors } from "@book-eat/api";
+import { organizationsEndpoints } from "@book-eat/api";
 import { useNavigate, useParams } from "react-router-dom";
 import { Item } from "./Item";
+import { Separator } from "./Separator";
+import { organizationsSelectors } from "../../../store/entities";
+import { isNil } from "ramda";
 
 export const LegalInfo = () => {
   const { id } = useParams();
@@ -11,43 +21,65 @@ export const LegalInfo = () => {
     organizationsSelectors.selectById(state, id),
   );
 
-  const { legalInfo } = item;
+  const { isFetching } = organizationsEndpoints.useGetOrganisationQuery(
+    id ?? "",
+  );
+
+  if (isFetching || isNil(item)) {
+    return null;
+  }
+
+  const { legalInfo, title } = item;
 
   const { inn, ogrn, legalAddress, actualAddress, email, phone, legalName } =
     legalInfo ?? {};
 
   const onBackClick = () => navigate("/");
+
   return (
-    <Page>
-      <Page.Header>
-        <Page.Header.Buttons>
-          <Flex
-            backgroundColor={theme.colors.accent50}
-            borderRadius={10}
-            padding="6px"
-          >
-            <BackIcon24 onClick={onBackClick} />
-          </Flex>
-        </Page.Header.Buttons>
-        <Page.Header.Title>Юридическая информация</Page.Header.Title>
-      </Page.Header>
-      <Page.Body>
-        <Grid gap={6} p={3}>
+    <NewPage>
+      <NewPage.Header>
+        <NewPage.Header.Top>
+          <NewPage.Header.Top.Left>
+            <Flex
+              backgroundColor={theme.colors.accent50}
+              borderRadius={10}
+              padding="6px"
+            >
+              <BackIcon24 onClick={onBackClick} />
+            </Flex>
+          </NewPage.Header.Top.Left>
+          <NewPage.Header.Top.Central>
+            <Grid gap={1} justifyContent="center" justifyItems="center">
+              <Typography size="16/16" fontWeight={600}>
+                Юридическая информация
+              </Typography>
+              <Typography size="16/16" fontWeight={700}>
+                {title}
+              </Typography>
+            </Grid>
+          </NewPage.Header.Top.Central>
+        </NewPage.Header.Top>
+      </NewPage.Header>
+      <NewPage.Body>
+        <Grid gap={3} p={3}>
           <Grid gap={3}>
             <Item title="Наименование юридического лица">{legalName}</Item>
             <Item title="ИНН">{inn}</Item>
             <Item title="ОГРН/ОГРНИП">{ogrn}</Item>
           </Grid>
+          <Separator />
           <Grid gap={3}>
             <Item title="Фактический адрес">{actualAddress}</Item>
             <Item title="Телефон">{phone}</Item>
             <Item title="E-mail">{email}</Item>
           </Grid>
+          <Separator />
           <Grid gap={3}>
             <Item title="Юридический адрес">{legalAddress}</Item>
           </Grid>
         </Grid>
-      </Page.Body>
-    </Page>
+      </NewPage.Body>
+    </NewPage>
   );
 };

@@ -44,9 +44,7 @@ export const Submit = () => {
 
   const configItem = CONFIG_ACTION_MAP[status];
 
-  const navigateBack = useCallback(() => navigate(".."), []);
-
-  console.log(configItem);
+  const navigateBack = useCallback(() => navigate(".."), [navigate]);
 
   if (isNil(configItem)) {
     return (

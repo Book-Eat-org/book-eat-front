@@ -1,8 +1,8 @@
 import { FC, useState } from "react";
 import { useController } from "react-hook-form";
 
-import { IFormValues } from "../models";
-import { AddressForm, Flex, Page, UIInput } from "@book-eat/ui";
+import { IFormValues } from "../../models";
+import { AddressForm, Flex, NewPage, UIInput } from "@book-eat/ui";
 import { not } from "ramda";
 
 export const Address: FC = () => {
@@ -39,18 +39,15 @@ export const Address: FC = () => {
           background="white"
           zIndex={1}
         >
-          <Page>
-            <Page.Header>
-              <Page.Header.Title>Адрес</Page.Header.Title>
-            </Page.Header>
-            <Page.Body>
+          <NewPage>
+            <NewPage.Body padding="0">
               <AddressForm
                 onChange={handleChange}
                 value={value}
                 onBack={toggleOpened}
               />
-            </Page.Body>
-          </Page>
+            </NewPage.Body>
+          </NewPage>
         </Flex>
       )}
     </>

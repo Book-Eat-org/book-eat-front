@@ -8343,6 +8343,16 @@ packages:
       react-is: 18.1.0
     dev: false
 
+  /react-hook-form-persist/3.0.0_e3slbdl3w76kzxoubgddsyunfu:
+    resolution: {integrity: sha512-6nwW65JyFpBem9RjLYAWvIFxOLoCk0E13iB9e5yeF5jeHlwx1ua0M77FvwhPpD8eaCz7hG4ziCdOxRcnJVUSxQ==}
+    peerDependencies:
+      react: '>= 16.3'
+      react-hook-form: '>= 6'
+    dependencies:
+      react: 18.2.0
+      react-hook-form: 7.48.2_react@18.2.0
+    dev: false
+
   /react-hook-form/7.48.2_react@18.2.0:
     resolution: {integrity: sha512-H0T2InFQb1hX7qKtDIZmvpU1Xfn/bdahWBN1fH19gSe4bBEqTfmlr7H3XWTaVtiK4/tpPaI1F3355GPMZYge+A==}
     engines: {node: '>=12.22.0'}
@@ -9994,7 +10004,7 @@ packages:
     dev: false
 
   file:projects/shop.tgz:
-    resolution: {integrity: sha512-WFtqh1jNc9jPB4e2quaDiGNDuDUwamJH4/yseJQNSBzd8u8PQD2vEgcTQMSIICjQiXHhHbhvyyIRh50ypIyUGg==, tarball: file:projects/shop.tgz}
+    resolution: {integrity: sha512-Oh1selml8ikpi84yZAKg2ZM29UczVHTPQB0Nkx8IytnBbMqoY997JsCqr+CJXJfJlscn7elR8BGtEmqKNOWJfA==, tarball: file:projects/shop.tgz}
     name: '@rush-temp/shop'
     version: 0.0.0
     dependencies:
@@ -10018,6 +10028,7 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-hook-form: 7.48.2_react@18.2.0
+      react-hook-form-persist: 3.0.0_e3slbdl3w76kzxoubgddsyunfu
       react-redux: 8.1.3_uas4yajzsllemiyrexr66mus4q
       react-router-dom: 6.18.0_biqbaboplfbrettd7655fr4n2y
       react-virtualized: 9.22.5_biqbaboplfbrettd7655fr4n2y

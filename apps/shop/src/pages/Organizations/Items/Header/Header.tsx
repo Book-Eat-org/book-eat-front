@@ -1,14 +1,19 @@
-import { BurgerMenuIcon, Flex, Grid, Typography } from "@book-eat/ui";
-import classes from "./Header.module.css";
+import { Grid, Typography } from "@book-eat/ui";
 import Search from "./Search";
+import { useSelector } from "$hooks";
+import { organizationsSelectors } from "@book-eat/api";
 
 const Header = () => {
+  const ids = useSelector(organizationsSelectors.selectIds);
+
+  const isSearchAvailable = ids.length > 5;
+
   return (
     <Grid p="20px 15px" gap={4}>
-      <Typography className={classes.header} size="26/32">
+      <Typography fontWeight={600} size="24/24">
         Рестораны
       </Typography>
-      <Search />
+      {isSearchAvailable && <Search />}
     </Grid>
   );
 };

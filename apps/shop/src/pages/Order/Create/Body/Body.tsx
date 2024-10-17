@@ -16,6 +16,7 @@ import { useSelector } from "$hooks";
 import { navigateToPage, PageURLS } from "$constants";
 import { useNavigate } from "react-router-dom";
 import { isShopOpen } from "@book-eat/utils";
+import useFormPersist from "react-hook-form-persist";
 
 export const Body = () => {
   const navigate = useNavigate();
@@ -42,6 +43,13 @@ export const Body = () => {
 
   const methods = useForm<IFormValues>({
     defaultValues: { personsCount: 1, deliveryType: filteredKeys[0] },
+  });
+
+  const { watch, setValue } = methods;
+
+  useFormPersist("createOrder", {
+    watch,
+    setValue,
   });
 
   const handleSubmit = async (data: IFormValues) => {
