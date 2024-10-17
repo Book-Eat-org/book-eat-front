@@ -1,5 +1,5 @@
 import classes from "./TimeTag.module.css";
-import { Box, Typography } from "@book-eat/ui";
+import { Box, theme, Typography } from "@book-eat/ui";
 import { useData } from "../context.ts";
 import dayjs from "dayjs";
 import { DayOfWeek } from "@book-eat/api/src";
@@ -41,8 +41,12 @@ const TimeTag = () => {
     : `Закрыто до ${timeFromDate.format("HH:mm")}`;
 
   return (
-    <Box p={1} className={classes.wrapper}>
-      <Typography size="14/14">{text}</Typography>
+    <Box
+      padding="5px 10px"
+      className={classes.wrapper}
+      backgroundColor={theme.colors.general50}
+    >
+      <Typography size="12/12">{text}</Typography>
     </Box>
   );
 };

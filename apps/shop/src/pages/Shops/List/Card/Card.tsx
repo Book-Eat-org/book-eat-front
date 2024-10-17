@@ -47,7 +47,7 @@ const Card: FC<IProps> = (props) => {
         width="100%"
         className={classes.wrapper}
         onClick={onClick}
-        opacity={isClosed ? 0.7 : 1}
+        opacity={isClosed ? 0.5 : 1}
       >
         <TimeTag />
         <Box p="2px" borderRadius="20px">
