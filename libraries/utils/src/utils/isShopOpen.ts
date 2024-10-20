@@ -1,7 +1,8 @@
-import { DayOfWeek, IPlace, ISchedule } from "@book-eat/api";
+import { IPlace, ISchedule } from "@book-eat/api";
 import dayjs from "dayjs";
 import isBetween from "dayjs/plugin/isBetween";
-import { isNil, split, values } from "ramda";
+import { isNil, split } from "ramda";
+import { DaysOfWeekIso } from "$constants";
 
 dayjs.extend(isBetween);
 
@@ -31,7 +32,7 @@ export const prepareScheduleItem = (value: ISchedule): ISchedule => {
 export const isShopOpen = (shop: IPlace) => {
   const currentDate = dayjs();
 
-  const currentDayOfWeek = values(DayOfWeek)[currentDate.day()];
+  const currentDayOfWeek = DaysOfWeekIso[currentDate.day()];
 
   const scheduleItem = shop.schedule.find(
     ({ dayOfWeek }) => dayOfWeek === currentDayOfWeek,

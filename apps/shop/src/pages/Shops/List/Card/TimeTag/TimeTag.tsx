@@ -2,15 +2,15 @@ import classes from "./TimeTag.module.css";
 import { Box, theme, Typography } from "@book-eat/ui";
 import { useData } from "../context.ts";
 import dayjs from "dayjs";
-import { DayOfWeek } from "@book-eat/api/src";
-import { isNil, values } from "ramda";
+import { isNil } from "ramda";
+import { DaysOfWeekIso } from "$constants";
 
 const TimeTag = () => {
   const { schedule } = useData();
 
   const currentDate = dayjs();
 
-  const dayOfWeek = values(DayOfWeek)[currentDate.day()];
+  const dayOfWeek = DaysOfWeekIso[currentDate.day()];
 
   const currentWorkTimeItem = schedule.find(
     (item) => dayOfWeek === item.dayOfWeek,
