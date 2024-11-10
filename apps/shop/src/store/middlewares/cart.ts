@@ -1,8 +1,8 @@
 import { Middleware } from "@reduxjs/toolkit";
 import { IRootState } from "../index.ts";
-import { addToCart, removeFromCart } from "../cart";
+import { removeFromCart } from "../cart";
 
-const cartActions = [removeFromCart, addToCart];
+const cartActions = [removeFromCart];
 
 export const cartMiddleware: Middleware = ({ getState }) => {
   return (next) => (action) => {

@@ -22,7 +22,6 @@ export const Description = () => {
           textDecoration="underline"
           color={descriptionActive ? theme.colors.general600 : undefined}
           onClick={setDescriptionFalse}
-          cursor="pointer"
         >
           Состав
         </Typography>
@@ -30,7 +29,6 @@ export const Description = () => {
           textDecoration="underline"
           color={descriptionActive ? undefined : theme.colors.general600}
           onClick={setDescriptionTrue}
-          cursor="pointer"
         >
           Описание
         </Typography>

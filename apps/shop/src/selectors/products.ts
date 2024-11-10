@@ -5,21 +5,25 @@ import { IAddition, IProduct } from "@book-eat/api";
 import { getPriceWithDiscount } from "@book-eat/utils";
 
 const productsEntitiesSelector = (state: IRootState) => state.products;
+const additionsEntitiesSelector = (state: IRootState) => state.additions;
+const cartSelector = (state: IRootState) => state.cart;
 
 export const cartItemsSelector = createSelector(
-  (store: IRootState) => store.cart,
+  cartSelector,
   productsEntitiesSelector,
-  (store: IRootState) => store.additions,
+  additionsEntitiesSelector,
   (cart, products, additionsStore) =>
     keys(cart.items).reduce(
       (acc, curr) => {
         const item = cart.items[curr];
 
         const product = products.entities[item.productId] as IProduct;
+
         const additions =
-          item?.additionIds?.map(
-            (additionId) => additionsStore.entities[additionId] as IAddition,
-          ) ?? [];
+          item?.additions?.map((addition) => ({
+            ...additionsStore.entities[addition.id]!,
+            ...addition,
+          })) ?? [];
 
         return {
           ...acc,
@@ -32,7 +36,11 @@ export const cartItemsSelector = createSelector(
       },
       {} as Record<
         EntityId,
-        { product: IProduct; additions: IAddition[]; col: number }
+        {
+          product: IProduct;
+          additions: (IAddition & { col: number })[];
+          col: number;
+        }
       >,
     ),
 );
@@ -43,7 +51,7 @@ export const cartSumSelector = createSelector(
     const { productsSum, additionsSum } = values(cartItems).reduce(
       (acc, curr) => {
         const additionsSum = curr.additions.reduce(
-          (acc, curr) => acc + curr?.price ?? 0,
+          (acc, curr) => acc + curr?.price * curr.col ?? 0,
           0,
         );
         return {

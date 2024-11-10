@@ -28,7 +28,11 @@ export const Addition: FC<IProps> = (props) => {
       <Typography size="14/14" color={theme.colors.general600}>
         {title}
       </Typography>
-      <Typography size="14/14" color={theme.colors.general600}>
+      <Typography
+        size="14/14"
+        color={theme.colors.general600}
+        whiteSpace="nowrap"
+      >
         {price} {SYMBOLS.RUB}
       </Typography>
     </Flex>

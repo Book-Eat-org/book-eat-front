@@ -24,8 +24,8 @@ const Card: FC<IProps> = (props) => {
   if (isNil(item)) {
     return null;
   }
-
-  const isClosed = !isShopOpen(item);
+  // TODO HERE
+  const isClosed = isShopOpen(item);
 
   const { logoUrl } = item;
 

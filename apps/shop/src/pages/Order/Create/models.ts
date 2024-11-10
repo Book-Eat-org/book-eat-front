@@ -15,4 +15,5 @@ export interface IFormValues {
   placeAddress: string;
   takeUpTime: string;
   time: string;
+  agreement: boolean;
 }

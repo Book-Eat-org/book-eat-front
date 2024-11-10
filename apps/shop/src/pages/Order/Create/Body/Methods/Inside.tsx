@@ -1,4 +1,4 @@
-import { PlaceAddress, TakeUpTime } from "../Fields";
+import { TakeUpTime } from "../Fields";
 
 export const Inside = () => (
   <>

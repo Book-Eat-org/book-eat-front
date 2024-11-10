@@ -2,13 +2,13 @@ import { createContext, useContext } from "react";
 import { EntityId } from "@reduxjs/toolkit";
 
 interface ICardContextState {
-  additionsIds: EntityId[];
-  setAdditionsIds(ids: EntityId[]): void;
+  additions: Record<EntityId, { count: number }>;
+  setAddition: (props: { id: EntityId; count: number }) => void;
 }
 
 export const CardContext = createContext<ICardContextState>({
-  additionsIds: [],
-  setAdditionsIds: () => undefined,
+  additions: {},
+  setAddition: () => undefined,
 });
 
 export const useCardContext = () => useContext(CardContext);

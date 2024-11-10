@@ -8,6 +8,8 @@ import classes from "./UISelect.module.css";
 import UITypography from "../../UITypography";
 import UIPopupMenu from "../../UIPopupMenu";
 import { DownArrowIcon } from "$assets";
+import { Typography } from "$components";
+import { theme } from "$theme";
 
 interface IProps {
   value: string;
@@ -73,7 +75,11 @@ const UISelect: FC<IProps> = (props) => {
             <DownArrowIcon />
           </UIGrid>
         </fieldset>
-        <span className={classes.error}>{error}</span>
+        {error && (
+          <Typography size="12/12" color={theme.colors.red500} pl="15px">
+            {error}
+          </Typography>
+        )}
         {listAvailable && (
           <UIPopupMenu onClose={handleClick}>
             <List>{children}</List>

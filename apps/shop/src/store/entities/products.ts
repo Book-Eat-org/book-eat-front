@@ -2,6 +2,7 @@ import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
 import { IProduct, menuEndpoints, ordersEndpoints } from "@book-eat/api";
 import { IRootState } from "../index.ts";
 import { flatten, prop, uniqBy, values } from "ramda";
+import { EntityState } from "@reduxjs/toolkit/src/entities/models.ts";
 
 const productsAdapter = createEntityAdapter({
   selectId: (item: IProduct) => item.id,
@@ -11,12 +12,14 @@ export const productsSelectors = productsAdapter.getSelectors<IRootState>(
   (state) => state.products,
 );
 
+const INITIAL_STATE: EntityState<IProduct> = {
+  ids: [],
+  entities: {},
+};
+
 export const productsSlice = createSlice({
   name: "products",
-  initialState: {
-    ids: [],
-    entities: {},
-  },
+  initialState: INITIAL_STATE,
   reducers: {
     addOne: productsAdapter.addOne,
   },

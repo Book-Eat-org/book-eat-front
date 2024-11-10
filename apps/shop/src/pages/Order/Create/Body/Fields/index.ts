@@ -11,3 +11,4 @@ export * from "./Intercom.tsx";
 export * from "./Apartments.tsx";
 export * from "./Entrance.tsx";
 export * from "./Floor.tsx";
+export * from "./Agreement.tsx";

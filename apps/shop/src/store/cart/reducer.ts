@@ -17,13 +17,13 @@ export const cartReducer = createReducer<ICartState>(
   initialState,
   (builder) => {
     builder.addCase(addToCartNew, (state, { payload }) => {
-      const { shopId, additionIds, productId, col = 1 } = payload;
+      const { shopId, additions, productId, col = 1 } = payload;
       if (shopId !== state.shopId) {
         return {
           shopId,
           items: {
             [Date.now()]: {
-              additionIds,
+              additions,
               col,
               productId,
             },
@@ -36,7 +36,7 @@ export const cartReducer = createReducer<ICartState>(
         items: {
           ...state.items,
           [Date.now()]: {
-            additionIds,
+            additions,
             col,
             productId,
           },
@@ -68,7 +68,7 @@ export const cartReducer = createReducer<ICartState>(
       };
     });
     builder.addCase(removeFromCart, (state, { payload }) => {
-      return { ...state, items: omit([payload], state.items) };
+      return { ...state, items: omit([String(payload)], state.items) };
     });
     builder.addCase(clearCart, (state) => ({
       shopId: state.shopId,

@@ -2,7 +2,6 @@ import classNames from "classnames";
 import { ComponentProps, forwardRef, ReactNode, useState } from "react";
 
 import classes from "./UIBaseInput.module.css";
-import UITypography from "../UITypography";
 import Grid from "../Grid";
 import { theme } from "$theme";
 import { Typography } from "$components";
@@ -67,9 +66,11 @@ const UIBaseInput = forwardRef<HTMLInputElement, IProps>((props, ref) => {
           {postfix && <div className={classes.postfix}>{postfix}</div>}
         </Grid>
       </Grid>
-      <UITypography variant="textXs" className={classes.error}>
-        {error}
-      </UITypography>
+      {error && (
+        <Typography size="12/12" color={theme.colors.red500} pl="15px">
+          {error}
+        </Typography>
+      )}
     </Grid>
   );
 });

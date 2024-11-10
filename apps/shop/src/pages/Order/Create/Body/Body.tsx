@@ -17,13 +17,14 @@ import { navigateToPage, PageURLS } from "$constants";
 import { useNavigate } from "react-router-dom";
 import { isShopOpen } from "@book-eat/utils";
 import useFormPersist from "react-hook-form-persist";
+import Agreement from "./Fields/Agreement.tsx";
 
 export const Body = () => {
   const navigate = useNavigate();
 
   const cartState = useSelector((state) => state.cart);
   const [triggerCreateOrder] = ordersEndpoints.useCreateOrderMutation();
-  const { data: menuData, isSuccess } = menuEndpoints.useGetMenuByPlaceIdQuery(
+  const { data: menuData } = menuEndpoints.useGetMenuByPlaceIdQuery(
     cartState.shopId!,
   );
 
@@ -65,14 +66,15 @@ export const Body = () => {
       name,
       phone,
       email,
+      agreement,
     } = data;
     const cartItems = values(cartState.items);
 
     const products = cartItems.map((item) => ({
       ...menuData.entities[item.productId],
-      additions: item?.additionIds?.map((id) => ({
+      additions: item?.additions?.map((id, col) => ({
         additionId: id,
-        amount: 1,
+        amount: col,
       })),
       amount: item.col,
       productId: item.productId,
@@ -99,6 +101,7 @@ export const Body = () => {
       },
       products,
       places,
+      agreement,
     };
     const result = await triggerCreateOrder(payload);
     if (result.data) {
@@ -138,6 +141,7 @@ export const Body = () => {
         </Grid>
         <PersonsCount />
         <Methods />
+        <Agreement />
         <Button onClick={methods.handleSubmit(handleSubmit)}>
           {buttonLabel}
         </Button>

@@ -6,26 +6,25 @@ export interface ICartState {
     EntityId,
     {
       productId: EntityId;
-      additionIds: EntityId[];
+      additions: {
+        id: EntityId;
+        col: number;
+      }[];
       col: number;
     }
   >;
 }
 
-export interface IAddProductToCart {
-  id: EntityId;
-  shopId: EntityId;
-  additions: EntityId[];
-}
-
 export interface IAddProductToCartNew {
   shopId: EntityId;
   productId: EntityId;
-  additionIds: EntityId[];
+  additions: {
+    id: EntityId;
+    col: number;
+  }[];
   col?: number;
 }
 
-export const addToCart = createAction<IAddProductToCart>("ADD_TO_CART");
 export const addToCartNew = createAction<IAddProductToCartNew>("ADD_TO_CART");
 export const clearCart = createAction("CLEAR_CART");
 export const removeFromCart = createAction<EntityId>("REMOVE_FROM_CART");

@@ -6,6 +6,7 @@ import { isNil, isNotNil } from "ramda";
 import { useCardContext } from "../../context.ts";
 import { useSelector } from "$hooks";
 import { additionsSelectors } from "../../../../../../store/entities";
+import { Counter } from "./Counter";
 
 interface IProps {
   id: EntityId;
@@ -16,7 +17,7 @@ export const Addition: FC<IProps> = (props) => {
 
   const item = useSelector((state) => additionsSelectors.selectById(state, id));
 
-  const { additionsIds, setAdditionsIds } = useCardContext();
+  const { additions, setAddition } = useCardContext();
 
   if (isNil(item)) {
     return null;
@@ -25,13 +26,13 @@ export const Addition: FC<IProps> = (props) => {
   const { weight, title, price } = item;
 
   const onChange = (value: boolean) =>
-    value
-      ? setAdditionsIds([...additionsIds, id])
-      : setAdditionsIds(additionsIds.filter((item) => item !== id));
+    value ? setAddition({ id, count: 1 }) : setAddition({ id, count: 0 });
 
   const weightLabel = isNil(weight) ? undefined : `${weight} г`;
 
   const titleLabel = [title, weightLabel].filter(isNotNil).join(", ");
+
+  const selected = additions[id]?.count > 0;
 
   return (
     <Flex
@@ -42,9 +43,10 @@ export const Addition: FC<IProps> = (props) => {
       padding="10px 0"
     >
       <Flex gap={2} alignItems="center">
-        <UICheckbox onChange={onChange} selected={additionsIds.includes(id)} />
+        <UICheckbox onChange={onChange} selected={selected} />
         <Typography>{titleLabel}</Typography>
       </Flex>
+      <Counter additionId={id} />
       <Typography>
         {price} {SYMBOLS.RUB}
       </Typography>

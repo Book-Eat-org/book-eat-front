@@ -15,7 +15,7 @@ import {
   menuEndpoints,
   placesEndpoints,
 } from "@book-eat/api";
-import { flatten, isEmpty, values } from "ramda";
+import { flatten, isEmpty, isNotNil, prop, values } from "ramda";
 import { useEffect, useMemo } from "react";
 import { Body } from "./Body";
 import { useDispatch } from "react-redux";
@@ -27,7 +27,8 @@ const Cart = () => {
   const onBackClick = () => navigate(-1);
   const cart = useSelector((state) => state.cart);
   const additionsIds = useMemo(
-    () => flatten(values(cart.items).map((item) => item.additionIds)),
+    () =>
+      flatten(values(cart.items).map((item) => item.additions.map(prop("id")))),
     [],
   );
 
@@ -35,7 +36,7 @@ const Cart = () => {
     additionsEndpoints.useFetchAdditionsByIdsMutation();
 
   useEffect(() => {
-    if (!isEmpty(additionsIds)) {
+    if (!isEmpty(additionsIds.filter(isNotNil))) {
       triggerAdditions(additionsIds);
     }
   }, [additionsIds]);

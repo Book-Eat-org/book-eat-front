@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { productsSelectors } from "../../../../../../store/entities";
 import { isEmpty, isNil } from "ramda";
 import { EntityId } from "@reduxjs/toolkit";
+import { IProduct } from "@book-eat/api";
 
 interface IProps {
   productId: EntityId;
@@ -16,7 +17,7 @@ export const Additions: FC<IProps> = (props) => {
 
   const { additions } =
     useSelector((state) => productsSelectors.selectById(state, productId)) ??
-    {};
+    ({} as IProduct);
 
   if (isEmpty(additions) || isNil(additions)) {
     return null;

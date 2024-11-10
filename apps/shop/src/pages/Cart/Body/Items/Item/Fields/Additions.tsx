@@ -17,21 +17,22 @@ export const Additions: FC = () => {
         Добавки:
       </Typography>
       <Grid width="100%">
-        {additions.map(({ price, title, weight }) => (
+        {additions.map(({ price, title, weight, col }) => (
           <Flex
             justifyContent="space-between"
-            alignItems="center"
+            alignItems="start"
             borderBottom="1px solid #D9D9D9"
             p={2}
+            gap={2}
           >
             <Flex gap={2}>
-              <Typography>•</Typography>
-              <Typography>
-                {title} {weight} гр.
+              <Typography size="14/14">•</Typography>
+              <Typography size="14/14">
+                {title} {weight} гр. (x{col})
               </Typography>
             </Flex>
-            <Typography>
-              {price} {SYMBOLS.RUB}
+            <Typography whiteSpace="nowrap" size="14/14">
+              {price * col} {SYMBOLS.RUB}
             </Typography>
           </Flex>
         ))}

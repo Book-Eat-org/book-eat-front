@@ -18,7 +18,7 @@ export const Item: FC<IProps> = (props) => {
         borderBottom="1px solid #D9D9D9"
         paddingBottom={3}
       >
-        <Flex gap={6} width="100%">
+        <Flex gap={4} width="100%">
           <Image />
           <Grid gap={3} width="100%">
             <Header />

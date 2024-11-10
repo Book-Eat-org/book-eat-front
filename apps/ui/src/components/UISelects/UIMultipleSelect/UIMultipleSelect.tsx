@@ -9,6 +9,7 @@ import UITypography from "../../UITypography";
 import UIPopupMenu from "../../UIPopupMenu";
 import { DownArrowIcon } from "$assets";
 import { Typography } from "$components";
+import { theme } from "$theme";
 
 interface IProps {
   title?: string;
@@ -70,9 +71,11 @@ const UIMultipleSelect: FC<IProps> = (props) => {
             </UIPopupMenu>
           )}
         </fieldset>
-        <Typography color="red" size="12/12">
-          {error}
-        </Typography>
+        {error && (
+          <Typography size="12/12" color={theme.colors.red500} pl="15px">
+            {error}
+          </Typography>
+        )}
       </UIGrid>
     </UIMultipleSelectContext.Provider>
   );

@@ -1,9 +1,9 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { useController } from "react-hook-form";
 
-import { IFormValues } from "../models";
+import { IFormValues } from "../../models";
 import { UIOption, UISelect } from "@book-eat/ui";
-import { isNil, isNotNil, keys } from "ramda";
+import { isNil, keys } from "ramda";
 import { TakeUpConfig } from "$constants";
 import { DeliveryTypeName, IPlace, placesSelectors } from "@book-eat/api";
 import { useSelector } from "$hooks";

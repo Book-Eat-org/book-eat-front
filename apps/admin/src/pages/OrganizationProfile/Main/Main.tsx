@@ -3,6 +3,7 @@ import { ORGANIZATION_PROFILE_ROUTES } from "../constants";
 import { NavItem, Page } from "$components";
 import { useNavigate } from "react-router-dom";
 import { Logout } from "./Logout/Logout.tsx";
+import { Notifications } from "./Notifications";
 
 const Main = () => {
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ const Main = () => {
               {title}
             </NavItem>
           ))}
+          <Notifications />
         </Grid>
       </Page.Body>
     </Page>

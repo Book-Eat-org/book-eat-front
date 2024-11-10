@@ -4,7 +4,6 @@ import { useSelector } from "$hooks";
 import {
   Grid,
   Typography,
-  theme,
   Flex,
   Button,
   IconButton,
@@ -15,7 +14,7 @@ import { EntityId } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import { addToCartNew } from "../../../../store/cart";
 import { activeShopSelector } from "../../../../store/shop";
-import { dec, inc, isEmpty, isNotNil } from "ramda";
+import { dec, inc, isEmpty, isNotNil, keys, omit } from "ramda";
 import { navigateToPage, PageURLS } from "$constants";
 import { SYMBOLS, getPriceWithDiscount } from "@book-eat/utils";
 import { Image } from "./Image";
@@ -29,7 +28,9 @@ import { additionsSelectors } from "../../../../store/entities";
 
 export const Body: FC = () => {
   const [col, setCol] = useState<number>(1);
-  const [additionsIds, setAdditionsIds] = useState<EntityId[]>([]);
+  const [additions, setAdditions] = useState<
+    Record<EntityId, { count: number }>
+  >({});
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -55,16 +56,33 @@ export const Body: FC = () => {
 
   const submit = () => {
     dispatch(
-      addToCartNew({ col, shopId, additionIds: additionsIds, productId: id! }),
+      addToCartNew({
+        col,
+        shopId,
+        additions: keys(additions).map((id) => ({
+          id,
+          col: additions[id].count,
+        })),
+        productId: id!,
+      }),
     );
     navigate(navigateToPage(PageURLS.PRODUCTS, { id: shopId }));
+  };
+
+  const setAddition = (props: { id: EntityId; count: number }) => {
+    const { id, count } = props;
+    if (count === 0) {
+      setAdditions(omit([String(id)]));
+      return;
+    }
+    setAdditions({ ...additions, [id]: { count } });
   };
 
   const incrementCol = () => setCol(inc);
   const decrementCol = () => setCol(dec);
 
   const additionsSum =
-    additionsIds.reduce(
+    keys(additions).reduce(
       (acc: number, curr) =>
         acc + additionsStore.find((item) => item.id === curr)!.price ?? 0,
       0,
@@ -73,7 +91,7 @@ export const Body: FC = () => {
   const totalPrice = col * getPriceWithDiscount(price, discount) + additionsSum;
 
   return (
-    <CardContext.Provider value={{ additionsIds, setAdditionsIds }}>
+    <CardContext.Provider value={{ additions, setAddition }}>
       <Grid gap={2}>
         <Image />
         <Title />
