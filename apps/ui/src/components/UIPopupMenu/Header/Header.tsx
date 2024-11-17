@@ -1,13 +1,15 @@
 import UIGrid from "../../UIGrid";
 import UIIconButton from "../../UIIconButton";
 import { CloseIcon } from "$assets";
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import styled from "@emotion/styled";
 import Grid from "../../Grid";
+import Flex from "../../Flex";
 
 interface IProps {
   onClose: () => void;
   withoutCurtain?: boolean;
+  children?: ReactNode;
 }
 
 const SwipeLine = styled.div`
@@ -18,16 +20,20 @@ const SwipeLine = styled.div`
   border-radius: 8px;
 `;
 
-const Header: FC<IProps> = ({ onClose, withoutCurtain }) => (
+const Header: FC<IProps> = ({ onClose, withoutCurtain, children }) => (
   <Grid gap={8} paddingRight={15}>
     {!withoutCurtain && (
       <UIGrid justifyContent="center">
         <SwipeLine />
       </UIGrid>
     )}
-    <UIGrid justifyContent="end">
+    <Flex
+      justifyContent={children ? "space-between" : "end"}
+      alignItems="center"
+    >
+      {children}
       <UIIconButton Icon={CloseIcon} variant="secondary" onClick={onClose} />
-    </UIGrid>
+    </Flex>
   </Grid>
 );
 

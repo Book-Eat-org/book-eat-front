@@ -5,17 +5,15 @@ import {
   MinusIcon24,
   PlusIcon24,
   Typography,
-  theme,
 } from "@book-eat/ui";
 import { FC } from "react";
 import { EntityId } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import { useCard } from "../../../context.ts";
+import { useParams } from "react-router-dom";
 import { cartSelector, removeFromCart } from "../../../../../../store/cart";
-import { navigateToPage, PageURLS } from "../../../../../../constants/urls.ts";
 import { values } from "ramda";
 import Price from "../Price";
+import { useProductListContext } from "../../context.ts";
 
 interface IProps {
   id: EntityId;
@@ -24,8 +22,7 @@ interface IProps {
 const Cart: FC<IProps> = ({ id }) => {
   const dispatch = useDispatch();
   const { id: shopId } = useParams();
-  const navigate = useNavigate();
-
+  const { setOpenedProductId } = useProductListContext();
   const cartItems = useSelector(cartSelector);
 
   const products = values(cartItems.items).filter(
@@ -34,8 +31,7 @@ const Cart: FC<IProps> = ({ id }) => {
 
   const col = products.reduce((acc, curr) => acc + curr.col, 0);
 
-  const onAddCart = () =>
-    navigate(navigateToPage(PageURLS.PRODUCTS_CARD, { id }));
+  const onAddCart = () => setOpenedProductId(id);
 
   const onDeleteCart = () =>
     dispatch(

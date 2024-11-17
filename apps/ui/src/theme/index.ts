@@ -4,3 +4,4 @@ export * from "./textDecorations";
 export * from "./textTransform";
 export * from "./whiteSpace";
 export * from "./colors";
+export * from "./textOverflows";

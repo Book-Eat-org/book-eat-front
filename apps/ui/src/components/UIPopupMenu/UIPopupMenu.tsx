@@ -12,10 +12,13 @@ interface IProps {
   children: ReactNode;
   height?: number | string;
   withoutCurtain?: boolean;
+  header?: ReactNode;
+  background?: string;
 }
 
 const UIPopupMenu: FC<IProps> = (props) => {
-  const { children, onClose, height, withoutCurtain } = props;
+  const { children, onClose, height, withoutCurtain, background, header } =
+    props;
 
   const ref = useRef<HTMLDivElement | null>(null);
 
@@ -23,8 +26,10 @@ const UIPopupMenu: FC<IProps> = (props) => {
 
   return createPortal(
     <Overlay onClick={(e) => e.stopPropagation()}>
-      <Menu ref={ref} height={height ?? "100%"}>
-        <Header withoutCurtain={withoutCurtain} onClose={onClose} />
+      <Menu ref={ref} height={height ?? "100%"} background={background}>
+        <Header withoutCurtain={withoutCurtain} onClose={onClose}>
+          {header}
+        </Header>
         <Content>{children}</Content>
       </Menu>
     </Overlay>,

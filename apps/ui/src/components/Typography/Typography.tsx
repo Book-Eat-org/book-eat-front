@@ -7,11 +7,15 @@ import {
   textTransformsStyleFn,
   WhiteSpaceProps,
   whiteSpacesStyleFn,
+  TextOverflowsProps,
+  textOverflowsStyleFn,
 } from "$theme";
 import styled from "@emotion/styled";
 import {
   color,
   ColorProps,
+  overflow,
+  OverflowProps,
   padding,
   PaddingProps,
   typography,
@@ -25,7 +29,9 @@ const Typography = styled.span<
     TextDecorationsProps &
     TextTransformProps &
     PaddingProps &
-    WhiteSpaceProps
+    WhiteSpaceProps &
+    TextOverflowsProps &
+    OverflowProps
 >`
   ${color}
   ${typography}
@@ -34,6 +40,8 @@ const Typography = styled.span<
   ${textSizeStyleFn}
   ${textDecorationsStyleFn}
   ${textTransformsStyleFn}
+  ${textOverflowsStyleFn}
+  ${overflow}
 `;
 
 export default Typography;
