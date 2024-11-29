@@ -17,6 +17,7 @@ import { IOrder, OrderStatus } from "@book-eat/api";
 import { memo } from "react";
 import { useOrdersPageContext } from "../context.ts";
 import { Empty } from "./Empty";
+import { Group } from "./Group";
 
 const searchingTextEquals = (searchingText: string, targetText: string) =>
   isEmpty(searchingText)
@@ -61,16 +62,11 @@ const List = memo(() => {
   return (
     <Grid gap={9}>
       {sortedKeys.map((key) => (
-        <Grid gap={6} key={key}>
-          <Typography size="24/24" fontWeight={600}>
-            {ORDER_STATUSES_TITLES_CONFIG[key]}
-          </Typography>
-          <Grid gap={3}>
-            {groupedData[key]!.map(({ id }) => (
-              <Item key={id} id={id} />
-            ))}
-          </Grid>
-        </Grid>
+        <Group status={key}>
+          {groupedData[key]!.map(({ id }) => (
+            <Item key={id} id={id} />
+          ))}
+        </Group>
       ))}
     </Grid>
   );

@@ -10,9 +10,6 @@ import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
 import { Notifications } from "./Notifications.tsx";
 
-dayjs.extend(utc);
-dayjs.extend(timezone);
-
 function App() {
   return (
     <BrowserRouter>

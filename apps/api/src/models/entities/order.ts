@@ -26,6 +26,7 @@ export interface IOrder {
   readyTime?: string;
   orderNumber: number;
   createdAt: string;
+  creationTime: string;
   customerInfo: {
     customerName: string;
     customerEmail: string;

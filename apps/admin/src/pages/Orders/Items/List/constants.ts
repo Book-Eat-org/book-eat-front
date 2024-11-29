@@ -1,0 +1,11 @@
+import { OrderStatus } from "@book-eat/api";
+
+const { CANCELLED_BY_CLIENT, CANCELLED_BY_PROVIDER, ERROR, COMPLETED } =
+  OrderStatus;
+
+export const DEFAULT_OPENED_ORDER_STATUSES = [
+  CANCELLED_BY_CLIENT,
+  CANCELLED_BY_PROVIDER,
+  ERROR,
+  COMPLETED,
+];

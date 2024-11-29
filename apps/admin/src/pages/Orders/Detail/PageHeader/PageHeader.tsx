@@ -11,9 +11,10 @@ export const PageHeader = () => {
   const navigate = useNavigate();
   const onBackClick = () => navigate("..");
 
-  const { orderNumber, places, createdAt } = order;
+  const { orderNumber, places, creationTime } = order;
+  const createDateFormatted = dayjs(creationTime).format("HH:mm DD:MM:YYYY");
 
-  const createDateFormatted = dayjs(createdAt).format("HH:mm DD:MM:YYYY");
+  console.log(createDateFormatted);
 
   const statusLabel = getStatusLabel(order.status);
 
