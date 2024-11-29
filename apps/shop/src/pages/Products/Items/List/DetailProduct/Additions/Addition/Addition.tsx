@@ -35,8 +35,9 @@ export const Addition: FC<IProps> = (props) => {
   const onChange = () => setAddition({ id, count: 1 });
 
   const weightLabel = isNil(weight) ? undefined : `${weight} г`;
+  const additionCount = additions[id]?.count;
 
-  const selected = additions[id]?.count > 0;
+  const selected = additionCount > 0;
 
   return (
     <Flex
@@ -73,7 +74,7 @@ export const Addition: FC<IProps> = (props) => {
         </Grid>
       </Flex>
       <Typography whiteSpace="nowrap">
-        {price} {SYMBOLS.RUB}
+        {price * (additionCount ?? 1)} {SYMBOLS.RUB}
       </Typography>
     </Flex>
   );

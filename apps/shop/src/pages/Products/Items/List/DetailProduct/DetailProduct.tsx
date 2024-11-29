@@ -69,7 +69,7 @@ export const DetailProduct: FC = () => {
         productId: id!,
       }),
     );
-    navigate(navigateToPage(PageURLS.PRODUCTS, { id: shopId }));
+    setOpenedProductId();
   };
 
   const setAddition = (props: { id: EntityId; count: number }) => {
@@ -85,11 +85,10 @@ export const DetailProduct: FC = () => {
   const decrementCol = () => setCol(dec);
 
   const additionsSum =
-    keys(additions).reduce(
-      (acc: number, curr) =>
-        acc + additionsStore.find((item) => item.id === curr)!.price ?? 0,
-      0,
-    ) * col;
+    keys(additions).reduce((acc: number, curr) => {
+      const addition = additionsStore.find((item) => item.id === curr)!;
+      return acc + addition.price * (additions[curr]?.count ?? 1);
+    }, 0) * col;
 
   const totalPrice = col * getPriceWithDiscount(price, discount) + additionsSum;
 
