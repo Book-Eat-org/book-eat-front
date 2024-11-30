@@ -14,6 +14,7 @@ import { useCardContext } from "../../context.ts";
 import { useSelector } from "$hooks";
 import { additionsSelectors } from "../../../../../../../store/entities";
 import { Counter } from "./Counter";
+import { MEASURES_CONFIG } from "@book-eat/utils";
 
 interface IProps {
   id: EntityId;
@@ -30,11 +31,13 @@ export const Addition: FC<IProps> = (props) => {
     return null;
   }
 
-  const { weight, title, price } = item;
+  const { weight, title, price, measure } = item;
 
   const onChange = () => setAddition({ id, count: 1 });
 
-  const weightLabel = isNil(weight) ? undefined : `${weight} г`;
+  const weightLabel = isNil(weight)
+    ? undefined
+    : `${weight}${MEASURES_CONFIG[measure] ?? ""}`;
   const additionCount = additions[id]?.count;
 
   const selected = additionCount > 0;

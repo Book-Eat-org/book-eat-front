@@ -7,6 +7,7 @@ import { additionsEndpoints, additionsSelectors } from "$api";
 import { EntityId } from "@reduxjs/toolkit";
 import { navigateToPage, PageURLS } from "$constants";
 import { useNavigate } from "react-router-dom";
+import { getAdditionTitle } from "@book-eat/utils";
 
 interface IProps {
   id: EntityId;
@@ -40,6 +41,8 @@ const Item: FC<IProps> = (props) => {
     triggerDelete(id);
   };
 
+  const fullTitle = getAdditionTitle(item);
+
   return (
     <Flex gap={2}>
       <Flex
@@ -60,7 +63,7 @@ const Item: FC<IProps> = (props) => {
         onClick={openDetail}
       >
         <Typography size="12/12" fontWeight={600}>
-          {title}
+          {fullTitle}
         </Typography>
         <Switch checked={isActive} onChange={toggleActive} />
       </Flex>

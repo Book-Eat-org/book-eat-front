@@ -3,7 +3,7 @@ import { FormProvider, useForm } from "react-hook-form";
 
 import { BackIcon24, Button, Flex, theme, UIGrid } from "@book-eat/ui";
 
-import { Price, Title, Weight } from "./Fields";
+import { Measure, Price, Title, Weight } from "./Fields";
 import { IFormValues } from "./models";
 import {
   additionsEndpoints,
@@ -63,8 +63,9 @@ const AddItem: FC = () => {
           <UIGrid gap="30px">
             <UIGrid gap="20px">
               <Title />
-              <UIGrid gap="8px" colSizes="1fr 1fr">
+              <UIGrid gap="8px" colSizes="1fr 1fr 1fr">
                 <Weight />
+                <Measure />
                 <Price />
               </UIGrid>
             </UIGrid>

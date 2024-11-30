@@ -5,9 +5,9 @@ import { useController } from "react-hook-form";
 import { UIMultipleSelect, UIMultipleSelectOption } from "@book-eat/ui";
 
 import { IFormValues } from "../../models";
-import classes from "./Additionals.module.css";
 import { useSelector } from "react-redux";
 import { additionsSelectors } from "$api";
+import { getAdditionTitle } from "@book-eat/utils";
 
 export const Additionals: FC = () => {
   const { field } = useController<IFormValues, "additionals">({
@@ -36,9 +36,9 @@ export const Additionals: FC = () => {
       displayValue={title}
       placeholder="Наличие добавок"
     >
-      {data?.map(({ title, id, weight }) => (
-        <UIMultipleSelectOption key={id} value={id}>
-          {title} {weight} гр.
+      {data?.map((item) => (
+        <UIMultipleSelectOption key={item.id} value={item.id}>
+          {getAdditionTitle(item)}
         </UIMultipleSelectOption>
       ))}
     </UIMultipleSelect>
