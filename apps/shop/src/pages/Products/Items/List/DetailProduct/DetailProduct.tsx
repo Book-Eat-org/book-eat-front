@@ -14,7 +14,6 @@ import {
 import { EntityId } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import { dec, inc, isEmpty, isNotNil, keys, omit } from "ramda";
-import { navigateToPage, PageURLS } from "$constants";
 import { SYMBOLS, getPriceWithDiscount } from "@book-eat/utils";
 import { Image } from "./Image";
 import { Title } from "./Title";
@@ -28,6 +27,7 @@ import { additionsSelectors } from "../../../../../store/entities";
 import { addToCartNew } from "../../../../../store/cart";
 import { useProductListContext } from "../context.ts";
 import { theme } from "@book-eat/ui";
+import { Footer } from "./Footer";
 
 export const DetailProduct: FC = () => {
   const [col, setCol] = useState<number>(1);
@@ -35,7 +35,6 @@ export const DetailProduct: FC = () => {
   const [additions, setAdditions] = useState<
     Record<EntityId, { count: number }>
   >({});
-  const navigate = useNavigate();
 
   const [fetchAdditions] = additionsEndpoints.useFetchAdditionsByIdsMutation();
 
@@ -45,15 +44,11 @@ export const DetailProduct: FC = () => {
 
   const productAdditions = item.additionsIds;
 
-  const additionsStore = useSelector(additionsSelectors.selectAll);
-
   useEffect(() => {
     if (isNotNil(productAdditions) && !isEmpty(productAdditions)) {
       fetchAdditions(productAdditions);
     }
   }, [productAdditions]);
-
-  const { price, discount } = item;
 
   const dispatch = useDispatch();
 
@@ -84,38 +79,26 @@ export const DetailProduct: FC = () => {
   const incrementCol = () => setCol(inc);
   const decrementCol = () => setCol(dec);
 
-  const additionsSum =
-    keys(additions).reduce((acc: number, curr) => {
-      const addition = additionsStore.find((item) => item.id === curr)!;
-      return acc + addition.price * (additions[curr]?.count ?? 1);
-    }, 0) * col;
-
-  const totalPrice = col * getPriceWithDiscount(price, discount) + additionsSum;
-
   const onClose = () => setOpenedProductId(undefined);
 
   return (
     <CardContext.Provider value={{ additions, setAddition }}>
-      <UIPopupMenu onClose={onClose} background={theme.colors.general200}>
+      <UIPopupMenu
+        onClose={onClose}
+        background={theme.colors.general200}
+        sticky
+      >
         <Grid gap={2}>
           <Image />
           <Title />
           <Description />
           <Additions />
-          <Flex gap={8}>
-            <Flex gap={4} justifyContent="space-between" alignItems="center">
-              <IconButton onClick={decrementCol} disabled={col === 1}>
-                <MinusIcon24 />
-              </IconButton>
-              <Typography size="14/14">{col}</Typography>
-              <IconButton onClick={incrementCol}>
-                <PlusIcon24 />
-              </IconButton>
-            </Flex>
-            <Button onClick={submit} width="100%">
-              Добавить {totalPrice} {SYMBOLS.RUB}
-            </Button>
-          </Flex>
+          <Footer
+            submit={submit}
+            decrementCol={decrementCol}
+            incrementCol={incrementCol}
+            col={col}
+          />
         </Grid>
       </UIPopupMenu>
     </CardContext.Provider>

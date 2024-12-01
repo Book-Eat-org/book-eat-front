@@ -13,12 +13,20 @@ interface IProps {
   height?: number | string;
   withoutCurtain?: boolean;
   header?: ReactNode;
+  sticky?: boolean;
   background?: string;
 }
 
 const UIPopupMenu: FC<IProps> = (props) => {
-  const { children, onClose, height, withoutCurtain, background, header } =
-    props;
+  const {
+    children,
+    onClose,
+    height,
+    withoutCurtain,
+    sticky = false,
+    background,
+    header,
+  } = props;
 
   const ref = useRef<HTMLDivElement | null>(null);
 
@@ -30,7 +38,7 @@ const UIPopupMenu: FC<IProps> = (props) => {
         <Header withoutCurtain={withoutCurtain} onClose={onClose}>
           {header}
         </Header>
-        <Content>{children}</Content>
+        <Content sticky={sticky}>{children}</Content>
       </Menu>
     </Overlay>,
     document.body,
