@@ -34,7 +34,9 @@ export const Details = () => {
       <Box background={colors.general50} p={3} borderRadius={15}>
         <Grid gap={6}>
           <Item title="Клиент:">{customerInfo?.customerName}</Item>
-          <Item title="Адрес доставки">{addressFields}</Item>
+          {Boolean(addressFields) && (
+            <Item title="Адрес доставки">{addressFields}</Item>
+          )}
           <Item title="Кол-во персон">{personsCount}</Item>
           <Item title="Комментарий">{comment}</Item>
         </Grid>

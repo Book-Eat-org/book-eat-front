@@ -23,13 +23,16 @@ export const Group: FC<IProps> = (props) => {
   return (
     <>
       <Grid gap={6}>
-        <Flex alignItems="center" justifyContent="space-between">
+        <Flex
+          alignItems="center"
+          justifyContent="space-between"
+          onClick={toggleClose}
+        >
           <Typography size="24/24" fontWeight={600}>
             {title}
           </Typography>
           <div style={{ transform: opened ? "rotate(180deg)" : undefined }}>
             <Flex
-              onClick={toggleClose}
               width="24px"
               height="24px"
               alignItems="center"
