@@ -51,6 +51,7 @@ export const Body = () => {
   useFormPersist("createOrder", {
     watch,
     setValue,
+    exclude: ["takeUpTime"],
   });
 
   const handleSubmit = async (data: IFormValues) => {
