@@ -73,9 +73,9 @@ export const Body = () => {
 
     const products = cartItems.map((item) => ({
       ...menuData.entities[item.productId],
-      additions: item?.additions?.map((id, col) => ({
-        additionId: id,
-        amount: col,
+      additions: item?.additions?.map((item) => ({
+        additionId: item.id,
+        amount: item.col,
       })),
       amount: item.col,
       productId: item.productId,
