@@ -3,6 +3,8 @@ import { generatePath } from "react-router-dom";
 
 export enum PageURLS {
   ROOT = "ROOT",
+  AGREEMENT = "AGREEMENT",
+  PERSONAL_CONSENT = "PERSONAL_CONSENT",
   SHOPS = "SHOPS",
   PRODUCTS = "PRODUCTS",
   PRODUCTS_CARD = "PRODUCTS_CARD",
@@ -20,6 +22,8 @@ export interface IPagesNavigatePayload {
 }
 export const PAGES: Record<PageURLS, unknown> = {
   [PageURLS.ROOT]: "/",
+  [PageURLS.AGREEMENT]: "/agreement",
+  [PageURLS.PERSONAL_CONSENT]: "/personal-consent",
   [PageURLS.SHOPS]: "/organizations/:id/shops",
   [PageURLS.PRODUCTS]: "/products/:id",
   [PageURLS.PRODUCTS_CARD]: "/products/detail/:id",

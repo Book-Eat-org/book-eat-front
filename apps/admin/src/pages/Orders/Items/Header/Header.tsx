@@ -10,7 +10,10 @@ export const Header = () => {
 
   return (
     <NewPage.Header>
-      <NewPage.Header.Top>
+      <NewPage.Header.Top
+        templateAreas={searchModeActive ? "right" : undefined}
+        templateColumns={searchModeActive ? "1fr" : undefined}
+      >
         <NewPage.Header.Top.Right>
           <Search />
         </NewPage.Header.Top.Right>

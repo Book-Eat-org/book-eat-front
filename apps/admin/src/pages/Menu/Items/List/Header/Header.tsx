@@ -10,7 +10,10 @@ export const Header = () => {
 
   return (
     <NewPage.Header>
-      <NewPage.Header.Top>
+      <NewPage.Header.Top
+        templateAreas={searchModeActive ? "right" : undefined}
+        templateColumns={searchModeActive ? "1fr" : undefined}
+      >
         {!searchModeActive && (
           <NewPage.Header.Top.Left>
             <Flex

@@ -55,7 +55,7 @@ export const Search = () => {
       <UIInput
         value={searchValue}
         onChange={setSearchValue}
-        title="Введите чет"
+        title="Введите название товара"
         type="text"
       />
     </Flex>

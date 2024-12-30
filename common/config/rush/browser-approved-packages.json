@@ -207,6 +207,10 @@
       "allowedCategories": [ "production" ]
     },
     {
+      "name": "react-toastify",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "react-virtualized",
       "allowedCategories": [ "production" ]
     },

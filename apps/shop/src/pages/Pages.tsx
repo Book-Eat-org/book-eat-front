@@ -5,6 +5,8 @@ import Shops from "./Shops";
 import { Products } from "./Products";
 import Cart from "./Cart";
 import Order from "./Order";
+import Agreement from "./Agreement";
+import PersonalConsent from "./PersonalConsent";
 
 const Pages: FC = () => {
   return (
@@ -13,6 +15,8 @@ const Pages: FC = () => {
       <Route path="/organizations/:id/shops" element={<Shops />} />
       <Route path="/products/*" element={<Products />} />
       <Route path="/cart" element={<Cart />} />
+      <Route path="/agreement" element={<Agreement />} />
+      <Route path="/personal-consent" element={<PersonalConsent />} />
       <Route path="/orders/*" element={<Order />} />
     </Routes>
   );

@@ -4,6 +4,9 @@ import { generatePath } from "react-router-dom";
 export enum PageURLS {
   ROOT = "ROOT",
   SHOPS = "SHOPS",
+  PROMOS = "PROMOS",
+  PromoCreate = "PromoCreate",
+  PromoEdit = "PromoEdit",
   ShopsCreate = "ShopsCreate",
   ShopsEdit = "ShopsEdit",
   Users = "Users",
@@ -29,6 +32,7 @@ export interface IPagesNavigatePayload {
   [PageURLS.ShopsEdit]: { id: EntityId };
   [PageURLS.UsersEdit]: { id: EntityId };
   [PageURLS.OrdersEdit]: { id: EntityId };
+  [PageURLS.PromoEdit]: { id: EntityId };
 }
 export const PAGES: Record<PageURLS, string> = {
   [PageURLS.ROOT]: "/",
@@ -53,6 +57,9 @@ export const PAGES: Record<PageURLS, string> = {
   [PageURLS.MenuList]: "/menu/list",
   [PageURLS.MenuListCreate]: "/menu/list/create",
   [PageURLS.MenuListEdit]: "/menu/list/:id",
+  [PageURLS.PROMOS]: "promos",
+  [PageURLS.PromoCreate]: "/profile/promos/create",
+  [PageURLS.PromoEdit]: "/profile/promos/:id",
 };
 export const navigateToPage = <T extends PageURLS>(
   page: T,

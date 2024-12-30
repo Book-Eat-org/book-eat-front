@@ -2,10 +2,13 @@ import { FC, ReactNode } from "react";
 import Central from "./Central";
 import Left from "./Left";
 import Right from "./Right";
-import classes from "./Top.module.css";
+import styled from "@emotion/styled";
+import { propOr } from "ramda";
 
 interface IProps {
   children: ReactNode;
+  templateAreas?: string;
+  templateColumns?: string;
 }
 
 type TNestedComponents = {
@@ -14,10 +17,20 @@ type TNestedComponents = {
   Central: typeof Central;
 };
 
-const Top: FC<IProps> & TNestedComponents = (props) => {
-  const { children } = props;
+const Wrapper = styled.div<IProps>`
+  display: grid;
+  grid-template-areas: "${propOr("left central right", "templateAreas")}";
+  grid-template-columns: ${propOr(
+    "minmax(36px, min-content) auto minmax(36px, min-content)",
+    "templateColumns",
+  )};
+  gap: 4px;
+`;
 
-  return <div className={classes.wrapper}>{children}</div>;
+const Top: FC<IProps> & TNestedComponents = (props) => {
+  const { children, ...restProps } = props;
+
+  return <Wrapper {...restProps}>{children}</Wrapper>;
 };
 
 Top.Right = Right;
