@@ -1,4 +1,9 @@
 export enum Measures {
-  gr = "gr",
-  ml = "ml",
+  gr = "гр",
+  ml = "мл",
+  mg = "мг",
+  lt = "л",
+  kg = "кг",
+  portion = "порция",
+  thing = "шт",
 }
