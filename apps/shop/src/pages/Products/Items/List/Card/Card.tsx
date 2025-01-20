@@ -1,5 +1,5 @@
 import { EntityId } from "@reduxjs/toolkit";
-import { FC } from "react";
+import { FC, SyntheticEvent } from "react";
 import { isNil, values } from "ramda";
 import { Box, Grid } from "@book-eat/ui";
 import classes from "./Card.module.css";
