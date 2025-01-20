@@ -4,7 +4,7 @@ import { useController } from "react-hook-form";
 import { UIOption, UISelect } from "@book-eat/ui";
 
 import { IFormValues } from "../models";
-import { keys } from "ramda";
+import { values } from "ramda";
 import { Measures, MEASURES_CONFIG } from "@book-eat/utils";
 
 export const Measure: FC = () => {
@@ -20,7 +20,7 @@ export const Measure: FC = () => {
       placeholder="Ед. изм."
       renderValue={(value: Measures) => MEASURES_CONFIG[value].name}
     >
-      {keys(Measures).map((key) => (
+      {values(Measures).map((key) => (
         <UIOption value={key} key={key}>
           {MEASURES_CONFIG[key].name}
         </UIOption>
