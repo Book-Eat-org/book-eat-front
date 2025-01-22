@@ -1,7 +1,7 @@
 import { EntityId } from "@reduxjs/toolkit";
 import { FC, SyntheticEvent } from "react";
 import { isNil, values } from "ramda";
-import { Box, Grid } from "@book-eat/ui";
+import { Box, Flex, Grid } from "@book-eat/ui";
 import classes from "./Card.module.css";
 import Price from "./Price";
 import Weight from "./Weight";
@@ -40,17 +40,25 @@ const Card: FC<IProps> = (props) => {
       width="100%"
       className={classes.wrapper}
     >
-      <Box borderRadius="20px">
+      <Flex borderRadius="20px" flexDirection="column" height="100%">
         <Image id={id} />
-        <Grid gap={5} p={10}>
+        <Flex
+          flexDirection="column"
+          gap={8}
+          p={10}
+          justifyContent="space-between"
+          height="100%"
+        >
           <Grid gap={1}>
             <Weight id={id} />
             <Title id={id} />
           </Grid>
-          {isSelected && <Price id={id} />}
-          <Cart id={id} />
-        </Grid>
-      </Box>
+          <Grid gap={3}>
+            {isSelected && <Price id={id} />}
+            <Cart id={id} />
+          </Grid>
+        </Flex>
+      </Flex>
     </Box>
   );
 };
