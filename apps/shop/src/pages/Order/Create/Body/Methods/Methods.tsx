@@ -1,5 +1,5 @@
 import { useWatch } from "react-hook-form";
-import { IFormValues } from "../models.ts";
+import { IFormValues } from "../../models.ts";
 import { Delivery } from "./Delivery.tsx";
 import { Grid } from "@book-eat/ui";
 import { DeliveryType } from "../Fields";

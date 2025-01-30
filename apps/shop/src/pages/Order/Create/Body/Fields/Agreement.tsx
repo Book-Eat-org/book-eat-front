@@ -25,14 +25,18 @@ const Agreement = () => {
     navigate(navigateToPage(PageURLS.PERSONAL_CONSENT, {}));
   };
 
+  const textColor = Boolean(error)
+    ? theme.colors.red600
+    : theme.colors.accent600;
+
   return (
     <UICheckbox selected={value} onChange={onChange} error={Boolean(error)}>
       Принимаю условия{" "}
-      <Typography onClick={openAgreement} color={theme.colors.accent600}>
+      <Typography onClick={openAgreement} color={textColor}>
         пользовательского соглашения
       </Typography>{" "}
       и даю{" "}
-      <Typography onClick={openPersonalConsent} color={theme.colors.accent600}>
+      <Typography onClick={openPersonalConsent} color={textColor}>
         согласие на обработку персональных данных
       </Typography>
     </UICheckbox>

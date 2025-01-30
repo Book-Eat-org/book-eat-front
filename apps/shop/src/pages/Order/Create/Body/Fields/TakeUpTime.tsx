@@ -25,10 +25,25 @@ const getItems = (closeTime: Dayjs) => {
   return items;
 };
 
+const validateDate = (value: string) => {
+  const day = dayjs(value);
+  const currentDate = dayjs();
+
+  console.log(day.isAfter(currentDate));
+
+  if (currentDate.isAfter(day)) {
+    return "Обновите время";
+  }
+  return true;
+};
+
 export const TakeUpTime: FC = () => {
   const { field, fieldState } = useController<IFormValues, "takeUpTime">({
     name: "takeUpTime",
-    rules: { required: { value: true, message: "Укажите время " } },
+    rules: {
+      required: { value: true, message: "Укажите время " },
+      validate: validateDate,
+    },
   });
 
   const { shopId } = useSelector((state) => state.cart);
@@ -74,6 +89,7 @@ export const TakeUpTime: FC = () => {
       onChange={onChange}
       placeholder="Когда"
       renderValue={(item) => dayjs(item).format("H:mm")}
+      error={errorMessage}
     >
       {options.map((item) => {
         const formatted = item.format("H:mm");

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useController } from "react-hook-form";
 
-import { IFormValues } from "../models";
+import { IFormValues } from "../../models";
 import {
   Flex,
   IconButton,
