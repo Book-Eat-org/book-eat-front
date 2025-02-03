@@ -9,7 +9,7 @@ import { clearCart } from "../../../../store/cart";
 
 export const Submit = () => {
   const dispatch = useDispatch();
-  const { id, status } = useOrder();
+  const { id, status, paymentUrl: orderPaymentUrl } = useOrder();
   const [searchParams, setSearchParams] = useSearchParams();
   const paymentUrl = searchParams.get("paymentUrl");
   const paymentStatus = searchParams.get("status");
@@ -29,11 +29,12 @@ export const Submit = () => {
   const onClick = () => {
     if (paymentUrl) {
       dispatch(clearCart());
-      window.open(paymentUrl, "_blank");
+      window.open(paymentUrl ?? orderPaymentUrl, "_blank");
     }
   };
 
-  const paymentButtonAvailable = isNotNil(paymentUrl);
+  const paymentButtonAvailable =
+    isNotNil(paymentUrl) || isNotNil(orderPaymentUrl);
   const cancelAvailable = status === OrderStatus.PAID;
 
   if (![OrderStatus.NEW, OrderStatus.PAID].includes(status)) {
