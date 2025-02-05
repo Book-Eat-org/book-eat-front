@@ -1,5 +1,4 @@
 import {
-  CartIcon24,
   Flex,
   IconButton,
   MinusIcon24,
@@ -46,7 +45,7 @@ const Cart: FC<IProps> = ({ id }) => {
       <Flex justifyContent="space-between" alignItems="center">
         <Price id={id} />
         <IconButton onClick={onAddCart}>
-          <CartIcon24 />
+          <PlusIcon24 />
         </IconButton>
       </Flex>
     );
