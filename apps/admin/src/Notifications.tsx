@@ -14,17 +14,17 @@ interface IProps {
 }
 
 export const Notifications: FC<IProps> = ({ children }) => {
-  const [enabled, setEnabled] = useState(Notification.permission === "granted");
+  const [enabled, setEnabled] = useState(
+    Notification?.permission === "granted",
+  );
   const [opened, setOpened] = useState(true);
-
-  console.log(Notification.permission);
 
   if (enabled) {
     return children;
   }
 
   const onClick = async () => {
-    await Notification.requestPermission((val) => {
+    await Notification?.requestPermission((val) => {
       setEnabled(val === "granted");
     });
   };
