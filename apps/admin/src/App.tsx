@@ -5,9 +5,6 @@ import { store } from "./store";
 import { BrowserRouter } from "react-router-dom";
 import { UIProvider } from "@book-eat/ui";
 
-import dayjs from "dayjs";
-import timezone from "dayjs/plugin/timezone";
-import utc from "dayjs/plugin/utc";
 import { Notifications } from "./Notifications.tsx";
 
 function App() {
