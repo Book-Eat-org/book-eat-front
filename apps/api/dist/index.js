@@ -5299,6 +5299,14 @@ const bs = es.endpoints.getCashiers.select(), $s = ct.getSelectors(
         method: "DELETE"
       }),
       invalidatesTags: [j.Categories]
+    }),
+    loadCategoriesList: e.mutation({
+      query: (t) => ({
+        url: "/v1/categories/list",
+        method: "POST",
+        body: { ids: t }
+      }),
+      invalidatesTags: [j.Categories]
     })
   })
 }), Ms = As.endpoints.fetchCategories.select(), Bs = at.getSelectors(
