@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useSelector } from "$hooks";
@@ -14,13 +14,29 @@ const Categories: FC = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const { categoriesList, selectedCategory } = useSelector((state) => state.categories);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const { data: menuList } = menuEndpoints.useGetMenuByPlaceIdQuery(id!);
   const [loadCategories, { data: list }] = categoriesEndpoints.useLoadCategoriesListMutation();
 
   const handleSelect = (categoryId: EntityId) => {
     dispatch(categoriesActions.onSelectCategory(categoryId));
-  }
+
+    const container = containerRef.current;
+    if (container) {
+      const selectedElement = container.querySelector(`[data-id="${categoryId}"]`);
+      if (selectedElement) {
+        const rect = selectedElement.getBoundingClientRect();
+        const containerRect = container.getBoundingClientRect();
+        const offset = rect.left - containerRect.left;
+
+        container.scrollTo({
+          left: container.scrollLeft + offset,
+          behavior: 'smooth'
+        });
+      }
+    }
+  };
 
   useEffect(() => {
     if (menuList) {
@@ -29,18 +45,18 @@ const Categories: FC = () => {
       const categoriesIdsSet = new Set(filteredByEnabled.flat().flatMap((obj) => obj.categoriesIds));
       loadCategories([...categoriesIdsSet]);
     }
-  }, [menuList])
+  }, [menuList]);
 
   useEffect(() => {
     if (list) {
       dispatch(categoriesActions.setCategoriesList(list.categories));
     }
-  }, [list])
+  }, [list]);
 
   if (!list) return null;
-  
+
   return (
-    <div className={classes.wrap}>
+    <div ref={containerRef} className={`${classes.wrap} overflow-x-auto`}>
       {categoriesList.map((item) => (
         <Flex 
           key={item.id}
@@ -48,14 +64,18 @@ const Categories: FC = () => {
           borderRadius="20px"
           backgroundColor={selectedCategory === item.id ? theme.colors.general300 : 'transparent'}
           onClick={() => handleSelect(item.id)}
+          data-id={item.id}
         >
-          <Typography size="14/14" fontWeight={500}>
+          <Typography 
+            size="14/14" 
+            fontWeight={500} 
+            color={selectedCategory === item.id ? theme.colors.general900 : '#6C6C6C'}>
             {item.title}
           </Typography>
         </Flex>
       ))}
     </div>
-    );
-  };
-  
-  export default Categories;
+  );
+};
+
+export default Categories;
