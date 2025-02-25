@@ -58,7 +58,7 @@ export declare const categoriesEndpoints: import("@reduxjs/toolkit/query").Api<(
     }>, ApiTags, {
         success: boolean;
     }, "api">;
-    loadCategoriesList: import("@reduxjs/toolkit/query").MutationDefinition<string[], (args: string | import("@reduxjs/toolkit/query").FetchArgs, api: import("@reduxjs/toolkit/query").BaseQueryApi, extraOptions: {}) => Promise<{
+    loadCategoriesList: import("@reduxjs/toolkit/query").MutationDefinition<EntityId[], (args: string | import("@reduxjs/toolkit/query").FetchArgs, api: import("@reduxjs/toolkit/query").BaseQueryApi, extraOptions: {}) => Promise<{
         error: {
             code: string;
         };
@@ -68,5 +68,7 @@ export declare const categoriesEndpoints: import("@reduxjs/toolkit/query").Api<(
             code: string;
         };
         error?: undefined;
-    }>, ApiTags, any, "api">;
+    }>, ApiTags, {
+        categories: ICategory[];
+    }, "api">;
 }, "api", ApiTags, typeof import("@reduxjs/toolkit/query").coreModuleName | typeof import("@reduxjs/toolkit/query/react").reactHooksModuleName>;

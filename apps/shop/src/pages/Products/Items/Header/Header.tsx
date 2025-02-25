@@ -4,9 +4,8 @@ import Categories from "./Categories";
 const Header = () => {
   return (
     <Flex 
-      p="8px 15px 10px" 
       position="sticky" 
-      top="-15px"
+      top="-16px"
       zIndex="10" 
       backgroundColor={theme.colors.general200} 
       overflow="hidden"

@@ -45,7 +45,7 @@ export declare const categoriesSelectors: import("@reduxjs/toolkit").EntitySelec
     }>, import("../../enums").ApiTags, {
         success: boolean;
     }, "api">;
-    loadCategoriesList: import("@reduxjs/toolkit/query").MutationDefinition<string[], (args: string | import("@reduxjs/toolkit/query").FetchArgs, api: import("@reduxjs/toolkit/query").BaseQueryApi, extraOptions: {}) => Promise<{
+    loadCategoriesList: import("@reduxjs/toolkit/query").MutationDefinition<import("@reduxjs/toolkit").EntityId[], (args: string | import("@reduxjs/toolkit/query").FetchArgs, api: import("@reduxjs/toolkit/query").BaseQueryApi, extraOptions: {}) => Promise<{
         error: {
             code: string;
         };
@@ -55,5 +55,7 @@ export declare const categoriesSelectors: import("@reduxjs/toolkit").EntitySelec
             code: string;
         };
         error?: undefined;
-    }>, import("../../enums").ApiTags, any, "api">;
+    }>, import("../../enums").ApiTags, {
+        categories: import("../..").ICategory[];
+    }, "api">;
 }, import("../../enums").ApiTags, "api">, import("@reduxjs/toolkit").EntityId>;

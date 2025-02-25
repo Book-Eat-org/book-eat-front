@@ -15,7 +15,7 @@ export const Items: FC = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [searchValue, setSearchValue] = useState("");
-  menuEndpoints.useGetMenuByPlaceIdQuery(id);
+  menuEndpoints.useGetMenuByPlaceIdQuery(id!);
   const dispatch = useDispatch();
 
   useEffect(() => {

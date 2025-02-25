@@ -1,39 +1,56 @@
 import { FC, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useSelector } from "$hooks";
+import { EntityId } from "@reduxjs/toolkit";
 import { categoriesEndpoints } from "@book-eat/api";
-import { placesEndpoints } from "@book-eat/api";
+import { prop } from "ramda";
+import { IProduct, menuEndpoints } from "@book-eat/api";
 import { categoriesActions } from "../../../../../store/categories";
 import { Flex, Typography, theme } from "@book-eat/ui";
 import classes from "./Categories.module.css";
 
 const Categories: FC = () => {
   const dispatch = useDispatch();
+  const { id } = useParams();
   const { categoriesList, selectedCategory } = useSelector((state) => state.categories);
-  const { data } = placesEndpoints.useFetchPlacesQuery();
-  const [loadCategories] = categoriesEndpoints.useLoadCategoriesListMutation();
 
-  const handleSelect = (category: string) => {
-    dispatch(categoriesActions.onSelectCategory(category));
+  const { data: menuList } = menuEndpoints.useGetMenuByPlaceIdQuery(id!);
+  const [loadCategories, { data: list }] = categoriesEndpoints.useLoadCategoriesListMutation();
+
+  const handleSelect = (categoryId: EntityId) => {
+    dispatch(categoriesActions.onSelectCategory(categoryId));
   }
 
   useEffect(() => {
-    loadCategories(['4861ff24-14bb-459a-b02b-af5794131f18'])
-  }, [])
+    if (menuList) {
+      const entities: IProduct[] = Object.values(menuList.entities);
+      const filteredByEnabled = entities.filter(prop("isActiveOnOrganization"));
+      const categoriesIdsSet = new Set(filteredByEnabled.flat().flatMap((obj) => obj.categoriesIds));
+      loadCategories([...categoriesIdsSet]);
+    }
+  }, [menuList])
+
+  useEffect(() => {
+    if (list) {
+      dispatch(categoriesActions.setCategoriesList(list.categories));
+    }
+  }, [list])
+
+  if (!list) return null;
   
   return (
     <div className={classes.wrap}>
-      {categoriesList.map((item, index) => (
+      {categoriesList.map((item) => (
         <Flex 
-          flexWrap="nowrap"
-          backgroundColor={selectedCategory === item ? theme.colors.general300 : 'transparent'}
+          key={item.id}
           p="10px"
           borderRadius="20px"
-          key={index}
-          onClick={() => handleSelect(item)}
+          backgroundColor={selectedCategory === item.id ? theme.colors.general300 : 'transparent'}
+          onClick={() => handleSelect(item.id)}
         >
           <Typography size="14/14" fontWeight={500}>
-            {item}
+            {item.title}
           </Typography>
         </Flex>
       ))}

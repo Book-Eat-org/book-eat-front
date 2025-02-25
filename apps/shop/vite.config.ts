@@ -8,7 +8,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/book-eat": {
-        target: "http://book-eat-test.ru",
+        target: "https://book-eat.ru/",
         changeOrigin: true,
       },
     },
