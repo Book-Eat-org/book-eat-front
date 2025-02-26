@@ -23,6 +23,7 @@ export interface IPlace {
   city: ICity;
   schedule: ISchedule[];
   organization: IOrganization;
+  organizationId: EntityId;
   deliveryComment: string;
   isActive: boolean;
 }

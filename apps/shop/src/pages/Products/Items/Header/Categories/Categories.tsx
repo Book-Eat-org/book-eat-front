@@ -4,10 +4,10 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "$hooks";
 import { EntityId } from "@reduxjs/toolkit";
 import { categoriesEndpoints } from "@book-eat/api";
-import { prop } from "ramda";
-import { IProduct, menuEndpoints } from "@book-eat/api";
+import { placesEndpoints } from "@book-eat/api";
 import { categoriesActions } from "../../../../../store/categories";
-import { Flex, Typography, theme } from "@book-eat/ui";
+import { theme } from "@book-eat/ui";
+import Category from "./Category/Category";
 import classes from "./Categories.module.css";
 
 const Categories: FC = () => {
@@ -15,9 +15,9 @@ const Categories: FC = () => {
   const { id } = useParams();
   const { categoriesList, selectedCategory } = useSelector((state) => state.categories);
   const containerRef = useRef<HTMLDivElement>(null);
-
-  const { data: menuList } = menuEndpoints.useGetMenuByPlaceIdQuery(id!);
-  const [loadCategories, { data: list }] = categoriesEndpoints.useLoadCategoriesListMutation();
+  
+  const { data: places } = placesEndpoints.useFetchPlacesQuery();
+  const [triggerCategories] = categoriesEndpoints.useLazyLoadCategoriesListQuery();
 
   const handleSelect = (categoryId: EntityId) => {
     dispatch(categoriesActions.onSelectCategory(categoryId));
@@ -39,40 +39,40 @@ const Categories: FC = () => {
   };
 
   useEffect(() => {
-    if (menuList) {
-      const entities: IProduct[] = Object.values(menuList.entities);
-      const filteredByEnabled = entities.filter(prop("isActiveOnOrganization"));
-      const categoriesIdsSet = new Set(filteredByEnabled.flat().flatMap((obj) => obj.categoriesIds));
-      loadCategories([...categoriesIdsSet]);
+    if (!places && !id) {
+      return;
     }
-  }, [menuList]);
 
-  useEffect(() => {
-    if (list) {
-      dispatch(categoriesActions.setCategoriesList(list.categories));
+    const organizationId = places?.entities?.[id!].organizationId;
+
+    if (organizationId) {
+      const loadCategories = async () => {
+        try {
+          const { data } = await triggerCategories(organizationId);
+          if (data) {
+            dispatch(categoriesActions.setCategoriesList(data));
+          }
+        } catch (error) {
+          throw new Error('Error load categories');
+        }
+      }
+      loadCategories();
     }
-  }, [list]);
+  }, [places, id]);
 
-  if (!list) return null;
+  if (!categoriesList) return null;
 
   return (
-    <div ref={containerRef} className={`${classes.wrap} overflow-x-auto`}>
+    <div ref={containerRef} className={classes.wrap}>
       {categoriesList.map((item) => (
-        <Flex 
+        <Category
+          id={item.id}
           key={item.id}
-          p="10px"
-          borderRadius="20px"
-          backgroundColor={selectedCategory === item.id ? theme.colors.general300 : 'transparent'}
-          onClick={() => handleSelect(item.id)}
-          data-id={item.id}
-        >
-          <Typography 
-            size="14/14" 
-            fontWeight={500} 
-            color={selectedCategory === item.id ? theme.colors.general900 : '#6C6C6C'}>
-            {item.title}
-          </Typography>
-        </Flex>
+          title={item.title}
+          onSelect={() => handleSelect(item.id)}
+          color={selectedCategory === item.id ? theme.colors.general900 : '#6C6C6C'}
+          background={selectedCategory === item.id ? theme.colors.general300 : 'transparent'}
+        />
       ))}
     </div>
   );

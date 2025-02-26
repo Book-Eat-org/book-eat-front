@@ -5300,13 +5300,9 @@ const bs = es.endpoints.getCashiers.select(), $s = ct.getSelectors(
       }),
       invalidatesTags: [j.Categories]
     }),
-    loadCategoriesList: e.mutation({
-      query: (t) => ({
-        url: "/v1/categories/list",
-        method: "POST",
-        body: { ids: t }
-      }),
-      invalidatesTags: [j.Categories]
+    loadCategoriesList: e.query({
+      query: (t) => ({ url: `/v1/categories/organizations/${t}` }),
+      providesTags: [j.Categories]
     })
   })
 }), Ms = As.endpoints.fetchCategories.select(), Bs = at.getSelectors(

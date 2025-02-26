@@ -37,13 +37,9 @@ export const categoriesEndpoints = api.injectEndpoints({
       }),
       invalidatesTags: [ApiTags.Categories],
     }),
-    loadCategoriesList: build.mutation<{ categories: ICategory[] }, EntityId[]>({
-      query: (ids) => ({
-        url: "/v1/categories/list",
-        method: 'POST',
-        body: {ids}
-      }),
-      invalidatesTags: [ApiTags.Categories],
+    loadCategoriesList: build.query<ICategory[], EntityId>({
+      query: (id) => ({ url: `/v1/categories/organizations/${id}` }),
+      providesTags: [ApiTags.Categories],
     })
   }),
 });
