@@ -24,15 +24,21 @@ export const Cart: FC = () => {
         <Box
           backgroundColor={theme.colors.general50}
           borderRadius="50%"
-          padding="3px 10px"
           position="absolute"
-          bottom={-8}
-          left={-8}
+          bottom={-5}
+          left={0}
           zIndex={1}
         >
-          <Typography size="14/14" fontWeight={600}>
+          <Flex
+            alignItems="center"
+            justifyContent="center"
+            width="20px"
+            height="20px"
+          >
+            <Typography size="14/14" fontWeight={600}>
             {col}
           </Typography>
+          </Flex>
         </Box>
       )}
       <CartIcon24 />

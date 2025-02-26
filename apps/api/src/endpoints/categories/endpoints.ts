@@ -37,5 +37,9 @@ export const categoriesEndpoints = api.injectEndpoints({
       }),
       invalidatesTags: [ApiTags.Categories],
     }),
+    loadCategoriesList: build.query<ICategory[], EntityId>({
+      query: (id) => ({ url: `/v1/categories/organizations/${id}` }),
+      providesTags: [ApiTags.Categories],
+    })
   }),
 });

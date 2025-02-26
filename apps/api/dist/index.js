@@ -5299,6 +5299,10 @@ const bs = es.endpoints.getCashiers.select(), $s = ct.getSelectors(
         method: "DELETE"
       }),
       invalidatesTags: [j.Categories]
+    }),
+    loadCategoriesList: e.query({
+      query: (t) => ({ url: `/v1/categories/organizations/${t}` }),
+      providesTags: [j.Categories]
     })
   })
 }), Ms = As.endpoints.fetchCategories.select(), Bs = at.getSelectors(

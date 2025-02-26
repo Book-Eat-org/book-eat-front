@@ -1,11 +1,17 @@
-import { Grid } from "@book-eat/ui";
-import Search from "./Search";
+import { Flex, theme } from "@book-eat/ui";
+import Categories from "./Categories";
 
 const Header = () => {
   return (
-    <Grid p="20px 15px" gap={4}>
-      <Search />
-    </Grid>
+    <Flex 
+      position="sticky" 
+      top="-16px"
+      zIndex="10" 
+      backgroundColor={theme.colors.general200} 
+      overflow="hidden"
+    >
+      <Categories />
+    </Flex>
   );
 };
 

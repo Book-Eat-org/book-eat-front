@@ -52,4 +52,9 @@ export interface IOrder {
   paymentUrl: string;
   places: IPlace;
   organization: IOrganization;
+  clientLegalInfo: {
+    isAgree: boolean;
+    version: string;
+    ip?: string;
+  }
 }

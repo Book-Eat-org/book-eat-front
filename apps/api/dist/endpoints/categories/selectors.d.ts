@@ -45,4 +45,15 @@ export declare const categoriesSelectors: import("@reduxjs/toolkit").EntitySelec
     }>, import("../../enums").ApiTags, {
         success: boolean;
     }, "api">;
+    loadCategoriesList: import("@reduxjs/toolkit/query").QueryDefinition<import("@reduxjs/toolkit").EntityId, (args: string | import("@reduxjs/toolkit/query").FetchArgs, api: import("@reduxjs/toolkit/query").BaseQueryApi, extraOptions: {}) => Promise<{
+        error: {
+            code: string;
+        };
+        data?: undefined;
+    } | {
+        data: {
+            code: string;
+        };
+        error?: undefined;
+    }>, import("../../enums").ApiTags, import("../..").ICategory[], "api">;
 }, import("../../enums").ApiTags, "api">, import("@reduxjs/toolkit").EntityId>;

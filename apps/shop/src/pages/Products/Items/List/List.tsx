@@ -3,6 +3,7 @@ import Card from "./Card";
 import { useOrganizationsContext } from "../context.ts";
 import { IProduct, menuEndpoints } from "@book-eat/api";
 import { useParams } from "react-router-dom";
+import { useSelector } from "$hooks";
 import { isNotNil, prop } from "ramda";
 import { ProductListContext } from "./context.ts";
 import { useMemo, useState } from "react";
@@ -16,6 +17,7 @@ const List = () => {
   const { id } = useParams();
   const { data, isFetching } = menuEndpoints.useGetMenuByPlaceIdQuery(id!);
   const { searchValue } = useOrganizationsContext();
+  const { selectedCategory } = useSelector((state) => state.categories);
 
   const contextValue = useMemo(
     () => ({ openedProductId, setOpenedProductId }),
@@ -36,12 +38,17 @@ const List = () => {
   const filteredByEnabled = entities.filter(prop("isActiveOnOrganization"));
 
   const filteredData = filteredByEnabled
-    .filter((item) =>
-      searchValue
-        ? item?.title.toLowerCase().includes(searchValue.toLowerCase())
-        : true,
-    )
-    .sort((a, b) => a.title.localeCompare(b.title));
+  .filter((item) => {
+    if (searchValue && !item?.title.toLowerCase().includes(searchValue.toLowerCase())) {
+      return false;
+    }
+
+    if (selectedCategory !== "" && selectedCategory !== "all") {
+      return item.categoriesIds.includes(selectedCategory);
+    }
+    return true;
+  })
+  .sort((a, b) => a.title.localeCompare(b.title));
 
   const ids = filteredData.map((item) => item?.id);
 

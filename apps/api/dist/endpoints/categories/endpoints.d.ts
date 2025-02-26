@@ -58,4 +58,15 @@ export declare const categoriesEndpoints: import("@reduxjs/toolkit/query").Api<(
     }>, ApiTags, {
         success: boolean;
     }, "api">;
+    loadCategoriesList: import("@reduxjs/toolkit/query").QueryDefinition<EntityId, (args: string | import("@reduxjs/toolkit/query").FetchArgs, api: import("@reduxjs/toolkit/query").BaseQueryApi, extraOptions: {}) => Promise<{
+        error: {
+            code: string;
+        };
+        data?: undefined;
+    } | {
+        data: {
+            code: string;
+        };
+        error?: undefined;
+    }>, ApiTags, ICategory[], "api">;
 }, "api", ApiTags, typeof import("@reduxjs/toolkit/query").coreModuleName | typeof import("@reduxjs/toolkit/query/react").reactHooksModuleName>;
