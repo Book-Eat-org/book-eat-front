@@ -7,6 +7,7 @@
     "dev": "vite",
     "tsc": "tsc",
     "build": "vite build",
+    "build:sb": "npm run build",
     "postbuild": "shx cp -r ./pwa/* ./dist/",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"

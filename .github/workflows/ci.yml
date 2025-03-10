@@ -17,7 +17,7 @@ jobs:
       - name: Rush Install
         run: node common/scripts/install-run-rush.js install
       - name: Rush build
-        run: node common/scripts/install-run-rush.js build
+        run: node common/scripts/install-run-rush.js build:sb
       - name: Deploy Admin
         uses: wlixcc/SFTP-Deploy-Action@v1.2.1
         with:

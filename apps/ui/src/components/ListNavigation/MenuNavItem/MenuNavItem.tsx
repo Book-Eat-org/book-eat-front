@@ -4,6 +4,7 @@ import { useListNavigationContext } from "../context.ts";
 import { UITypography } from "$components";
 
 interface IProps extends ComponentProps<typeof NavItem> {}
+
 const MenuNavItem: FC<IProps> = (props) => {
   const { id } = props;
   const { currentId } = useListNavigationContext();

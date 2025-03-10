@@ -34,7 +34,9 @@ export const Submit = () => {
   };
 
   const paymentButtonAvailable =
-    isNotNil(paymentUrl) || isNotNil(orderPaymentUrl);
+    isNotNil(paymentUrl) ||
+    (isNotNil(orderPaymentUrl) && status !== OrderStatus.PAID);
+
   const cancelAvailable = status === OrderStatus.PAID;
 
   if (![OrderStatus.NEW, OrderStatus.PAID].includes(status)) {
