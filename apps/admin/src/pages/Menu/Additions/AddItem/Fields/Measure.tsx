@@ -9,7 +9,7 @@ import { Measures, MEASURES_CONFIG } from "@book-eat/utils";
 
 export const Measure: FC = () => {
   const { field } = useController<IFormValues, "measure">({
-    name: "measure",
+    name: "measurement",
   });
   const { onChange, value } = field;
 

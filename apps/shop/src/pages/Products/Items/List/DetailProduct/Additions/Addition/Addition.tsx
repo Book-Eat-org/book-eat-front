@@ -31,13 +31,13 @@ export const Addition: FC<IProps> = (props) => {
     return null;
   }
 
-  const { weight, title, price, measure } = item;
+  const { weight, title, price, measurement } = item;
 
   const onChange = () => setAddition({ id, count: 1 });
 
   const weightLabel = isNil(weight)
     ? undefined
-    : `${weight}${MEASURES_CONFIG[measure] ?? ""}`;
+    : `${weight}${MEASURES_CONFIG[measurement] ?? ""}`;
   const additionCount = additions[id]?.count;
 
   const selected = additionCount > 0;
