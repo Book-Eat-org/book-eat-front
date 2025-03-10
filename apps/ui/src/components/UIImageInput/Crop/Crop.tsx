@@ -52,7 +52,7 @@ const Crop: FC<IProps> = (props) => {
         width: cropperRef?.current?.width ?? 0,
         height: cropperRef?.current?.height ?? 0,
       })
-      .toDataURL("image/jpeg");
+      .toDataURL();
 
     if (dataURL) {
       fetch(dataURL)

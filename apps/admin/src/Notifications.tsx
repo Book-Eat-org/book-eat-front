@@ -20,7 +20,7 @@ export const Notifications: FC<IProps> = ({ children }) => {
   const [opened, setOpened] = useState(true);
 
   if (enabled) {
-    return children;
+    return <>{children}</>;
   }
 
   const onClick = async () => {
