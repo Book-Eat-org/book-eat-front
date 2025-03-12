@@ -10,7 +10,7 @@ export default defineConfig({
     port: 5173,
     proxy: {
       "/book-eat": {
-        target: "https://book-eat.ru/",
+        target: "http://book-eat-test.ru/",
         changeOrigin: true,
         secure: false,
       },

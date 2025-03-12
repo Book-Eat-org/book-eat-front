@@ -10,6 +10,7 @@ import { placesSelectors } from "@book-eat/api";
 import { useSelector } from "$hooks";
 import { CardContext } from "./context.ts";
 import { Address } from "./Address";
+import { Details } from "./Details";
 import { isShopOpen } from "@book-eat/utils";
 
 interface IProps {
@@ -45,7 +46,6 @@ const Card: FC<IProps> = (props) => {
         borderRadius="20px"
         width="100%"
         className={classes.wrapper}
-        onClick={onClick}
         opacity={isClosed ? 0.5 : 1}
       >
         <TimeTag />
@@ -57,8 +57,10 @@ const Card: FC<IProps> = (props) => {
             }
             alt=""
             className={classes.image}
+            onClick={onClick}
           />
           <Address />
+          <Details />
         </Box>
       </Box>
     </CardContext.Provider>

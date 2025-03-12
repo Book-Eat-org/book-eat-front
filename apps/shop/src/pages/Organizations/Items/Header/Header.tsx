@@ -9,7 +9,7 @@ const Header = () => {
   const isSearchAvailable = ids.length > 5;
 
   return (
-    <Grid p="20px 15px" gap={4}>
+    <Grid p="0 0 20px" gap={4}>
       <Typography fontWeight={600} size="24/24">
         Рестораны
       </Typography>

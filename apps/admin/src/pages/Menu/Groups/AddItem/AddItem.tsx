@@ -17,7 +17,6 @@ const AddItem: FC = () => {
 
   const defaultValues: IFormState = {
     category: '',
-    confirmation: false,
   };
 
   const methods = useForm<IFormState>({

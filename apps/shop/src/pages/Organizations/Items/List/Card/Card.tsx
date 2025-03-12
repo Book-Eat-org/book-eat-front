@@ -10,8 +10,6 @@ import { organizationsSelectors } from "@book-eat/api";
 import { OrganizationCardContext } from "./context.ts";
 import { Image } from "./Image";
 import { Title } from "./Title";
-import { Address } from "./Address";
-import { LegalInfo } from "./LegalInfo";
 
 interface IProps {
   id: EntityId;
@@ -43,10 +41,8 @@ const Card: FC<IProps> = (props) => {
       >
         <Box p="2px" borderRadius="20px">
           <Image />
-          <Grid padding="5px 10px" gap={1}>
+          <Grid padding="5px 10px 15px" gap={1}>
             <Title />
-            <Address />
-            <LegalInfo />
           </Grid>
         </Box>
       </Box>

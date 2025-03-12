@@ -24,7 +24,7 @@ const List = () => {
   );
 
   return (
-    <Grid gap={2} p="0 12px 12px">
+    <Grid gap={2} p="0 0 12px">
       {filteredData.map(({ id }) => (
         <Card key={id} id={id} />
       ))}
