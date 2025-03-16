@@ -38,7 +38,7 @@ const SearchInput: FC<IProps> = ({ active, onClick, children }) => {
           className={styles.btn}
           onClick={onClick}
         >
-          {'Отменить'}
+          Отменить
         </button>
       </Flex>
     </div>

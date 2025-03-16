@@ -28,7 +28,7 @@ export const Details: FC = () => {
         onClick={handleOpenClick}
       >
         <Typography size="12/12" color="#6C6C6C">
-          {'Подробнее'}
+          Подробнее
         </Typography>
         <DownArrowIcon 
           style={{
@@ -59,7 +59,7 @@ export const Details: FC = () => {
           </Flex>
           <Box onClick={onClick}>
             <Typography size="12/12" color="#6C6C6C" textDecoration="underline">
-              {'Юридическая информация'}
+              Юридическая информация
             </Typography>
           </Box>
         </Grid>
