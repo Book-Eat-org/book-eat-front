@@ -1,12 +1,12 @@
 .details {
   height: 0;
   overflow: hidden;
-  transition: all 0.3s linear;
+  transition: all 0.3s ease;
   opacity: 0;
 }
 
 .details.show {
   height: 100%;
   opacity: 1;
-  transition: all 0.3s linear;
+  transition: all 0.3s ease;
 }

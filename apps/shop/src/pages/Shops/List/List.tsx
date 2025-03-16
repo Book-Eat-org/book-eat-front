@@ -1,4 +1,4 @@
-import { Grid, Skeleton } from "@book-eat/ui";
+import { Grid, Flex, Skeleton, Typography } from "@book-eat/ui";
 import Card from "./Card";
 import { useShopsContext } from "../context.ts";
 import { placesEndpoints } from "@book-eat/api";
@@ -22,6 +22,24 @@ const List = () => {
       ? item?.title.toLowerCase().includes(searchValue.toLowerCase())
       : true,
   );
+
+  if (!filteredData.length) {
+    return (
+      <Flex 
+        p="40px 0"
+        flexDirection="column"
+        alignItems="center"
+        gap={2}
+      >
+        <Typography size="18/18" fontWeight={700}>
+          {'Ничего не нашлось'}
+        </Typography>
+        <Typography size="14/14" fontWeight={400} color="#6C6C6C">
+          {'Попробуйте изменить запрос'}
+        </Typography>
+      </Flex>
+    )
+  }
 
   return (
     <Grid gap={2} p="0 0 12px">
