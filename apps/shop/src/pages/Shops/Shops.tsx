@@ -11,7 +11,7 @@ import PageHeader from "./PageHeader";
 const Shops: FC = () => {
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState("");
-  const [activeSearch, setActiveSearch] = useState(true);
+  const [activeSearch, setActiveSearch] = useState(false);
 
   const onBackClick = () => navigate("..");
 
