@@ -18,16 +18,17 @@ const PageHeader = () => {
         height={80}
         className={classes.image}
       />
-      <Grid>
-        <Typography
-          className={classes.title}
-          size="26/26"
-          fontWeight={700}
-          color={theme.colors.general50}
-        >
-          {item?.title ?? "Товары"}
-        </Typography>
-      </Grid>
+      <Typography size="18/18" color={theme.colors.accent50} fontWeight={700}>
+        Сеть ресторанов
+      </Typography>
+      <Typography
+        className={classes.title}
+        size="26/26"
+        fontWeight={700}
+        color={theme.colors.general50}
+      >
+        {item?.title ?? "Товары"}
+      </Typography>
     </Grid>
   );
 };

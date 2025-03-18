@@ -3,7 +3,6 @@ import { isNil } from "ramda";
 import { useListNavigationContext } from "./context.ts";
 import styled from "@emotion/styled";
 import { styledCommonFn } from "$utils";
-import { TStyledCommonProps } from "$models";
 
 export const Wrapper = styled.div`
   ${styledCommonFn};

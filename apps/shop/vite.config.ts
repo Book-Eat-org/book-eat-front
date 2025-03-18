@@ -15,7 +15,7 @@ export default defineConfig(() => {
     server: {
       proxy: {
         "/book-eat": {
-          target: "https://book-eat.ru/",
+          target: "https://book-eat-test.ru/",
           changeOrigin: true,
         },
       },

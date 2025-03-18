@@ -1,14 +1,15 @@
-import { Flex, Grid, Skeleton } from "@book-eat/ui";
+import { Flex, Grid, Skeleton, ListNavigation } from "@book-eat/ui";
 import Card from "./Card";
 import { useOrganizationsContext } from "../context.ts";
 import { IProduct, menuEndpoints } from "@book-eat/api";
 import { useParams } from "react-router-dom";
 import { useSelector } from "$hooks";
-import { isNotNil, prop } from "ramda";
+import { isNotNil, keys, prop } from "ramda";
 import { ProductListContext } from "./context.ts";
 import { useMemo, useState } from "react";
 import { EntityId } from "@reduxjs/toolkit";
 import { DetailProduct } from "./DetailProduct";
+import { Group } from "./Group";
 
 const List = () => {
   const [openedProductId, setOpenedProductId] = useState<undefined | EntityId>(
@@ -38,28 +39,48 @@ const List = () => {
   const filteredByEnabled = entities.filter(prop("isActiveOnOrganization"));
 
   const filteredData = filteredByEnabled
-  .filter((item) => {
-    if (searchValue && !item?.title.toLowerCase().includes(searchValue.toLowerCase())) {
-      return false;
-    }
+    .filter((item) => {
+      if (
+        searchValue &&
+        !item?.title.toLowerCase().includes(searchValue.toLowerCase())
+      ) {
+        return false;
+      }
 
-    if (selectedCategory !== "" && selectedCategory !== "all") {
-      return item.categoriesIds.includes(selectedCategory);
-    }
-    return true;
-  })
-  .sort((a, b) => a.title.localeCompare(b.title));
+      if (selectedCategory !== "" && selectedCategory !== "all") {
+        return item.categoriesIds.includes(selectedCategory);
+      }
+      return true;
+    })
+    .sort((a, b) => a.title.localeCompare(b.title));
 
-  const ids = filteredData.map((item) => item?.id);
+  const groupedByCategories: Record<string, string[]> = filteredData.reduce(
+    (acc, item) => {
+      item.categoriesIds.forEach((categoryId) => {
+        if (!acc[categoryId]) {
+          acc[categoryId] = [];
+        }
+        acc[categoryId].push(item.id);
+      });
+      return acc;
+    },
+    {},
+  );
 
   return (
     <ProductListContext.Provider value={contextValue}>
       {isNotNil(openedProductId) && <DetailProduct />}
-      <Grid gap={2} p="0 12px 12px" gridTemplateColumns="1fr 1fr">
-        {ids.map((id) => (
-          <Card key={id} id={id} />
-        ))}
-      </Grid>
+      <ListNavigation.Provider>
+        <Grid gap={2} p="0 12px 12px">
+          {keys(groupedByCategories).map((categoryId) => (
+            <Group id={categoryId}>
+              {groupedByCategories[categoryId].map((id) => (
+                <Card key={id} id={id} />
+              ))}
+            </Group>
+          ))}
+        </Grid>
+      </ListNavigation.Provider>
     </ProductListContext.Provider>
   );
 };
