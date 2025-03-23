@@ -1,5 +1,5 @@
 import { FC, ReactNode, useRef } from "react";
-import { Flex, theme } from "@book-eat/ui";
+import { Flex, Box, UIButton, theme } from "@book-eat/ui";
 import { useShopsContext } from "../context";
 import { useClickOutside } from "@book-eat/ui";
 import styles from "./SearchInput.module.css";
@@ -19,7 +19,7 @@ const SearchInput: FC<IProps> = ({ active, onClick, children }) => {
   if (!active) return children;
 
   return (
-    <div ref={containerRef}>
+    <Box ref={containerRef}>
       <Flex
         padding="10px 0"
         borderRadius="15px"
@@ -34,14 +34,17 @@ const SearchInput: FC<IProps> = ({ active, onClick, children }) => {
           placeholder="Найти ресторан"
           onChange={(e) => setSearchValue(e.target.value)}
         />
-        <button 
-          className={styles.btn}
+        <UIButton 
+          variant="outline"
+          size="textLg"
+          weight="normal"
+          uppercase={false}
           onClick={onClick}
         >
           Отменить
-        </button>
+        </UIButton>
       </Flex>
-    </div>
+    </Box>
   )
 }
 

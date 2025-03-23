@@ -8,6 +8,11 @@
   line-height: 20px;
 }
 
+.textLg {
+  font-size: 16px;
+  line-height: 16px;
+}
+
 .textMd {
   font-size: 14px;
   line-height: 14px;
@@ -26,6 +31,10 @@
 .captionXs {
   font-size: 10px;
   line-height: 12px;
+}
+
+.normal {
+  font-weight: 400;
 }
 
 .semibold {

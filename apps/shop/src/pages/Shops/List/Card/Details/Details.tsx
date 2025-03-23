@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useData } from "../context.ts";
 import { navigateToPage, PageURLS } from "$constants";
 import { formatPhoneNumber, formatSchedule } from "@book-eat/utils";
-import { Grid, Flex, Typography, DownArrowIcon, PhoneIcon20, ClockIcon20, Box } from "@book-eat/ui";
+import { Grid, Flex, Typography, DownArrowIcon, PhoneIcon20, ClockIcon20, Box, theme } from "@book-eat/ui";
 import classes from "./Details.module.css"; 
 
 export const Details: FC = () => {
@@ -27,7 +27,7 @@ export const Details: FC = () => {
         justifyContent="space-between" 
         onClick={handleOpenClick}
       >
-        <Typography size="12/12" color="#6C6C6C">
+        <Typography size="12/12" color={theme.colors.general650}>
           Подробнее
         </Typography>
         <DownArrowIcon 
@@ -37,13 +37,13 @@ export const Details: FC = () => {
           }} 
         />
       </Flex>
-      <div className={`${classes.details} ${isOpenDetails ? classes.show : ''}`}>
+      <div className={isOpenDetails ? classes.show : classes.details}>
         <Grid gap="5px" p="0 0 15px">
           <Flex alignItems="center" gap="3px">
             <Box p="4px">
               <PhoneIcon20 />
             </Box>
-            <Typography size="12/12" color="#4C9240">
+            <Typography size="12/12" color={theme.colors.general750}>
               {formatPhoneNumber(data.info.phone ?? '')}
             </Typography>
           </Flex>
@@ -53,12 +53,14 @@ export const Details: FC = () => {
             </Box>
             <Flex p="6px 0 0" flexDirection="column" gap={1.5}>
               {schedule?.map((item, index) => (
-                <Typography key={index} size="12/12">{item}</Typography>
+                <Typography key={index} size="12/12">
+                  {item}
+                </Typography>
               ))}
             </Flex>
           </Flex>
           <Box onClick={onClick}>
-            <Typography size="12/12" color="#6C6C6C" textDecoration="underline">
+            <Typography size="12/12" color={theme.colors.general650} textDecoration="underline">
               Юридическая информация
             </Typography>
           </Box>

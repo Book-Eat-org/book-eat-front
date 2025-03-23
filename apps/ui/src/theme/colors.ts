@@ -42,7 +42,9 @@ export const colors = {
   general400: "#D9D9D9",
   general500: "#B6B6B6",
   general600: "#888888",
+  general650: "#6C6C6C",
   general700: "#676767",
+  general750: "#4C9240",
   general800: "#4C4C4C",
   general900: "#0F0F0F",
 };

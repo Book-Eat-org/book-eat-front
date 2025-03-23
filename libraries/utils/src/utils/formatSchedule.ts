@@ -1,67 +1,57 @@
 import { DayOfWeek, ISchedule } from "@book-eat/api";
 
-export const formatSchedule = (schedule: ISchedule[]): string[] => {
-  const daysOfWeek = Object.values(DayOfWeek);
-  const shortDaysOfWeek: { [key in DayOfWeek]: string } = {
-    [DayOfWeek.Monday]: "Пн",
-    [DayOfWeek.Tuesday]: "Вт",
-    [DayOfWeek.Wednesday]: "Ср",
-    [DayOfWeek.Thursday]: "Чт",
-    [DayOfWeek.Friday]: "Пт",
-    [DayOfWeek.Saturday]: "Сб",
-    [DayOfWeek.Sunday]: "Вс",
-  };
+const daysOfWeek = Object.values(DayOfWeek);
+const shortDaysOfWeek: { [key in DayOfWeek]: string } = {
+  [DayOfWeek.Monday]: "Пн",
+  [DayOfWeek.Tuesday]: "Вт",
+  [DayOfWeek.Wednesday]: "Ср",
+  [DayOfWeek.Thursday]: "Чт",
+  [DayOfWeek.Friday]: "Пт",
+  [DayOfWeek.Saturday]: "Сб",
+  [DayOfWeek.Sunday]: "Вс",
+};
 
-  // Функция для парсинга времени
-  function parseTime(time: string): string {
+export const formatSchedule = (schedule: ISchedule[]): string[] => {
+  const parseTime = (time: string): string => {
     const parts = time.split(":");
     return `${parts[0]}:${parts[1]}`;
-  }
+  };
 
-  // Группируем по времени работы
-  const groupedSchedule: { [key: string]: DayOfWeek[] } = {};
-  schedule.forEach((item) => {
+  const groupedSchedule = schedule.reduce((acc, item) => {
     const timeFrom = parseTime(item.timeFrom);
     const timeTo = parseTime(item.timeTo);
     const key = `${timeFrom} - ${timeTo}`;
-    if (!groupedSchedule[key]) {
-      groupedSchedule[key] = [];
+
+    if (!acc[key]) {
+      acc[key] = [];
     }
-    groupedSchedule[key].push(item.dayOfWeek);
-  });
+    acc[key].push(item.dayOfWeek);
+    
+    return acc;
+  }, {} as { [key: string]: DayOfWeek[] });
 
-  // Форматируем вывод
-  const formattedSchedule: string[] = [];
-  Object.entries(groupedSchedule).forEach(([time, days]) => {
-    // Сортируем дни недели для корректного формата
-    days.sort((a, b) => daysOfWeek.indexOf(a) - daysOfWeek.indexOf(b));
+  return Object.entries(groupedSchedule).map(([time, days]) => {
+    const sortedDays = days.sort((a, b) => daysOfWeek.indexOf(a) - daysOfWeek.indexOf(b));
 
-    // Формируем строки для вывода
-    let formattedDays = "";
-    let currentDay = days[0];
-    let count = 1;
-    for (let i = 1; i < days.length; i++) {
-      if (daysOfWeek.indexOf(days[i]) === daysOfWeek.indexOf(days[i - 1]) + 1) {
-        count++;
-      } else {
-        if (count > 1) {
-          formattedDays += `${shortDaysOfWeek[currentDay]}-${shortDaysOfWeek[days[i - 1]]}, `;
-        } else {
-          formattedDays += `${shortDaysOfWeek[currentDay]}, `;
-        }
-        currentDay = days[i];
-        count = 1;
+    const formattedDays = sortedDays.reduce((acc, day, index, array) => {
+      if (index === 0) {
+        return shortDaysOfWeek[day];
       }
-    }
-    // Добавляем последний день
-    if (count > 1) {
-      formattedDays += `${shortDaysOfWeek[currentDay]}-${shortDaysOfWeek[days[days.length - 1]]}`;
-    } else {
-      formattedDays += `${shortDaysOfWeek[currentDay]}`;
-    }
 
-    formattedSchedule.push(`${formattedDays}: ${time}`);
+      if (daysOfWeek.indexOf(day) === daysOfWeek.indexOf(array[index - 1]) + 1) {
+        if (index === array.length - 1) {
+          return `${acc}-${shortDaysOfWeek[day]}`;
+        }
+        return acc;
+      } else {
+        if (acc.includes("-")) {
+          return `${acc}, ${shortDaysOfWeek[day]}`;
+        } else {
+          return `${acc}, ${shortDaysOfWeek[day]}`;
+        }
+      }
+    }, "");
+
+    return `${formattedDays}: ${time}`;
   });
-
-  return formattedSchedule;
-}
+};
