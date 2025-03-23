@@ -5,6 +5,7 @@ import {
   BackIcon24,
   Flex,
   Grid,
+  Box,
   ListNavigation,
   NewPage,
   theme,
@@ -14,6 +15,8 @@ import Footer from "./Footer";
 import { menuEndpoints } from "@book-eat/api";
 import { useNavigate, useParams } from "react-router-dom";
 import { Cart } from "./Cart";
+import Search from "./Search";
+import SearchInput from "./SearchInput";
 import PageHeader from "./PageHeader";
 import { useDispatch } from "react-redux";
 import { setActiveShop } from "../../../store/shop";
@@ -22,6 +25,7 @@ export const Items: FC = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [searchValue, setSearchValue] = useState("");
+  const [activeSearch, setActiveSearch] = useState(false);
   menuEndpoints.useGetMenuByPlaceIdQuery(id!);
   const dispatch = useDispatch();
 
@@ -31,28 +35,38 @@ export const Items: FC = () => {
 
   const onBackClick = () => navigate(-1);
 
+  const onOpenSearch = () => setActiveSearch(true);
+
+  const onCloseSearch = () => {
+    setSearchValue("");
+    setActiveSearch(false);
+  }
+
   return (
     <ListNavigation.Provider>
       <OrganizationsContext.Provider value={{ searchValue, setSearchValue }}>
         <NewPage>
           <NewPage.Header>
-            <NewPage.Header.Top>
-              <NewPage.Header.Top.Left>
-                <Flex
-                  backgroundColor={theme.colors.accent50}
-                  borderRadius={10}
-                  padding="6px"
-                >
-                  <BackIcon24 onClick={onBackClick} />
-                </Flex>
-              </NewPage.Header.Top.Left>
-              <NewPage.Header.Top.Central>
-                <PageHeader />
-              </NewPage.Header.Top.Central>
-              <NewPage.Header.Top.Right>
-                <Cart />
-              </NewPage.Header.Top.Right>
-            </NewPage.Header.Top>
+            <SearchInput active={activeSearch} onClick={onOpenSearch}>
+              <NewPage.Header.Top>
+                <NewPage.Header.Top.Left>
+                  <Flex
+                    backgroundColor={theme.colors.accent50}
+                    borderRadius={10}
+                    padding="6px"
+                  >
+                    <BackIcon24 onClick={onBackClick} />
+                  </Flex>
+                </NewPage.Header.Top.Left>
+                <NewPage.Header.Top.Central>
+                  <PageHeader />
+                </NewPage.Header.Top.Central>
+                <NewPage.Header.Top.Right>
+                  <Search onClick={onCloseSearch} />
+                  <Cart />
+                </NewPage.Header.Top.Right>
+              </NewPage.Header.Top>
+            </SearchInput>
           </NewPage.Header>
           <NewPage.Body padding="0">
             <Grid height="100%">
