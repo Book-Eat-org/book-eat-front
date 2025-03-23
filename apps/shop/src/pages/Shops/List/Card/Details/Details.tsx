@@ -37,7 +37,7 @@ export const Details: FC = () => {
           }} 
         />
       </Flex>
-      <div className={isOpenDetails ? classes.show : classes.details}>
+      <Box className={isOpenDetails ? classes.show : classes.details}>
         <Grid gap="5px" p="0 0 15px">
           <Flex alignItems="center" gap="3px">
             <Box p="4px">
@@ -65,7 +65,7 @@ export const Details: FC = () => {
             </Typography>
           </Box>
         </Grid>
-      </div>
+      </Box>
     </Grid>
   )
 }
