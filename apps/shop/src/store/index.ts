@@ -4,8 +4,12 @@ import { cartReducer } from "./cart";
 import { organizationsEndpoints } from "@book-eat/api";
 import { cartMiddleware, reHydrateStore } from "./middlewares";
 import { shopReducer } from "./shop";
-import { categoriesReducer } from "./categories";
-import { productsSlice, additionsSlice, organizationsSlice } from "./entities";
+import {
+  productsSlice,
+  additionsSlice,
+  organizationsSlice,
+  categoriesSlice,
+} from "./entities";
 
 export { setAuthorizedAction, authorizedSelector } from "./authorized";
 
@@ -15,9 +19,9 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   activeShop: shopReducer,
   additions: additionsSlice.reducer,
+  categories: categoriesSlice.reducer,
   products: productsSlice.reducer,
   organizations: organizationsSlice.reducer,
-  categories: categoriesReducer,
 });
 export type IRootState = ReturnType<typeof rootReducer>;
 

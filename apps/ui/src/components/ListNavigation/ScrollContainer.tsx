@@ -31,6 +31,7 @@ const ScrollContainer: FC<IProps> = (props) => {
     const observable: IntersectionObserverCallback = (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
+          console.log(entry.target.id);
           setCurrentId?.(entry.target.id);
         }
       });

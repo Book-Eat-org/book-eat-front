@@ -1,7 +1,14 @@
 import { FC, useEffect, useState } from "react";
 import List from "./List";
 import Header from "./Header";
-import { BackIcon24, Flex, Grid, NewPage, theme } from "@book-eat/ui";
+import {
+  BackIcon24,
+  Flex,
+  Grid,
+  ListNavigation,
+  NewPage,
+  theme,
+} from "@book-eat/ui";
 import { OrganizationsContext } from "./context.ts";
 import Footer from "./Footer";
 import { menuEndpoints } from "@book-eat/api";
@@ -25,35 +32,37 @@ export const Items: FC = () => {
   const onBackClick = () => navigate(-1);
 
   return (
-    <OrganizationsContext.Provider value={{ searchValue, setSearchValue }}>
-      <NewPage>
-        <NewPage.Header>
-          <NewPage.Header.Top>
-            <NewPage.Header.Top.Left>
-              <Flex
-                backgroundColor={theme.colors.accent50}
-                borderRadius={10}
-                padding="6px"
-              >
-                <BackIcon24 onClick={onBackClick} />
-              </Flex>
-            </NewPage.Header.Top.Left>
-            <NewPage.Header.Top.Central>
-              <PageHeader />
-            </NewPage.Header.Top.Central>
-            <NewPage.Header.Top.Right>
-              <Cart />
-            </NewPage.Header.Top.Right>
-          </NewPage.Header.Top>
-        </NewPage.Header>
-        <NewPage.Body>
-          <Grid paddingBottom={5}>
-            <Header />
-            <List />
-            <Footer />
-          </Grid>
-        </NewPage.Body>
-      </NewPage>
-    </OrganizationsContext.Provider>
+    <ListNavigation.Provider>
+      <OrganizationsContext.Provider value={{ searchValue, setSearchValue }}>
+        <NewPage>
+          <NewPage.Header>
+            <NewPage.Header.Top>
+              <NewPage.Header.Top.Left>
+                <Flex
+                  backgroundColor={theme.colors.accent50}
+                  borderRadius={10}
+                  padding="6px"
+                >
+                  <BackIcon24 onClick={onBackClick} />
+                </Flex>
+              </NewPage.Header.Top.Left>
+              <NewPage.Header.Top.Central>
+                <PageHeader />
+              </NewPage.Header.Top.Central>
+              <NewPage.Header.Top.Right>
+                <Cart />
+              </NewPage.Header.Top.Right>
+            </NewPage.Header.Top>
+          </NewPage.Header>
+          <NewPage.Body>
+            <Grid paddingBottom={5} height="100%">
+              <Header />
+              <List />
+              <Footer />
+            </Grid>
+          </NewPage.Body>
+        </NewPage>
+      </OrganizationsContext.Provider>
+    </ListNavigation.Provider>
   );
 };
