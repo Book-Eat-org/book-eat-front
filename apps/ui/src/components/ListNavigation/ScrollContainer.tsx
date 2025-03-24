@@ -15,7 +15,7 @@ interface IProps extends ComponentProps<typeof Wrapper> {
 
 const ScrollContainer: FC<IProps> = (props) => {
   const { children, ...restProps } = props;
-  const { setObserver, setCurrentId } = useListNavigationContext();
+  const { setObserver, setCurrentId, refs } = useListNavigationContext();
 
   const onRefInit = useCallback((element: HTMLDivElement) => {
     if (isNil(element)) {
@@ -28,13 +28,24 @@ const ScrollContainer: FC<IProps> = (props) => {
       root: element,
     };
 
-    const observable: IntersectionObserverCallback = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          console.log(entry.target.id);
-          setCurrentId?.(entry.target.id);
-        }
-      });
+    const observable: IntersectionObserverCallback = () => {
+      const visibleEntries = Object.values(refs)
+        .map((el) => {
+          const rect = el.getBoundingClientRect();
+          return {
+            id: el.id,
+            distance: Math.abs(
+              rect.top + rect.height / 2 - (window.innerHeight - 200) / 2,
+            ),
+            isVisible: rect.top < window.innerHeight && rect.bottom > 0,
+          };
+        })
+        .filter((entry) => entry.isVisible)
+        .sort((a, b) => a.distance - b.distance);
+
+      if (visibleEntries.length > 0) {
+        setCurrentId?.(visibleEntries[0].id);
+      }
     };
     setObserver?.(new IntersectionObserver(observable, options));
   }, []);

@@ -54,8 +54,8 @@ export const Items: FC = () => {
               </NewPage.Header.Top.Right>
             </NewPage.Header.Top>
           </NewPage.Header>
-          <NewPage.Body>
-            <Grid paddingBottom={5} height="100%">
+          <NewPage.Body padding="0">
+            <Grid height="100%">
               <Header />
               <List />
               <Footer />

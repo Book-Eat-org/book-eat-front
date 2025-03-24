@@ -64,7 +64,7 @@ const List = () => {
     <ListNavigation.ScrollContainer>
       <ProductListContext.Provider value={contextValue}>
         {isNotNil(openedProductId) && <DetailProduct />}
-        <Grid gap={4} p="0 12px 12px">
+        <Grid gap={4} padding="0 15px 20px 15px">
           {categoriesByProducts.map((categoryId) => (
             <Group key={categoryId} id={categoryId}>
               <Grid gap={4}>

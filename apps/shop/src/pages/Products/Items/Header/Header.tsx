@@ -3,12 +3,13 @@ import Categories from "./Categories";
 
 const Header = () => {
   return (
-    <Flex 
-      position="sticky" 
+    <Flex
+      position="sticky"
       top="-16px"
-      zIndex="10" 
-      backgroundColor={theme.colors.general200} 
+      zIndex="10"
+      backgroundColor={theme.colors.general200}
       overflow="hidden"
+      padding="20px 15px"
     >
       <Categories />
     </Flex>
