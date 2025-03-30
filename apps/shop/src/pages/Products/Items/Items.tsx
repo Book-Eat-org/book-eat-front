@@ -5,7 +5,6 @@ import {
   BackIcon24,
   Flex,
   Grid,
-  Box,
   ListNavigation,
   NewPage,
   theme,
@@ -47,7 +46,7 @@ export const Items: FC = () => {
       <OrganizationsContext.Provider value={{ searchValue, setSearchValue }}>
         <NewPage>
           <NewPage.Header>
-            <SearchInput active={activeSearch} onClick={onOpenSearch}>
+            <SearchInput active={activeSearch} onClick={onCloseSearch}>
               <NewPage.Header.Top>
                 <NewPage.Header.Top.Left>
                   <Flex
@@ -62,8 +61,10 @@ export const Items: FC = () => {
                   <PageHeader />
                 </NewPage.Header.Top.Central>
                 <NewPage.Header.Top.Right>
-                  <Search onClick={onCloseSearch} />
-                  <Cart />
+                  <Flex gap={1}>
+                    <Search onClick={onOpenSearch} />
+                    <Cart />
+                  </Flex>
                 </NewPage.Header.Top.Right>
               </NewPage.Header.Top>
             </SearchInput>

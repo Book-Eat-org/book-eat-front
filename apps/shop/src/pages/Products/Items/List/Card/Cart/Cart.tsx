@@ -45,7 +45,7 @@ const Cart: FC<IProps> = ({ id }) => {
       <Flex justifyContent="space-between" alignItems="center">
         <Price id={id} />
         <IconButton onClick={onAddCart}>
-          <PlusIcon24 />
+          <PlusIcon24 width="100%" height="100%" />
         </IconButton>
       </Flex>
     );
@@ -54,11 +54,11 @@ const Cart: FC<IProps> = ({ id }) => {
   return (
     <Flex justifyContent="space-between" alignItems="center">
       <IconButton onClick={onDeleteCart}>
-        <MinusIcon24 />
+        <MinusIcon24 width="100%" height="100%" />
       </IconButton>
       <Typography size="14/14">{col}</Typography>
       <IconButton onClick={onAddCart}>
-        <PlusIcon24 />
+        <PlusIcon24 width="100%" height="100%" />
       </IconButton>
     </Flex>
   );

@@ -1,4 +1,4 @@
-import { Flex, Grid, Skeleton, ListNavigation, Typography } from "@book-eat/ui";
+import { Flex, Grid, Skeleton, ListNavigation, Typography, theme } from "@book-eat/ui";
 import Card from "./Card";
 import { useOrganizationsContext } from "../context.ts";
 import { IProduct, menuEndpoints } from "@book-eat/api";
@@ -71,7 +71,7 @@ const List = () => {
         <Typography size="18/18" fontWeight={700}>
           Ничего не нашлось
         </Typography>
-        <Typography size="14/14" fontWeight={400} color="#6C6C6C">
+        <Typography size="14/14" fontWeight={400} color={theme.colors.general650}>
           Попробуйте изменить запрос
         </Typography>
       </Flex>
