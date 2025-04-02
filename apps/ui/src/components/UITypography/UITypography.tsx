@@ -8,12 +8,13 @@ interface IProps {
   variant:
     | "displayXl"
     | "textXl"
+    | "textLg"
     | "textMd"
     | "textXs"
     | "captionMd"
     | "captionXs";
   italic?: boolean;
-  weight?: "bold" | "semibold";
+  weight?: "bold" | "semibold" | "normal";
   uppercase?: boolean;
   className?: string;
   color?: "gray" | "blue" | "red";

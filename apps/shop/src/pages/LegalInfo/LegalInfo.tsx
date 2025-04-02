@@ -9,9 +9,10 @@ import {
 import { useSelector } from "react-redux";
 import { organizationsEndpoints } from "@book-eat/api";
 import { useNavigate, useParams } from "react-router-dom";
+import { navigateToPage ,PageURLS } from "$constants";
 import { Item } from "./Item";
 import { Separator } from "./Separator";
-import { organizationsSelectors } from "../../../store/entities";
+import { organizationsSelectors } from "../../store/entities";
 import { isNil } from "ramda";
 
 export const LegalInfo = () => {
@@ -34,7 +35,12 @@ export const LegalInfo = () => {
   const { inn, ogrn, legalAddress, actualAddress, email, phone, legalName } =
     legalInfo ?? {};
 
-  const onBackClick = () => navigate("/");
+  const onBackClick = () => {
+    if (id) {
+      const url = navigateToPage(PageURLS.SHOPS, { id });
+      navigate(url);
+    }
+  }
 
   return (
     <NewPage>
