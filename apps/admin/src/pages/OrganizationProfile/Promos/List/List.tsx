@@ -1,26 +1,31 @@
 import { isNil } from "ramda";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 
 import Item from "./Item";
 import { useNavigate } from "react-router-dom";
 import { BackIcon24, Flex, Grid, PlusIcon24, theme } from "@book-eat/ui";
-import { additionsEndpoints } from "$api";
 import { useSelector } from "react-redux";
 import { Page } from "$components";
 import { navigateToPage, PageURLS } from "$constants";
-import { additionsSelectors } from "$store";
+import { promoCodesEndpoints } from "@book-eat/api";
+import { promoCodesSelectors } from "$store";
 
 export const List = () => {
   const navigate = useNavigate();
-  const data = useSelector(additionsSelectors.selectAll);
+  const data = useSelector(promoCodesSelectors.selectAll);
 
-  const { isLoading } = additionsEndpoints.useFetchAdditionsQuery();
+  const [trigger, { isLoading }] =
+    promoCodesEndpoints.useLazyFetchPromoCodesQuery();
 
   const onBackClick = useCallback(() => navigate(".."), []);
   const handleAddCLick = useCallback(
     () => navigate(navigateToPage(PageURLS.PromoCreate, {})),
     [],
   );
+
+  useEffect(() => {
+    trigger();
+  }, []);
 
   if (isLoading || isNil(data)) {
     return null;

@@ -44,7 +44,7 @@ export const rtkQueryErrorLogger: Middleware =
   };
 
 export const api = createApi({
-  reducerPath: "api",
+  reducerPath: "adminApi",
   tagTypes: values(ApiTags),
   baseQuery: baseQueryToasts("/book-eat/api"),
   endpoints: () => ({}),

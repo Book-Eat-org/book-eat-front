@@ -5,5 +5,6 @@ export declare enum ApiTags {
     Organizations = "Organizations",
     Categories = "Categories",
     Additions = "Additions",
-    Menu = "Menu"
+    Menu = "Menu",
+    PromoCodes = "PromoCodes"
 }

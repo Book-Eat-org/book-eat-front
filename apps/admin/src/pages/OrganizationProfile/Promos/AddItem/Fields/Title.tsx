@@ -8,8 +8,8 @@ import { IFormValues } from "../models";
 import { isNil } from "ramda";
 
 export const Title: FC = () => {
-  const { field, fieldState } = useController<IFormValues, "title">({
-    name: "title",
+  const { field, fieldState } = useController<IFormValues, "name">({
+    name: "name",
     rules: { required: { value: true, message: "Введите название" } },
   });
   const { onChange, value } = field;

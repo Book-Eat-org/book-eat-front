@@ -47,12 +47,7 @@ const Crop: FC<IProps> = (props) => {
 
   const onCrop = () => {
     const cropper = cropperRef.current?.cropper;
-    const dataURL = cropper
-      ?.getCroppedCanvas({
-        width: cropperRef?.current?.width ?? 0,
-        height: cropperRef?.current?.height ?? 0,
-      })
-      .toDataURL();
+    const dataURL = cropper?.getCroppedCanvas().toDataURL();
 
     if (dataURL) {
       fetch(dataURL)

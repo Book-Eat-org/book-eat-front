@@ -6,8 +6,8 @@ import { UINumberInput } from "@book-eat/ui";
 import { IFormValues } from "../models";
 
 export const Discount: FC = () => {
-  const { field, fieldState } = useController<IFormValues, "price">({
-    name: "price",
+  const { field, fieldState } = useController<IFormValues, "discount">({
+    name: "discount",
     rules: { required: { value: true, message: "Введите сумму" } },
   });
   const { onChange, value } = field;

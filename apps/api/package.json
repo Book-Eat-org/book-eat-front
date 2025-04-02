@@ -9,7 +9,6 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "dev": "vite",
     "tsc": "tsc",
     "build": "vite build",
     "build:sb": "npm run build",

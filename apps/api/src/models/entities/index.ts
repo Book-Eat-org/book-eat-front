@@ -9,3 +9,4 @@ export * from "./geo";
 export * from "./city";
 export * from "./order";
 export * from "./schedule";
+export * from "./promos";

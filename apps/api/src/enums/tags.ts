@@ -6,4 +6,5 @@ export enum ApiTags {
   Categories = "Categories",
   Additions = "Additions",
   Menu = "Menu",
+  PromoCodes = "PromoCodes",
 }

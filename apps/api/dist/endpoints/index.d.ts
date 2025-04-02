@@ -7,3 +7,4 @@ export * from "./places";
 export * from "./menu";
 export * from "./additions";
 export * from "./categories";
+export * from "./promos";

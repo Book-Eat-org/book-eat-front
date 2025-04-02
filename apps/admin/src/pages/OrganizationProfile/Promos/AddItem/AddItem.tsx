@@ -5,21 +5,21 @@ import { BackIcon24, Button, Flex, theme, UIGrid } from "@book-eat/ui";
 
 import { Discount, Title } from "./Fields";
 import { IFormValues } from "./models";
-import {
-  additionsEndpoints,
-  additionsSelectors,
-  categoriesEndpoints,
-} from "$api";
+import { categoriesEndpoints } from "$api";
 import { Page } from "$components";
 import { useNavigate, useParams } from "react-router-dom";
 import { inputAdapter, outputAdapter } from "./adapters.ts";
 import { isNil, isNotNil } from "ramda";
 import { useSelector } from "react-redux";
+import { promoCodesSelectors } from "$store";
+import { promoCodesEndpoints } from "@book-eat/api";
 
 const AddItem: FC = () => {
   const { id } = useParams();
 
-  const item = useSelector((state) => additionsSelectors.selectById(state, id));
+  const item = useSelector((state) =>
+    promoCodesSelectors.selectById(state, id),
+  );
 
   const navigate = useNavigate();
 
@@ -30,17 +30,15 @@ const AddItem: FC = () => {
   const navigateBack = () => navigate("..");
 
   categoriesEndpoints.useFetchCategoriesQuery();
-  const [saveAddition] = additionsEndpoints.useSaveAdditionMutation();
-  const [editAddition] = additionsEndpoints.useEditAdditionMutation();
+  const [savePromo] = promoCodesEndpoints.useCreatePromoCodeMutation();
+  const [editPromo] = promoCodesEndpoints.useUpdatePromoCodeMutation();
 
   const isExist = isNotNil(id);
 
   const handleSubmit = async (data: IFormValues) => {
     const payload = outputAdapter(data);
 
-    isExist
-      ? await editAddition({ ...payload, id })
-      : await saveAddition(payload);
+    isExist ? await editPromo({ ...payload, id }) : await savePromo(payload);
     navigateBack();
   };
 

@@ -14,6 +14,7 @@ import {
   placesSlices,
   productsSlice,
   ordersSlice,
+  promoCodesSlice,
 } from "./entities";
 
 export { setAuthorizedAction, authorizedSelector } from "./authorized";
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
   organizations: organizationsSlice.reducer,
   places: placesSlices.reducer,
   orders: ordersSlice.reducer,
+  promos: promoCodesSlice.reducer,
 });
 export type IRootState = ReturnType<typeof rootReducer>;
 export const store = configureStore({
