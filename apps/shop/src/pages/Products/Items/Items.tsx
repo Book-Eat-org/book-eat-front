@@ -61,7 +61,11 @@ export const Items: FC = () => {
                   <PageHeader />
                 </NewPage.Header.Top.Central>
                 <NewPage.Header.Top.Right>
-                  <Flex gap={1}>
+                  <Flex 
+                    position="absolute" 
+                    right={0} 
+                    gap={1}
+                  >
                     <Search onClick={onOpenSearch} />
                     <Cart />
                   </Flex>

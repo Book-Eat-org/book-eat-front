@@ -19,7 +19,8 @@ const Footer = () => {
     <Box
       position="fixed"
       bottom="20px"
-      width="calc(100% - 2*15px)"
+      left="15px"
+      right="15px"
       onClick={onSubmit}
     >
       <Button width="100%">Продолжить</Button>

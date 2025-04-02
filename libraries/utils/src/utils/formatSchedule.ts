@@ -30,7 +30,7 @@ export const formatSchedule = (schedule: ISchedule[]): string[] => {
     return acc;
   }, {} as { [key: string]: DayOfWeek[] });
 
-  return Object.entries(groupedSchedule).map(([time, days]) => {
+  const entries = Object.entries(groupedSchedule).map(([time, days]) => {
     const sortedDays = days.sort((a, b) => daysOfWeek.indexOf(a) - daysOfWeek.indexOf(b));
 
     const formattedDays = sortedDays.reduce((acc, day, index, array) => {
@@ -52,6 +52,13 @@ export const formatSchedule = (schedule: ISchedule[]): string[] => {
       }
     }, "");
 
-    return `${formattedDays}: ${time}`;
+    return {
+      firstDayIndex: daysOfWeek.indexOf(sortedDays[0]),
+      formattedString: `${formattedDays}: ${time}`
+    };
   });
+
+  return entries
+    .sort((a, b) => a.firstDayIndex - b.firstDayIndex)
+    .map((entry) => entry.formattedString);
 };
