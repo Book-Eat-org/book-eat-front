@@ -35,7 +35,7 @@ const UIImageInput: FC<IProps> = (props) => {
 
     const formData = new FormData();
 
-    formData.append("file", value, "image.png");
+    formData.append("file", value, selected.name);
 
     const response = await fetch("/book-eat/api/v1/files/image", {
       method: "POST",

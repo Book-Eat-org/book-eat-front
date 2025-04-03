@@ -4,6 +4,7 @@ import { ReactCropperElement, Cropper } from "react-cropper";
 import UIButton from "../../UIButton";
 import classes from "./Crop.module.css";
 import "cropperjs/dist/cropper.css";
+import { IMAGE_EXTENSION } from "../constants.ts";
 
 interface IProps {
   file: File;
@@ -47,7 +48,9 @@ const Crop: FC<IProps> = (props) => {
 
   const onCrop = () => {
     const cropper = cropperRef.current?.cropper;
-    const dataURL = cropper?.getCroppedCanvas().toDataURL();
+    const dataURL = cropper
+      ?.getCroppedCanvas()
+      .toDataURL(`image/${IMAGE_EXTENSION}`, 0.8);
 
     if (dataURL) {
       fetch(dataURL)
