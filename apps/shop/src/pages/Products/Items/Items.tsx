@@ -7,6 +7,7 @@ import {
   Grid,
   ListNavigation,
   NewPage,
+  SearchInput,
   theme,
 } from "@book-eat/ui";
 import { OrganizationsContext } from "./context.ts";
@@ -15,7 +16,6 @@ import { menuEndpoints } from "@book-eat/api";
 import { useNavigate, useParams } from "react-router-dom";
 import { Cart } from "./Cart";
 import Search from "./Search";
-import SearchInput from "./SearchInput";
 import PageHeader from "./PageHeader";
 import { useDispatch } from "react-redux";
 import { setActiveShop } from "../../../store/shop";
@@ -46,7 +46,13 @@ export const Items: FC = () => {
       <OrganizationsContext.Provider value={{ searchValue, setSearchValue }}>
         <NewPage>
           <NewPage.Header>
-            <SearchInput active={activeSearch} onClick={onCloseSearch}>
+            <SearchInput 
+              active={activeSearch} 
+              onClick={onCloseSearch}
+              value={searchValue}
+              onChange={setSearchValue}
+              placeholder="Найти блюдо"
+            >
               <NewPage.Header.Top>
                 <NewPage.Header.Top.Left>
                   <Flex
