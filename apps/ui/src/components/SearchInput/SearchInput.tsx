@@ -1,5 +1,5 @@
 import { FC, ReactNode, useRef } from "react";
-import { Flex, Box } from "$components";
+import { Flex } from "$components";
 import { useClickOutside } from "$hooks";
 import { theme } from "$theme";
 import Input from "./Input";
@@ -34,27 +34,24 @@ const Content: FC<SearchInputContentProps> = (props) => {
   } = props;
 
   return (
-    <Box width="100%">
-      <Flex
-        padding="10px 0"
-        borderRadius="15px"
-        alignItems="center"
-        justifyContent="space-between"
-        backgroundColor={theme.colors.general50}
-        width="100%"
-      >
-        <Input
-          type="search"
-          value={value}
-          placeholder={placeholder}
-          onChange={(e) => onChange(e.target.value)}
-          autoFocus
-        />
-        <Button variant="outline" onClick={onClose}>
-          {title}
-        </Button>
-      </Flex>
-    </Box>
+    <Flex
+      padding="10px 0"
+      borderRadius="15px"
+      alignItems="center"
+      justifyContent="space-between"
+      backgroundColor={theme.colors.general50}
+      width="100%"
+    >
+      <Input
+        type="search"
+        value={value}
+        placeholder={placeholder}
+        onChange={(e) => onChange(e.target.value)}
+      />
+      <Button variant="outline" onClick={onClose}>
+        {title}
+      </Button>
+    </Flex>
   );
 };
 
