@@ -2,8 +2,7 @@ import { FC, useState } from "react";
 import List from "./List";
 import Header from "./Header";
 import Search from "./Search";
-import SearchInput from "./SearchInput";
-import { BackIcon24, Flex, Grid, NewPage, theme } from "@book-eat/ui";
+import { BackIcon24, Flex, Grid, NewPage, SearchInput, theme } from "@book-eat/ui";
 import { ShopsContext } from "./context.ts";
 import { useNavigate } from "react-router-dom";
 import PageHeader from "./PageHeader";
@@ -29,6 +28,9 @@ const Shops: FC = () => {
           <SearchInput 
             active={activeSearch} 
             onClick={onCloseSearch}
+            value={searchValue}
+            onChange={setSearchValue}
+            placeholder="Найти ресторан"
           >
             <NewPage.Header.Top>
               <NewPage.Header.Top.Left>

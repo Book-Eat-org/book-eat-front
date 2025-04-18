@@ -6,11 +6,15 @@ import { useParams } from "react-router-dom";
 
 export interface IContextState {
   searchValue: string;
+  activePopup: boolean;
   setSearchValue: (value: string) => void;
+  setActivePopup: (value: boolean) => void; 
 }
 export const OrganizationsContext = createContext<IContextState>({
   searchValue: "",
   setSearchValue: () => void 0,
+  activePopup: false,
+  setActivePopup: () => void false
 });
 
 export const useOrganizationsContext = () => useContext(OrganizationsContext);

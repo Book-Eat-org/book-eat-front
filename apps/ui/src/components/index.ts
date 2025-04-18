@@ -27,6 +27,8 @@ import Typography from "./Typography";
 import Switch from "./Switch";
 import Image from "./Image";
 import NewPage from "./NewPage";
+import SearchInput from "./SearchInput";
+import Popup from "./Popup";
 
 export {
   Button,
@@ -58,5 +60,7 @@ export {
   TimeInput,
   ListNavigation,
   Page,
+  SearchInput,
+  Popup,
 };
 export * from "./UISelects";
