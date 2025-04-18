@@ -1,0 +1,17 @@
+.animateIn {
+  animation: slideIn 0.3s forwards;
+}
+
+.animateOut {
+  animation: slideOut 0.3s forwards;
+}
+
+@keyframes slideIn {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes slideOut {
+  from { transform: translateY(0); }
+  to { transform: translateY(100%); }
+}
