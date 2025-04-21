@@ -4,5 +4,5 @@ import { Image as UIImage } from "@book-eat/ui";
 
 export const Image = () => {
   const { imageUrl } = useOrganization();
-  return <UIImage size={800} className={classes.image} src={imageUrl} />;
+  return <UIImage size={1200} className={classes.image} src={imageUrl} />;
 };

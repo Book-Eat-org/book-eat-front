@@ -1,7 +1,7 @@
 import { EntityId } from "@reduxjs/toolkit";
 import { FC } from "react";
 import { isNil } from "ramda";
-import { Box } from "@book-eat/ui";
+import { Box, Image } from "@book-eat/ui";
 import TimeTag from "./TimeTag";
 import classes from "./Card.module.css";
 import { navigateToPage, PageURLS } from "$constants";
@@ -50,13 +50,10 @@ const Card: FC<IProps> = (props) => {
       >
         <TimeTag />
         <Box p="2px" borderRadius="20px">
-          <img
-            src={
-              logoUrl ??
-              "https://archive.org/download/placeholder-image/placeholder-image.jpg"
-            }
-            alt=""
+          <Image
+            size={1200}
             className={classes.image}
+            src={logoUrl}
             onClick={onClick}
           />
           <Address />

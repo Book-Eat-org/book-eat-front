@@ -76,8 +76,8 @@ export const Submit = () => {
       places,
       clientLegalInfo: {
         isAgree: agreement,
-        version: "19"
-      }
+        version: "2",
+      },
     };
 
     const result = await triggerCreateOrder(payload);

@@ -5316,7 +5316,6 @@ const bs = es.endpoints.getCashiers.select(), $s = ct.getSelectors(
       query: () => ({
         url: "/v1/promo-codes/all"
       }),
-      transformResponse: (t) => (console.log(t), t),
       providesTags: [k.PromoCodes]
     }),
     updatePromoCode: e.mutation({
@@ -5331,7 +5330,7 @@ const bs = es.endpoints.getCashiers.select(), $s = ct.getSelectors(
       query: (t) => ({
         url: "/v1/promo-codes",
         method: "POST",
-        body: { ...t, description: "test" }
+        body: t
       }),
       invalidatesTags: [k.PromoCodes]
     }),
