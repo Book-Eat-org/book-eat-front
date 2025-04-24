@@ -1,13 +1,3 @@
-.wrapper {
-  position: relative;
-  width: 100%;
-  min-height: 259px;
-  border-radius: 13px 13px 0 0;
-  padding: 25px 15px;
-  background: #F5F5F5;
-  transform: translateY(100%);
-}
-
 .content {
   display: flex;
   align-items: center;
