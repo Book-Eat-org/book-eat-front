@@ -18,7 +18,7 @@ const Content: FC<IProps> = (props) => {
   
   return (
     <div 
-      className={className}
+      className={`${styles.wrapper} ${className}`}
       onClick={(e) => e.stopPropagation()}
     >
       <Header onClose={onClose} />
