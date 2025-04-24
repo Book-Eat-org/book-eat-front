@@ -7,22 +7,26 @@ interface IProps {
   onClose: () => void;
 }
 
-const Header: FC<IProps> = ({ onClose }) => (
-  <IconButton
-    onClick={onClose}
-    style={{
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      marginLeft: 'auto',
-      background: `${colors.general300}`,
-      borderRadius: '50%',
-      width: '30px',
-      height: '30px'
-    }}
-  >
-    <CloseIcon />
-  </IconButton>
-);
+const Header: FC<IProps> = (props) => {
+  const { onClose } = props;
+
+  return (
+    <IconButton
+      onClick={onClose}
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginLeft: 'auto',
+        background: `${colors.general300}`,
+        borderRadius: '50%',
+        width: '30px',
+        height: '30px'
+      }}
+    >
+      <CloseIcon />
+    </IconButton>
+  );
+}
 
 export default Header;

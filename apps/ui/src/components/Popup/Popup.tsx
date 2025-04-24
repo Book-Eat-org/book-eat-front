@@ -1,7 +1,7 @@
 import { FC } from 'react';
+import { useAnimation } from './hooks/useAnimation';
 import Overlay from './Overlay';
 import Content from './Content';
-import { useAnimation } from './hooks/useAnimation';
 import styles from './Popup.module.css';
 
 interface IProps {
@@ -28,8 +28,7 @@ const Popup: FC<IProps> = (props) => {
     >
       <Content
         onClose={onClose}
-        className={`${styles['popup-wrapper']} 
-          ${isOpen ? styles['popup-wrapper--open'] : ''}`}
+        className={`${isOpen ? styles['popup-wrapper--open'] : ''}`}
       >
         {children}
       </Content>
