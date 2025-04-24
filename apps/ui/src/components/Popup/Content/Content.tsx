@@ -7,22 +7,19 @@ interface IProps {
   children: React.ReactNode;
   className?: string;
   onClose: () => void;
-  onAnimationEnd: () => void;
 }
 
 const Content: FC<IProps> = (props) => {
   const { 
     children, 
     onClose, 
-    onAnimationEnd,
     className = "" 
   } = props;
   
   return (
     <div 
-      className={`${styles.wrapper} ${className}`}
+      className={className}
       onClick={(e) => e.stopPropagation()}
-      onAnimationEnd={onAnimationEnd}
     >
       <Header onClose={onClose} />
       <div className={styles.content}>
