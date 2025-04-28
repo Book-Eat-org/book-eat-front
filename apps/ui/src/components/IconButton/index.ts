@@ -1,3 +1,3 @@
-import IconButton from "./IconButton.tsx";
+import IconButton from "./Button";
 
 export default IconButton;
