@@ -48,6 +48,14 @@ const IconButton = styled.button<IProps>`
   text-transform: uppercase;
   align-items: center;
   display: inline-flex;
+  justify-content: center;
+  flex-shrink: 0;
+  
+  svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
   ${styledCommonFn}
 `;
 
