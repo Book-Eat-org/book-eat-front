@@ -82,6 +82,7 @@ export const DetailProduct: FC = () => {
             flexDirection="column"
             padding="0 15px"
             gap={2}
+            paddingBottom="80px"
           >
             <Title />
             <Description />
