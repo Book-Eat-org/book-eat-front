@@ -32,9 +32,9 @@ const cssByVariants = {
 };
 
 const sizesProps: Record<NonNullable<IProps["size"]>, SerializedStyles> = {
-  lg: css({ padding: 8 }),
-  md: css({ height: 30, width: 30 }),
-  sm: css({ padding: 4 }),
+  lg: css({ width: 40, height: 40, padding: 8 }),
+  md: css({ width: 30, height: 30, padding: 6 }),
+  sm: css({ width: 24, height: 24, padding: 4 }),
 };
 
 const IconButton = styled.button<IProps>`
@@ -42,12 +42,12 @@ const IconButton = styled.button<IProps>`
   ${(props) => props.disabled && disabledCss}
   ${(props) => props.loading && loadingCss}
   ${(props) => sizesProps[props.size ?? "md"]}
-  border:none;
+  border: none;
   border-radius: 10px;
   cursor: pointer;
   text-transform: uppercase;
-  align-items: center;
   display: inline-flex;
+  align-items: center;
   justify-content: center;
   flex-shrink: 0;
   
@@ -56,6 +56,7 @@ const IconButton = styled.button<IProps>`
     height: 100%;
     display: block;
   }
+  
   ${styledCommonFn}
 `;
 
