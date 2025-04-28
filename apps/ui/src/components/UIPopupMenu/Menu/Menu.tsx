@@ -1,15 +1,15 @@
 import styled from "@emotion/styled";
-import { prop, propOr } from "ramda";
+import { propOr } from "ramda";
 
 const Menu = styled.div<{ background: string }>`
   position: absolute;
   display: flex;
   flex-direction: column;
-  gap: 15px;
   bottom: 0;
   background: ${propOr("white", "background")};
   width: 100%;
-  max-height: calc(100% - 42px);
+  height: 100%;
+  max-height: calc(100% - 20px);
   border-radius: 25px 25px 0 0;
 `;
 

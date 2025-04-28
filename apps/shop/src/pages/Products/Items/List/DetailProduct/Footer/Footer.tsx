@@ -41,11 +41,12 @@ export const Footer: FC<IProps> = (props) => {
   return (
     <Flex
       gap={8}
-      position="sticky"
+      position="fixed"
       width="100%"
       p={15}
       bottom={0}
       left={0}
+      right={0}
       background={theme.colors.general200}
     >
       <Flex gap={4} justifyContent="space-between" alignItems="center">
