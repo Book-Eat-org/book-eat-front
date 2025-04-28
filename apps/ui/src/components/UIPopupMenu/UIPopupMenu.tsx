@@ -21,8 +21,6 @@ const UIPopupMenu: FC<IProps> = (props) => {
   const {
     children,
     onClose,
-    height,
-    withoutCurtain,
     sticky = false,
     background,
     header,
@@ -34,8 +32,8 @@ const UIPopupMenu: FC<IProps> = (props) => {
 
   return createPortal(
     <Overlay onClick={(e) => e.stopPropagation()}>
-      <Menu ref={ref} height={height ?? "100%"} background={background}>
-        <Header withoutCurtain={withoutCurtain} onClose={onClose}>
+      <Menu ref={ref} background={background as string}>
+        <Header onClose={onClose}>
           {header}
         </Header>
         <Content sticky={sticky}>{children}</Content>

@@ -1,20 +1,9 @@
 import { FC, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useSelector } from "$hooks";
-import {
-  Grid,
-  Typography,
-  Flex,
-  Button,
-  IconButton,
-  MinusIcon24,
-  PlusIcon24,
-  UIPopupMenu,
-} from "@book-eat/ui";
+import { Flex, Grid, UIPopupMenu } from "@book-eat/ui";
 import { EntityId } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import { dec, inc, isEmpty, isNotNil, keys, omit } from "ramda";
-import { SYMBOLS, getPriceWithDiscount } from "@book-eat/utils";
 import { Image } from "./Image";
 import { Title } from "./Title";
 import { useProduct } from "./hooks.ts";
@@ -23,7 +12,6 @@ import { CardContext } from "./context.ts";
 import { Additions } from "./Additions";
 import { additionsEndpoints } from "@book-eat/api";
 import { activeShopSelector } from "../../../../../store/shop";
-import { additionsSelectors } from "../../../../../store/entities";
 import { addToCartNew } from "../../../../../store/cart";
 import { useProductListContext } from "../context.ts";
 import { theme } from "@book-eat/ui";
@@ -90,15 +78,21 @@ export const DetailProduct: FC = () => {
       >
         <Grid gap={2}>
           <Image />
-          <Title />
-          <Description />
-          <Additions />
-          <Footer
-            submit={submit}
-            decrementCol={decrementCol}
-            incrementCol={incrementCol}
-            col={col}
-          />
+          <Flex 
+            flexDirection="column"
+            padding="0 15px"
+            gap={2}
+          >
+            <Title />
+            <Description />
+            <Additions />
+            <Footer
+              submit={submit}
+              decrementCol={decrementCol}
+              incrementCol={incrementCol}
+              col={col}
+            />
+          </Flex>
         </Grid>
       </UIPopupMenu>
     </CardContext.Provider>
