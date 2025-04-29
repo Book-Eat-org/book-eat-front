@@ -11,6 +11,7 @@ const Menu = styled.div<{ background: string }>`
   height: 100%;
   max-height: calc(100% - 20px);
   border-radius: 25px 25px 0 0;
+  overflow: hidden;
 `;
 
 export default Menu;
