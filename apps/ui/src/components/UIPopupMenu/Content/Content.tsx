@@ -7,7 +7,14 @@ interface IProps {
 
 const Content = styled.div<IProps>`
   overflow: auto;
-    ${ifElse(propOr(false, "sticky"), always("0px"), always("15px"))};
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  padding-right: ${ifElse(propOr(false, "sticky"), always("0px"), always("15px"))};
 `;
 
 export default Content;
