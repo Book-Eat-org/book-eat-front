@@ -34,7 +34,7 @@ const Item: FC<IProps> = (props) => {
 
   const toggleActive = (checked: boolean, event: ChangeEvent) => {
     event.stopPropagation();
-    triggerEdit({ id, isActive: checked, title, price, weight });
+    triggerEdit({ id, isActive: checked, title, price, weight, measurement: '' });
   };
 
   const handleDelete = () => {

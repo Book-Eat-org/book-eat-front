@@ -5,6 +5,5 @@ export interface IAddition {
     price: number;
     isActive: boolean;
     weight: number;
-    measurement?: string;
-    categoryId?: EntityId;
+    measurement: string;
 }

@@ -1,24 +1,32 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from 'react';
 
 export const useAnimation = (isActive: boolean) => {
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
+  const [shouldRender, setShouldRender] = useState(isActive);
+  const [isOpen, setIsOpen] = useState(isActive);
+  const timeoutRef = useRef<NodeJS.Timeout>();
 
   useEffect(() => {
     if (isActive) {
-      setIsVisible(true);
-      setIsAnimating(true);
+      setShouldRender(true);
+      clearTimeout(timeoutRef.current);
+      
+      timeoutRef.current = setTimeout(() => {
+        setIsOpen(true);
+      }, 10);
     } else {
-      setIsAnimating(true);
+      setIsOpen(false);
+      timeoutRef.current = setTimeout(() => {
+        setShouldRender(false);
+      }, 300);
     }
+
+    return () => {
+      clearTimeout(timeoutRef.current);
+    };
   }, [isActive]);
 
-  const handleAnimationEnd = () => {
-    if (!isActive) {
-      setIsVisible(false);
-    }
-    setIsAnimating(false);
+  return { 
+    shouldRender, 
+    isOpen 
   };
-
-  return { isAnimating, isVisible, handleAnimationEnd };
 };

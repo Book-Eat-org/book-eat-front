@@ -7,14 +7,12 @@ interface IProps {
   children: React.ReactNode;
   className?: string;
   onClose: () => void;
-  onAnimationEnd: () => void;
 }
 
 const Content: FC<IProps> = (props) => {
   const { 
     children, 
     onClose, 
-    onAnimationEnd,
     className = "" 
   } = props;
   
@@ -22,7 +20,6 @@ const Content: FC<IProps> = (props) => {
     <div 
       className={`${styles.wrapper} ${className}`}
       onClick={(e) => e.stopPropagation()}
-      onAnimationEnd={onAnimationEnd}
     >
       <Header onClose={onClose} />
       <div className={styles.content}>

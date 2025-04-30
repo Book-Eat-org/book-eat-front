@@ -5,16 +5,13 @@ import Item from "./Item";
 import { useNavigate } from "react-router-dom";
 import { BackIcon24, Flex, Grid, PlusIcon24, theme } from "@book-eat/ui";
 import { additionsEndpoints } from "$api";
-import { useSelector } from "react-redux";
 import { Page } from "$components";
 import { navigateToPage, PageURLS } from "$constants";
-import { additionsSelectors } from "$store";
 
 export const List = () => {
   const navigate = useNavigate();
-  const data = useSelector(additionsSelectors.selectAll);
 
-  const { isLoading } = additionsEndpoints.useFetchAdditionsQuery();
+  const { isLoading, data } = additionsEndpoints.useFetchAdditionsQuery();
 
   const onBackClick = useCallback(() => navigate(".."), []);
   const handleAddCLick = useCallback(
@@ -49,7 +46,7 @@ export const List = () => {
       </Page.Header>
       <Page.Body>
         <Grid gap={3}>
-          {data.map(({ id }) => (
+          {data?.ids.map((id) => (
             <Item id={id} key={id} />
           ))}
         </Grid>

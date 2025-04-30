@@ -1,23 +1,27 @@
 import { FC } from "react";
 import styles from "./Overlay.module.css";
 
-interface OverlayProps {
+interface IProps {
   onClick: () => void;
   children: React.ReactNode;
-  disableOverlayClick?: boolean;
+  className?: string;
 }
 
-const Overlay: FC<OverlayProps> = ({ 
-  onClick, 
-  children, 
-  disableOverlayClick 
-}) => (
-  <div 
-    className={styles.overlay}
-    onClick={!disableOverlayClick ? onClick : undefined}
-  >
-    {children}
-  </div>
-);
+const Overlay: FC<IProps> = (props) => {
+  const { 
+    onClick, 
+    children, 
+    className = ""
+  } = props;
+
+  return (
+    <div 
+      className={`${styles.overlay} ${className}`}
+      onClick={onClick}
+    >
+      {children}
+    </div>
+  );
+};
 
 export default Overlay;

@@ -2,19 +2,16 @@ import { useCallback } from "react";
 
 import Item from "./Item";
 import { BackIcon24, Flex, Grid, PlusIcon24, theme } from "@book-eat/ui";
+import { isNil } from "ramda";
 import { categoriesEndpoints } from "$api";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { Page } from "$components";
 import { navigateToPage, PageURLS } from "$constants";
-import { categoriesSelectors } from "../../../../store/entities";
 
 export const List = () => {
   const navigate = useNavigate();
 
-  const { isLoading } = categoriesEndpoints.useFetchCategoriesQuery();
-
-  const data = useSelector(categoriesSelectors.selectAll);
+  const { isLoading, data } = categoriesEndpoints.useFetchCategoriesQuery();
 
   const onBackClick = useCallback(() => navigate(".."), []);
   const handleAddCLick = useCallback(
@@ -22,7 +19,7 @@ export const List = () => {
     [],
   );
 
-  if (isLoading) {
+  if (isLoading || isNil(data)) {
     return null;
   }
 
@@ -49,7 +46,7 @@ export const List = () => {
       </Page.Header>
       <Page.Body>
         <Grid gap={4}>
-          {data.map(({ id }) => (
+          {data?.ids.map((id) => (
             <Item id={id} key={id} />
           ))}
         </Grid>
