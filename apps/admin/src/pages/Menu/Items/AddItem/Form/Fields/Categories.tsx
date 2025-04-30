@@ -5,8 +5,8 @@ import { UIMultipleSelect, UIMultipleSelectOption } from "@book-eat/ui";
 
 import { IFormValues } from "../models";
 import { innerJoin, prop, symmetricDifference } from "ramda";
-import { categoriesSelectors } from "$api";
 import { useSelector } from "react-redux";
+import { categoriesSelectors } from "$store";
 
 export const Categories: FC = () => {
   const data = useSelector(categoriesSelectors.selectAll).sort((a, b) =>

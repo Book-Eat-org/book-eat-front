@@ -16,6 +16,7 @@ import {
   ordersSlice,
   promoCodesSlice,
 } from "./entities";
+import { categoriesEndpoints } from "@book-eat/api";
 
 export { setAuthorizedAction, authorizedSelector } from "./authorized";
 export * from "./entities";
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   [cashiersEndpoints.reducerPath]: cashiersEndpoints.reducer,
   [menuEndpoints.reducerPath]: menuEndpoints.reducer,
   [loginApi.reducerPath]: loginApi.reducer,
+  [categoriesEndpoints.reducerPath]: categoriesEndpoints.reducer,
   authorized: authorizedReducer,
   additions: additionsSlice.reducer,
   categories: categoriesSlice.reducer,
@@ -40,5 +42,6 @@ export const store = configureStore({
     getDefaultMiddleware()
       .concat(additionsEndpoints.middleware)
       .concat(menuEndpoints.middleware)
+      .concat(categoriesEndpoints.middleware)
       .concat(rtkQueryErrorLogger),
 });

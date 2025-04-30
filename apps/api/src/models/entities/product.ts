@@ -1,4 +1,5 @@
 import { EntityId } from "@reduxjs/toolkit";
+import { IAddition } from "./additions.ts";
 
 export interface IProduct {
   id: EntityId;
@@ -13,6 +14,7 @@ export interface IProduct {
   isRecommend: boolean;
   mainImageUrl: string;
   imagesUrls: string[];
+  additions: IAddition[];
   additionsIds: EntityId[];
   placesIds: EntityId[];
   categoriesIds: EntityId[];

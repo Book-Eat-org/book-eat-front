@@ -1,5 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 import {
+  addPromoCodeAction,
   addToCartNew,
   clearCart,
   decrementCart,
@@ -73,6 +74,10 @@ export const cartReducer = createReducer<ICartState>(
     builder.addCase(clearCart, (state) => ({
       shopId: state.shopId,
       items: {},
+    }));
+    builder.addCase(addPromoCodeAction, (state, { payload }) => ({
+      ...state,
+      promoCodeId: payload,
     }));
   },
 );

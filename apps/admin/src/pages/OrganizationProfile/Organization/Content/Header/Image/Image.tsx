@@ -12,5 +12,5 @@ export const Image = () => {
 
   const { onChange, value } = field;
 
-  return <UIImageInput title="Логотип" value={value} onChange={onChange} />;
+  return <UIImageInput caption="Логотип" value={value} onChange={onChange} />;
 };

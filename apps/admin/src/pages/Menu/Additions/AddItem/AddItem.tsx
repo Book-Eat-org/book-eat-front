@@ -5,16 +5,13 @@ import { BackIcon24, Button, Flex, theme, UIGrid } from "@book-eat/ui";
 
 import { Measure, Price, Title, Weight } from "./Fields";
 import { IFormValues } from "./models";
-import {
-  additionsEndpoints,
-  additionsSelectors,
-  categoriesEndpoints,
-} from "$api";
+import { additionsEndpoints, additionsSelectors } from "$api";
 import { Page } from "$components";
 import { useNavigate, useParams } from "react-router-dom";
 import { inputAdapter, outputAdapter } from "./adapters.ts";
 import { isNil, isNotNil } from "ramda";
 import { useSelector } from "react-redux";
+import { categoriesEndpoints } from "@book-eat/api";
 
 const AddItem: FC = () => {
   const { id } = useParams();

@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import Item from "./Item";
 import { BackIcon24, Flex, Grid, PlusIcon24, theme } from "@book-eat/ui";
 import { isNil } from "ramda";
-import { categoriesEndpoints } from "$api";
+import { categoriesEndpoints } from "@book-eat/api";
 import { useNavigate } from "react-router-dom";
 import { Page } from "$components";
 import { navigateToPage, PageURLS } from "$constants";

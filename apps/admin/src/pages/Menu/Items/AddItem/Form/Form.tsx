@@ -19,7 +19,6 @@ import {
 import { IFormValues } from "./models";
 import {
   additionsEndpoints,
-  categoriesEndpoints,
   menuByIdSelectorsFactory,
   menuEndpoints,
   placesEndpoints,
@@ -29,6 +28,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { isNil } from "ramda";
 import { inputAdapter, outputAdapter } from "./adapters.ts";
 import { getCurrentOrganizationSelector } from "$store";
+import { categoriesEndpoints } from "@book-eat/api";
 
 export const Form: FC = () => {
   const { id } = useParams();

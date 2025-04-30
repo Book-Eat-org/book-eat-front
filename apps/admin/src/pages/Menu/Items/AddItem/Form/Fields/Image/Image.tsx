@@ -15,11 +15,11 @@ export const Image = () => {
   const errorMessage = fieldState.error?.message;
 
   return (
-    <Flex gap={5} alignItems="center">
-      <UIImageInput value={value} onChange={onChange} />
-      <Typography color={theme.colors.general600}>
-        Загрузите фото товара, jpg, до 2 МB
-      </Typography>
-    </Flex>
+    <UIImageInput
+      value={value}
+      onChange={onChange}
+      title="товара"
+      error={errorMessage}
+    />
   );
 };

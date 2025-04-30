@@ -11,6 +11,13 @@ export const promoCodesEndpoints = api.injectEndpoints({
       }),
       providesTags: [ApiTags.PromoCodes],
     }),
+    fetchPromoCodesByParams: build.query<IPromoCode, { value: string[] }>({
+      query: (params) => ({
+        url: "/v1/promo-codes",
+        params,
+      }),
+      providesTags: [ApiTags.PromoCodes],
+    }),
     updatePromoCode: build.mutation<IResponse, Partial<IPromoCode>>({
       query: (body) => ({
         url: `/v1/promo-codes/${body.id}`,

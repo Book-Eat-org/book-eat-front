@@ -55,7 +55,7 @@ const Item: FC<IProps> = (props) => {
         onClick={openDetail}
         gap={3}
       >
-        <Discount />
+        <Discount id={id} />
         <Typography size="14/14" fontWeight={500}>
           {promoCode}
         </Typography>

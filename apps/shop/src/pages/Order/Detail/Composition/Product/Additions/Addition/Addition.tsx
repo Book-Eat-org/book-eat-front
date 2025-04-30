@@ -21,19 +21,24 @@ export const Addition: FC<IProps> = (props) => {
     return null;
   }
 
-  const { title, price } = addition;
+  const { title, price, amount = 1 } = addition;
 
   return (
     <Flex justifyContent="space-between" alignItems="center">
-      <Typography size="14/14" color={theme.colors.general600}>
-        {title}
-      </Typography>
+      <Flex gap={2}>
+        <Typography size="14/14" color={theme.colors.general600}>
+          х{amount}
+        </Typography>
+        <Typography size="14/14" color={theme.colors.general600}>
+          {title}
+        </Typography>
+      </Flex>
       <Typography
         size="14/14"
         color={theme.colors.general600}
         whiteSpace="nowrap"
       >
-        {price} {SYMBOLS.RUB}
+        {amount * price} {SYMBOLS.RUB}
       </Typography>
     </Flex>
   );

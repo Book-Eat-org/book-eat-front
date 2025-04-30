@@ -3,7 +3,6 @@ export enum ApiTags {
   Orders = "Orders",
   Places = "Places",
   Organizations = "Organizations",
-  Categories = "Categories",
   Additions = "Additions",
   Menu = "Menu",
 }
