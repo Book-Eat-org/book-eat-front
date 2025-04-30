@@ -1,6 +1,5 @@
 import {
   BaseQueryApi,
-  BaseQueryFn,
   createApi,
   FetchArgs,
   fetchBaseQuery,

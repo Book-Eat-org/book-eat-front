@@ -5318,6 +5318,13 @@ const bs = es.endpoints.getCashiers.select(), $s = ct.getSelectors(
       }),
       providesTags: [k.PromoCodes]
     }),
+    fetchPromoCodesByParams: e.query({
+      query: (t) => ({
+        url: "/v1/promo-codes",
+        params: t
+      }),
+      providesTags: [k.PromoCodes]
+    }),
     updatePromoCode: e.mutation({
       query: (t) => ({
         url: `/v1/promo-codes/${t.id}`,

@@ -1,8 +1,9 @@
 import { createSelector, EntityId } from "@reduxjs/toolkit";
 import { IRootState } from "../store";
-import { isNotNil, keys, values } from "ramda";
+import { isNil, isNotNil, keys, values } from "ramda";
 import { IAddition, IProduct } from "@book-eat/api";
 import { getPriceWithDiscount } from "@book-eat/utils";
+import { promoCodesSelectors } from "../store/entities";
 
 const productsEntitiesSelector = (state: IRootState) => state.products;
 const additionsEntitiesSelector = (state: IRootState) => state.additions;
@@ -45,9 +46,16 @@ export const cartItemsSelector = createSelector(
     ),
 );
 
+export const activePromoCodeSelector = createSelector(
+  cartSelector,
+  promoCodesSelectors.selectEntities,
+  ({ promoCodeId }, entities) => entities[promoCodeId ?? ""],
+);
+
 export const cartSumSelector = createSelector(
   cartItemsSelector,
-  (cartItems) => {
+  activePromoCodeSelector,
+  (cartItems, promoCode) => {
     const { productsSum, additionsSum } = values(cartItems).reduce(
       (acc, curr) => {
         const additionsSum = curr.additions.reduce(
@@ -65,6 +73,16 @@ export const cartSumSelector = createSelector(
       { productsSum: 0, additionsSum: 0 },
     );
 
-    return { totalSum: additionsSum + productsSum };
+    const promoCodeDiscount = isNil(promoCode)
+      ? 1
+      : 1 - promoCode.discount / 100;
+
+    return {
+      totalSum: (additionsSum + productsSum) * promoCodeDiscount,
+      promoCodeDiscountSum:
+        additionsSum +
+        productsSum -
+        (additionsSum + productsSum) * promoCodeDiscount,
+    };
   },
 );

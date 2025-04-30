@@ -12,6 +12,7 @@ import { navigateToPage, PageURLS } from "$constants";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "$hooks";
 import { useTimeRemaining } from "./hooks.ts";
+import { activePromoCodeSelector } from "$selectors";
 
 export const Submit = () => {
   const methods = useFormContext<IFormValues>();
@@ -23,6 +24,7 @@ export const Submit = () => {
   const { data: menuData } = menuEndpoints.useGetMenuByPlaceIdQuery(
     cartState.shopId!,
   );
+  const promoCode = useSelector(activePromoCodeSelector);
 
   const timeLeftLabel = useTimeRemaining();
 
@@ -58,6 +60,7 @@ export const Submit = () => {
     const payload: IOrder = {
       personsCount,
       comment,
+      promoCode: promoCode?.promoCode,
       customerInfo: {
         customerName: name,
         customerPhone: phone,

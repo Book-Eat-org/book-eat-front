@@ -11,5 +11,5 @@ export const ChainLogo = () => {
 
   const { onChange, value } = field;
 
-  return <UIImageInput title="Фото сети" value={value} onChange={onChange} />;
+  return <UIImageInput caption="Фото сети" value={value} onChange={onChange} />;
 };

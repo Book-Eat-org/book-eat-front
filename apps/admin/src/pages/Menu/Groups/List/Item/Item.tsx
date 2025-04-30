@@ -3,9 +3,10 @@ import { FC } from "react";
 import { Flex, Switch, TrashIcon, Typography } from "@book-eat/ui";
 
 import { EntityId } from "@reduxjs/toolkit";
-import { categoriesEndpoints, categoriesSelectors } from "$api";
 import { useSelector } from "react-redux";
 import { theme } from "@book-eat/ui";
+import { categoriesSelectors } from "$store";
+import { categoriesEndpoints } from "@book-eat/api";
 
 interface IProps {
   id: EntityId;

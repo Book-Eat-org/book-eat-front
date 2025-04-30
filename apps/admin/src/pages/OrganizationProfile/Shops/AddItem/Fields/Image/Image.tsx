@@ -11,12 +11,5 @@ export const Image = () => {
 
   const { onChange, value } = field;
 
-  return (
-    <Flex gap={5} alignItems="center">
-      <UIImageInput value={value} onChange={onChange} />
-      <Typography color={theme.colors.general600}>
-        Загрузите фото заведения в формате Jpg, до 2 MB
-      </Typography>
-    </Flex>
-  );
+  return <UIImageInput value={value} onChange={onChange} title="Заведения" />;
 };

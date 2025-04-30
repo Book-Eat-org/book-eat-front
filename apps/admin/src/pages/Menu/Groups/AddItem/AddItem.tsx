@@ -2,21 +2,21 @@ import { FC } from "react";
 import { useSelector } from "react-redux";
 import { useController, FormProvider, useForm } from "react-hook-form";
 import { BackIcon24, Button, Flex, theme, UIGrid, UIInput } from "@book-eat/ui";
-import { categoriesEndpoints } from "$api";
 import { categoriesSelectors } from "$store";
 import { Page } from "$components";
 import { useNavigate } from "react-router-dom";
 import { IFormState } from "./models";
+import { categoriesEndpoints } from "@book-eat/api";
 
 const AddItem: FC = () => {
   const navigate = useNavigate();
   const [trigger] = categoriesEndpoints.useCreateCategoryMutation();
 
   const data = useSelector(categoriesSelectors.selectAll);
-  const titles = data?.flat().map(item => item.title?.toLowerCase()) ?? [];
+  const titles = data?.flat().map((item) => item.title?.toLowerCase()) ?? [];
 
   const defaultValues: IFormState = {
-    category: '',
+    category: "",
   };
 
   const methods = useForm<IFormState>({
@@ -26,10 +26,10 @@ const AddItem: FC = () => {
   const { field, fieldState } = useController<IFormState, "category">({
     name: "category",
     control: methods.control,
-    rules: { 
-      required: { 
-        value: true, 
-        message: "Поле не может быть пустым. Пожалуйста, придумайте название." 
+    rules: {
+      required: {
+        value: true,
+        message: "Поле не может быть пустым. Пожалуйста, придумайте название.",
       },
       validate: {
         uniqueTitle: (value) => {
@@ -40,8 +40,8 @@ const AddItem: FC = () => {
             }
             return true;
           }
-        }
-      }
+        },
+      },
     },
   });
 
@@ -52,7 +52,7 @@ const AddItem: FC = () => {
 
   const onSubmit = async (data: IFormState) => {
     const { category } = data;
-    
+
     if (category?.trim()) {
       await trigger({ title: category, isActive: true });
       navigateBack();

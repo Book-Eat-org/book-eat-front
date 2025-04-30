@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book-Eat</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #1f1f1f;
+            background-color: #ffffff;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 60px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        nav a {
+            margin-right: 32px;
+            text-decoration: none;
+            color: #1f1f1f;
+            font-weight: 500;
+        }
+        .btn-primary {
+            padding: 12px 24px;
+            background-color: #111827;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        section {
+            padding: 80px 60px;
+        }
+        .hero {
+            background-color: #f8f8f8;
+        }
+        .title {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 24px;
+        }
+        .paragraph {
+            font-size: 18px;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+        .features {
+            display: flex;
+            gap: 32px;
+            margin-top: 40px;
+        }
+        .feature-box {
+            flex: 1;
+            background-color: #f1f1f1;
+            padding: 24px;
+            border-radius: 12px;
+        }
+        .feature-box h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+        .cta {
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+        .form-section {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .form-section input[type="text"],
+        .form-section input[type="tel"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-section label {
+            font-size: 14px;
+            color: #555;
+            display: block;
+            margin-bottom: 16px;
+        }
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            color: #999;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div style="font-size: 24px; font-weight: bold;">Book-Eat</div>
+    <nav>
+        <a href="#about">О продукте</a>
+        <a href="#features">Преимущества</a>
+        <a href="#connect">Подключение</a>
+        <a href="#contacts">Контакты</a>
+    </nav>
+    <button class="btn-primary">начать использовать</button>
+</header>
+
+<section class="hero" id="about">
+    <div class="title">Простое подключение и управление</div>
+    <div class="paragraph">Достаточно телефона, чтобы комфортно принимать заказы, редактировать меню и обновлять информацию о заведении</div>
+    <button class="btn-primary">начать использовать</button>
+</section>
+
+<section id="features">
+    <div class="title">Сервис Book-Eat это:</div>
+    <div class="features">
+        <div class="feature-box">
+            <h3>Инструменты для развития вашего ресторана</h3>
+            <p>Создайте собственную экосистему ресторана. Автоматизация процессов управления заказами и меню, система лояльности и маркетинг — в одной платформе.</p>
+        </div>
+        <div class="feature-box">
+            <h3>Отсутствие комиссии за каждый заказ</h3>
+            <p>Мы не берем процент от заказов. Скрытых/дополнительных платежей тоже нет.</p>
+        </div>
+        <div class="feature-box">
+            <h3>Система подписки</h3>
+            <p>Как на музыку или кино. Всего за миллион в месяц.</p>
+        </div>
+    </div>
+</section>
+
+<section class="cta" id="connect">
+    <div class="title">Сайт и WEB-приложение под ключ</div>
+    <div class="paragraph">Ваш брендированный сайт и web-приложение, бесплатные обновления и поддержка</div>
+    <button class="btn-primary">Подключить бесплатно!</button>
+</section>
+
+<section id="contacts">
+    <div class="title" style="text-align: center">Давайте будем на связи!</div>
+    <form class="form-section">
+        <input type="text" placeholder="Имя" required />
+        <input type="tel" placeholder="Телефон" required />
+        <label><input type="checkbox" required /> Даю согласие на обработку Персональных данных</label>
+        <button type="submit" class="btn-primary">Отправить</button>
+    </form>
+    <p style="text-align: center; margin-top: 20px">mail@book-eat.ru</p>
+</section>
+
+<footer>
+    © 2025 Book-Eat
+</footer>
+</body>
+</html>

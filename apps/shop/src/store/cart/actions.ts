@@ -2,6 +2,7 @@ import { createAction, EntityId } from "@reduxjs/toolkit";
 
 export interface ICartState {
   shopId?: EntityId;
+  promoCodeId?: EntityId;
   items: Record<
     EntityId,
     {
@@ -32,3 +33,4 @@ export const removeFromCart = createAction<EntityId>("REMOVE_FROM_CART");
 export const incrementCart = createAction<EntityId>("INCREMENT_CART");
 
 export const decrementCart = createAction<EntityId>("DECREMENT_CART");
+export const addPromoCodeAction = createAction<EntityId>("ADD_PROMO_CODE");

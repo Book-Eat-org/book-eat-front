@@ -6,4 +6,3 @@ export * from "./organizations";
 export * from "./places";
 export * from "./menu";
 export * from "./additions";
-export * from "./categories";

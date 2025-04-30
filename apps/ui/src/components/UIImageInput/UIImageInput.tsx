@@ -1,4 +1,4 @@
-import { isNil } from "ramda";
+import { isNil, isNotNil } from "ramda";
 import React, {
   ChangeEvent,
   ChangeEventHandler,
@@ -12,27 +12,41 @@ import classes from "./UIImageInput.module.css";
 import Crop from "./Crop";
 import classNames from "classnames";
 import { Add } from "./Add";
-import { Typography } from "$components";
 import Grid from "../Grid";
-import { theme } from "$theme";
 import Flex from "../Flex/Flex.tsx";
+import { useGroupContext } from "./Group/context.ts";
+import { Title } from "./Title";
+import { Error } from "./Error/Error.tsx";
+import { Group } from "./Group/Group.tsx";
+import { Caption } from "./Caption";
 
 interface IProps extends Omit<ComponentProps<"input">, "value" | "onChange"> {
   value?: string;
   onChange?: (value: string, event?: ChangeEvent<HTMLInputElement>) => void;
+  caption?: string;
   error?: string;
+}
+
+interface INestedComponents {
+  Group: typeof Group;
 }
 
 const VALID_EXTENSIONS = [".jpg", ".jpeg"];
 const VALID_MIME_TYPES = ["image/jpeg"];
 
-const UIImageInput: FC<IProps> = (props) => {
+const UIImageInput: FC<IProps> & INestedComponents = (props) => {
   const id = useId();
-  const { value, onChange, title, ...restProps } = props;
+  const { value, onChange, title, caption, ...restProps } = props;
 
   const [selected, setSelected] = useState<File | undefined>();
   const [cropping, setCropping] = useState(false);
-  const [fileError, setFileEror] = useState("");
+  const [fileError, setFileError] = useState("");
+
+  const { setError } = useGroupContext() ?? {};
+
+  const isSingleItem = isNil(setError);
+  console.log(isSingleItem, setError);
+  const handleError = setError ?? setFileError;
 
   const uploadImage = async (value: Blob): Promise<string> => {
     if (!selected) {
@@ -59,8 +73,8 @@ const UIImageInput: FC<IProps> = (props) => {
     if (!imageFile) {
       return;
     }
-    if (imageFile.size > 2097152) {
-      setFileEror("Вес изображения слишком большой");
+    if (imageFile.size > 5242880) {
+      handleError("Вес изображения слишком большой");
       return;
     }
     const fileExtension = imageFile.name.split(".").pop()?.toLowerCase();
@@ -68,11 +82,11 @@ const UIImageInput: FC<IProps> = (props) => {
       !VALID_MIME_TYPES.includes(imageFile.type) ||
       !VALID_EXTENSIONS.includes(`.${fileExtension}`)
     ) {
-      setFileEror("Выберите формат .jpg,.jpeg");
+      handleError("Выберите формат .jpg,.jpeg");
       return;
     }
 
-    setFileEror("");
+    handleError("");
 
     setSelected(imageFile);
     setCropping(true);
@@ -87,21 +101,25 @@ const UIImageInput: FC<IProps> = (props) => {
     setCropping(false);
   };
 
-  const error = fileError ?? restProps.error;
+  const error = isSingleItem ? fileError || restProps.error : "";
+  console.log(error);
 
   const imageClasses = classNames(classes.image, {
-    [classes.error]: error,
+    [classes.error]: Boolean(error),
   });
 
   return (
     <Flex gap={5} justifyItems="center">
-      <label className={classes.label} htmlFor={id}>
-        {isNil(value) ? (
-          <Add />
-        ) : (
-          <img src={value} className={imageClasses} alt="" />
-        )}
-      </label>
+      <Grid gap={1}>
+        <label className={classes.label} htmlFor={id}>
+          {isNil(value) ? (
+            <Add />
+          ) : (
+            <img src={value} className={imageClasses} alt="" />
+          )}
+        </label>
+        {caption && <Caption>{caption}</Caption>}
+      </Grid>
       <input
         id={id}
         type="file"
@@ -110,28 +128,21 @@ const UIImageInput: FC<IProps> = (props) => {
         className={classes.imageInput}
         {...restProps}
       />
-      <Grid gap={2}>
-        {title && (
-          <Typography
-            size="14/14"
-            color={theme.colors.general600}
-            fontWeight={600}
-            textTransform="uppercase"
-          >
-            {title}
-          </Typography>
-        )}
-        {error && (
-          <Typography size="12/12" color={theme.colors.red500}>
-            {error}
-          </Typography>
-        )}
-      </Grid>
+      {isSingleItem && (
+        <Grid gap={2}>
+          {title && (
+            <Title>Загрузите фото {title} в формате Jpg, до 5 MB</Title>
+          )}
+          {error && <Error>{error}</Error>}
+        </Grid>
+      )}
       {cropping && selected && (
         <Crop file={selected} onChange={handleSubmit} onCancel={onCancel} />
       )}
     </Flex>
   );
 };
+
+UIImageInput.Group = Group;
 
 export default UIImageInput;

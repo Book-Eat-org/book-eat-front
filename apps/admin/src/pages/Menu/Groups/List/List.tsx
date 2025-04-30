@@ -2,12 +2,12 @@ import { useCallback } from "react";
 
 import Item from "./Item";
 import { BackIcon24, Flex, Grid, PlusIcon24, theme } from "@book-eat/ui";
-import { categoriesEndpoints } from "$api";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Page } from "$components";
 import { navigateToPage, PageURLS } from "$constants";
-import { categoriesSelectors } from "../../../../store/entities";
+import { categoriesEndpoints } from "@book-eat/api";
+import { categoriesSelectors } from "$store";
 
 export const List = () => {
   const navigate = useNavigate();
@@ -15,6 +15,7 @@ export const List = () => {
   const { isLoading } = categoriesEndpoints.useFetchCategoriesQuery();
 
   const data = useSelector(categoriesSelectors.selectAll);
+  console.log(data, isLoading);
 
   const onBackClick = useCallback(() => navigate(".."), []);
   const handleAddCLick = useCallback(

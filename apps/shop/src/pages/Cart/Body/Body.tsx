@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "$hooks";
 import { isEmpty } from "ramda";
 import { Empty } from "./Empty";
+import { PromoCode } from "./PromoCode";
 
 export const Body = () => {
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ export const Body = () => {
       <Grid gap={6}>
         <Items />
       </Grid>
+      <PromoCode />
       <Totals />
       <Button onClick={onSubmit}>Продолжить</Button>
     </Grid>

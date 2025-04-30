@@ -37,7 +37,7 @@ export const Addition: FC<IProps> = (props) => {
 
   const weightLabel = isNil(weight)
     ? undefined
-    : `${weight}${MEASURES_CONFIG[measurement] ?? ""}`;
+    : `${weight}${MEASURES_CONFIG[measurement]?.name ?? ""}`;
   const additionCount = additions[id]?.count;
 
   const selected = additionCount > 0;

@@ -10,6 +10,7 @@ import { useSelector } from "$hooks";
 import { categoriesSelectors } from "../../../../../store/entities";
 import { useCategories } from "../../hooks.ts";
 import { innerJoin } from "ramda";
+import { sortCategories } from "../../utils.ts";
 
 const Categories: FC = () => {
   const dispatch = useDispatch();
@@ -52,11 +53,11 @@ const Categories: FC = () => {
 
   if (!categories) return null;
 
-  console.log(categories);
+  const sortedCategories = sortCategories(categories);
 
   return (
     <div ref={containerRef} className={classes.wrap}>
-      {categories.map((item) => (
+      {sortedCategories.map((item) => (
         <Category id={item.id} key={item.id} title={item.title} />
       ))}
     </div>
