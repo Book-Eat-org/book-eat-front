@@ -1,1 +1,1 @@
-export * from "./Promocode";
+export * from "./PromoCode";
