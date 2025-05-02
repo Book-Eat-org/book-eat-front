@@ -7,7 +7,10 @@ interface IListNavigationContext {
   addRef: (id: string, ref: HTMLDivElement) => void;
   currentId?: string;
   setCurrentId?: (id: string) => void;
+  scrollToId?: string | null;
+  setScrollToId?: (id: string | null) => void;
 }
+
 export const ListNavigationContext = createContext<IListNavigationContext>({
   refs: {},
   addRef: () => undefined,

@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { createPortal } from 'react-dom';
 import { useAnimation } from './hooks/useAnimation';
 import Overlay from './Overlay';
 import Content from './Content';
@@ -21,7 +22,7 @@ const Popup: FC<IProps> = (props) => {
 
   if (!shouldRender) return null;
 
-  return (
+  return createPortal(
     <Overlay
       onClick={onClose}
       className={`${isOpen ? styles['overlay--visible'] : ''}`}
@@ -32,7 +33,8 @@ const Popup: FC<IProps> = (props) => {
       >
         {children}
       </Content>
-    </Overlay>
+    </Overlay>,
+    document.body
   );
 };
 

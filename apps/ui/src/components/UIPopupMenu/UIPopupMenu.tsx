@@ -15,6 +15,7 @@ interface IProps {
   header?: ReactNode;
   sticky?: boolean;
   background?: string;
+  mode?: "product" | "default";
 }
 
 const UIPopupMenu: FC<IProps> = (props) => {
@@ -24,6 +25,7 @@ const UIPopupMenu: FC<IProps> = (props) => {
     sticky = false,
     background,
     header,
+    mode = "default",
   } = props;
 
   const ref = useRef<HTMLDivElement | null>(null);
@@ -32,11 +34,11 @@ const UIPopupMenu: FC<IProps> = (props) => {
 
   return createPortal(
     <Overlay onClick={(e) => e.stopPropagation()}>
-      <Menu ref={ref} background={background as string}>
+      <Menu ref={ref} background={background as string} mode={mode}>
         <Header onClose={onClose}>
           {header}
         </Header>
-        <Content sticky={sticky}>{children}</Content>
+        <Content sticky={sticky} mode={mode}>{children}</Content>
       </Menu>
     </Overlay>,
     document.body,
