@@ -1,4 +1,4 @@
-import { ComponentProps, FC, ReactNode, useCallback } from "react";
+import { ComponentProps, FC, ReactNode, useCallback, useEffect } from "react";
 import { isNil } from "ramda";
 import { useListNavigationContext } from "./context.ts";
 import styled from "@emotion/styled";
@@ -8,14 +8,25 @@ export const Wrapper = styled.div`
   ${styledCommonFn};
   overflow: auto;
   height: 100%;
+  scroll-behavior: smooth;
 `;
+
 interface IProps extends ComponentProps<typeof Wrapper> {
   children: ReactNode;
 }
 
 const ScrollContainer: FC<IProps> = (props) => {
   const { children, ...restProps } = props;
-  const { setObserver, setCurrentId, refs } = useListNavigationContext();
+  const { setObserver, setCurrentId, refs, scrollToId } = useListNavigationContext();
+
+  useEffect(() => {
+    if (scrollToId && refs[scrollToId]) {
+      refs[scrollToId].scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    };
+  }, [scrollToId, refs]);
 
   const onRefInit = useCallback((element: HTMLDivElement) => {
     if (isNil(element)) {
@@ -48,7 +59,7 @@ const ScrollContainer: FC<IProps> = (props) => {
       }
     };
     setObserver?.(new IntersectionObserver(observable, options));
-  }, []);
+  }, [refs, setCurrentId, setObserver]);
 
   return (
     <Wrapper ref={onRefInit} {...restProps}>

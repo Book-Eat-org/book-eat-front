@@ -12,7 +12,7 @@ import { cartSelector, removeFromCart } from "../../../../../../store/cart";
 import { values } from "ramda";
 import Price from "../Price";
 import { useProductListContext } from "../../context.ts";
-import { useOrganizationsContext } from "../../../context.ts";
+import { usePopup } from "../../../popup-provider.tsx";
 
 interface IProps {
   id: EntityId;
@@ -21,8 +21,8 @@ interface IProps {
 const Cart: FC<IProps> = ({ id }) => {
   const dispatch = useDispatch();
   const { setOpenedProductId } = useProductListContext();
+  const { openPopup } = usePopup();
   const cartItems = useSelector(cartSelector);
-  const { setActivePopup } = useOrganizationsContext();
 
   const products = values(cartItems.items).filter(
     (item) => item.productId === id,
@@ -30,7 +30,6 @@ const Cart: FC<IProps> = ({ id }) => {
 
   const totalQuantity = products.reduce((acc, curr) => acc + curr.col, 0);
 
-  const onOpenPopup = () => setActivePopup(true);
   const onAddCart = () => setOpenedProductId(id);
 
   const getFirstCartItemKey = () => {
@@ -49,7 +48,7 @@ const Cart: FC<IProps> = ({ id }) => {
 
   const handleDecrease = () => {
     if (products.length > 1) {
-      onOpenPopup();
+      openPopup();
     }
     else if (totalQuantity > 2) {
       const hasAdditions = products.some(
@@ -57,7 +56,7 @@ const Cart: FC<IProps> = ({ id }) => {
       );
       
       if (hasAdditions) {
-        onOpenPopup();
+        openPopup();
       } else {
         onDeleteCart();
       }

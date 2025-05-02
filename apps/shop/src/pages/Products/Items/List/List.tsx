@@ -3,7 +3,7 @@ import Card from "./Card";
 import { useOrganizationsContext } from "../context.ts";
 import { IProduct, menuEndpoints } from "@book-eat/api";
 import { useParams } from "react-router-dom";
-import { isNotNil, keys, prop } from "ramda";
+import { isNotNil, prop } from "ramda";
 import { ProductListContext } from "./context.ts";
 import { useMemo, useState } from "react";
 import { EntityId } from "@reduxjs/toolkit";
@@ -47,7 +47,7 @@ const List = () => {
     })
     .sort((a, b) => a.title.localeCompare(b.title));
 
-  const groupedByCategories: Record<string, string[]> = filteredData.reduce(
+  const groupedByCategories: Record<string, EntityId[]> = filteredData.reduce(
     (acc, item) => {
       item.categoriesIds.forEach((categoryId) => {
         if (!acc[categoryId]) {
@@ -57,7 +57,7 @@ const List = () => {
       });
       return acc;
     },
-    {},
+    {} as Record<string, EntityId[]> 
   );
 
   if (!filteredData.length) {
@@ -83,15 +83,17 @@ const List = () => {
       <ProductListContext.Provider value={contextValue}>
         {isNotNil(openedProductId) && <DetailProduct />}
         <Grid gap={4} padding="0 15px 20px 15px">
-          {categoriesByProducts.map((categoryId) => (
-            <Group key={categoryId} id={categoryId}>
-              <Grid gap={4}>
-                {groupedByCategories[categoryId].map((id) => (
-                  <Card key={id} id={id} />
-                ))}
-              </Grid>
-            </Group>
-          ))}
+          {categoriesByProducts
+            .filter(categoryId => groupedByCategories[categoryId]?.length > 0)
+            .map((categoryId) => (
+              <Group key={categoryId} id={categoryId}>
+                <Grid gap={4}>
+                  {(groupedByCategories[categoryId] || []).map((id) => (
+                    <Card key={id} id={id} />
+                  ))}
+                </Grid>
+              </Group>
+            ))}
         </Grid>
       </ProductListContext.Provider>
     </ListNavigation.ScrollContainer>

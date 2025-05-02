@@ -72,6 +72,7 @@ export const DetailProduct: FC = () => {
   return (
     <CardContext.Provider value={{ additions, setAddition }}>
       <UIPopupMenu
+        mode="product"
         onClose={onClose}
         background={theme.colors.general200}
         sticky
