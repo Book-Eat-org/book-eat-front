@@ -9,7 +9,7 @@ interface IContextState {
 
 const PopupContext = createContext<IContextState>({
   isOpen: false,
-  openPopup: () => void false,
+  openPopup: () => void true,
   closePopup: () => void false
 });
 

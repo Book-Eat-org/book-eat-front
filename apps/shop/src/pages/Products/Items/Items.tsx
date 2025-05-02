@@ -11,7 +11,7 @@ import {
   theme,
 } from "@book-eat/ui";
 import { OrganizationsContext } from "./context.ts";
-import { PopupProvider } from "./popup-provider.tsx";
+import { PopupProvider } from "./PopupProvider.tsx";
 import Footer from "./Footer";
 import { menuEndpoints } from "@book-eat/api";
 import { useNavigate, useParams } from "react-router-dom";

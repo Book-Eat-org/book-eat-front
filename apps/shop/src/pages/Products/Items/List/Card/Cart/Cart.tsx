@@ -12,7 +12,7 @@ import { cartSelector, removeFromCart } from "../../../../../../store/cart";
 import { values } from "ramda";
 import Price from "../Price";
 import { useProductListContext } from "../../context.ts";
-import { usePopup } from "../../../popup-provider.tsx";
+import { usePopup } from "../../../PopupProvider.tsx";
 
 interface IProps {
   id: EntityId;

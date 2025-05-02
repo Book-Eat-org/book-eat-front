@@ -1,9 +1,11 @@
 import { Flex, Grid, Skeleton, ListNavigation, Typography, theme } from "@book-eat/ui";
 import Card from "./Card";
+import { useSelector } from "react-redux";
+import { cartSelector } from "../../../../store/cart/selectors.ts";
 import { useOrganizationsContext } from "../context.ts";
 import { IProduct, menuEndpoints } from "@book-eat/api";
 import { useParams } from "react-router-dom";
-import { isNotNil, prop } from "ramda";
+import { isNotNil, isEmpty, prop } from "ramda";
 import { ProductListContext } from "./context.ts";
 import { useMemo, useState } from "react";
 import { EntityId } from "@reduxjs/toolkit";
@@ -19,6 +21,7 @@ const List = () => {
   const { data, isFetching } = menuEndpoints.useGetMenuByPlaceIdQuery(id!);
   const { searchValue } = useOrganizationsContext();
   const categoriesByProducts = useCategories();
+  const cartItems = useSelector(cartSelector);
 
   const contextValue = useMemo(
     () => ({ openedProductId, setOpenedProductId }),
@@ -82,7 +85,7 @@ const List = () => {
     <ListNavigation.ScrollContainer>
       <ProductListContext.Provider value={contextValue}>
         {isNotNil(openedProductId) && <DetailProduct />}
-        <Grid gap={4} padding="0 15px 20px 15px">
+        <Grid gap={4} padding={`0 15px ${isEmpty(cartItems.items) ? 20 : 75}px`}>
           {categoriesByProducts
             .filter(categoryId => groupedByCategories[categoryId]?.length > 0)
             .map((categoryId) => (
