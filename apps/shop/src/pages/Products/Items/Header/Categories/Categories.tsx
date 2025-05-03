@@ -1,8 +1,7 @@
-import { FC, useEffect, useRef } from "react";
+import { FC, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { categoriesEndpoints } from "@book-eat/api";
-import { placesEndpoints } from "@book-eat/api";
+import { categoriesEndpoints, placesEndpoints } from "@book-eat/api";
 import { categoriesActions } from "../../../../../store/categories";
 import Category from "./Category/Category";
 import classes from "./Categories.module.css";
@@ -11,11 +10,12 @@ import { categoriesSelectors } from "../../../../../store/entities";
 import { useCategories } from "../../hooks.ts";
 import { innerJoin } from "ramda";
 import { sortCategories } from "../../utils.ts";
+import ScrollContainer from "./ScrollContainer";
+import { ScrollProvider } from "./context.tsx";
 
 const Categories: FC = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const containerRef = useRef<HTMLDivElement>(null);
   const categoriesIds = useCategories();
   const categoriesEntities = useSelector(categoriesSelectors.selectAll);
 
@@ -25,42 +25,39 @@ const Categories: FC = () => {
     categoriesIds,
   );
 
-  const { data: places } = placesEndpoints.useFetchPlacesQuery();
-  const [triggerCategories] =
-    categoriesEndpoints.useLazyLoadCategoriesListQuery();
+  const { data: places, isLoading: isPlacesLoading } = placesEndpoints.useFetchPlacesQuery();
+  const [triggerCategories] = categoriesEndpoints.useLazyLoadCategoriesListQuery();
 
   useEffect(() => {
-    if (!places && !id) {
-      return;
-    }
+    if (isPlacesLoading || !id) return;
 
-    const organizationId = places?.entities?.[id!].organizationId;
+    const organizationId = places?.entities?.[id]?.organizationId;
+    if (!organizationId) return;
 
-    if (organizationId) {
-      const loadCategories = async () => {
-        try {
-          const { data } = await triggerCategories(organizationId);
-          if (data) {
-            dispatch(categoriesActions.setCategoriesList(data));
-          }
-        } catch (error) {
-          throw new Error("Error load categories");
-        }
-      };
-      loadCategories();
-    }
-  }, [places, id]);
+    const loadCategories = async () => {
+      try {
+        const { data } = await triggerCategories(organizationId);
+        data && dispatch(categoriesActions.setCategoriesList(data));
+      } catch (error) {
+        console.error("Error loading categories");
+      }
+    };
+
+    loadCategories();
+  }, [places, id, isPlacesLoading, dispatch, triggerCategories]);
 
   if (!categories) return null;
 
   const sortedCategories = sortCategories(categories);
 
   return (
-    <div ref={containerRef} className={classes.wrap}>
+    <ScrollProvider className={classes.wrap}>
       {sortedCategories.map((item) => (
-        <Category id={item.id} key={item.id} title={item.title} />
+        <ScrollContainer key={item.id} id={item.id}>
+          <Category id={item.id} title={item.title} />
+        </ScrollContainer>
       ))}
-    </div>
+    </ScrollProvider>
   );
 };
 
