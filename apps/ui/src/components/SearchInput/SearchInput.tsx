@@ -1,12 +1,9 @@
 import { FC, ReactNode, useRef } from "react";
-import { Flex } from "$components";
 import { useClickOutside } from "$hooks";
-import { theme } from "$theme";
-import Input from "./Input";
-import Button from "./Button";
+import Content from "./Content";
 import styles from "./SearchInput.module.css";
 
-interface SearchInputProps {
+interface IProps {
   active: boolean;
   onClick: () => void;
   value: string;
@@ -16,62 +13,25 @@ interface SearchInputProps {
   title?: string;
 }
 
-interface SearchInputContentProps {
-  value: string;
-  onChange: (value: string) => void;
-  onClose: () => void;
-  placeholder?: string;
-  title?: string;
-}
-
-const Content: FC<SearchInputContentProps> = (props) => {
-  const {
-    value,
-    onChange,
-    onClose,
-    placeholder,
-    title = "Отменить"
-  } = props;
-
-  return (
-    <Flex
-      padding="10px 0"
-      borderRadius="15px"
-      alignItems="center"
-      justifyContent="space-between"
-      backgroundColor={theme.colors.general50}
-      width="100%"
-    >
-      <Input
-        type="search"
-        value={value}
-        placeholder={placeholder}
-        onChange={(e) => onChange(e.target.value)}
-      />
-      <Button variant="outline" onClick={onClose}>
-        {title}
-      </Button>
-    </Flex>
-  );
-};
-
-const SearchInput: FC<SearchInputProps> & {
-  Content: typeof Content;
-} = ({ active, onClick, value, onChange, children, placeholder, title }) => {
+const SearchInput: FC<IProps> & { Content: typeof Content } = (props) => {
+  const { active, onClick, value, onChange, children, placeholder, title } = props;
   const containerRef = useRef<HTMLDivElement>(null);
   useClickOutside(containerRef, onClick);
 
-  if (!active) return children;
-
   return (
-    <div ref={containerRef} className={styles.wrapper}>
-      <SearchInput.Content
-        value={value}
-        onChange={onChange}
-        onClose={onClick}
-        placeholder={placeholder}
-        title={title}
-      />
+    <div ref={containerRef} className={styles.container}>
+      <div className={`${styles.content} ${active ? styles.active : ''}`}>
+        {children}
+      </div>
+      <div className={`${styles.search} ${active ? styles.active : ''}`}>
+        <SearchInput.Content
+          value={value}
+          onChange={onChange}
+          onClose={onClick}
+          placeholder={placeholder}
+          title={title}
+        />
+      </div>
     </div>
   );
 };
