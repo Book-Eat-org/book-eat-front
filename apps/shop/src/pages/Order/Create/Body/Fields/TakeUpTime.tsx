@@ -54,7 +54,7 @@ export const TakeUpTime: FC = () => {
 
   const currentDate = useMemo(() => dayjs(), []);
 
-  const currentDay = useMemo(() => currentDate.day(), [currentDate]);
+  const currentDay = useMemo(() => currentDate.day() - 1, [currentDate]);
 
   const scheduleToday = useMemo(
     () =>
@@ -67,16 +67,17 @@ export const TakeUpTime: FC = () => {
   const { onChange, value } = field;
   const errorMessage = fieldState.error?.message;
 
-  const options = useMemo(
-    () =>
-      getItems(
-        currentDate.set(
-          "hours",
-          Number(scheduleToday?.timeTo?.split(":")[0]) ?? 2,
-        ),
-      ),
-    [scheduleToday],
-  );
+  const options = useMemo(() => {
+    const hours = currentDate.set(
+      "hours",
+      Number(scheduleToday?.timeTo?.split(":")[0]) ?? 2,
+    );
+    const minutes = hours.set(
+      "minutes",
+      Number(scheduleToday?.timeTo?.split(":")[1]) ?? 2,
+    );
+    return getItems(minutes);
+  }, [scheduleToday]);
 
   useEffect(() => {
     const value = options[0].toISOString();
