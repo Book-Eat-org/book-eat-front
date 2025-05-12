@@ -23,9 +23,11 @@ export const Body = () => {
       <Grid gap={6}>
         <Items />
       </Grid>
-      <PromoCode />
+      {/*<PromoCode />*/}
       <Totals />
       <Button onClick={onSubmit}>Продолжить</Button>
     </Grid>
   );
 };
+
+// TODO: Wedding

@@ -49,19 +49,19 @@ export const Body = () => {
       </Flex>
     );
   }
-
+// TODO: Wedding
   return (
     <FormProvider {...methods}>
       <Grid gap={6}>
         <Grid gap={3}>
           <Name />
-          <Phone />
-          <Email />
-          <Comment />
+          {/*<Phone />*/}
+          {/*<Email />*/}
+          {/*<Comment />*/}
         </Grid>
-        <PersonsCount />
-        <Methods />
-        <Agreement />
+        {/*<PersonsCount />*/}
+        {/*<Methods />*/}
+        {/*<Agreement />*/}
         <Submit />
       </Grid>
     </FormProvider>

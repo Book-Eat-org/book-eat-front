@@ -25,6 +25,8 @@ const getItems = (closeTime: Dayjs) => {
   return items;
 };
 
+const getPreviousDayIndex = (i:number)  => (i - 1 + 7) % 7
+
 const validateDate = (value: string) => {
   const day = dayjs(value);
   const currentDate = dayjs();
@@ -54,7 +56,7 @@ export const TakeUpTime: FC = () => {
 
   const currentDate = useMemo(() => dayjs(), []);
 
-  const currentDay = useMemo(() => currentDate.day() - 1, [currentDate]);
+  const currentDay = useMemo(() => getPreviousDayIndex(currentDate.day()), [currentDate]);
 
   const scheduleToday = useMemo(
     () =>

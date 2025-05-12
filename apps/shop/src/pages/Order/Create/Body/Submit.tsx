@@ -56,24 +56,41 @@ export const Submit = () => {
     }));
 
     const places = { id: cartState.shopId };
-
+// TODO: Wedding
+    // const payload: IOrder = {
+    //   personsCount,
+    //   comment,
+    //   promoCode: promoCode?.promoCode,
+    //   customerInfo: {
+    //     customerName: name,
+    //     customerPhone: phone,
+    //     customerEmail: email,
+    //   },
+    //   readyTime: takeUpTime,
+    //   delivery: {
+    //     flat: apartments,
+    //     floor,
+    //     porch: entrance,
+    //     address,
+    //     doorCode: intercom,
+    //     type: data.deliveryType,
+    //   },
+    //   products,
+    //   places,
+    //   clientLegalInfo: {
+    //     isAgree: agreement,
+    //     version: "2",
+    //   },
+    // };
     const payload: IOrder = {
-      personsCount,
-      comment,
-      promoCode: promoCode?.promoCode,
       customerInfo: {
         customerName: name,
-        customerPhone: phone,
-        customerEmail: email,
+        customerPhone: "79990960939",
+        customerEmail: "Kapitanov96@yandex.ru",
       },
-      readyTime: takeUpTime,
+      readyTime: "2025-05-12T17:00:09.278Z",
       delivery: {
-        flat: apartments,
-        floor,
-        porch: entrance,
-        address,
-        doorCode: intercom,
-        type: data.deliveryType,
+        type: "TO_OUTSIDE",
       },
       products,
       places,
