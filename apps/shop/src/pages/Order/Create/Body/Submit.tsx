@@ -95,7 +95,7 @@ export const Submit = () => {
       products,
       places,
       clientLegalInfo: {
-        isAgree: agreement,
+        isAgree: true,
         version: "2",
       },
     };
