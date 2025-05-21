@@ -4,13 +4,18 @@ import { resolve } from "path";
 import mkcert from "vite-plugin-mkcert";
 import fixReactVirtualized from "esbuild-plugin-react-virtualized";
 
+const TARGETS = {
+  PROM:'https://book-eat.ru/',
+  DEV:'https://book-eat-test.ru/'
+}
+
 // https://vitejs.dev/config/
 export default defineConfig({
   server: {
     port: 5173,
     proxy: {
       "/book-eat": {
-        target: "http://book-eat-test.ru/",
+        target: TARGETS.DEV,
         changeOrigin: true,
         secure: false,
       },

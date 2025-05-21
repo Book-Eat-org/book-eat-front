@@ -7,8 +7,6 @@ import { placesSelectors } from "@book-eat/api";
 import { isNotNil } from "ramda";
 import { TakeUpConfig } from "$constants";
 
-//TODO Wedding
-
 export const Details = () => {
   const { delivery, customerInfo, places, status } = useOrder();
   const place = useSelector((state) =>
@@ -25,13 +23,13 @@ export const Details = () => {
       </Typography>
       <Box background={colors.general50} p={3} borderRadius={15}>
         <Grid gap={6}>
-          <Item title={`Статус заказа:`}>
+          <Item title={`Статус заказа (${TakeUpConfig[type]}):`}>
             <Status />
           </Item>
-          <Item title="Стол">{place.title}</Item>
+          <Item title="Телефон ресторана:">{place.info.phone}</Item>
           {isNotNil(address) && <Item title="Адрес доставки">{address}</Item>}
           <Item title="Клиент">
-            {customerName}
+            {customerName}, {customerPhone}
           </Item>
         </Grid>
       </Box>
