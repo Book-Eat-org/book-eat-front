@@ -39,9 +39,10 @@ export const Submit = () => {
 
   const cancelAvailable = status === OrderStatus.PAID;
 
-  if (![OrderStatus.NEW, OrderStatus.PAID].includes(status)) {
+  if (![OrderStatus.NEW, OrderStatus.PAID,OrderStatus.ERROR].includes(status)) {
     return null;
   }
+
 
   return (
     <Flex gap={8}>

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useProduct } from "../hooks.ts";
 
 export const Description = () => {
-  const [descriptionActive, setDescriptionActive] = useState<boolean>(false);
+  const [descriptionActive, setDescriptionActive] = useState<boolean>(true);
 
   const { description, ingredients } = useProduct();
 
@@ -19,18 +19,18 @@ export const Description = () => {
     >
       <Flex gap={8}>
         <Typography
+            textDecoration="underline"
+            color={descriptionActive ? undefined : theme.colors.general600}
+            onClick={setDescriptionTrue}
+        >
+          Описание
+        </Typography>
+        <Typography
           textDecoration="underline"
           color={descriptionActive ? theme.colors.general600 : undefined}
           onClick={setDescriptionFalse}
         >
           Состав
-        </Typography>
-        <Typography
-          textDecoration="underline"
-          color={descriptionActive ? undefined : theme.colors.general600}
-          onClick={setDescriptionTrue}
-        >
-          Описание
         </Typography>
       </Flex>
       <Typography>{descriptionActive ? description : ingredients}</Typography>

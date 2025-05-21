@@ -33,7 +33,7 @@ export const cartReducer = createReducer<ICartState>(
           },
         };
       }
-      let isNewEntityAded = false;
+      let isNewEntityAdded = true;
 
       const payloadItem = pick(['additions','productId'],payload)
 
@@ -41,13 +41,13 @@ export const cartReducer = createReducer<ICartState>(
         const item = state.items[currentValue]
         const targetItem = pick(['additions','productId'],item);
         if (equals(payloadItem,targetItem)){
+          isNewEntityAdded = false;
           return {...previousValue,[currentValue]: {...item,col:item.col+(payload.col ?? 1)}}
         }
-        isNewEntityAded = true;
+
         return {...previousValue,[currentValue]:item}
       },{})
-
-      if (isNewEntityAded){
+      if (isNewEntityAdded){
         return {
           ...state,
           shopId,
