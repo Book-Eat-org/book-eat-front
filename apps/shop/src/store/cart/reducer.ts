@@ -8,7 +8,7 @@ import {
   incrementCart,
   removeFromCart,
 } from "./actions.ts";
-import { omit } from "ramda";
+import {equals, keys, omit, pick} from "ramda";
 
 const initialState = {
   items: {},
@@ -19,6 +19,8 @@ export const cartReducer = createReducer<ICartState>(
   (builder) => {
     builder.addCase(addToCartNew, (state, { payload }) => {
       const { shopId, additions, productId, col = 1 } = payload;
+
+
       if (shopId !== state.shopId) {
         return {
           shopId,
@@ -31,19 +33,42 @@ export const cartReducer = createReducer<ICartState>(
           },
         };
       }
+      let isNewEntityAded = false;
+
+      const payloadItem = pick(['additions','productId'],payload)
+
+      const newStateItems = keys(state.items).reduce((previousValue, currentValue)=>{
+        const item = state.items[currentValue]
+        const targetItem = pick(['additions','productId'],item);
+        if (equals(payloadItem,targetItem)){
+          return {...previousValue,[currentValue]: {...item,col:item.col+(payload.col ?? 1)}}
+        }
+        isNewEntityAded = true;
+        return {...previousValue,[currentValue]:item}
+      },{})
+
+      if (isNewEntityAded){
+        return {
+          ...state,
+          shopId,
+          items: {
+            ...state.items,
+            [Date.now()]: {
+              additions,
+              col,
+              productId,
+            },
+          },
+        };
+      }
+
       return {
         ...state,
         shopId,
-        items: {
-          ...state.items,
-          [Date.now()]: {
-            additions,
-            col,
-            productId,
-          },
-        },
+        items: newStateItems,
       };
     });
+
     builder.addCase(decrementCart, (state, { payload }) => {
       return {
         ...state,

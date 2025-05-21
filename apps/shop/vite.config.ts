@@ -5,6 +5,11 @@ import mkcert from "vite-plugin-mkcert";
 
 const STAND_FLAG = "--stand=";
 
+const TARGETS = {
+  PROM:'https://book-eat.ru/',
+  DEV:'https://book-eat-test.ru/'
+}
+
 // https://vitejs.dev/config/
 export default defineConfig(() => {
   const STAND = process.argv
@@ -15,7 +20,7 @@ export default defineConfig(() => {
     server: {
       proxy: {
         "/book-eat": {
-          target: "https://book-eat-test.ru/",
+          target: TARGETS.PROM,
           changeOrigin: true,
         },
       },
