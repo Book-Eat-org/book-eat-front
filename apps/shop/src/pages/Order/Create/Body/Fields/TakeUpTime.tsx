@@ -7,6 +7,14 @@ import { values } from "ramda";
 import dayjs, { Dayjs } from "dayjs";
 import { useSelector } from "$hooks";
 import { IPlace, placesSelectors, DayOfWeek } from "@book-eat/api";
+import 'dayjs/locale/ru'; // локаль с понедельника
+import weekday from 'dayjs/plugin/weekday';
+import localeData from 'dayjs/plugin/localeData';
+
+dayjs.extend(weekday);
+dayjs.extend(localeData);
+
+dayjs.locale('ru');
 
 const createNearestDate = () => {
   const time = dayjs();
@@ -54,7 +62,7 @@ export const TakeUpTime: FC = () => {
 
   const currentDate = useMemo(() => dayjs(), []);
 
-  const currentDay = useMemo(() => currentDate.day() - 1, [currentDate]);
+  const currentDay = useMemo(() => currentDate.weekday(), [currentDate]);
 
   const scheduleToday = useMemo(
     () =>
