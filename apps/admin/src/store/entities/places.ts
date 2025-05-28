@@ -31,5 +31,11 @@ export const placesSlices = createSlice({
         return placesAdapter.upsertOne(state, payload);
       },
     );
+    builder.addMatcher(
+      placesEndpoints.endpoints.deletePlace.matchFulfilled,
+      (state, { meta }) => {
+        return placesAdapter.removeOne(state, meta.arg.originalArgs);
+      },
+    );
   },
 });

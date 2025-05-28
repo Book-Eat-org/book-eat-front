@@ -4733,7 +4733,7 @@ const Zi = (e) => {
   const t = ri({ baseUrl: e });
   return async (r, n, o) => {
     const { data: u } = await t(r, n, o);
-    return u.code ? (alert(`Ошибка: ${u.code}`), { error: u }) : { data: u };
+    return u != null && u.code ? (alert(`Ошибка: ${u.code}`), { error: u }) : { data: u };
   };
 }, de = Xi({
   reducerPath: "api",

@@ -17,7 +17,7 @@ const baseQueryToasts = (baseUrl: string) => {
       data: { code: string };
     };
 
-    if (data.code) {
+    if (data?.code) {
       alert(`Ошибка: ${data.code}`);
       return { error: data };
     }
