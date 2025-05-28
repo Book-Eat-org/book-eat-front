@@ -17,7 +17,6 @@ export const Title: FC = () => {
 
   const generateValue = () => {
     const result = v4().replace(/[^a-zA-Z]+/g, "");
-    console.log(result);
 
     if (isNil(result)) {
       return;

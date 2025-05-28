@@ -1,8 +1,7 @@
-import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
+import {createEntityAdapter, createSlice, EntityState} from "@reduxjs/toolkit";
 import { IOrganization, organizationsEndpoints } from "@book-eat/api";
 import { IRootState } from "../index.ts";
 import { values } from "ramda";
-import { EntityState } from "@reduxjs/toolkit/src/entities/models.ts";
 
 const organizationsAdapter = createEntityAdapter({
   selectId: (item: IOrganization) => item.id,
@@ -24,11 +23,10 @@ export const organizationsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addMatcher(
-      organizationsEndpoints.endpoints.getOrganisation.matchFulfilled,
-      (state, { payload }) => {
-        console.log(payload);
-        return organizationsAdapter.addOne(state, values(payload.entities)[0]);
-      },
+        organizationsEndpoints.endpoints.getOrganisation.matchFulfilled,
+        (state, { payload }) => {
+          return organizationsAdapter.addOne(state, values(payload.entities)[0]);
+        },
     );
   },
 });

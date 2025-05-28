@@ -4,6 +4,9 @@ import { useData } from "../context.ts";
 import dayjs from "dayjs";
 import { isNil } from "ramda";
 import { DaysOfWeekIso } from "$constants";
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+
+dayjs.extend(customParseFormat);
 
 const TimeTag = () => {
   const { schedule } = useData();
@@ -22,23 +25,19 @@ const TimeTag = () => {
 
   const { timeTo, timeFrom } = currentWorkTimeItem;
 
-  const [timeToHours, timeToMinutes] = timeTo.split(":");
-  const [timeFromHours, timeFromMinutes] = timeFrom.split(":");
 
-  const timeToDate = dayjs()
-    .set("hour", Number(timeToHours))
-    .set("minute", Number(timeToMinutes));
+const format = 'HH:mm';
 
-  const timeFromDate = dayjs()
-    .set("hour", Number(timeFromHours))
-    .set("minute", Number(timeFromMinutes));
+  const from = dayjs(timeFrom, format);
+  const to = dayjs(timeTo, format);
+
 
   const isWorking =
-    currentDate.isAfter(timeFromDate) && currentDate.isBefore(timeToDate);
+    currentDate.isAfter(from) && currentDate.isBefore(to);
 
   const text = isWorking
-    ? `Открыто до ${timeToDate.format("HH:mm")}`
-    : `Закрыто до ${timeFromDate.format("HH:mm")}`;
+    ? `Открыто до ${to.format("HH:mm")}`
+    : `Закрыто до ${from.format("HH:mm")}`;
 
   return (
     <Box

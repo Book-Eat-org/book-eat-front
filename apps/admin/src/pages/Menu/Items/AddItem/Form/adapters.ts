@@ -1,7 +1,7 @@
 import { IProduct } from "@book-eat/api";
-import { IFormValues } from "./models.ts";
+import {TFormValues} from "./validation.ts";
 
-export const inputAdapter = (data: IProduct): IFormValues => {
+export const inputAdapter = (data: IProduct): TFormValues => {
   const {
     title,
     description,
@@ -29,7 +29,7 @@ export const inputAdapter = (data: IProduct): IFormValues => {
   };
 };
 
-export const outputAdapter = (data: IFormValues): IProduct => {
+export const outputAdapter = (data: TFormValues): IProduct => {
   const {
     weight,
     price,

@@ -6,9 +6,10 @@ import { UIInput } from "@book-eat/ui";
 export const Title: FC = () => {
   const { field, fieldState } = useController({
     name: "title",
-    rules: { required: { value: true, message: "Введите название" } },
   });
+
   const { onChange, value } = field;
+  console.log('title',value)
   const errorMessage = fieldState.error?.message;
 
   return (

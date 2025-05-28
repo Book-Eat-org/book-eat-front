@@ -6,7 +6,6 @@ export const Notifications = () => {
 
   const onChange = async () => {
     await Notification.requestPermission((val) => {
-      console.log(val);
       setEnabled(val === "granted");
     });
   };

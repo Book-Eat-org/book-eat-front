@@ -16,7 +16,6 @@ import {
   Title,
   Weight,
 } from "./Fields";
-import { IFormValues } from "./models";
 import {
   additionsEndpoints,
   menuByIdSelectorsFactory,
@@ -29,6 +28,7 @@ import { isNil } from "ramda";
 import { inputAdapter, outputAdapter } from "./adapters.ts";
 import { getCurrentOrganizationSelector } from "$store";
 import { categoriesEndpoints } from "@book-eat/api";
+import {resolver, TFormValues} from "./schema.ts";
 
 export const Form: FC = () => {
   const { id } = useParams();
@@ -43,8 +43,10 @@ export const Form: FC = () => {
   additionsEndpoints.useFetchAdditionsQuery();
   placesEndpoints.useFetchPlacesByOrganizationQuery(organization.id);
 
-  const methods = useForm<IFormValues>({
+
+  const methods = useForm<TFormValues>({
     defaultValues: isNil(item) ? undefined : inputAdapter(item),
+    resolver,
   });
 
   const [saveMenu] = menuEndpoints.useSaveMenuMutation();
@@ -52,7 +54,7 @@ export const Form: FC = () => {
 
   const navigateBack = () => navigate("..");
 
-  const handleSubmit = async (data: IFormValues) => {
+  const handleSubmit = async (data: TFormValues) => {
     const payload = outputAdapter(data);
 
     isNil(id) ? await saveMenu(payload) : await editMenu({ ...payload, id });

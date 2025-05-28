@@ -14,7 +14,6 @@ export const Categories: FC = () => {
   );
   const { field, fieldState } = useController<IFormValues, "categories">({
     name: "categories",
-    rules: { required: { value: true, message: "Выберите категорию" } },
   });
   const { onChange, value = [] } = field;
   const errorMessage = fieldState.error?.message;

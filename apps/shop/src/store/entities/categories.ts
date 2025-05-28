@@ -26,7 +26,6 @@ export const categoriesSlice = createSlice({
     builder.addMatcher(
       categoriesEndpoints.endpoints.loadCategoriesList.matchFulfilled,
       (state, { payload }) => {
-        console.log(payload);
         return categoriesAdapter.addMany(state, payload);
       },
     );

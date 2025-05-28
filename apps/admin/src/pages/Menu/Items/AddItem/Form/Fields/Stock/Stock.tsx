@@ -3,9 +3,7 @@ import { FC } from "react";
 import { useController } from "react-hook-form";
 
 import {
-  Flex,
   Grid,
-  Typography,
   UIMultipleSelect,
   UIMultipleSelectOption,
 } from "@book-eat/ui";
@@ -16,7 +14,6 @@ import { organizationsEndpoints, placesEndpoints } from "$api";
 export const Stock: FC = () => {
   const { field, fieldState } = useController<IFormValues, "stock">({
     name: "stock",
-    rules: { required: { value: true, message: "Выберите наличие на точках" } },
   });
   const { onChange, value = [] } = field;
   const errorMessage = fieldState.error?.message;

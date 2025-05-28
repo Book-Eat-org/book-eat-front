@@ -29,8 +29,6 @@ export const PromoCode = () => {
     dispatch(addPromoCodeAction(data.id));
   }, [data]);
 
-  console.log(isSuccess, isUninitialized, data);
-
   return (
     <UIInput
       value={value}

@@ -23,6 +23,10 @@
       "allowedCategories": [ "tools" ]
     },
     {
+      "name": "@hookform/resolvers",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "@pbe/react-yandex-maps",
       "allowedCategories": [ "production", "tools" ]
     },
@@ -97,6 +101,10 @@
     {
       "name": "@types/yandex-maps",
       "allowedCategories": [ "tools" ]
+    },
+    {
+      "name": "@types/yup",
+      "allowedCategories": [ "production" ]
     },
     {
       "name": "@typescript-eslint/eslint-plugin",
@@ -253,6 +261,14 @@
     {
       "name": "ymaps",
       "allowedCategories": [ "tools" ]
+    },
+    {
+      "name": "yup",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "zod",
+      "allowedCategories": [ "production" ]
     }
   ]
 }

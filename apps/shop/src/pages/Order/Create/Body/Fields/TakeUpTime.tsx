@@ -1,26 +1,36 @@
 import { FC, useEffect, useMemo } from "react";
-import { useController } from "react-hook-form";
+import { useController, useWatch } from "react-hook-form";
 
 import { IFormValues } from "../../models";
 import { UIOption, UISelect } from "@book-eat/ui";
 import { values } from "ramda";
 import dayjs, { Dayjs } from "dayjs";
 import { useSelector } from "$hooks";
-import { IPlace, placesSelectors, DayOfWeek } from "@book-eat/api";
-import 'dayjs/locale/ru'; // локаль с понедельника
-import weekday from 'dayjs/plugin/weekday';
-import localeData from 'dayjs/plugin/localeData';
+import {
+  IPlace,
+  placesSelectors,
+  DayOfWeek,
+  DeliveryTypeName,
+} from "@book-eat/api";
+import "dayjs/locale/ru";
+import weekday from "dayjs/plugin/weekday";
+import localeData from "dayjs/plugin/localeData";
 
 dayjs.extend(weekday);
 dayjs.extend(localeData);
 
-dayjs.locale('ru');
+dayjs.locale("ru");
 
 const createNearestDate = () => {
   const time = dayjs();
-  const roundTime = 15;
+  const roundTime = 10;
   const roundedMinute = Math.ceil(time.minute() / roundTime + 1) * roundTime;
   return time.minute(roundedMinute);
+};
+
+const createAsSoonTime = () => {
+  const time = dayjs();
+  return time.add(10, "minute");
 };
 
 const getItems = (closeTime: Dayjs) => {
@@ -28,7 +38,7 @@ const getItems = (closeTime: Dayjs) => {
   let currentTime = createNearestDate();
   while (closeTime.diff(currentTime) > 0) {
     items.push(currentTime);
-    currentTime = currentTime.add(15, "minutes");
+    currentTime = currentTime.add(10, "minutes");
   }
   return items;
 };
@@ -36,8 +46,6 @@ const getItems = (closeTime: Dayjs) => {
 const validateDate = (value: string) => {
   const day = dayjs(value);
   const currentDate = dayjs();
-
-  console.log(day.isAfter(currentDate));
 
   if (currentDate.isAfter(day)) {
     return "Обновите время";
@@ -53,6 +61,7 @@ export const TakeUpTime: FC = () => {
       validate: validateDate,
     },
   });
+  const { deliveryType } = useWatch<IFormValues>();
 
   const { shopId } = useSelector((state) => state.cart);
 
@@ -87,19 +96,41 @@ export const TakeUpTime: FC = () => {
     return getItems(minutes);
   }, [scheduleToday]);
 
+  const asSoonTime = useMemo(() => createAsSoonTime(), []);
+  const asSoonTimeAvailable = [
+    DeliveryTypeName.ON_PLACE,
+    DeliveryTypeName.TO_OUTSIDE,
+  ].includes(deliveryType);
+
   useEffect(() => {
     const value = options[0].toISOString();
     onChange(value);
   }, [options]);
+
+  useEffect(() => {
+    if (asSoonTimeAvailable) {
+      const value = asSoonTime.toISOString();
+      onChange(value);
+    }
+  }, [asSoonTimeAvailable, asSoonTime]);
 
   return (
     <UISelect
       value={value}
       onChange={onChange}
       placeholder="Когда"
-      renderValue={(item) => dayjs(item).format("H:mm")}
+      renderValue={(item) =>
+        item === asSoonTime.toISOString()
+          ? `Как можно скорее (~ ${dayjs(item).format("H:mm")})`
+          : dayjs(item).format("H:mm")
+      }
       error={errorMessage}
     >
+      {asSoonTimeAvailable && (
+        <UIOption value={asSoonTime.toISOString()}>
+          Как можно скорее (~ {asSoonTime.format("H:mm")})
+        </UIOption>
+      )}
       {options.map((item) => {
         const formatted = item.format("H:mm");
         return <UIOption value={item.toISOString()}>{formatted}</UIOption>;

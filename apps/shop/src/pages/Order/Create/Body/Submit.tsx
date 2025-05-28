@@ -1,7 +1,7 @@
 import { useFormContext, useWatch } from "react-hook-form";
 import { IFormValues } from "../models.ts";
 import { Button } from "@book-eat/ui";
-import { isNil, isNotNil, values } from "ramda";
+import { values } from "ramda";
 import {
   DeliveryTypeName,
   IOrder,
@@ -26,7 +26,7 @@ export const Submit = () => {
   );
   const promoCode = useSelector(activePromoCodeSelector);
 
-  const timeLeftLabel = useTimeRemaining();
+  const { formatted, isFinished } = useTimeRemaining();
 
   const handleSubmit = async (data: IFormValues) => {
     const {
@@ -99,15 +99,10 @@ export const Submit = () => {
       ? "Рассчитать стоимость доставки"
       : "Оформить заказ";
 
-  const buttonText = isNil(timeLeftLabel)
-    ? buttonLabel
-    : [buttonLabel, [timeLeftLabel[0], timeLeftLabel[1]].join(":")].join(" ");
-
-  const disabled =
-    isNotNil(timeLeftLabel) && timeLeftLabel[0] === 0 && timeLeftLabel[1] === 0;
+  const buttonText = isFinished ? buttonLabel : `${buttonLabel} ${formatted}`;
 
   return (
-    <Button disabled={disabled} onClick={methods.handleSubmit(handleSubmit)}>
+    <Button disabled={isFinished} onClick={methods.handleSubmit(handleSubmit)}>
       {buttonText}
     </Button>
   );

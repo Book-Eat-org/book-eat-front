@@ -35,14 +35,12 @@ export const promoCodesSlice = createSlice({
     builder.addMatcher(
       promoCodesEndpoints.endpoints.createPromoCode.matchFulfilled,
       (state, { payload }) => {
-        console.log(payload);
         return promoCodesAdapter.addOne(state, payload);
       },
     );
     builder.addMatcher(
       promoCodesEndpoints.endpoints.deletePromoCode.matchFulfilled,
       (state, { meta }) => {
-        console.log(meta.arg.originalArgs);
         return promoCodesAdapter.removeOne(state, meta.arg.originalArgs);
       },
     );

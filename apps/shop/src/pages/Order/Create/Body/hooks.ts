@@ -1,31 +1,40 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useWatch } from "react-hook-form";
 import { IFormValues } from "../models.ts";
-import { isNil, not } from "ramda";
-import dayjs from "dayjs";
 
-export const useTimeRemaining = () => {
-  const [, setRerender] = useState(false);
+const FIVE_MINUTES = 5 * 60; // 300 секунд
+
+export function useTimeRemaining() {
+  const [secondsLeft, setSecondsLeft] = useState(FIVE_MINUTES);
+  const timerRef = useRef<number | null>(null);
   const { takeUpTime } = useWatch<IFormValues>();
 
   useEffect(() => {
-    setInterval(() => setRerender(not), 1000);
-  }, []);
+    if (timerRef.current) clearInterval(timerRef.current);
 
-  if (isNil(takeUpTime)) {
-    return undefined;
-  }
+    setSecondsLeft(FIVE_MINUTES);
 
-  const currentDate = dayjs();
+    timerRef.current = setInterval(() => {
+      setSecondsLeft((prev) => {
+        if (prev <= 1) {
+          clearInterval(timerRef.current ?? undefined);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
 
-  const timeLeftInMs = dayjs(takeUpTime).diff(currentDate, "seconds");
+    return () => clearInterval(timerRef.current ?? undefined);
+  }, [takeUpTime]);
 
-  if (timeLeftInMs < 0) {
-    return [0, 0];
-  }
+  const minutes = Math.floor(secondsLeft / 60)
+    .toString()
+    .padStart(2, "0");
+  const seconds = (secondsLeft % 60).toString().padStart(2, "0");
 
-  const minutes = Math.floor(timeLeftInMs / 60);
-  const seconds = Math.floor(timeLeftInMs % 60);
-
-  return [minutes, seconds];
-};
+  return {
+    secondsLeft,
+    formatted: `${minutes}:${seconds}`,
+    isFinished: secondsLeft === 0,
+  };
+}

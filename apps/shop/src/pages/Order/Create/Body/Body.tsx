@@ -10,6 +10,7 @@ import { isShopOpen } from "@book-eat/utils";
 import useFormPersist from "react-hook-form-persist";
 import Agreement from "./Fields/Agreement.tsx";
 import { Submit } from "./Submit.tsx";
+import { resolver } from "./schema.ts";
 
 export const Body = () => {
   const cartState = useSelector((state) => state.cart);
@@ -30,6 +31,7 @@ export const Body = () => {
 
   const methods = useForm<IFormValues>({
     defaultValues: { personsCount: 1, deliveryType: filteredKeys[0] },
+    resolver,
   });
 
   const { watch, setValue } = methods;

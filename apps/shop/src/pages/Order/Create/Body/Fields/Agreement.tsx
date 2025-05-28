@@ -2,7 +2,6 @@ import { useController } from "react-hook-form";
 
 import { theme, Typography, UICheckbox } from "@book-eat/ui";
 import { IFormValues } from "../../models.ts";
-import { identity } from "ramda";
 import { navigateToPage, PageURLS } from "$constants";
 import { useNavigate } from "react-router-dom";
 
@@ -10,7 +9,6 @@ const Agreement = () => {
   const navigate = useNavigate();
   const { field, fieldState } = useController<IFormValues, "agreement">({
     name: "agreement",
-    rules: { required: true, validate: identity },
   });
 
   const { onChange, value } = field;

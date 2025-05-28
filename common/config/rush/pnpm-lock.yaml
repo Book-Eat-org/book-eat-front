@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@emotion/react': ~11.11.1
   '@emotion/styled': ~11.11.0
+  '@hookform/resolvers': ~5.0.1
   '@pbe/react-yandex-maps': ~1.2.5
   '@rush-temp/admin': file:./projects/admin.tgz
   '@rush-temp/api': file:./projects/api.tgz
@@ -43,11 +44,12 @@ specifiers:
   react: ^18.2.0
   react-cropper: ~2.3.3
   react-dom: ^18.2.0
-  react-hook-form: ~7.48.2
+  react-hook-form: ~7.55.0
   react-hook-form-persist: ~3.0.0
   react-imask: ~7.1.3
   react-redux: ~8.1.3
   react-router-dom: ~6.18.0
+  react-toastify: ~11.0.2
   react-virtualized: ~9.22.5
   shx: ~0.3.4
   storybook: ^7.5.3
@@ -60,6 +62,7 @@ specifiers:
 dependencies:
   '@emotion/react': 11.11.1_tznpbkknyqq5lcv5sgrl332jvu
   '@emotion/styled': 11.11.0_ihu55mvnfzooybzcklvkvwcuuy
+  '@hookform/resolvers': 5.0.1_react-hook-form@7.55.0
   '@pbe/react-yandex-maps': 1.2.5_react@18.2.0
   '@rush-temp/admin': file:projects/admin.tgz
   '@rush-temp/api': file:projects/api.tgz_reiadaay42xu3uk4bvhmtbk5mu
@@ -100,11 +103,12 @@ dependencies:
   react: 18.2.0
   react-cropper: 2.3.3_react@18.2.0
   react-dom: 18.2.0_react@18.2.0
-  react-hook-form: 7.48.2_react@18.2.0
-  react-hook-form-persist: 3.0.0_e3slbdl3w76kzxoubgddsyunfu
+  react-hook-form: 7.55.0_react@18.2.0
+  react-hook-form-persist: 3.0.0_brpuwdt4nj73vhjn3jsw5w4gmm
   react-imask: 7.1.3_react@18.2.0
   react-redux: 8.1.3_uas4yajzsllemiyrexr66mus4q
   react-router-dom: 6.18.0_biqbaboplfbrettd7655fr4n2y
+  react-toastify: 11.0.2_biqbaboplfbrettd7655fr4n2y
   react-virtualized: 9.22.5_biqbaboplfbrettd7655fr4n2y
   shx: 0.3.4
   storybook: 7.5.3
@@ -2062,6 +2066,15 @@ packages:
     resolution: {integrity: sha512-OfX7E2oUDYxtBvsuS4e/jSn4Q9Qb6DzgeYtsAdkPZ47znpoNsMgZw0+tVijiv3uGNR6dgNlty6r9rzIzHjtd/A==}
     dev: false
 
+  /@hookform/resolvers/5.0.1_react-hook-form@7.55.0:
+    resolution: {integrity: sha512-u/+Jp83luQNx9AdyW2fIPGY6Y7NG68eN2ZW8FOJYL+M0i4s49+refdJdOp/A9n9HFQtQs3HIDHQvX3ZET2o7YA==}
+    peerDependencies:
+      react-hook-form: ^7.55.0
+    dependencies:
+      '@standard-schema/utils': 0.3.0
+      react-hook-form: 7.55.0_react@18.2.0
+    dev: false
+
   /@humanwhocodes/config-array/0.11.13:
     resolution: {integrity: sha512-JSBDMiDKSzQVngfRjOdFXgFfklaXI4K9nLF49Auh21lmBWRLIK3+xTErTWD4KU54pb6coM6ESE7Awz/FNU3zgQ==}
     engines: {node: '>=10.10.0'}
@@ -3099,6 +3112,10 @@ packages:
 
   /@sinclair/typebox/0.27.8:
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
+    dev: false
+
+  /@standard-schema/utils/0.3.0:
+    resolution: {integrity: sha512-e7Mew686owMaPJVNNLs55PUvgz371nKgwsc4vxE49zsODpJEnxgxRo2y/OKrqueavXgZNMDVj3DdHFlaSAeU8g==}
     dev: false
 
   /@storybook/addon-actions/7.5.3_uas4yajzsllemiyrexr66mus4q:
@@ -4551,6 +4568,13 @@ packages:
     resolution: {integrity: sha512-bocYSx4DI8TmdlvxqGpVNXOgCNR1Jj0gNPhhAY+iz1rgKDAaYrAYdFYnhDV1IFuiuVc9HkOwyDcFxaTElF3/wg==}
     dependencies:
       '@types/yargs-parser': 21.0.3
+    dev: false
+
+  /@types/yup/0.32.0:
+    resolution: {integrity: sha512-Gr2lllWTDxGVYHgWfL8szjdedERpNgm44L9BDL2cmcHG7Bfd6taEpiW3ayMFLaYvlJr/6bFXDJdh6L406AGlFg==}
+    deprecated: This is a stub types definition. yup provides its own type definitions, so you do not need this installed.
+    dependencies:
+      yup: 1.6.1
     dev: false
 
   /@typescript-eslint/eslint-plugin/6.0.0_qr7lyyvyor5rute5ubjtz7e77m:
@@ -7471,10 +7495,12 @@ packages:
 
   /lodash.get/4.4.2:
     resolution: {integrity: sha512-z+Uw/vLuy6gQe8cfaFWD7p0wVv8fJl3mbzXh33RS+0oW2wvUqiRXiQ69gLWSLpgB5/6sU+r6BlQR0MBILadqTQ==}
+    deprecated: This package is deprecated. Use the optional chaining (?.) operator instead.
     dev: false
 
   /lodash.isequal/4.5.0:
     resolution: {integrity: sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ==}
+    deprecated: This package is deprecated. Use require('node:util').isDeepStrictEqual instead.
     dev: false
 
   /lodash.merge/4.6.2:
@@ -8162,6 +8188,10 @@ packages:
       react-is: 16.13.1
     dev: false
 
+  /property-expr/2.0.6:
+    resolution: {integrity: sha512-SVtmxhRE/CGkn3eZY1T6pC8Nln6Fr/lu1mKSgRud0eC73whjGfoAogbn78LkD8aFL0zz3bAFerKSnOl7NlErBA==}
+    dev: false
+
   /proxy-addr/2.0.7:
     resolution: {integrity: sha512-llQsMLSUDUPT44jdrU/O37qlnifitDP+ZwrmmZcoSKyLKvtZxpyV0n2/bD/N4tBAAZ/gJEdZU7KMraoK1+XYAg==}
     engines: {node: '>= 0.10'}
@@ -8350,21 +8380,21 @@ packages:
       react-is: 18.1.0
     dev: false
 
-  /react-hook-form-persist/3.0.0_e3slbdl3w76kzxoubgddsyunfu:
+  /react-hook-form-persist/3.0.0_brpuwdt4nj73vhjn3jsw5w4gmm:
     resolution: {integrity: sha512-6nwW65JyFpBem9RjLYAWvIFxOLoCk0E13iB9e5yeF5jeHlwx1ua0M77FvwhPpD8eaCz7hG4ziCdOxRcnJVUSxQ==}
     peerDependencies:
       react: '>= 16.3'
       react-hook-form: '>= 6'
     dependencies:
       react: 18.2.0
-      react-hook-form: 7.48.2_react@18.2.0
+      react-hook-form: 7.55.0_react@18.2.0
     dev: false
 
-  /react-hook-form/7.48.2_react@18.2.0:
-    resolution: {integrity: sha512-H0T2InFQb1hX7qKtDIZmvpU1Xfn/bdahWBN1fH19gSe4bBEqTfmlr7H3XWTaVtiK4/tpPaI1F3355GPMZYge+A==}
-    engines: {node: '>=12.22.0'}
+  /react-hook-form/7.55.0_react@18.2.0:
+    resolution: {integrity: sha512-XRnjsH3GVMQz1moZTW53MxfoWN7aDpUg/GpVNc4A3eXRVNdGXfbzJ4vM4aLQ8g6XCUh1nIbx70aaNCl7kxnjog==}
+    engines: {node: '>=18.0.0'}
     peerDependencies:
-      react: ^16.8.0 || ^17 || ^18
+      react: ^16.8.0 || ^17 || ^18 || ^19
     dependencies:
       react: 18.2.0
     dev: false
@@ -9261,6 +9291,10 @@ packages:
       xtend: 4.0.2
     dev: false
 
+  /tiny-case/1.0.3:
+    resolution: {integrity: sha512-Eet/eeMhkO6TX8mnUteS9zgPbUMQa4I6Kkp5ORiBD5476/m+PIRiumP5tmh5ioJpH7k51Kehawy2UDfsnxxY8Q==}
+    dev: false
+
   /tiny-invariant/1.3.1:
     resolution: {integrity: sha512-AD5ih2NlSssTCwsMznbvwMZpJ1cbhkGd2uueNxzv2jDlEeZdU04JQfRnggJQ8DrcVBGjAsCKwFBbDlVNtEMlzw==}
     dev: false
@@ -9288,6 +9322,10 @@ packages:
   /toidentifier/1.0.1:
     resolution: {integrity: sha512-o5sSPKEkg/DIQNmH43V0/uerLrpzVedkUh8tGNvaeXpfpuwjKenlSox/2O/BTlZUtEe+JG7s5YhEz608PlAHRA==}
     engines: {node: '>=0.6'}
+    dev: false
+
+  /toposort/2.0.2:
+    resolution: {integrity: sha512-0a5EOkAUp8D4moMi2W8ZF8jcga7BgZd91O/yabJCFY8az+XSzeGyTKs0Aoo897iV1Nj6guFq8orWDS96z91oGg==}
     dev: false
 
   /tr46/0.0.3:
@@ -9928,6 +9966,15 @@ packages:
     engines: {node: '>=10'}
     dev: false
 
+  /yup/1.6.1:
+    resolution: {integrity: sha512-JED8pB50qbA4FOkDol0bYF/p60qSEDQqBD0/qeIrUCG1KbPBIQ776fCUNb9ldbPcSTxA69g/47XTo4TqWiuXOA==}
+    dependencies:
+      property-expr: 2.0.6
+      tiny-case: 1.0.3
+      toposort: 2.0.2
+      type-fest: 2.19.0
+    dev: false
+
   /z-schema/5.0.5:
     resolution: {integrity: sha512-D7eujBWkLa3p2sIpJA0d1pr7es+a7m0vFAnZLlCEKq/Ij2k0MLi9Br2UPxoxdYystm5K1yeBGzub0FlYUEWj2Q==}
     engines: {node: '>=8.0.0'}
@@ -9940,11 +9987,16 @@ packages:
       commander: 9.5.0
     dev: false
 
+  /zod/3.25.34:
+    resolution: {integrity: sha512-lZHvSc2PpWdcfpHlyB33HA9nqP16GpC9IpiG4lYq9jZCJVLZNnWd6Y1cj79bcLSBKTkxepfpjckPv5Y5VOPlwA==}
+    dev: false
+
   file:projects/admin.tgz:
-    resolution: {integrity: sha512-xN9QqJs2gF98P68At//yykwtC1/rL89IfMOToDM24+r3ewCTnxuKe9IHSehiSYo1Z2fiq6OQRoC9d/eBg74oYA==, tarball: file:projects/admin.tgz}
+    resolution: {integrity: sha512-BhvmLmswSuHuxIzG6ONVToDnYzraC7AJzmJWA3DxrZJTHAyOSSuVC5t1y4FN5EQOJEzWJpCnL0AMFE6/N82tsw==, tarball: file:projects/admin.tgz}
     name: '@rush-temp/admin'
     version: 0.0.0
     dependencies:
+      '@hookform/resolvers': 5.0.1_react-hook-form@7.55.0
       '@pbe/react-yandex-maps': 1.2.5_react@18.2.0
       '@reduxjs/toolkit': 1.9.7_reiadaay42xu3uk4bvhmtbk5mu
       '@types/ramda': 0.29.8
@@ -9952,6 +10004,7 @@ packages:
       '@types/react-dom': 18.2.7
       '@types/react-virtualized': 9.21.30
       '@types/uuid': 9.0.7
+      '@types/yup': 0.32.0
       '@typescript-eslint/eslint-plugin': 6.0.0_qr7lyyvyor5rute5ubjtz7e77m
       '@typescript-eslint/parser': 6.0.0_d5a6zedifdtzynwhy3uykrjvoy
       '@vitejs/plugin-basic-ssl': 1.1.0_vite@4.4.5
@@ -9968,7 +10021,7 @@ packages:
       ramda: 0.29.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      react-hook-form: 7.48.2_react@18.2.0
+      react-hook-form: 7.55.0_react@18.2.0
       react-redux: 8.1.3_uas4yajzsllemiyrexr66mus4q
       react-router-dom: 6.18.0_biqbaboplfbrettd7655fr4n2y
       react-toastify: 11.0.2_biqbaboplfbrettd7655fr4n2y
@@ -9978,6 +10031,8 @@ packages:
       uuid: 9.0.1
       vite: 4.4.5
       vite-plugin-mkcert: 1.17.5_vite@4.4.5
+      yup: 1.6.1
+      zod: 3.25.34
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -10023,10 +10078,11 @@ packages:
     dev: false
 
   file:projects/shop.tgz:
-    resolution: {integrity: sha512-Oh1selml8ikpi84yZAKg2ZM29UczVHTPQB0Nkx8IytnBbMqoY997JsCqr+CJXJfJlscn7elR8BGtEmqKNOWJfA==, tarball: file:projects/shop.tgz}
+    resolution: {integrity: sha512-TrxCMvNVXMcOO2/28TRJvuqTdAtIp+ZySh2GLtIF1GLj1DtSECpj2NIDKpoaGhReCmOezPYxCOrdBskKZf4xag==, tarball: file:projects/shop.tgz}
     name: '@rush-temp/shop'
     version: 0.0.0
     dependencies:
+      '@hookform/resolvers': 5.0.1_react-hook-form@7.55.0
       '@pbe/react-yandex-maps': 1.2.5_react@18.2.0
       '@reduxjs/toolkit': 1.9.7_reiadaay42xu3uk4bvhmtbk5mu
       '@types/ramda': 0.29.8
@@ -10046,8 +10102,8 @@ packages:
       ramda: 0.29.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      react-hook-form: 7.48.2_react@18.2.0
-      react-hook-form-persist: 3.0.0_e3slbdl3w76kzxoubgddsyunfu
+      react-hook-form: 7.55.0_react@18.2.0
+      react-hook-form-persist: 3.0.0_brpuwdt4nj73vhjn3jsw5w4gmm
       react-redux: 8.1.3_uas4yajzsllemiyrexr66mus4q
       react-router-dom: 6.18.0_biqbaboplfbrettd7655fr4n2y
       react-virtualized: 9.22.5_biqbaboplfbrettd7655fr4n2y
@@ -10055,6 +10111,7 @@ packages:
       uuid: 10.0.0
       vite: 4.4.5
       vite-plugin-mkcert: 1.17.5_vite@4.4.5
+      zod: 3.25.34
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -10168,6 +10225,7 @@ packages:
 time:
   /@emotion/react/11.11.1: '2023-06-07T11:01:08.326Z'
   /@emotion/styled/11.11.0: '2023-05-06T08:49:15.982Z'
+  /@hookform/resolvers/5.0.1: '2025-04-02T05:50:33.294Z'
   /@pbe/react-yandex-maps/1.2.5: '2023-09-29T10:39:57.613Z'
   /@storybook/addon-essentials/7.5.3: '2023-11-06T15:22:53.001Z'
   /@storybook/addon-interactions/7.5.3: '2023-11-06T15:23:08.515Z'
@@ -10203,10 +10261,11 @@ time:
   /react-cropper/2.3.3: '2023-04-12T07:50:07.873Z'
   /react-dom/18.2.0: '2022-06-14T19:46:48.370Z'
   /react-hook-form-persist/3.0.0: '2022-05-15T23:41:21.753Z'
-  /react-hook-form/7.48.2: '2023-11-05T05:46:14.526Z'
+  /react-hook-form/7.55.0: '2025-03-28T21:51:26.808Z'
   /react-imask/7.1.3: '2023-07-18T07:18:43.009Z'
   /react-redux/8.1.3: '2023-10-01T02:03:05.517Z'
   /react-router-dom/6.18.0: '2023-10-31T14:24:16.741Z'
+  /react-toastify/11.0.2: '2024-12-19T14:11:40.683Z'
   /react-virtualized/9.22.5: '2023-04-17T19:32:24.400Z'
   /react/18.2.0: '2022-06-14T19:46:38.369Z'
   /shx/0.3.4: '2022-01-10T02:16:53.953Z'

@@ -45,7 +45,6 @@ const UIImageInput: FC<IProps> & INestedComponents = (props) => {
   const { setError } = useGroupContext() ?? {};
 
   const isSingleItem = isNil(setError);
-  console.log(isSingleItem, setError);
   const handleError = setError ?? setFileError;
 
   const uploadImage = async (value: Blob): Promise<string> => {
@@ -102,7 +101,6 @@ const UIImageInput: FC<IProps> & INestedComponents = (props) => {
   };
 
   const error = isSingleItem ? fileError || restProps.error : "";
-  console.log(error);
 
   const imageClasses = classNames(classes.image, {
     [classes.error]: Boolean(error),
