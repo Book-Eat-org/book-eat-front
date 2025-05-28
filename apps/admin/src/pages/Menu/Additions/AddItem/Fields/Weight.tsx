@@ -8,7 +8,6 @@ import { IFormValues } from "../models";
 export const Weight: FC = () => {
   const { field, fieldState } = useController<IFormValues, "weight">({
     name: "weight",
-    rules: { required: { value: true, message: "Введите вес" } },
   });
   const { onChange, value } = field;
   const errorMessage = fieldState.error?.message;

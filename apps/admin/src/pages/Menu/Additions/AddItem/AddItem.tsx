@@ -12,6 +12,7 @@ import { inputAdapter, outputAdapter } from "./adapters.ts";
 import { isNil, isNotNil } from "ramda";
 import { useSelector } from "react-redux";
 import { categoriesEndpoints } from "@book-eat/api";
+import { resolver, TFormValues } from "./schema.ts";
 
 const AddItem: FC = () => {
   const { id } = useParams();
@@ -20,8 +21,9 @@ const AddItem: FC = () => {
 
   const navigate = useNavigate();
 
-  const methods = useForm<IFormValues>({
+  const methods = useForm<TFormValues>({
     defaultValues: isNil(item) ? undefined : inputAdapter(item),
+    resolver,
   });
 
   const navigateBack = () => navigate("..");

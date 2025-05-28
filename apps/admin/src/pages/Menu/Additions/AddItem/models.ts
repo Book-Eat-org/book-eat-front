@@ -5,5 +5,5 @@ export interface IFormValues {
   price?: number;
   categoryId?: string;
   title?: string;
-  measure?: Measures;
+  measurement?: Measures;
 }

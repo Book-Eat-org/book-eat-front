@@ -8,7 +8,6 @@ import { IFormValues } from "../models";
 export const Title: FC = () => {
   const { field, fieldState } = useController<IFormValues, "title">({
     name: "title",
-    rules: { required: { value: true, message: "Введите название" } },
   });
   const { onChange, value } = field;
   const errorMessage = fieldState.error?.message;
