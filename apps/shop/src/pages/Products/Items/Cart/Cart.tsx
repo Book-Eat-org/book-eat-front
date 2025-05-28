@@ -2,14 +2,17 @@ import { Box, Flex, CartIcon24, theme, Typography } from "@book-eat/ui";
 import { FC } from "react";
 import { useSelector } from "$hooks";
 import { useNavigate } from "react-router-dom";
-import { navigateToPage, PageURLS } from "../../../../constants/urls.ts";
+import { navigateToPage, PageURLS } from "$constants";
 import { keys } from "ramda";
 
 export const Cart: FC = () => {
   const navigate = useNavigate();
   const items = useSelector((store) => store.cart);
+  const activeShop = useSelector((store) => store.activeShop);
 
-  const col = keys(items.items).length;
+  const isCurrentShopActive = items.shopId === activeShop;
+
+  const col = isCurrentShopActive ? keys(items.items).length : 0;
 
   const onSubmit = () => navigate(navigateToPage(PageURLS.CART, {}));
 
@@ -36,8 +39,8 @@ export const Cart: FC = () => {
             height="20px"
           >
             <Typography size="14/14" fontWeight={600}>
-            {col}
-          </Typography>
+              {col}
+            </Typography>
           </Flex>
         </Box>
       )}

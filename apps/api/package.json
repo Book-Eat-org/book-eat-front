@@ -1,33 +1,32 @@
 {
   "name": "@book-eat/api",
-  "private": true,
   "version": "0.0.0",
+  "private": true,
   "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "scripts": {
-    "tsc": "tsc",
     "build": "vite build",
     "build:sb": "npm run build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "tsc": "tsc"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "~2.2.1",
+    "ramda": "~0.30.0"
   },
   "devDependencies": {
+    "@types/ramda": "~0.30.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "eslint": "^8.45.0",
     "prettier": "~3.0.3",
     "typescript": "^5.0.2",
     "vite": "^4.4.5",
-    "vite-plugin-dts": "~3.7.3",
-    "vite-plugin-mkcert": "^1.17.5",
-    "@types/ramda": "~0.30.0"
-  },
-  "dependencies": {
-    "@reduxjs/toolkit": "~2.2.1",
-    "ramda": "~0.30.0"
+    "vite-plugin-dts": "~3.7.3"
   }
 }

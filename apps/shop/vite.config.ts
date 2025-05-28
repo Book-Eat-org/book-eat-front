@@ -20,7 +20,7 @@ export default defineConfig(() => {
     server: {
       proxy: {
         "/book-eat": {
-          target: TARGETS.PROM,
+          target: TARGETS.DEV,
           changeOrigin: true,
         },
       },
