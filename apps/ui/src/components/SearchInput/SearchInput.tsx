@@ -20,10 +20,10 @@ const SearchInput: FC<IProps> & { Content: typeof Content } = (props) => {
 
   return (
     <div ref={containerRef} className={styles.container}>
-      <div className={`${styles.content} ${active ? styles.active : ''}`}>
+      <div className={`${styles.content} ${active ? styles.hidden : styles.visible}`}>
         {children}
       </div>
-      <div className={`${styles.search} ${active ? styles.active : ''}`}>
+      <div className={`${styles.search} ${active ? styles.visible : styles.hidden}`}>
         <SearchInput.Content
           value={value}
           onChange={onChange}
