@@ -4,9 +4,7 @@ import { categoriesSelectors } from "../../../../../store/entities";
 import { useCategories } from "../../hooks.ts";
 import { innerJoin } from "ramda";
 import { sortCategories } from "../../utils.ts";
-import { ScrollProvider } from "./ScrollProvider.tsx";
-import Category from "./Category/Category";
-import classes from "./Categories.module.css";
+import { ListNavigation } from "@book-eat/ui";
 
 const Categories: FC = () => {
   const categoriesIds = useCategories();
@@ -23,15 +21,13 @@ const Categories: FC = () => {
   const sortedCategories = sortCategories(categories);
 
   return (
-    <ScrollProvider className={classes.wrap}>
+    <ListNavigation.NavScrollProvider>
       {sortedCategories.map((item) => (
-        <Category 
-          key={item.id}
-          id={String(item.id)} 
-          title={item.title} 
-        />
+        <ListNavigation.MenuNavItem autoscroll key={item.id} id={item.id}>
+          {item.title}
+        </ListNavigation.MenuNavItem>
       ))}
-    </ScrollProvider>
+    </ListNavigation.NavScrollProvider>
   );
 };
 

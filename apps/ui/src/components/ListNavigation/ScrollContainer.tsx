@@ -17,7 +17,7 @@ interface IProps extends ComponentProps<typeof Wrapper> {
 
 const ScrollContainer: FC<IProps> = (props) => {
   const { children, ...restProps } = props;
-  const { setObserver, setCurrentId, refs, scrollToId } = useListNavigationContext();
+  const { setObserver, setCurrentId, refs, scrollToId, currentId } = useListNavigationContext();
 
   useEffect(() => {
     if (scrollToId && refs[scrollToId]) {
@@ -35,26 +35,24 @@ const ScrollContainer: FC<IProps> = (props) => {
 
     const options = {
       rootMargin: "-20px",
-      threshold: 0,
+      threshold: 0.1,
       root: element,
     };
 
-    const observable: IntersectionObserverCallback = () => {
-      const visibleEntries = Object.values(refs)
-        .map((el) => {
-          const rect = el.getBoundingClientRect();
-          return {
-            id: el.id,
-            distance: Math.abs(
-              rect.top + rect.height / 2 - (window.innerHeight - 200) / 2,
-            ),
-            isVisible: rect.top < window.innerHeight && rect.bottom > 0,
-          };
-        })
-        .filter((entry) => entry.isVisible)
+    const observable: IntersectionObserverCallback = (entries) => {
+      const visibleEntries = entries
+        .filter(entry => entry.isIntersecting)
+        .map(entry => ({
+          id: entry.target.id,
+          distance: Math.abs(
+            entry.boundingClientRect.top + 
+            entry.boundingClientRect.height / 2 - 
+            (window.innerHeight - 200) / 2
+          )
+        }))
         .sort((a, b) => a.distance - b.distance);
-
-      if (visibleEntries.length > 0) {
+    
+      if (visibleEntries.length > 0 && visibleEntries[0].id !== currentId) {
         setCurrentId?.(visibleEntries[0].id);
       }
     };

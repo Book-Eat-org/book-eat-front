@@ -90,7 +90,11 @@ const List = () => {
             .filter(categoryId => groupedByCategories[categoryId]?.length > 0)
             .map((categoryId) => (
               <Group key={categoryId} id={categoryId}>
-                <Grid gap={4}>
+                <Grid 
+                  gridTemplateColumns="repeat(2, 1fr)"
+                  gridAutoRows="auto"
+                  gap={1.8}
+                >
                   {(groupedByCategories[categoryId] || []).map((id) => (
                     <Card key={id} id={id} />
                   ))}

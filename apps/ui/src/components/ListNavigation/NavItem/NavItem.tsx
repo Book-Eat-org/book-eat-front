@@ -9,16 +9,21 @@ interface IProps extends ComponentProps<typeof Box> {
 
 const NavItem: FC<IProps> = (props) => {
   const { id, children, onClick, ...restProps } = props;
-  const { refs } = useListNavigationContext();
+  const { refs, setCurrentId } = useListNavigationContext();
 
   const clickHandler: MouseEventHandler<HTMLDivElement> = (event) => {
     const element = refs[id];
-    element?.scrollIntoView();
+    element?.scrollIntoView({ behavior: 'smooth' });
+    setCurrentId?.(id);
     onClick?.(event);
   };
 
   return (
-    <Box onClick={clickHandler} {...restProps}>
+    <Box 
+      data-id={id} 
+      onClick={clickHandler} 
+      {...restProps}
+    >
       {children}
     </Box>
   );

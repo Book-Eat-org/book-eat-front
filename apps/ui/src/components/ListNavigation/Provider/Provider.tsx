@@ -7,6 +7,10 @@ const Provider: FC<{ children: ReactNode }> = (props) => {
   const [currentId, setCurrentId] = useState<string | undefined>();
   const refs = useRef<Record<string, HTMLDivElement>>({});
 
+  const handleSetCurrentId = useCallback((id: string) => {
+    setCurrentId(id);
+  }, []);
+
   const addRef = useCallback((id: string, ref: HTMLDivElement) => {
     refs.current[id] = ref;
   }, []);
@@ -18,7 +22,7 @@ const Provider: FC<{ children: ReactNode }> = (props) => {
         addRef,
         observer,
         currentId,
-        setCurrentId,
+        setCurrentId: handleSetCurrentId,
         setObserver,
       }}
     >

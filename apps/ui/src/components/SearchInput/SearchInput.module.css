@@ -3,33 +3,33 @@
   width: 100%;
 }
 
-.content {
-  transition: opacity 0.3s ease, transform 0.3s ease;
+.content, 
+.search {
   width: 100%;
+  transition: 
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.content:not(.active) {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.content.active {
+.hidden {
   opacity: 0;
   pointer-events: none;
-  position: absolute;
-}
-
-.search {
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  width: 100%;
-  opacity: 0;
   position: absolute;
   top: 0;
-  pointer-events: none;
+  transform: translateY(-5px);
 }
 
-.search.active {
+.visible {
   opacity: 1;
   pointer-events: auto;
+  position: relative;
+  transform: translateY(0);
+}
+
+.content:not(.hidden) {
+  position: relative;
+}
+
+.search.visible {
   position: relative;
 }

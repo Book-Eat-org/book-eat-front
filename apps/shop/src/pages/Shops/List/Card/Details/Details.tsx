@@ -37,7 +37,7 @@ export const Details: FC = () => {
           }} 
         />
       </Flex>
-      <Box className={isOpenDetails ? classes.show : classes.details}>
+      <Box className={`${classes.details} ${isOpenDetails ? classes.show : ''}`}>
         <Grid gap="5px" p="0 0 15px">
           <Flex alignItems="center" gap="3px">
             <Box p="4px">
