@@ -10,7 +10,7 @@ export const Title = () => {
       padding={10}
       borderRadius={10}
     >
-      <Typography size="12/12">{weight} г</Typography>
+      <Typography size="14/14" color={theme.colors.general600}>{weight} г</Typography>
       <Typography size="18/18" fontWeight={500}>
         {title}
       </Typography>

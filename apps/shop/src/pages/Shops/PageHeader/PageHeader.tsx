@@ -21,7 +21,7 @@ const PageHeader = () => {
       <Typography size="18/18" color={theme.colors.accent50} fontWeight={700}>
         Сеть ресторанов
       </Typography>
-      <Typography size="26/26" color={theme.colors.general50} fontWeight={700}>
+      <Typography size="26/26" color={theme.colors.general50} fontWeight={700} textAlign="center" >
         {item?.title}
       </Typography>
     </Grid>

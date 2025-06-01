@@ -78,11 +78,12 @@ export const cartSumSelector = createSelector(
       : 1 - promoCode.discount / 100;
 
     return {
-      totalSum: (additionsSum + productsSum) * promoCodeDiscount,
-      promoCodeDiscountSum:
+      totalSum: Math.round((additionsSum + productsSum) * promoCodeDiscount),
+      promoCodeDiscountSum: Math.round(
         additionsSum +
-        productsSum -
-        (additionsSum + productsSum) * promoCodeDiscount,
+          productsSum -
+          (additionsSum + productsSum) * promoCodeDiscount,
+      ),
     };
   },
 );
