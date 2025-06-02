@@ -6,7 +6,7 @@ import { EntityId, EntityState } from "@reduxjs/toolkit";
 
 export const categoriesEndpoints = api.injectEndpoints({
   endpoints: (build) => ({
-    fetchCategories: build.query<EntityState<ICategory>, void>({
+    fetchCategories: build.query<EntityState<ICategory, EntityId>, void>({
       query: () => ({
         url: "/v1/categories/organization?activeOnly=false",
       }),
@@ -40,6 +40,6 @@ export const categoriesEndpoints = api.injectEndpoints({
     loadCategoriesList: build.query<ICategory[], EntityId>({
       query: (id) => ({ url: `/v1/categories/organizations/${id}` }),
       providesTags: [ApiTags.Categories],
-    })
+    }),
   }),
 });

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { useController } from "react-hook-form";
 
 import { IFormValues } from "../../models";
@@ -32,6 +32,8 @@ export const DeliveryType: FC = () => {
     (key) => ENABLED_METHODS[key],
   );
 
+  console.log(value)
+
   if (isNil(shop)) {
     return null;
   }
@@ -43,6 +45,7 @@ export const DeliveryType: FC = () => {
       value={value}
       onChange={onChange}
       placeholder="Способ получения"
+      error={errorMessage}
       renderValue={(value: DeliveryTypeName) => TakeUpConfig[value]}
     >
       {filteredKeys.map((key) => (

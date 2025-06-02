@@ -6,13 +6,16 @@ import { IAddition } from "$models";
 
 export const additionsEndpoints = api.injectEndpoints({
   endpoints: (build) => ({
-    fetchAdditions: build.query<EntityState<IAddition>, void>({
+    fetchAdditions: build.query<EntityState<IAddition, EntityId>, void>({
       query: () => "/v1/additions/organization?activeOnly=false",
       providesTags: [ApiTags.Additions],
       transformResponse: (res: IAddition[]) =>
         additionsAdapters.setAll(additionsAdapters.getInitialState(), res),
     }),
-    fetchAdditionsByIds: build.mutation<EntityState<IAddition>, EntityId[]>({
+    fetchAdditionsByIds: build.mutation<
+      EntityState<IAddition, EntityId>,
+      EntityId[]
+    >({
       query: (ids) => ({
         url: "/v1/additions/list",
         method: "POST",

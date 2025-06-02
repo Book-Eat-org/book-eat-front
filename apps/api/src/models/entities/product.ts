@@ -1,4 +1,4 @@
-import { EntityId } from "@reduxjs/toolkit";
+import {EntityId, EntityState} from "@reduxjs/toolkit";
 import { IAddition } from "./additions.ts";
 
 export interface IProduct {
@@ -23,3 +23,5 @@ export interface IProduct {
   isActiveOnOrganization: boolean;
   isActiveOnPlace: boolean;
 }
+
+export type TProductEntityState = EntityState<IProduct, EntityId>;

@@ -6,7 +6,7 @@ import { ICashier } from "$models";
 
 export const cashiersEndpoints = api.injectEndpoints({
   endpoints: (build) => ({
-    getCashiers: build.query<EntityState<ICashier>, void>({
+    getCashiers: build.query<EntityState<ICashier,EntityId>, void>({
       providesTags: [ApiTags.Cashiers],
       query: () => "/v1/users/organization",
       transformResponse: (res: ICashier[]) =>

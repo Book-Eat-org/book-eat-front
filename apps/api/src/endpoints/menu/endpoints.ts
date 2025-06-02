@@ -1,33 +1,33 @@
-import { EntityId, EntityState } from "@reduxjs/toolkit";
+import { EntityId } from "@reduxjs/toolkit";
 import { ApiTags } from "$enums";
 import { menuAdapter } from "./adapter";
 import { api } from "../api";
-import { ICategory, IProduct } from "$models";
+import { ICategory, IProduct, TProductEntityState } from "$models";
 
 type IGetBlaBlaResponse = (ICategory & { products: IProduct[] })[];
 
 export const menuEndpoints = api.injectEndpoints({
   endpoints: (build) => ({
-    getMenuByPlaceId: build.query<EntityState<IProduct>, EntityId>({
+    getMenuByPlaceId: build.query<TProductEntityState, EntityId>({
       query: (id) => `/v2/products/place/${id}`,
       transformResponse: (res: IGetBlaBlaResponse) => {
         return menuAdapter.setMany(menuAdapter.getInitialState(), res);
       },
       providesTags: [ApiTags.Menu],
     }),
-    getMenuById: build.query<EntityState<IProduct>, EntityId>({
+    getMenuById: build.query<TProductEntityState, EntityId>({
       query: (id) => `/v2/products/${id}`,
       transformResponse: (res: IProduct) =>
         menuAdapter.setOne(menuAdapter.getInitialState(), res),
       providesTags: [ApiTags.Menu],
     }),
-    getMenuByPlaces: build.query<EntityState<IProduct>, void>({
+    getMenuByPlaces: build.query<TProductEntityState, void>({
       query: () => `/v1/products/place`,
       transformResponse: (res: IProduct[]) =>
         menuAdapter.setAll(menuAdapter.getInitialState(), res),
       providesTags: [ApiTags.Menu],
     }),
-    getMenuByOrganization: build.query<EntityState<IProduct>, void>({
+    getMenuByOrganization: build.query<TProductEntityState, void>({
       query: () => `/v1/products/organization`,
       transformResponse: (res: IProduct[]) =>
         menuAdapter.setAll(menuAdapter.getInitialState(), res),

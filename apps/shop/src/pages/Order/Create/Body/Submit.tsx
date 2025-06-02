@@ -43,6 +43,7 @@ export const Submit = () => {
       email,
       agreement,
     } = data;
+    console.log(data)
     const cartItems = values(cartState.items);
 
     const products = cartItems.map((item) => ({

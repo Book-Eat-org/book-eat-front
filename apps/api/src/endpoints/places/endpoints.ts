@@ -6,7 +6,7 @@ import { IPlace } from "$models";
 
 export const placesEndpoints = api.injectEndpoints({
   endpoints: (build) => ({
-    fetchPlaces: build.query<EntityState<IPlace>, void>({
+    fetchPlaces: build.query<EntityState<IPlace, EntityId>, void>({
       query: () => ({
         url: "/v1/places",
       }),
@@ -14,14 +14,16 @@ export const placesEndpoints = api.injectEndpoints({
       transformResponse: (res: IPlace[]) =>
         placesAdapter.setAll(placesAdapter.getInitialState(), res),
     }),
-    fetchPlacesByOrganization: build.query<EntityState<IPlace>, void>({
-      query: () => ({
-        url: "/v1/places/organization",
-      }),
-      providesTags: [ApiTags.Places],
-      transformResponse: (res: IPlace[]) =>
-        placesAdapter.setAll(placesAdapter.getInitialState(), res),
-    }),
+    fetchPlacesByOrganization: build.query<EntityState<IPlace, EntityId>, void>(
+      {
+        query: () => ({
+          url: "/v1/places/organization",
+        }),
+        providesTags: [ApiTags.Places],
+        transformResponse: (res: IPlace[]) =>
+          placesAdapter.setAll(placesAdapter.getInitialState(), res),
+      },
+    ),
     savePlace: build.mutation<{ success: boolean }, IPlace>({
       query: (place) => ({
         url: "/v1/places",

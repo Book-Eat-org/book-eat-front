@@ -2,15 +2,15 @@ import { EntityId, EntityState } from "@reduxjs/toolkit";
 import { ApiTags } from "$enums";
 import { ordersAdapter } from "./adapter";
 import { api } from "../api";
-import { IOrder, IOrderStatus } from "$models";
+import { IOrder, OrderStatus } from "$models";
 
 export interface IUpdateOrderRequestPayload {
   id: number;
-  statusVal: IOrderStatus;
+  statusVal: OrderStatus;
 }
 export const ordersEndpoints = api.injectEndpoints({
   endpoints: (build) => ({
-    getOrders: build.query<EntityState<IOrder>, void>({
+    getOrders: build.query<EntityState<IOrder, EntityId>, void>({
       providesTags: [ApiTags.Orders],
       query: () => {
         return {
@@ -20,7 +20,7 @@ export const ordersEndpoints = api.injectEndpoints({
       transformResponse: (res: IOrder[]) =>
         ordersAdapter.setAll(ordersAdapter.getInitialState(), res),
     }),
-    getOrder: build.query<EntityState<IOrder>, EntityId>({
+    getOrder: build.query<EntityState<IOrder, EntityId>, EntityId>({
       providesTags: [ApiTags.Orders],
       query: (id) => {
         return {

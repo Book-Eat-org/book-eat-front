@@ -6,7 +6,10 @@ import { EntityId, EntityState } from "@reduxjs/toolkit";
 
 export const organizationsEndpoints = api.injectEndpoints({
   endpoints: (build) => ({
-    getOrganisation: build.query<EntityState<IOrganization>, EntityId>({
+    getOrganisation: build.query<
+      EntityState<IOrganization, EntityId>,
+      EntityId
+    >({
       query: (id) => ({
         url: `v1/organizations/${id}`,
       }),
@@ -17,7 +20,10 @@ export const organizationsEndpoints = api.injectEndpoints({
         ),
       providesTags: [ApiTags.Organizations],
     }),
-    getCurrentOrganisation: build.query<EntityState<IOrganization>, void>({
+    getCurrentOrganisation: build.query<
+      EntityState<IOrganization, EntityId>,
+      void
+    >({
       query: () => ({
         url: `v1/organizations/current`,
       }),
@@ -28,7 +34,7 @@ export const organizationsEndpoints = api.injectEndpoints({
         ),
       providesTags: [ApiTags.Organizations],
     }),
-    getOrganisations: build.query<EntityState<IOrganization>, void>({
+    getOrganisations: build.query<EntityState<IOrganization, EntityId>, void>({
       query: () => ({
         url: "/v1/organizations",
       }),

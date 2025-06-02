@@ -1,5 +1,5 @@
 import { IPlace } from "$models";
-import { createEntityAdapter } from "@reduxjs/toolkit";
-export const placesAdapter = createEntityAdapter<IPlace>({
+import {createEntityAdapter, EntityId} from "@reduxjs/toolkit";
+export const placesAdapter = createEntityAdapter<IPlace,EntityId>({
   selectId: (entity) => entity.id,
 });

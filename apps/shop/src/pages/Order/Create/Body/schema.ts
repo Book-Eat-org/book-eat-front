@@ -17,7 +17,7 @@ const formSchema = z.object({
     .email("Укажите почту в формате example@mail.ru"),
   phone: z.string().regex(/^\+?\d{11}$/, "Введите корректный номер телефона"),
   name: requiredString("Укажите имя"),
-});
+}).passthrough();
 
 export type TFormValues = z.infer<typeof formSchema>;
 

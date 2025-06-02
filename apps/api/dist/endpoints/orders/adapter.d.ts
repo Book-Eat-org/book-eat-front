@@ -1,2 +1,3 @@
 import { IOrder } from '../../models';
-export declare const ordersAdapter: import("@reduxjs/toolkit").EntityAdapter<IOrder, import("@reduxjs/toolkit").EntityId>;
+import { EntityId } from "@reduxjs/toolkit";
+export declare const ordersAdapter: import("@reduxjs/toolkit").EntityAdapter<IOrder, EntityId>;
