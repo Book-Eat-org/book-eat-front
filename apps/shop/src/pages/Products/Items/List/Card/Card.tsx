@@ -1,7 +1,7 @@
 import { EntityId } from "@reduxjs/toolkit";
-import { FC } from "react";
+import { forwardRef } from "react";
 import { isNil, values } from "ramda";
-import { Box, Flex, Grid } from "@book-eat/ui";
+import { Box, Flex, Grid, Skeleton, useLazyLoad } from "@book-eat/ui";
 import classes from "./Card.module.css";
 import Price from "./Price";
 import Weight from "./Weight";
@@ -17,11 +17,12 @@ interface IProps {
   id: EntityId;
 }
 
-const Card: FC<IProps> = (props) => {
+const Card = forwardRef<HTMLDivElement, IProps>((props, externalRef) => {
   const { id } = props;
   const { id: placeId } = useParams();
   const selectors = createMenuSelectorsByPlaceId(placeId!);
   const cart = useSelector(cartSelector);
+  const { isVisible, setRefs } = useLazyLoad<HTMLDivElement>(externalRef);
 
   const isSelected =
     placeId === cart.shopId &&
@@ -33,11 +34,20 @@ const Card: FC<IProps> = (props) => {
     return null;
   }
 
+  if (!isVisible) {
+    return (
+      <Box ref={setRefs}>
+        <Skeleton gap={3} height={330} />
+      </Box>
+    );
+  };
+
   return (
     <Box
       bg="white"
       borderRadius="20px"
       width="100%"
+      ref={setRefs}
       className={classes.wrapper}
     >
       <Flex borderRadius="20px" flexDirection="column" height="100%">
@@ -61,6 +71,6 @@ const Card: FC<IProps> = (props) => {
       </Flex>
     </Box>
   );
-};
+});
 
 export default Card;
