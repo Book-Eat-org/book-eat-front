@@ -7,8 +7,7 @@ export const PhoneInput = () => {
 
   return (
     <UIGrid>
-      <UIPhoneInput title="Цена" value={value} onChange={setValue} />
-      <UIPhoneInput title="Цена" value={value} onChange={setValue} />
+      <UIPhoneInput title="Телефон" value={value} onChange={setValue} />
     </UIGrid>
   );
 };

@@ -9,11 +9,13 @@ interface IProps {
   isActive: boolean;
   onClose: () => void;
   children: React.ReactNode;
+  title?:string;
 }
 
 const Popup: FC<IProps> = (props) => {
   const {
     isActive,
+    title,
     onClose,
     children,
   } = props;
@@ -28,6 +30,7 @@ const Popup: FC<IProps> = (props) => {
       className={`${isOpen ? styles['overlay--visible'] : ''}`}
     >
       <Content
+          title={title}
         onClose={onClose}
         className={`${isOpen ? styles['popup-wrapper--open'] : ''}`}
       >

@@ -5,7 +5,7 @@ import { menuEndpoints, ordersEndpoints } from "$api";
 
 const productsAdapter = createEntityAdapter({
   selectId: (item: IProduct) => item.id,
-  sortComparer: (a, b) => a?.title.localeCompare(b?.title),
+  sortComparer: (a, b) => a.title?.localeCompare(b?.title),
 });
 
 export const productsSelectors = productsAdapter.getSelectors<IRootState>(

@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { ComponentProps, forwardRef, ReactNode, useState } from "react";
+import {ComponentProps,FocusEvent, forwardRef, ReactNode, useState} from "react";
 
 import classes from "./UIBaseInput.module.css";
 import Grid from "../Grid";
@@ -16,9 +16,6 @@ interface IProps extends ComponentProps<"input"> {
 const UIBaseInput = forwardRef<HTMLInputElement, IProps>((props, ref) => {
   const [focused, setFocused] = useState<boolean>(false);
 
-  const onFocus = () => setFocused(true);
-  const onBlur = () => setFocused(false);
-
   const {
     variant = "outline",
     title,
@@ -28,6 +25,15 @@ const UIBaseInput = forwardRef<HTMLInputElement, IProps>((props, ref) => {
     placeholder,
     ...restProps
   } = props;
+
+  const onFocus = (event:FocusEvent<HTMLInputElement>) => {
+    setFocused(true);
+    props.onFocus?.(event);
+  }
+  const onBlur = (event:FocusEvent<HTMLInputElement>) => {
+    setFocused(false);
+    props.onBlur?.(event);
+  }
 
   const inputClasses = classNames(classes.input, className, {
     [classes.underline]: variant === "underline",
@@ -41,12 +47,12 @@ const UIBaseInput = forwardRef<HTMLInputElement, IProps>((props, ref) => {
     <Grid gap={1} width="100%">
       <Grid
         border={`1px solid ${!error ? theme.colors.general300 : theme.colors.red500}`}
-        p={titleActive ? "20px 15px 8px" : "13px 14px"}
+        p={titleActive ? "19px 14px 7px" : "13px 14px"}
         borderRadius="10px"
         backgroundColor={theme.colors.general50}
       >
         {titleActive && (
-          <Typography size="12/12" className={classes.title}>
+          <Typography size="12/12" className={classes.title} color={theme.colors.general600}>
             {title}
           </Typography>
         )}

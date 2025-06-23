@@ -2,19 +2,22 @@ import { FC } from "react";
 import { CloseIcon } from "$assets";
 import { colors } from "$theme";
 import { IconButton, Flex } from "$components";
+import Typography from "../../Typography";
 
 interface IProps {
+    title?:string;
   onClose: () => void;
 }
 
 const Header: FC<IProps> = (props) => {
-  const { onClose } = props;
+  const { title,onClose } = props;
 
   return (
-    <Flex 
+    <Flex
       alignItems="center"
       justifyContent="flex-end"
     >
+        {title && <Typography size="18/18" fontWeight={700}>{title}</Typography>}
       <IconButton
         onClick={onClose}
         style={{

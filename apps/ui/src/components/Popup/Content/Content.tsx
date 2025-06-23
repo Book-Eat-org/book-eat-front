@@ -5,23 +5,25 @@ import Footer from "../Footer";
 
 interface IProps {
   children: React.ReactNode;
+  title?:string;
   className?: string;
   onClose: () => void;
 }
 
 const Content: FC<IProps> = (props) => {
-  const { 
-    children, 
-    onClose, 
-    className = "" 
+  const {
+    title,
+    children,
+    onClose,
+    className = ""
   } = props;
-  
+
   return (
-    <div 
+    <div
       className={`${styles.wrapper} ${className}`}
       onClick={(e) => e.stopPropagation()}
     >
-      <Header onClose={onClose} />
+      <Header onClose={onClose} title={title} />
       <div className={styles.content}>
         {children}
       </div>

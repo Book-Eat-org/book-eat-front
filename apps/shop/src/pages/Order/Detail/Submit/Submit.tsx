@@ -25,11 +25,12 @@ export const Submit = () => {
   }, [paymentStatus, id]);
 
   const onCancel = () => cancelOrder(id);
+  const anyPaymentURL = paymentUrl ?? orderPaymentUrl;
 
   const onClick = () => {
-    if (paymentUrl) {
+    if (anyPaymentURL) {
       dispatch(clearCart());
-      window.open(paymentUrl ?? orderPaymentUrl, "_blank");
+      window.open(anyPaymentURL, "_blank");
     }
   };
 
@@ -39,10 +40,11 @@ export const Submit = () => {
 
   const cancelAvailable = status === OrderStatus.PAID;
 
-  if (![OrderStatus.NEW, OrderStatus.PAID,OrderStatus.ERROR].includes(status)) {
+  if (
+    ![OrderStatus.NEW, OrderStatus.PAID, OrderStatus.ERROR].includes(status)
+  ) {
     return null;
   }
-
 
   return (
     <Flex gap={8}>

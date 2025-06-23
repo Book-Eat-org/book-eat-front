@@ -46,7 +46,7 @@ export const Form: FC = () => {
 
   const methods = useForm<TFormValues>({
     defaultValues: isNil(item) ? undefined : inputAdapter(item),
-    resolver,
+
   });
 
   const [saveMenu] = menuEndpoints.useSaveMenuMutation();
