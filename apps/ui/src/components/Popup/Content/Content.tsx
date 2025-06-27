@@ -1,21 +1,23 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import styles from "./Content.module.css";
 import Header from "../Header";
 import Footer from "../Footer";
 
 interface IProps {
-  children: React.ReactNode;
-  title?:string;
+  title?: string;
+  children: ReactNode;
   className?: string;
   onClose: () => void;
+  footer?: boolean;
 }
 
 const Content: FC<IProps> = (props) => {
-  const {
+  const { 
     title,
-    children,
-    onClose,
-    className = ""
+    children, 
+    onClose, 
+    className = "" ,
+    footer = true,
   } = props;
 
   return (
@@ -27,7 +29,9 @@ const Content: FC<IProps> = (props) => {
       <div className={styles.content}>
         {children}
       </div>
-      <Footer onClose={onClose} />
+      {footer && (
+        <Footer onClose={onClose} />
+      )}
     </div>
   );
 };

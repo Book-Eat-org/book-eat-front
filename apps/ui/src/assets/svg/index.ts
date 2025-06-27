@@ -26,6 +26,9 @@ import SearchIcon18 from "./SearchIcon18.tsx";
 import BellIcon24 from "./BellIcon24.tsx";
 import CopyIcon16 from "./CopyIcon16.tsx";
 import ClockIcon20 from "./ClockIcon.tsx";
+import SettingsIcon24 from "./SettingsIcon24.tsx";
+import ArrowDownIcon24 from "./ArrowDownIcon24.tsx";
+import ArrowUpIcon24 from "./ArrowUpIcon24.tsx";
 
 export {
   BurgerMenuIcon,
@@ -56,4 +59,7 @@ export {
   BellIcon24,
   CopyIcon16,
   ClockIcon20,
+  SettingsIcon24,
+  ArrowDownIcon24,
+  ArrowUpIcon24
 };

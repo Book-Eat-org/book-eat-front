@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 
 import Item from "./Item";
-import { BackIcon24, Flex, Grid, PlusIcon24, theme } from "@book-eat/ui";
+import { BackIcon24, Flex, Grid, PlusIcon24, SettingsIcon24, theme } from "@book-eat/ui";
 import { isNil } from "ramda";
 import { categoriesEndpoints } from "@book-eat/api";
 import { useNavigate } from "react-router-dom";
@@ -14,10 +14,14 @@ export const List = () => {
   const { isLoading, data } = categoriesEndpoints.useFetchCategoriesQuery();
 
   const onBackClick = useCallback(() => navigate(".."), []);
-  const handleAddCLick = useCallback(
-    () => navigate(navigateToPage(PageURLS.CategoriesCreate, {})),
-    [],
-  );
+  
+  const handleAddCLick = useCallback(() => 
+    navigate(navigateToPage(PageURLS.CategoriesCreate, {}))
+  , []);
+
+  const handleSettingsClick = useCallback(() => 
+    navigate(navigateToPage(PageURLS.CategoriesSettings, {}))
+  , []);
 
   if (isLoading || isNil(data)) {
     return null;
@@ -34,12 +38,21 @@ export const List = () => {
           >
             <BackIcon24 onClick={onBackClick} />
           </Flex>
-          <Flex
-            backgroundColor={theme.colors.accent50}
-            borderRadius={10}
-            padding="6px"
-          >
-            <PlusIcon24 onClick={handleAddCLick} />
+          <Flex gap={1}>
+            <Flex
+              backgroundColor={theme.colors.accent50}
+              borderRadius={10}
+              padding="6px"
+            >
+              <SettingsIcon24 onClick={handleSettingsClick} />
+            </Flex>
+            <Flex
+              backgroundColor={theme.colors.accent50}
+              borderRadius={10}
+              padding="6px"
+            >
+              <PlusIcon24 onClick={handleAddCLick} />
+            </Flex>
           </Flex>
         </Page.Header.Buttons>
         <Page.Header.Title>Категории</Page.Header.Title>

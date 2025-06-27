@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { useAnimation } from './hooks/useAnimation';
 import Overlay from './Overlay';
@@ -8,8 +8,9 @@ import styles from './Popup.module.css';
 interface IProps {
   isActive: boolean;
   onClose: () => void;
-  children: React.ReactNode;
   title?:string;
+  children: ReactNode;
+  footer?: boolean;
 }
 
 const Popup: FC<IProps> = (props) => {
@@ -18,6 +19,7 @@ const Popup: FC<IProps> = (props) => {
     title,
     onClose,
     children,
+    footer,
   } = props;
 
   const { shouldRender, isOpen } = useAnimation(isActive);
@@ -32,6 +34,7 @@ const Popup: FC<IProps> = (props) => {
       <Content
           title={title}
         onClose={onClose}
+        footer={footer}
         className={`${isOpen ? styles['popup-wrapper--open'] : ''}`}
       >
         {children}
