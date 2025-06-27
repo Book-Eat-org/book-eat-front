@@ -2,10 +2,10 @@ var Pn = Object.defineProperty;
 var In = (e, t, r) => t in e ? Pn(e, t, { enumerable: !0, configurable: !0, writable: !0, value: r }) : e[t] = r;
 var _t = (e, t, r) => (In(e, typeof t != "symbol" ? t + "" : t, r), r);
 import * as et from "react";
-import lt, { useContext as Nn, useRef as ue, useCallback as xe, useDebugValue as $t, useMemo as ne, useState as cr, useEffect as pe, useLayoutEffect as Dn } from "react";
+import lt, { useContext as Nn, useRef as ae, useCallback as xe, useDebugValue as $t, useMemo as ne, useState as cr, useEffect as pe, useLayoutEffect as Dn } from "react";
 import { unstable_batchedUpdates as $n } from "react-dom";
-var jn = /* @__PURE__ */ ((e) => (e.NEW = "NEW", e.PAID = "PAID", e.IN_PROGRESS = "IN_PROGRESS", e.CANCELLED_BY_CLIENT = "CANCELLED_BY_CLIENT", e.CANCELLED_BY_PROVIDER = "CANCELLED_BY_PROVIDER", e.ERROR = "ERROR", e.COMPLETED = "COMPLETED", e))(jn || {}), kn = /* @__PURE__ */ ((e) => (e.DELIVERY = "DELIVERY", e.TO_OUTSIDE = "TO_OUTSIDE", e.ON_PLACE = "ON_PLACE", e))(kn || {}), qn = /* @__PURE__ */ ((e) => (e.Monday = "Понедельник", e.Tuesday = "Вторник", e.Wednesday = "Среда", e.Thursday = "Четверг", e.Friday = "Пятница", e.Saturday = "Суббота", e.Sunday = "Воскресенье", e))(qn || {});
-function jt(e) {
+var qn = /* @__PURE__ */ ((e) => (e.NEW = "NEW", e.PAID = "PAID", e.IN_PROGRESS = "IN_PROGRESS", e.CANCELLED_BY_CLIENT = "CANCELLED_BY_CLIENT", e.CANCELLED_BY_PROVIDER = "CANCELLED_BY_PROVIDER", e.ERROR = "ERROR", e.COMPLETED = "COMPLETED", e))(qn || {}), jn = /* @__PURE__ */ ((e) => (e.DELIVERY = "DELIVERY", e.TO_OUTSIDE = "TO_OUTSIDE", e.ON_PLACE = "ON_PLACE", e))(jn || {}), kn = /* @__PURE__ */ ((e) => (e.Monday = "Понедельник", e.Tuesday = "Вторник", e.Wednesday = "Среда", e.Thursday = "Четверг", e.Friday = "Пятница", e.Saturday = "Суббота", e.Sunday = "Воскресенье", e))(kn || {});
+function qt(e) {
   return `Minified Redux error #${e}; visit https://redux.js.org/Errors?code=${e} for the full message or use the non-minified dev environment for full errors. `;
 }
 var bt = () => Math.random().toString(36).substring(7).split("").join("."), xn = {
@@ -66,7 +66,7 @@ function Qn(e) {
   let t = typeof e;
   return process.env.NODE_ENV !== "production" && (t = zn(e)), t;
 }
-function ur(e) {
+function ar(e) {
   typeof console < "u" && typeof console.error == "function" && console.error(e);
   try {
     throw new Error(e);
@@ -74,16 +74,16 @@ function ur(e) {
   }
 }
 function Un(e, t, r, n) {
-  const o = Object.keys(t), u = r && r.type === Le.INIT ? "preloadedState argument passed to createStore" : "previous state received by the reducer";
+  const o = Object.keys(t), a = r && r.type === Le.INIT ? "preloadedState argument passed to createStore" : "previous state received by the reducer";
   if (o.length === 0)
     return "Store does not have a valid reducer. Make sure the argument passed to combineReducers is an object whose values are reducers.";
   if (!le(e))
-    return `The ${u} has unexpected type of "${Qn(e)}". Expected argument to be an object with the following keys: "${o.join('", "')}"`;
+    return `The ${a} has unexpected type of "${Qn(e)}". Expected argument to be an object with the following keys: "${o.join('", "')}"`;
   const d = Object.keys(e).filter((v) => !t.hasOwnProperty(v) && !n[v]);
   if (d.forEach((v) => {
     n[v] = !0;
   }), !(r && r.type === Le.REPLACE) && d.length > 0)
-    return `Unexpected ${d.length > 1 ? "keys" : "key"} "${d.join('", "')}" found in ${u}. Expected to find one of the known reducer keys instead: "${o.join('", "')}". Unexpected keys will be ignored.`;
+    return `Unexpected ${d.length > 1 ? "keys" : "key"} "${d.join('", "')}" found in ${a}. Expected to find one of the known reducer keys instead: "${o.join('", "')}". Unexpected keys will be ignored.`;
 }
 function Bn(e) {
   Object.keys(e).forEach((t) => {
@@ -91,44 +91,44 @@ function Bn(e) {
     if (typeof r(void 0, {
       type: Le.INIT
     }) > "u")
-      throw new Error(process.env.NODE_ENV === "production" ? jt(12) : `The slice reducer for key "${t}" returned undefined during initialization. If the state passed to the reducer is undefined, you must explicitly return the initial state. The initial state may not be undefined. If you don't want to set a value for this reducer, you can use null instead of undefined.`);
+      throw new Error(process.env.NODE_ENV === "production" ? qt(12) : `The slice reducer for key "${t}" returned undefined during initialization. If the state passed to the reducer is undefined, you must explicitly return the initial state. The initial state may not be undefined. If you don't want to set a value for this reducer, you can use null instead of undefined.`);
     if (typeof r(void 0, {
       type: Le.PROBE_UNKNOWN_ACTION()
     }) > "u")
-      throw new Error(process.env.NODE_ENV === "production" ? jt(13) : `The slice reducer for key "${t}" returned undefined when probed with a random type. Don't try to handle '${Le.INIT}' or other actions in "redux/*" namespace. They are considered private. Instead, you must return the current state for any unknown actions, unless it is undefined, in which case you must return the initial state, regardless of the action type. The initial state may not be undefined, but can be null.`);
+      throw new Error(process.env.NODE_ENV === "production" ? qt(13) : `The slice reducer for key "${t}" returned undefined when probed with a random type. Don't try to handle '${Le.INIT}' or other actions in "redux/*" namespace. They are considered private. Instead, you must return the current state for any unknown actions, unless it is undefined, in which case you must return the initial state, regardless of the action type. The initial state may not be undefined, but can be null.`);
   });
 }
 function Wn(e) {
   const t = Object.keys(e), r = {};
   for (let d = 0; d < t.length; d++) {
     const v = t[d];
-    process.env.NODE_ENV !== "production" && typeof e[v] > "u" && ur(`No reducer provided for key "${v}"`), typeof e[v] == "function" && (r[v] = e[v]);
+    process.env.NODE_ENV !== "production" && typeof e[v] > "u" && ar(`No reducer provided for key "${v}"`), typeof e[v] == "function" && (r[v] = e[v]);
   }
   const n = Object.keys(r);
   let o;
   process.env.NODE_ENV !== "production" && (o = {});
-  let u;
+  let a;
   try {
     Bn(r);
   } catch (d) {
-    u = d;
+    a = d;
   }
   return function(v = {}, O) {
-    if (u)
-      throw u;
+    if (a)
+      throw a;
     if (process.env.NODE_ENV !== "production") {
       const g = Un(v, r, O, o);
-      g && ur(g);
+      g && ar(g);
     }
     let E = !1;
     const S = {};
     for (let g = 0; g < n.length; g++) {
-      const y = n[g], l = r[y], a = v[y], p = l(a, O);
+      const y = n[g], l = r[y], u = v[y], p = l(u, O);
       if (typeof p > "u") {
         const f = O && O.type;
-        throw new Error(process.env.NODE_ENV === "production" ? jt(14) : `When called with an action of type ${f ? `"${String(f)}"` : "(unknown type)"}, the slice reducer for key "${y}" returned undefined. To ignore an action, you must explicitly return the previous state. If you want this reducer to hold no value, you can return null instead of undefined.`);
+        throw new Error(process.env.NODE_ENV === "production" ? qt(14) : `When called with an action of type ${f ? `"${String(f)}"` : "(unknown type)"}, the slice reducer for key "${y}" returned undefined. To ignore an action, you must explicitly return the previous state. If you want this reducer to hold no value, you can return null instead of undefined.`);
       }
-      S[y] = p, E = E || p !== a;
+      S[y] = p, E = E || p !== u;
     }
     return E = E || n.length !== Object.keys(v).length, E ? S : v;
   };
@@ -228,7 +228,7 @@ function Je(e) {
 function ge(e) {
   return e.copy_ || e.base_;
 }
-function kt(e, t) {
+function jt(e, t) {
   if (Ge(e))
     return new Map(e);
   if (Je(e))
@@ -241,13 +241,13 @@ function kt(e, t) {
   delete r[ee];
   let n = Reflect.ownKeys(r);
   for (let o = 0; o < n.length; o++) {
-    const u = n[o], d = r[u];
-    d.writable === !1 && (d.writable = !0, d.configurable = !0), (d.get || d.set) && (r[u] = {
+    const a = n[o], d = r[a];
+    d.writable === !1 && (d.writable = !0, d.configurable = !0), (d.get || d.set) && (r[a] = {
       configurable: !0,
       writable: !0,
       // could live with !!desc.set as well here...
       enumerable: d.enumerable,
-      value: e[u]
+      value: e[a]
     });
   }
   return Object.create(_e(e), r);
@@ -261,13 +261,13 @@ function Gn() {
 function dt(e) {
   return Object.isFrozen(e);
 }
-var qt = {};
+var kt = {};
 function Oe(e) {
-  const t = qt[e];
+  const t = kt[e];
   return t || Y(0, e), t;
 }
 function Jn(e, t) {
-  qt[e] || (qt[e] = t);
+  kt[e] || (kt[e] = t);
 }
 var Be;
 function Gr() {
@@ -284,7 +284,7 @@ function Xn(e, t) {
     unfinalizedDrafts_: 0
   };
 }
-function ar(e, t) {
+function ur(e, t) {
   t && (Oe("Patches"), e.patches_ = [], e.inversePatches_ = [], e.patchListener_ = t);
 }
 function xt(e) {
@@ -317,7 +317,7 @@ function it(e, t, r) {
   if (!n)
     return Ne(
       t,
-      (o, u) => fr(e, n, t, o, u, r)
+      (o, a) => fr(e, n, t, o, a, r)
     ), t;
   if (n.scope_ !== e)
     return t;
@@ -326,9 +326,9 @@ function it(e, t, r) {
   if (!n.finalized_) {
     n.finalized_ = !0, n.scope_.unfinalizedDrafts_--;
     const o = n.copy_;
-    let u = o, d = !1;
-    n.type_ === 3 && (u = new Set(o), o.clear(), d = !0), Ne(
-      u,
+    let a = o, d = !1;
+    n.type_ === 3 && (a = new Set(o), o.clear(), d = !0), Ne(
+      a,
       (v, O) => fr(e, n, o, v, O, r, d)
     ), st(e, o, !1), r && e.patches_ && Oe("Patches").generatePatches_(
       n,
@@ -339,10 +339,10 @@ function it(e, t, r) {
   }
   return n.copy_;
 }
-function fr(e, t, r, n, o, u, d) {
+function fr(e, t, r, n, o, a, d) {
   if (process.env.NODE_ENV !== "production" && o === r && Y(5), ie(o)) {
-    const v = u && t && t.type_ !== 3 && // Set objects are atomic since they have no keys.
-    !Ue(t.assigned_, n) ? u.concat(n) : void 0, O = it(e, o, v);
+    const v = a && t && t.type_ !== 3 && // Set objects are atomic since they have no keys.
+    !Ue(t.assigned_, n) ? a.concat(n) : void 0, O = it(e, o, v);
     if (Hr(r, n, O), ie(O))
       e.canAutoFreeze_ = !1;
     else
@@ -382,9 +382,9 @@ function eo(e, t) {
     revoke_: null,
     isManual_: !1
   };
-  let o = n, u = Jt;
-  r && (o = [n], u = We);
-  const { revoke: d, proxy: v } = Proxy.revocable(o, u);
+  let o = n, a = Jt;
+  r && (o = [n], a = We);
+  const { revoke: d, proxy: v } = Proxy.revocable(o, a);
   return n.draft_ = v, n.revoke_ = d, v;
 }
 var Jt = {
@@ -408,8 +408,8 @@ var Jt = {
     if (n != null && n.set)
       return n.set.call(e.draft_, r), !0;
     if (!e.modified_) {
-      const o = Rt(ge(e), t), u = o == null ? void 0 : o[ee];
-      if (u && u.base_ === r)
+      const o = Rt(ge(e), t), a = o == null ? void 0 : o[ee];
+      if (a && a.base_ === r)
         return e.copy_[t] = r, e.assigned_[t] = !1, !0;
       if (Hn(r, o) && (r !== void 0 || Ue(e.base_, t)))
         return !0;
@@ -482,7 +482,7 @@ function Lt(e) {
   e.modified_ || (e.modified_ = !0, e.parent_ && Lt(e.parent_));
 }
 function wt(e) {
-  e.copy_ || (e.copy_ = kt(
+  e.copy_ || (e.copy_ = jt(
     e.base_,
     e.scope_.immer_.useStrictShallowCopy_
   ));
@@ -491,28 +491,28 @@ var ro = class {
   constructor(e) {
     this.autoFreeze_ = !0, this.useStrictShallowCopy_ = !1, this.produce = (t, r, n) => {
       if (typeof t == "function" && typeof r != "function") {
-        const u = r;
+        const a = r;
         r = t;
         const d = this;
-        return function(O = u, ...E) {
+        return function(O = a, ...E) {
           return d.produce(O, (S) => r.call(this, S, ...E));
         };
       }
       typeof r != "function" && Y(6), n !== void 0 && typeof n != "function" && Y(7);
       let o;
       if (se(t)) {
-        const u = lr(this), d = Vt(t, void 0);
+        const a = lr(this), d = Vt(t, void 0);
         let v = !0;
         try {
           o = r(d), v = !1;
         } finally {
-          v ? xt(u) : zt(u);
+          v ? xt(a) : zt(a);
         }
-        return ar(u, n), dr(o, u);
+        return ur(a, n), dr(o, a);
       } else if (!t || typeof t != "object") {
         if (o = r(t), o === void 0 && (o = t), o === Ht && (o = void 0), this.autoFreeze_ && Gt(o, !0), n) {
-          const u = [], d = [];
-          Oe("Patches").generateReplacementPatches_(t, o, u, d), n(u, d);
+          const a = [], d = [];
+          Oe("Patches").generateReplacementPatches_(t, o, a, d), n(a, d);
         }
         return o;
       } else
@@ -535,7 +535,7 @@ var ro = class {
     const r = e && e[ee];
     (!r || !r.isManual_) && Y(9);
     const { scope_: n } = r;
-    return ar(n, t), dr(void 0, n);
+    return ur(n, t), dr(void 0, n);
   }
   /**
    * Pass true to automatically freeze all copies created by Immer.
@@ -585,9 +585,9 @@ function Zr(e) {
   if (t) {
     if (!t.modified_)
       return t.base_;
-    t.finalized_ = !0, r = kt(e, t.scope_.immer_.useStrictShallowCopy_);
+    t.finalized_ = !0, r = jt(e, t.scope_.immer_.useStrictShallowCopy_);
   } else
-    r = kt(e, !0);
+    r = jt(e, !0);
   return Ne(r, (n, o) => {
     Hr(r, n, Zr(o));
   }), t && (t.finalized_ = !1), r;
@@ -604,34 +604,34 @@ function no() {
     "Patching reserved attributes like __proto__, prototype and constructor is not allowed"
   );
   const t = "replace", r = "add", n = "remove";
-  function o(y, l, a, p) {
+  function o(y, l, u, p) {
     switch (y.type_) {
       case 0:
       case 2:
         return d(
           y,
           l,
-          a,
+          u,
           p
         );
       case 1:
-        return u(y, l, a, p);
+        return a(y, l, u, p);
       case 3:
         return v(
           y,
           l,
-          a,
+          u,
           p
         );
     }
   }
-  function u(y, l, a, p) {
+  function a(y, l, u, p) {
     let { base_: f, assigned_: m } = y, h = y.copy_;
-    h.length < f.length && ([f, h] = [h, f], [a, p] = [p, a]);
+    h.length < f.length && ([f, h] = [h, f], [u, p] = [p, u]);
     for (let s = 0; s < f.length; s++)
       if (m[s] && h[s] !== f[s]) {
         const i = l.concat([s]);
-        a.push({
+        u.push({
           op: t,
           path: i,
           // Need to maybe clone it, as it can in fact be the original value
@@ -645,7 +645,7 @@ function no() {
       }
     for (let s = f.length; s < h.length; s++) {
       const i = l.concat([s]);
-      a.push({
+      u.push({
         op: r,
         path: i,
         // Need to maybe clone it, as it can in fact be the original value
@@ -661,24 +661,24 @@ function no() {
       });
     }
   }
-  function d(y, l, a, p) {
+  function d(y, l, u, p) {
     const { base_: f, copy_: m } = y;
     Ne(y.assigned_, (h, s) => {
       const i = Ot(f, h), c = Ot(m, h), _ = s ? Ue(f, h) ? t : r : n;
       if (i === c && _ === t)
         return;
       const b = l.concat(h);
-      a.push(_ === n ? { op: _, path: b } : { op: _, path: b, value: c }), p.push(
+      u.push(_ === n ? { op: _, path: b } : { op: _, path: b, value: c }), p.push(
         _ === r ? { op: n, path: b } : _ === n ? { op: r, path: b, value: g(i) } : { op: t, path: b, value: g(i) }
       );
     });
   }
-  function v(y, l, a, p) {
+  function v(y, l, u, p) {
     let { base_: f, copy_: m } = y, h = 0;
     f.forEach((s) => {
       if (!m.has(s)) {
         const i = l.concat([h]);
-        a.push({
+        u.push({
           op: n,
           path: i,
           value: s
@@ -692,7 +692,7 @@ function no() {
     }), h = 0, m.forEach((s) => {
       if (!f.has(s)) {
         const i = l.concat([h]);
-        a.push({
+        u.push({
           op: r,
           path: i,
           value: s
@@ -705,8 +705,8 @@ function no() {
       h++;
     });
   }
-  function O(y, l, a, p) {
-    a.push({
+  function O(y, l, u, p) {
+    u.push({
       op: t,
       path: [],
       value: l === Ht ? void 0 : l
@@ -717,15 +717,15 @@ function no() {
     });
   }
   function E(y, l) {
-    return l.forEach((a) => {
-      const { path: p, op: f } = a;
+    return l.forEach((u) => {
+      const { path: p, op: f } = u;
       let m = y;
       for (let c = 0; c < p.length - 1; c++) {
         const _ = be(m);
         let b = p[c];
         typeof b != "string" && typeof b != "number" && (b = "" + b), (_ === 0 || _ === 1) && (b === "__proto__" || b === "constructor") && Y(16 + 3), typeof m == "function" && b === "prototype" && Y(16 + 3), m = Ot(m, b), typeof m != "object" && Y(16 + 2, p.join("/"));
       }
-      const h = be(m), s = S(a.value), i = p[p.length - 1];
+      const h = be(m), s = S(u.value), i = p[p.length - 1];
       switch (f) {
         case t:
           switch (h) {
@@ -754,7 +754,7 @@ function no() {
             case 2:
               return m.delete(i);
             case 3:
-              return m.delete(a.value);
+              return m.delete(u.value);
             default:
               return delete m[i];
           }
@@ -770,13 +770,13 @@ function no() {
       return y.map(S);
     if (Ge(y))
       return new Map(
-        Array.from(y.entries()).map(([a, p]) => [a, S(p)])
+        Array.from(y.entries()).map(([u, p]) => [u, S(p)])
       );
     if (Je(y))
       return new Set(Array.from(y).map(S));
     const l = Object.create(_e(y));
-    for (const a in y)
-      l[a] = S(y[a]);
+    for (const u in y)
+      l[u] = S(y[u]);
     return Ue(y, Ve) && (l[Ve] = y[Ve]), l;
   }
   function g(y) {
@@ -819,8 +819,8 @@ Ensure transformation logic is in the result function, and extraction logic is i
     );
   }
 }, io = (e, t, r) => {
-  const { memoize: n, memoizeOptions: o } = t, { inputSelectorResults: u, inputSelectorResultsCopy: d } = e, v = n(() => ({}), ...o);
-  if (!(v.apply(null, u) === v.apply(null, d))) {
+  const { memoize: n, memoizeOptions: o } = t, { inputSelectorResults: a, inputSelectorResultsCopy: d } = e, v = n(() => ({}), ...o);
+  if (!(v.apply(null, a) === v.apply(null, d))) {
     let E;
     try {
       throw new Error();
@@ -834,7 +834,7 @@ Avoid returning a new reference inside your input selector, e.g.
 \`createSelector([state => state.todos.map(todo => todo.id)], todoIds => todoIds.length)\``,
       {
         arguments: r,
-        firstInputs: u,
+        firstInputs: a,
         secondInputs: d,
         stack: E
       }
@@ -848,7 +848,7 @@ function co(e, t = `expected a function, instead received ${typeof e}`) {
   if (typeof e != "function")
     throw new TypeError(t);
 }
-function uo(e, t = "expected all items to be functions, instead received the following types: ") {
+function ao(e, t = "expected all items to be functions, instead received the following types: ") {
   if (!e.every((r) => typeof r == "function")) {
     const r = e.map(
       (n) => typeof n == "function" ? `function ${n.name || "unnamed"}()` : typeof n
@@ -857,9 +857,9 @@ function uo(e, t = "expected all items to be functions, instead received the fol
   }
 }
 var yr = (e) => Array.isArray(e) ? e : [e];
-function ao(e) {
+function uo(e) {
   const t = Array.isArray(e[0]) ? e[0] : e;
-  return uo(
+  return ao(
     t,
     "createSelector expects all input-selectors to be functions, but received the following types: "
   ), t;
@@ -904,36 +904,36 @@ function tt() {
 function Ke(e, t = {}) {
   let r = tt();
   const { resultEqualityCheck: n } = t;
-  let o, u = 0;
+  let o, a = 0;
   function d() {
     let v = r;
     const { length: O } = arguments;
     for (let g = 0, y = O; g < y; g++) {
       const l = arguments[g];
       if (typeof l == "function" || typeof l == "object" && l !== null) {
-        let a = v.o;
-        a === null && (v.o = a = /* @__PURE__ */ new WeakMap());
-        const p = a.get(l);
-        p === void 0 ? (v = tt(), a.set(l, v)) : v = p;
+        let u = v.o;
+        u === null && (v.o = u = /* @__PURE__ */ new WeakMap());
+        const p = u.get(l);
+        p === void 0 ? (v = tt(), u.set(l, v)) : v = p;
       } else {
-        let a = v.p;
-        a === null && (v.p = a = /* @__PURE__ */ new Map());
-        const p = a.get(l);
-        p === void 0 ? (v = tt(), a.set(l, v)) : v = p;
+        let u = v.p;
+        u === null && (v.p = u = /* @__PURE__ */ new Map());
+        const p = u.get(l);
+        p === void 0 ? (v = tt(), u.set(l, v)) : v = p;
       }
     }
     const E = v;
     let S;
-    if (v.s === mr ? S = v.v : (S = e.apply(null, arguments), u++), E.s = mr, n) {
+    if (v.s === mr ? S = v.v : (S = e.apply(null, arguments), a++), E.s = mr, n) {
       const g = (o == null ? void 0 : o.deref()) ?? o;
-      g != null && n(g, S) && (S = g, u !== 0 && u--), o = typeof S == "object" && S !== null || typeof S == "function" ? new po(S) : S;
+      g != null && n(g, S) && (S = g, a !== 0 && a--), o = typeof S == "object" && S !== null || typeof S == "function" ? new po(S) : S;
     }
     return E.v = S, S;
   }
   return d.clearCache = () => {
     r = tt(), d.resetResultsCount();
-  }, d.resultsCount = () => u, d.resetResultsCount = () => {
-    u = 0;
+  }, d.resultsCount = () => a, d.resetResultsCount = () => {
+    a = 0;
   }, d;
 }
 function tn(e, ...t) {
@@ -942,7 +942,7 @@ function tn(e, ...t) {
     memoizeOptions: t
   } : e;
   return (...o) => {
-    let u = 0, d = 0, v, O = {}, E = o.pop();
+    let a = 0, d = 0, v, O = {}, E = o.pop();
     typeof E == "object" && (O = E, E = o.pop()), co(
       E,
       `createSelector expects an output function after the inputs, but received: [${typeof E}]`
@@ -954,10 +954,10 @@ function tn(e, ...t) {
       memoize: g,
       memoizeOptions: y = [],
       argsMemoize: l = Ke,
-      argsMemoizeOptions: a = [],
+      argsMemoizeOptions: u = [],
       devModeChecks: p = {}
-    } = S, f = yr(y), m = yr(a), h = ao(o), s = g(function() {
-      return u++, E.apply(
+    } = S, f = yr(y), m = yr(u), h = uo(o), s = g(function() {
+      return a++, E.apply(
         null,
         arguments
       );
@@ -997,9 +997,9 @@ function tn(e, ...t) {
         d = 0;
       },
       lastResult: () => v,
-      recomputations: () => u,
+      recomputations: () => a,
       resetRecomputations: () => {
-        u = 0;
+        a = 0;
       },
       memoize: g,
       argsMemoize: l
@@ -1008,8 +1008,8 @@ function tn(e, ...t) {
 }
 var rn = /* @__PURE__ */ tn(Ke), ho = (...e) => {
   const t = tn(...e), r = Object.assign((...n) => {
-    const o = t(...n), u = (d, ...v) => o(ie(d) ? Xr(d) : d, ...v);
-    return Object.assign(u, o), u;
+    const o = t(...n), a = (d, ...v) => o(ie(d) ? Xr(d) : d, ...v);
+    return Object.assign(a, o), a;
   }, {
     withTypes: () => r
   });
@@ -1059,7 +1059,7 @@ function vr(e, t, r) {
   const n = r.insert(t, e);
   return e.set(t, n), n;
 }
-var ze = "RTK_autoBatch", ke = () => (e) => ({
+var ze = "RTK_autoBatch", je = () => (e) => ({
   payload: e,
   meta: {
     [ze]: !0
@@ -1070,32 +1070,32 @@ function nn(e) {
   const t = {}, r = [];
   let n;
   const o = {
-    addCase(u, d) {
+    addCase(a, d) {
       if (process.env.NODE_ENV !== "production") {
         if (r.length > 0)
           throw new Error(process.env.NODE_ENV === "production" ? U(26) : "`builder.addCase` should only be called before calling `builder.addMatcher`");
         if (n)
           throw new Error(process.env.NODE_ENV === "production" ? U(27) : "`builder.addCase` should only be called before calling `builder.addDefaultCase`");
       }
-      const v = typeof u == "string" ? u : u.type;
+      const v = typeof a == "string" ? a : a.type;
       if (!v)
         throw new Error(process.env.NODE_ENV === "production" ? U(28) : "`builder.addCase` cannot be called with an empty action type");
       if (v in t)
         throw new Error(process.env.NODE_ENV === "production" ? U(29) : `\`builder.addCase\` cannot be called with two reducers for the same action type '${v}'`);
       return t[v] = d, o;
     },
-    addMatcher(u, d) {
+    addMatcher(a, d) {
       if (process.env.NODE_ENV !== "production" && n)
         throw new Error(process.env.NODE_ENV === "production" ? U(30) : "`builder.addMatcher` should only be called before calling `builder.addDefaultCase`");
       return r.push({
-        matcher: u,
+        matcher: a,
         reducer: d
       }), o;
     },
-    addDefaultCase(u) {
+    addDefaultCase(a) {
       if (process.env.NODE_ENV !== "production" && n)
         throw new Error(process.env.NODE_ENV === "production" ? U(31) : "`builder.addDefaultCase` can only be called once");
-      return n = u, o;
+      return n = a, o;
     }
   };
   return e(o), [t, r, n];
@@ -1106,14 +1106,14 @@ function Eo(e) {
 function _o(e, t) {
   if (process.env.NODE_ENV !== "production" && typeof t == "object")
     throw new Error(process.env.NODE_ENV === "production" ? U(8) : "The object notation for `createReducer` has been removed. Please use the 'builder callback' notation instead: https://redux-toolkit.js.org/api/createReducer");
-  let [r, n, o] = nn(t), u;
+  let [r, n, o] = nn(t), a;
   if (Eo(e))
-    u = () => gr(e());
+    a = () => gr(e());
   else {
     const v = gr(e);
-    u = () => v;
+    a = () => v;
   }
-  function d(v = u(), O) {
+  function d(v = a(), O) {
     let E = [r[O.type], ...n.filter(({
       matcher: S
     }) => S(O)).map(({
@@ -1140,7 +1140,7 @@ function _o(e, t) {
       return S;
     }, v);
   }
-  return d.getInitialState = u, d;
+  return d.getInitialState = a, d;
 }
 var bo = "ModuleSymbhasOwnPr-0123456789ABCDEFGHNRVfgctiUvz_KqYTJkLxpZXIjQW", Xt = (e = 21) => {
   let t = "", r = e;
@@ -1231,7 +1231,7 @@ var Oo = ["name", "message", "stack", "code"], Tt = class {
         requestId: E,
         requestStatus: "fulfilled"
       }
-    })), u = X(t + "/pending", (O, E, S) => ({
+    })), a = X(t + "/pending", (O, E, S) => ({
       payload: void 0,
       meta: {
         ...S || {},
@@ -1255,7 +1255,7 @@ var Oo = ["name", "message", "stack", "code"], Tt = class {
     function v(O) {
       return (E, S, g) => {
         const y = n != null && n.idGenerator ? n.idGenerator(O) : Xt(), l = new AbortController();
-        let a, p;
+        let u, p;
         function f(h) {
           p = h, l.abort();
         }
@@ -1273,14 +1273,14 @@ var Oo = ["name", "message", "stack", "code"], Tt = class {
                 message: "Aborted due to condition callback returning false."
               };
             const b = new Promise((R, w) => {
-              a = () => {
+              u = () => {
                 w({
                   name: "AbortError",
                   message: p || "Aborted"
                 });
-              }, l.signal.addEventListener("abort", a);
+              }, l.signal.addEventListener("abort", u);
             });
-            E(u(y, O, (c = n == null ? void 0 : n.getPendingMeta) == null ? void 0 : c.call(n, {
+            E(a(y, O, (c = n == null ? void 0 : n.getPendingMeta) == null ? void 0 : c.call(n, {
               requestId: y,
               arg: O
             }, {
@@ -1303,7 +1303,7 @@ var Oo = ["name", "message", "stack", "code"], Tt = class {
           } catch (_) {
             h = _ instanceof Tt ? d(null, y, O, _.payload, _.meta) : d(_, y, O);
           } finally {
-            a && l.signal.removeEventListener("abort", a);
+            u && l.signal.removeEventListener("abort", u);
           }
           return n && !n.dispatchConditionRejection && d.match(h) && h.meta.condition || E(h), h;
         }();
@@ -1318,7 +1318,7 @@ var Oo = ["name", "message", "stack", "code"], Tt = class {
       };
     }
     return Object.assign(v, {
-      pending: u,
+      pending: a,
       rejected: d,
       fulfilled: o,
       settled: he(d, o),
@@ -1348,10 +1348,10 @@ function Mo({
   const t = (r = e == null ? void 0 : e.asyncThunk) == null ? void 0 : r[Co];
   return function(o) {
     const {
-      name: u,
-      reducerPath: d = u
+      name: a,
+      reducerPath: d = a
     } = o;
-    if (!u)
+    if (!a)
       throw new Error(process.env.NODE_ENV === "production" ? U(11) : "`name` is a required option for createSlice");
     typeof process < "u" && process.env.NODE_ENV === "development" && o.initialState === void 0 && console.error("You must provide an `initialState` value that is not `undefined`. You may have misspelled `initialState`");
     const v = (typeof o.reducers == "function" ? o.reducers(Io()) : o.reducers) || {}, O = Object.keys(v), E = {
@@ -1384,10 +1384,10 @@ function Mo({
     O.forEach((s) => {
       const i = v[s], c = {
         reducerName: s,
-        type: Ao(u, s),
+        type: Ao(a, s),
         createNotation: typeof o.reducers == "function"
       };
-      Do(i) ? jo(c, i, S, t) : No(c, i, S);
+      Do(i) ? qo(c, i, S, t) : No(c, i, S);
     });
     function g() {
       if (process.env.NODE_ENV !== "production" && typeof o.extraReducers == "object")
@@ -1407,12 +1407,12 @@ function Mo({
       });
     }
     const y = (s) => s, l = /* @__PURE__ */ new Map();
-    let a;
+    let u;
     function p(s, i) {
-      return a || (a = g()), a(s, i);
+      return u || (u = g()), u(s, i);
     }
     function f() {
-      return a || (a = g()), a.getInitialState();
+      return u || (u = g()), u.getInitialState();
     }
     function m(s, i = !1) {
       function c(b) {
@@ -1448,7 +1448,7 @@ function Mo({
       };
     }
     const h = {
-      name: u,
+      name: a,
       reducer: p,
       actions: E.actionCreators,
       caseReducers: E.sliceCaseReducersByName,
@@ -1472,8 +1472,8 @@ function Mo({
   };
 }
 function Po(e, t, r, n) {
-  function o(u, ...d) {
-    let v = t(u);
+  function o(a, ...d) {
+    let v = t(a);
     if (typeof v > "u") {
       if (n)
         v = r();
@@ -1521,14 +1521,14 @@ function No({
   reducerName: t,
   createNotation: r
 }, n, o) {
-  let u, d;
+  let a, d;
   if ("reducer" in n) {
     if (r && !$o(n))
       throw new Error(process.env.NODE_ENV === "production" ? U(17) : "Please use the `create.preparedReducer` notation for prepared action creators with the `create` notation.");
-    u = n.reducer, d = n.prepare;
+    a = n.reducer, d = n.prepare;
   } else
-    u = n;
-  o.addCase(e, u).exposeCaseReducer(t, u).exposeAction(t, d ? X(e, d) : X(e));
+    a = n;
+  o.addCase(e, a).exposeCaseReducer(t, a).exposeAction(t, d ? X(e, d) : X(e));
 }
 function Do(e) {
   return e._reducerDefinitionType === "asyncThunk";
@@ -1536,20 +1536,20 @@ function Do(e) {
 function $o(e) {
   return e._reducerDefinitionType === "reducerWithPrepare";
 }
-function jo({
+function qo({
   type: e,
   reducerName: t
 }, r, n, o) {
   if (!o)
     throw new Error(process.env.NODE_ENV === "production" ? U(18) : "Cannot use `create.asyncThunk` in the built-in `createSlice`. Use `buildCreateSlice({ creators: { asyncThunk: asyncThunkCreator } })` to create a customised version of `createSlice`.");
   const {
-    payloadCreator: u,
+    payloadCreator: a,
     fulfilled: d,
     pending: v,
     rejected: O,
     settled: E,
     options: S
-  } = r, g = o(e, u, S);
+  } = r, g = o(e, a, S);
   n.exposeAction(t, g), d && n.addCase(g.fulfilled, d), v && n.addCase(g.pending, v), O && n.addCase(g.rejected, O), E && n.addMatcher(g.settled, E), n.exposeCaseReducer(t, {
     fulfilled: d || rt,
     pending: v || rt,
@@ -1559,15 +1559,15 @@ function jo({
 }
 function rt() {
 }
-function ko() {
+function jo() {
   return {
     ids: [],
     entities: {}
   };
 }
-function qo(e) {
+function ko(e) {
   function t(r = {}, n) {
-    const o = Object.assign(ko(), r);
+    const o = Object.assign(jo(), r);
     return n ? e.setAll(o, n) : o;
   }
   return {
@@ -1578,16 +1578,16 @@ function xo() {
   function e(t, r = {}) {
     const {
       createSelector: n = mo
-    } = r, o = (g) => g.ids, u = (g) => g.entities, d = n(o, u, (g, y) => g.map((l) => y[l])), v = (g, y) => y, O = (g, y) => g[y], E = n(o, (g) => g.length);
+    } = r, o = (g) => g.ids, a = (g) => g.entities, d = n(o, a, (g, y) => g.map((l) => y[l])), v = (g, y) => y, O = (g, y) => g[y], E = n(o, (g) => g.length);
     if (!t)
       return {
         selectIds: o,
-        selectEntities: u,
+        selectEntities: a,
         selectAll: d,
         selectTotal: E,
-        selectById: n(u, v, O)
+        selectById: n(a, v, O)
       };
-    const S = n(t, u);
+    const S = n(t, a);
     return {
       selectIds: n(t, o),
       selectEntities: S,
@@ -1612,10 +1612,10 @@ function K(e) {
     function o(d) {
       return vo(d);
     }
-    const u = (d) => {
+    const a = (d) => {
       o(n) ? e(n.payload, d) : e(n, d);
     };
-    return zo(r) ? (u(r), r) : $e(r, u);
+    return zo(r) ? (a(r), r) : $e(r, a);
   };
 }
 function Pe(e, t) {
@@ -1628,65 +1628,65 @@ function Ee(e) {
 function sn(e, t, r) {
   e = Ee(e);
   const n = [], o = [];
-  for (const u of e) {
-    const d = Pe(u, t);
+  for (const a of e) {
+    const d = Pe(a, t);
     d in r.entities ? o.push({
       id: d,
-      changes: u
-    }) : n.push(u);
+      changes: a
+    }) : n.push(a);
   }
   return [n, o];
 }
 function cn(e) {
-  function t(a, p) {
-    const f = Pe(a, e);
-    f in p.entities || (p.ids.push(f), p.entities[f] = a);
+  function t(u, p) {
+    const f = Pe(u, e);
+    f in p.entities || (p.ids.push(f), p.entities[f] = u);
   }
-  function r(a, p) {
-    a = Ee(a);
-    for (const f of a)
+  function r(u, p) {
+    u = Ee(u);
+    for (const f of u)
       t(f, p);
   }
-  function n(a, p) {
-    const f = Pe(a, e);
-    f in p.entities || p.ids.push(f), p.entities[f] = a;
+  function n(u, p) {
+    const f = Pe(u, e);
+    f in p.entities || p.ids.push(f), p.entities[f] = u;
   }
-  function o(a, p) {
-    a = Ee(a);
-    for (const f of a)
+  function o(u, p) {
+    u = Ee(u);
+    for (const f of u)
       n(f, p);
   }
-  function u(a, p) {
-    a = Ee(a), p.ids = [], p.entities = {}, r(a, p);
+  function a(u, p) {
+    u = Ee(u), p.ids = [], p.entities = {}, r(u, p);
   }
-  function d(a, p) {
-    return v([a], p);
+  function d(u, p) {
+    return v([u], p);
   }
-  function v(a, p) {
+  function v(u, p) {
     let f = !1;
-    a.forEach((m) => {
+    u.forEach((m) => {
       m in p.entities && (delete p.entities[m], f = !0);
     }), f && (p.ids = p.ids.filter((m) => m in p.entities));
   }
-  function O(a) {
-    Object.assign(a, {
+  function O(u) {
+    Object.assign(u, {
       ids: [],
       entities: {}
     });
   }
-  function E(a, p, f) {
+  function E(u, p, f) {
     const m = f.entities[p.id];
     if (m === void 0)
       return !1;
     const h = Object.assign({}, m, p.changes), s = Pe(h, e), i = s !== p.id;
-    return i && (a[p.id] = s, delete f.entities[p.id]), f.entities[s] = h, i;
+    return i && (u[p.id] = s, delete f.entities[p.id]), f.entities[s] = h, i;
   }
-  function S(a, p) {
-    return g([a], p);
+  function S(u, p) {
+    return g([u], p);
   }
-  function g(a, p) {
+  function g(u, p) {
     const f = {}, m = {};
-    a.forEach((s) => {
+    u.forEach((s) => {
       s.id in p.entities && (m[s.id] = {
         id: s.id,
         // Spreads ignore falsy values, so this works even if there isn't
@@ -1696,13 +1696,13 @@ function cn(e) {
           ...s.changes
         }
       });
-    }), a = Object.values(m), a.length > 0 && a.filter((i) => E(f, i, p)).length > 0 && (p.ids = Object.values(p.entities).map((i) => Pe(i, e)));
+    }), u = Object.values(m), u.length > 0 && u.filter((i) => E(f, i, p)).length > 0 && (p.ids = Object.values(p.entities).map((i) => Pe(i, e)));
   }
-  function y(a, p) {
-    return l([a], p);
+  function y(u, p) {
+    return l([u], p);
   }
-  function l(a, p) {
-    const [f, m] = sn(a, e, p);
+  function l(u, p) {
+    const [f, m] = sn(u, e, p);
     g(m, p), r(f, p);
   }
   return {
@@ -1711,7 +1711,7 @@ function cn(e) {
     addMany: K(r),
     setOne: K(n),
     setMany: K(o),
-    setAll: K(u),
+    setAll: K(a),
     updateOne: K(S),
     updateMany: K(g),
     upsertOne: K(y),
@@ -1726,7 +1726,7 @@ function Vo(e, t) {
     removeMany: n,
     removeAll: o
   } = cn(e);
-  function u(m, h) {
+  function a(m, h) {
     return d([m], h);
   }
   function d(m, h) {
@@ -1765,7 +1765,7 @@ function Vo(e, t) {
     const [s, i] = sn(m, e, h);
     g(i, h), d(s, h);
   }
-  function a(m, h) {
+  function u(m, h) {
     if (m.length !== h.length)
       return !1;
     for (let s = 0; s < m.length && s < h.length; s++)
@@ -1784,13 +1784,13 @@ function Vo(e, t) {
     const s = h.map(e), {
       ids: i
     } = m;
-    a(i, s) || (m.ids = s);
+    u(i, s) || (m.ids = s);
   }
   return {
     removeOne: r,
     removeMany: n,
     removeAll: o,
-    addOne: K(u),
+    addOne: K(a),
     updateOne: K(S),
     upsertOne: K(y),
     setOne: K(v),
@@ -1809,12 +1809,12 @@ function we(e = {}) {
     sortComparer: !1,
     selectId: (d) => d.id,
     ...e
-  }, n = r ? Vo(t, r) : cn(t), o = qo(n), u = xo();
+  }, n = r ? Vo(t, r) : cn(t), o = ko(n), a = xo();
   return {
     selectId: t,
     sortComparer: r,
     ...o,
-    ...u,
+    ...a,
     ...n
   };
 }
@@ -1827,7 +1827,7 @@ var Fo = (e, t) => {
     actionCreator: r,
     matcher: n,
     predicate: o,
-    effect: u
+    effect: a
   } = e;
   if (t)
     o = X(t).match;
@@ -1837,10 +1837,10 @@ var Fo = (e, t) => {
     o = n;
   else if (!o)
     throw new Error(process.env.NODE_ENV === "production" ? U(21) : "Creating or removing a listener requires one of the known fields for matching an action");
-  return Fo(u, "options.listener"), {
+  return Fo(a, "options.listener"), {
     predicate: o,
     type: t,
-    effect: u
+    effect: a
   };
 }, Uo = Object.assign((e) => {
   const {
@@ -1870,7 +1870,7 @@ var Wo = Object.assign(X(`${er}/remove`), {
 function U(e) {
   return `Minified Redux Toolkit error #${e}; visit https://redux-toolkit.js.org/Errors?code=${e} for the full message or use the non-minified dev environment for full errors. `;
 }
-var un = /* @__PURE__ */ ((e) => (e.uninitialized = "uninitialized", e.pending = "pending", e.fulfilled = "fulfilled", e.rejected = "rejected", e))(un || {});
+var an = /* @__PURE__ */ ((e) => (e.uninitialized = "uninitialized", e.pending = "pending", e.fulfilled = "fulfilled", e.rejected = "rejected", e))(an || {});
 function Ko(e) {
   return {
     status: e,
@@ -1903,15 +1903,15 @@ function Zo() {
   return typeof document > "u" ? !0 : document.visibilityState !== "hidden";
 }
 var br = le;
-function an(e, t) {
+function un(e, t) {
   if (e === t || !(br(e) && br(t) || Array.isArray(e) && Array.isArray(t)))
     return t;
   const r = Object.keys(t), n = Object.keys(e);
   let o = r.length === n.length;
-  const u = Array.isArray(t) ? [] : {};
+  const a = Array.isArray(t) ? [] : {};
   for (const d of r)
-    u[d] = an(e[d], t[d]), o && (o = e[d] === u[d]);
-  return o ? e : u;
+    a[d] = un(e[d], t[d]), o && (o = e[d] === a[d]);
+  return o ? e : a;
 }
 var Or = (...e) => fetch(...e), ei = (e) => e.status >= 200 && e.status <= 299, ti = (e) => (
   /*applicat*/
@@ -1933,7 +1933,7 @@ function ri({
   fetchFn: r = Or,
   paramsSerializer: n,
   isJsonContentType: o = ti,
-  jsonContentType: u = "application/json",
+  jsonContentType: a = "application/json",
   jsonReplacer: d,
   timeout: v,
   responseHandler: O,
@@ -1942,7 +1942,7 @@ function ri({
 } = {}) {
   return typeof fetch > "u" && r === Or && console.warn("Warning: `fetch` is not available. Please supply a custom `fetchFn` property to use `fetchBaseQuery` on SSR environments."), async (y, l) => {
     const {
-      signal: a,
+      signal: u,
       getState: p,
       extra: f,
       endpoint: m,
@@ -1961,7 +1961,7 @@ function ri({
       url: y
     } : y, C = {
       ...S,
-      signal: a,
+      signal: u,
       ...A
     };
     _ = new Headers(Rr(_)), C.headers = await t(_, {
@@ -1972,7 +1972,7 @@ function ri({
       type: s
     }) || _;
     const I = (z) => typeof z == "object" && (le(z) || Array.isArray(z) || typeof z.toJSON == "function");
-    if (!C.headers.has("content-type") && I(C.body) && C.headers.set("content-type", u), I(C.body) && o(C.headers) && (C.body = JSON.stringify(C.body, d)), b) {
+    if (!C.headers.has("content-type") && I(C.body) && C.headers.set("content-type", a), I(C.body) && o(C.headers) && (C.body = JSON.stringify(C.body, d)), b) {
       const z = ~c.indexOf("?") ? "&" : "?", G = n ? n(b) : new URLSearchParams(Rr(b));
       c += z + G;
     }
@@ -1981,11 +1981,11 @@ function ri({
     i = {
       request: new Request(c, C)
     };
-    let $, x = !1, q = T && setTimeout(() => {
+    let q, x = !1, k = T && setTimeout(() => {
       x = !0, l.abort();
     }, T);
     try {
-      $ = await r(N);
+      q = await r(N);
     } catch (z) {
       return {
         error: {
@@ -1995,15 +1995,15 @@ function ri({
         meta: i
       };
     } finally {
-      q && clearTimeout(q);
+      k && clearTimeout(k);
     }
-    const W = $.clone();
+    const W = q.clone();
     i.response = W;
     let j, H = "";
     try {
       let z;
       if (await Promise.all([
-        g($, R).then((G) => j = G, (G) => z = G),
+        g(q, R).then((G) => j = G, (G) => z = G),
         // see https://github.com/node-fetch/node-fetch/issues/665#issuecomment-538995182
         // we *have* to "use up" both streams at the same time or they will stop running in node-fetch scenarios
         W.text().then((G) => H = G, () => {
@@ -2014,19 +2014,19 @@ function ri({
       return {
         error: {
           status: "PARSING_ERROR",
-          originalStatus: $.status,
+          originalStatus: q.status,
           data: H,
           error: String(z)
         },
         meta: i
       };
     }
-    return w($, j) ? {
+    return w(q, j) ? {
       data: j,
       meta: i
     } : {
       error: {
-        status: $.status,
+        status: q.status,
         data: j
       },
       meta: i
@@ -2036,8 +2036,8 @@ function ri({
     if (typeof l == "function")
       return l(y);
     if (l === "content-type" && (l = o(y.headers) ? "json" : "text"), l === "json") {
-      const a = await y.text();
-      return a.length ? JSON.parse(a) : null;
+      const u = await y.text();
+      return u.length ? JSON.parse(u) : null;
     }
     return y.text();
   }
@@ -2053,8 +2053,8 @@ function fn(e) {
 function ni(e) {
   return e.type === "mutation";
 }
-function nr(e, t, r, n, o, u) {
-  return oi(e) ? e(t, r, n, o).map(Qt).map(u) : Array.isArray(e) ? e.map(Qt).map(u) : [];
+function nr(e, t, r, n, o, a) {
+  return oi(e) ? e(t, r, n, o).map(Qt).map(a) : Array.isArray(e) ? e.map(Qt).map(a) : [];
 }
 function oi(e) {
   return typeof e == "function";
@@ -2084,7 +2084,7 @@ function si({
   api: n,
   context: o
 }) {
-  const u = /* @__PURE__ */ new Map(), d = /* @__PURE__ */ new Map(), {
+  const a = /* @__PURE__ */ new Map(), d = /* @__PURE__ */ new Map(), {
     unsubscribeQueryResult: v,
     removeMutationResult: O,
     updateSubscriptionOptions: E
@@ -2105,7 +2105,7 @@ function si({
         endpointDefinition: i,
         endpointName: m
       });
-      return (_ = u.get(s)) == null ? void 0 : _[c];
+      return (_ = a.get(s)) == null ? void 0 : _[c];
     };
   }
   function g(m, h) {
@@ -2115,17 +2115,17 @@ function si({
     };
   }
   function y() {
-    return (m) => Object.values(u.get(m) || {}).filter(Tr);
+    return (m) => Object.values(a.get(m) || {}).filter(Tr);
   }
   function l() {
     return (m) => Object.values(d.get(m) || {}).filter(Tr);
   }
-  function a(m) {
+  function u(m) {
     if (process.env.NODE_ENV !== "production") {
-      if (a.triggered)
+      if (u.triggered)
         return;
       const h = m(n.internalActions.internal_getRTKQSubscriptions());
-      if (a.triggered = !0, typeof h != "object" || typeof (h == null ? void 0 : h.type) == "string")
+      if (u.triggered = !0, typeof h != "object" || typeof (h == null ? void 0 : h.type) == "string")
         throw new Error(process.env.NODE_ENV === "production" ? U(34) : `Warning: Middleware for RTK-Query API at reducerPath "${n.reducerPath}" has not been added to the store.
 You must add the middleware for RTK-Query to function correctly!`);
     }
@@ -2153,19 +2153,19 @@ You must add the middleware for RTK-Query to function correctly!`);
         originalArgs: i,
         queryCacheKey: C,
         [Ye]: R
-      }), N = n.endpoints[m].select(i), D = T(I), $ = N(A());
-      a(T);
+      }), N = n.endpoints[m].select(i), D = T(I), q = N(A());
+      u(T);
       const {
         requestId: x,
-        abort: q
-      } = D, W = $.requestId !== x, j = (G = u.get(T)) == null ? void 0 : G[C], H = () => N(A()), z = Object.assign(R ? (
+        abort: k
+      } = D, W = q.requestId !== x, j = (G = a.get(T)) == null ? void 0 : G[C], H = () => N(A()), z = Object.assign(R ? (
         // a query has been forced (upsertQueryData)
         // -> we want to resolve it once data has been written with the data that will be written
         D.then(H)
       ) : W && !j ? (
         // a query has been skipped due to a condition and we do not have any currently running query
         // -> we want to resolve it immediately with the current data
-        Promise.resolve($)
+        Promise.resolve(q)
       ) : (
         // query just started or one is already in flight
         // -> wait for the running query, then resolve with data from after that
@@ -2175,7 +2175,7 @@ You must add the middleware for RTK-Query to function correctly!`);
         requestId: x,
         subscriptionOptions: b,
         queryCacheKey: C,
-        abort: q,
+        abort: k,
         async unwrap() {
           const J = await z;
           if (J.isError)
@@ -2202,9 +2202,9 @@ You must add the middleware for RTK-Query to function correctly!`);
         }
       });
       if (!j && !W && !R) {
-        const J = u.get(T) || {};
-        J[C] = z, u.set(T, J), z.then(() => {
-          delete J[C], Ie(J) || u.delete(T);
+        const J = a.get(T) || {};
+        J[C] = z, a.set(T, J), z.then(() => {
+          delete J[C], Ie(J) || a.delete(T);
         });
       }
       return z;
@@ -2223,15 +2223,15 @@ You must add the middleware for RTK-Query to function correctly!`);
         track: s,
         fixedCacheKey: i
       }), R = c(b);
-      a(c);
+      u(c);
       const {
         requestId: w,
         abort: T,
         unwrap: A
-      } = R, C = ii(R.unwrap().then(($) => ({
-        data: $
-      })), ($) => ({
-        error: $
+      } = R, C = ii(R.unwrap().then((q) => ({
+        data: q
+      })), (q) => ({
+        error: q
       })), I = () => {
         c(O({
           requestId: w,
@@ -2263,7 +2263,7 @@ function ci({
   },
   serializeQueryArgs: n,
   api: o,
-  assertTagType: u
+  assertTagType: a
 }) {
   const d = (h, s, i, c) => (_, b) => {
     const R = r[h], w = n({
@@ -2279,7 +2279,7 @@ function ci({
     const T = o.endpoints[h].select(s)(
       // Work around TS 4.1 mismatch
       b()
-    ), A = nr(R.providesTags, T.data, void 0, s, {}, u);
+    ), A = nr(R.providesTags, T.data, void 0, s, {}, a);
     _(o.internalActions.updateProvidedBy({
       queryCacheKey: w,
       providedTags: A
@@ -2342,23 +2342,23 @@ function ci({
       }, N = h.type === "query" ? h[Ye] : void 0;
       if (N ? C = N() : T.query ? (C = await t(T.query(h.originalArgs), I, T.extraOptions), T.transformResponse && (A = T.transformResponse)) : C = await T.queryFn(h.originalArgs, I, T.extraOptions, (D) => t(D, I, T.extraOptions)), typeof process < "u" && process.env.NODE_ENV === "development") {
         const D = T.query ? "`baseQuery`" : "`queryFn`";
-        let $;
+        let q;
         if (!C)
-          $ = `${D} did not return anything.`;
+          q = `${D} did not return anything.`;
         else if (typeof C != "object")
-          $ = `${D} did not return an object.`;
+          q = `${D} did not return an object.`;
         else if (C.error && C.data)
-          $ = `${D} returned an object containing both \`error\` and \`result\`.`;
+          q = `${D} returned an object containing both \`error\` and \`result\`.`;
         else if (C.error === void 0 && C.data === void 0)
-          $ = `${D} returned an object containing neither a valid \`error\` and \`result\`. At least one of them should not be \`undefined\``;
+          q = `${D} returned an object containing neither a valid \`error\` and \`result\`. At least one of them should not be \`undefined\``;
         else
           for (const x of Object.keys(C))
             if (x !== "error" && x !== "data" && x !== "meta") {
-              $ = `The object returned by ${D} has the unknown property ${x}.`;
+              q = `The object returned by ${D} has the unknown property ${x}.`;
               break;
             }
-        $ && console.error(`Error encountered handling the endpoint ${h.endpointName}.
-              ${$}
+        q && console.error(`Error encountered handling the endpoint ${h.endpointName}.
+              ${q}
               It needs to return an object with either the shape \`{ data: <value> }\` or \`{ error: <value> }\` that may contain an optional \`meta\` property.
               Object returned was:`, C);
       }
@@ -2419,8 +2419,8 @@ In the case of an unhandled error, no tags will be "provided" or "invalidated".`
         [ze]: !0
       };
     }
-  }), l = (h) => "force" in h, a = (h) => "ifOlderThan" in h, p = (h, s, i) => (c, _) => {
-    const b = l(i) && i.force, R = a(i) && i.ifOlderThan, w = (A = !0) => {
+  }), l = (h) => "force" in h, u = (h) => "ifOlderThan" in h, p = (h, s, i) => (c, _) => {
+    const b = l(i) && i.force, R = u(i) && i.ifOlderThan, w = (A = !0) => {
       const C = {
         forceRefetch: A,
         isPrefetch: !0
@@ -2476,15 +2476,15 @@ function Ar(e, t, r) {
   const n = e[He(t)];
   n && r(n);
 }
-var qe = {};
-function ui({
+var ke = {};
+function ai({
   reducerPath: e,
   queryThunk: t,
   mutationThunk: r,
   context: {
     endpointDefinitions: n,
     apiUid: o,
-    extractRehydrationInfo: u,
+    extractRehydrationInfo: a,
     hasRehydrationInfo: d
   },
   assertTagType: v,
@@ -2492,7 +2492,7 @@ function ui({
 }) {
   const E = X(`${e}/resetApiState`), S = Ce({
     name: `${e}/queries`,
-    initialState: qe,
+    initialState: ke,
     reducers: {
       removeQueryResult: {
         reducer(s, {
@@ -2502,7 +2502,7 @@ function ui({
         }) {
           delete s[i];
         },
-        prepare: ke()
+        prepare: je()
       },
       queryResultPatched: {
         reducer(s, {
@@ -2515,7 +2515,7 @@ function ui({
             _.data = pr(_.data, c.concat());
           });
         },
-        prepare: ke()
+        prepare: je()
       }
     },
     extraReducers(s) {
@@ -2567,7 +2567,7 @@ function ui({
             } else
               b.data = _;
           else
-            b.data = n[c.arg.endpointName].structuralSharing ?? !0 ? an(ie(b.data) ? Yn(b.data) : b.data, _) : _;
+            b.data = n[c.arg.endpointName].structuralSharing ?? !0 ? un(ie(b.data) ? Yn(b.data) : b.data, _) : _;
           delete b.error, b.fulfilledTimeStamp = c.fulfilledTimeStamp;
         });
       }).addCase(t.rejected, (i, {
@@ -2589,7 +2589,7 @@ function ui({
       }).addMatcher(d, (i, c) => {
         const {
           queries: _
-        } = u(c);
+        } = a(c);
         for (const [b, R] of Object.entries(_))
           // do not rehydrate entries that were currently in flight.
           ((R == null ? void 0 : R.status) === "fulfilled" || (R == null ? void 0 : R.status) === "rejected") && (i[b] = R);
@@ -2597,7 +2597,7 @@ function ui({
     }
   }), g = Ce({
     name: `${e}/mutations`,
-    initialState: qe,
+    initialState: ke,
     reducers: {
       removeMutationResult: {
         reducer(s, {
@@ -2606,7 +2606,7 @@ function ui({
           const c = He(i);
           c in s && delete s[c];
         },
-        prepare: ke()
+        prepare: je()
       }
     },
     extraReducers(s) {
@@ -2642,7 +2642,7 @@ function ui({
       }).addMatcher(d, (i, c) => {
         const {
           mutations: _
-        } = u(c);
+        } = a(c);
         for (const [b, R] of Object.entries(_))
           // do not rehydrate entries that were currently in flight.
           ((R == null ? void 0 : R.status) === "fulfilled" || (R == null ? void 0 : R.status) === "rejected") && // only rehydrate endpoints that were persisted using a `fixedCacheKey`
@@ -2651,7 +2651,7 @@ function ui({
     }
   }), y = Ce({
     name: `${e}/invalidation`,
-    initialState: qe,
+    initialState: ke,
     reducers: {
       updateProvidedBy: {
         reducer(s, i) {
@@ -2673,7 +2673,7 @@ function ui({
             A.includes(c) || A.push(c);
           }
         },
-        prepare: ke()
+        prepare: je()
       }
     },
     extraReducers(s) {
@@ -2691,7 +2691,7 @@ function ui({
         var b, R;
         const {
           provided: _
-        } = u(c);
+        } = a(c);
         for (const [w, T] of Object.entries(_))
           for (const [A, C] of Object.entries(T)) {
             const I = (b = i[w] ?? (i[w] = {}))[R = A || "__internal_without_id"] ?? (b[R] = []);
@@ -2710,7 +2710,7 @@ function ui({
     }
   }), l = Ce({
     name: `${e}/subscriptions`,
-    initialState: qe,
+    initialState: ke,
     reducers: {
       updateSubscriptionOptions(s, i) {
       },
@@ -2719,15 +2719,15 @@ function ui({
       internal_getRTKQSubscriptions() {
       }
     }
-  }), a = Ce({
+  }), u = Ce({
     name: `${e}/internalSubscriptions`,
-    initialState: qe,
+    initialState: ke,
     reducers: {
       subscriptionsUpdated: {
         reducer(s, i) {
           return pr(s, i.payload);
         },
-        prepare: ke()
+        prepare: je()
       }
     }
   }), p = Ce({
@@ -2762,13 +2762,13 @@ function ui({
     queries: S.reducer,
     mutations: g.reducer,
     provided: y.reducer,
-    subscriptions: a.reducer,
+    subscriptions: u.reducer,
     config: p.reducer
   }), m = (s, i) => f(E.match(i) ? void 0 : s, i), h = {
     ...p.actions,
     ...S.actions,
     ...l.actions,
-    ...a.actions,
+    ...u.actions,
     ...g.actions,
     ...y.actions,
     resetApiState: E
@@ -2784,7 +2784,7 @@ var Se = /* @__PURE__ */ Symbol.for("RTKQ/skipToken"), yn = {
 }, Mr = /* @__PURE__ */ $e(yn, () => {
 }), Pr = /* @__PURE__ */ $e(yn, () => {
 });
-function ai({
+function ui({
   serializeQueryArgs: e,
   reducerPath: t,
   createSelector: r
@@ -2796,7 +2796,7 @@ function ai({
     selectInvalidatedBy: E,
     selectCachedArgsForQuery: S
   };
-  function u(g) {
+  function a(g) {
     return {
       ...g,
       ...Ko(g.status)
@@ -2813,15 +2813,15 @@ function ai({
   }
   function v(g, y) {
     return (l) => {
-      const a = e({
+      const u = e({
         queryArgs: l,
         endpointDefinition: y,
         endpointName: g
       });
       return r(l === Se ? n : (m) => {
         var h, s;
-        return ((s = (h = d(m)) == null ? void 0 : h.queries) == null ? void 0 : s[a]) ?? Mr;
-      }, u);
+        return ((s = (h = d(m)) == null ? void 0 : h.queries) == null ? void 0 : s[u]) ?? Mr;
+      }, a);
     };
   }
   function O() {
@@ -2830,11 +2830,11 @@ function ai({
       return typeof g == "object" ? y = He(g) ?? Se : y = g, r(y === Se ? o : (p) => {
         var f, m;
         return ((m = (f = d(p)) == null ? void 0 : f.mutations) == null ? void 0 : m[y]) ?? Pr;
-      }, u);
+      }, a);
     };
   }
   function E(g, y) {
-    const l = g[t], a = /* @__PURE__ */ new Set();
+    const l = g[t], u = /* @__PURE__ */ new Set();
     for (const p of y.map(Qt)) {
       const f = l.provided[p.type];
       if (!f)
@@ -2847,9 +2847,9 @@ function ai({
         _r(Object.values(f))
       )) ?? [];
       for (const h of m)
-        a.add(h);
+        u.add(h);
     }
-    return _r(Array.from(a.values()).map((p) => {
+    return _r(Array.from(u.values()).map((p) => {
       const f = l.queries[p];
       return f ? [{
         queryCacheKey: p,
@@ -2874,7 +2874,7 @@ var Ae = WeakMap ? /* @__PURE__ */ new WeakMap() : void 0, Ir = ({
   if (typeof n == "string")
     r = n;
   else {
-    const o = JSON.stringify(t, (u, d) => le(d) ? Object.keys(d).sort().reduce((v, O) => (v[O] = d[O], v), {}) : d);
+    const o = JSON.stringify(t, (a, d) => le(d) ? Object.keys(d).sort().reduce((v, O) => (v[O] = d[O], v), {}) : d);
     le(t) && (Ae == null || Ae.set(t, o)), r = o;
   }
   return `${e}(${r})`;
@@ -2911,7 +2911,7 @@ function li(...e) {
         return S(E);
       },
       tagTypes: [...r.tagTypes || []]
-    }, u = {
+    }, a = {
       endpointDefinitions: {},
       batch(E) {
         E();
@@ -2930,10 +2930,10 @@ function li(...e) {
             o.tagTypes.includes(g) || o.tagTypes.push(g);
         if (S)
           for (const [g, y] of Object.entries(S))
-            typeof y == "function" ? y(u.endpointDefinitions[g]) : Object.assign(u.endpointDefinitions[g] || {}, y);
+            typeof y == "function" ? y(a.endpointDefinitions[g]) : Object.assign(a.endpointDefinitions[g] || {}, y);
         return d;
       }
-    }, v = e.map((E) => E.init(d, o, u));
+    }, v = e.map((E) => E.init(d, o, a));
     function O(E) {
       const S = E.endpoints({
         query: (g) => ({
@@ -2948,13 +2948,13 @@ function li(...e) {
         })
       });
       for (const [g, y] of Object.entries(S)) {
-        if (E.overrideExisting !== !0 && g in u.endpointDefinitions) {
+        if (E.overrideExisting !== !0 && g in a.endpointDefinitions) {
           if (E.overrideExisting === "throw")
             throw new Error(process.env.NODE_ENV === "production" ? U(39) : `called \`injectEndpoints\` to override already-existing endpointName ${g} without specifying \`overrideExisting: true\``);
           typeof process < "u" && process.env.NODE_ENV === "development" && console.error(`called \`injectEndpoints\` to override already-existing endpointName ${g} without specifying \`overrideExisting: true\``);
           continue;
         }
-        u.endpointDefinitions[g] = y;
+        a.endpointDefinitions[g] = y;
         for (const l of v)
           l.injectEndpoint(g, y);
       }
@@ -2978,7 +2978,7 @@ var fi = 2147483647 / 1e3 - 1, pi = ({
 }) => {
   const {
     removeQueryResult: o,
-    unsubscribeQueryResult: u
+    unsubscribeQueryResult: a
   } = t.internalActions;
   function d(S) {
     const g = n.currentSubscriptions[S];
@@ -2986,25 +2986,25 @@ var fi = 2147483647 / 1e3 - 1, pi = ({
   }
   const v = {}, O = (S, g, y) => {
     var l;
-    if (u.match(S)) {
-      const a = g.getState()[e], {
+    if (a.match(S)) {
+      const u = g.getState()[e], {
         queryCacheKey: p
       } = S.payload;
-      E(p, (l = a.queries[p]) == null ? void 0 : l.endpointName, g, a.config);
+      E(p, (l = u.queries[p]) == null ? void 0 : l.endpointName, g, u.config);
     }
     if (t.util.resetApiState.match(S))
-      for (const [a, p] of Object.entries(v))
-        p && clearTimeout(p), delete v[a];
+      for (const [u, p] of Object.entries(v))
+        p && clearTimeout(p), delete v[u];
     if (r.hasRehydrationInfo(S)) {
-      const a = g.getState()[e], {
+      const u = g.getState()[e], {
         queries: p
       } = r.extractRehydrationInfo(S);
       for (const [f, m] of Object.entries(p))
-        E(f, m == null ? void 0 : m.endpointName, g, a.config);
+        E(f, m == null ? void 0 : m.endpointName, g, u.config);
     }
   };
   function E(S, g, y, l) {
-    const a = r.endpointDefinitions[g], p = (a == null ? void 0 : a.keepUnusedDataFor) ?? l.keepUnusedDataFor;
+    const u = r.endpointDefinitions[g], p = (u == null ? void 0 : u.keepUnusedDataFor) ?? l.keepUnusedDataFor;
     if (p === 1 / 0)
       return;
     const f = Math.max(0, Math.min(p, fi));
@@ -3026,19 +3026,19 @@ var fi = 2147483647 / 1e3 - 1, pi = ({
   },
   mutationThunk: n,
   queryThunk: o,
-  api: u,
+  api: a,
   assertTagType: d,
   refetchQuery: v,
   internalState: O
 }) => {
   const {
     removeQueryResult: E
-  } = u.internalActions, S = he(me(n), pt(n)), g = he(me(n, o), De(n, o));
+  } = a.internalActions, S = he(me(n), pt(n)), g = he(me(n, o), De(n, o));
   let y = [];
   const l = (f, m) => {
-    S(f) ? p(pn(f, "invalidatesTags", r, d), m) : g(f) ? p([], m) : u.util.invalidateTags.match(f) && p(nr(f.payload, void 0, void 0, void 0, void 0, d), m);
+    S(f) ? p(pn(f, "invalidatesTags", r, d), m) : g(f) ? p([], m) : a.util.invalidateTags.match(f) && p(nr(f.payload, void 0, void 0, void 0, void 0, d), m);
   };
-  function a(f) {
+  function u(f) {
     var m, h;
     for (const s in f.queries)
       if (((m = f.queries[s]) == null ? void 0 : m.status) === "pending")
@@ -3050,12 +3050,12 @@ var fi = 2147483647 / 1e3 - 1, pi = ({
   }
   function p(f, m) {
     const h = m.getState(), s = h[e];
-    if (y.push(...f), s.config.invalidationBehavior === "delayed" && a(s))
+    if (y.push(...f), s.config.invalidationBehavior === "delayed" && u(s))
       return;
     const i = y;
     if (y = [], i.length === 0)
       return;
-    const c = u.util.selectInvalidatedBy(h, i);
+    const c = a.util.selectInvalidatedBy(h, i);
     t.batch(() => {
       const _ = Array.from(c.values());
       for (const {
@@ -3076,13 +3076,13 @@ var fi = 2147483647 / 1e3 - 1, pi = ({
   refetchQuery: n,
   internalState: o
 }) => {
-  const u = {}, d = (y, l) => {
+  const a = {}, d = (y, l) => {
     (r.internalActions.updateSubscriptionOptions.match(y) || r.internalActions.unsubscribeQueryResult.match(y)) && O(y.payload, l), (t.pending.match(y) || t.rejected.match(y) && y.meta.condition) && O(y.meta.arg, l), (t.fulfilled.match(y) || t.rejected.match(y) && !y.meta.condition) && v(y.meta.arg, l), r.util.resetApiState.match(y) && S();
   };
   function v({
     queryCacheKey: y
   }, l) {
-    const a = l.getState()[e], p = a.queries[y], f = o.currentSubscriptions[y];
+    const u = l.getState()[e], p = u.queries[y], f = o.currentSubscriptions[y];
     if (!p || p.status === "uninitialized")
       return;
     const {
@@ -3091,14 +3091,14 @@ var fi = 2147483647 / 1e3 - 1, pi = ({
     } = g(f);
     if (!Number.isFinite(m))
       return;
-    const s = u[y];
+    const s = a[y];
     s != null && s.timeout && (clearTimeout(s.timeout), s.timeout = void 0);
     const i = Date.now() + m;
-    u[y] = {
+    a[y] = {
       nextPollTimestamp: i,
       pollingInterval: m,
       timeout: setTimeout(() => {
-        (a.config.focused || !h) && l.dispatch(n(p, y)), v({
+        (u.config.focused || !h) && l.dispatch(n(p, y)), v({
           queryCacheKey: y
         }, l);
       }, m)
@@ -3117,25 +3117,25 @@ var fi = 2147483647 / 1e3 - 1, pi = ({
       E(y);
       return;
     }
-    const h = u[y], s = Date.now() + m;
+    const h = a[y], s = Date.now() + m;
     (!h || s < h.nextPollTimestamp) && v({
       queryCacheKey: y
     }, l);
   }
   function E(y) {
-    const l = u[y];
-    l != null && l.timeout && clearTimeout(l.timeout), delete u[y];
+    const l = a[y];
+    l != null && l.timeout && clearTimeout(l.timeout), delete a[y];
   }
   function S() {
-    for (const y of Object.keys(u))
+    for (const y of Object.keys(a))
       E(y);
   }
   function g(y = {}) {
-    let l = !1, a = Number.POSITIVE_INFINITY;
+    let l = !1, u = Number.POSITIVE_INFINITY;
     for (let p in y)
-      y[p].pollingInterval && (a = Math.min(y[p].pollingInterval, a), l = y[p].skipPollingIfUnfocused || l);
+      y[p].pollingInterval && (u = Math.min(y[p].pollingInterval, u), l = y[p].skipPollingIfUnfocused || l);
     return {
-      lowestPollingInterval: a,
+      lowestPollingInterval: u,
       skipPollingIfUnfocused: l
     };
   }
@@ -3148,7 +3148,7 @@ var fi = 2147483647 / 1e3 - 1, pi = ({
   internalState: o
 }) => {
   const {
-    removeQueryResult: u
+    removeQueryResult: a
   } = r.internalActions, d = (O, E) => {
     tr.match(O) && v(E, "refetchOnFocus"), rr.match(O) && v(E, "refetchOnReconnect");
   };
@@ -3156,12 +3156,12 @@ var fi = 2147483647 / 1e3 - 1, pi = ({
     const S = O.getState()[e], g = S.queries, y = o.currentSubscriptions;
     t.batch(() => {
       for (const l of Object.keys(y)) {
-        const a = g[l], p = y[l];
-        if (!p || !a)
+        const u = g[l], p = y[l];
+        if (!p || !u)
           continue;
-        (Object.values(p).some((m) => m[E] === !0) || Object.values(p).every((m) => m[E] === void 0) && S.config[E]) && (Ie(p) === 0 ? O.dispatch(u({
+        (Object.values(p).some((m) => m[E] === !0) || Object.values(p).every((m) => m[E] === void 0) && S.config[E]) && (Ie(p) === 0 ? O.dispatch(a({
           queryCacheKey: l
-        })) : a.status !== "uninitialized" && O.dispatch(n(a, l)));
+        })) : u.status !== "uninitialized" && O.dispatch(n(u, l)));
       }
     });
   }
@@ -3172,15 +3172,15 @@ var fi = 2147483647 / 1e3 - 1, pi = ({
   context: r,
   queryThunk: n,
   mutationThunk: o,
-  internalState: u
+  internalState: a
 }) => {
-  const d = Ft(n), v = Ft(o), O = me(n, o), E = {}, S = (l, a, p) => {
+  const d = Ft(n), v = Ft(o), O = me(n, o), E = {}, S = (l, u, p) => {
     const f = g(l);
     if (n.pending.match(l)) {
-      const m = p[t].queries[f], h = a.getState()[t].queries[f];
-      !m && h && y(l.meta.arg.endpointName, l.meta.arg.originalArgs, f, a, l.meta.requestId);
+      const m = p[t].queries[f], h = u.getState()[t].queries[f];
+      !m && h && y(l.meta.arg.endpointName, l.meta.arg.originalArgs, f, u, l.meta.requestId);
     } else if (o.pending.match(l))
-      a.getState()[t].mutations[f] && y(l.meta.arg.endpointName, l.meta.arg.originalArgs, f, a, l.meta.requestId);
+      u.getState()[t].mutations[f] && y(l.meta.arg.endpointName, l.meta.arg.originalArgs, f, u, l.meta.requestId);
     else if (O(l)) {
       const m = E[f];
       m != null && m.valueResolved && (m.valueResolved({
@@ -3197,7 +3197,7 @@ var fi = 2147483647 / 1e3 - 1, pi = ({
   function g(l) {
     return d(l) ? l.meta.arg.queryCacheKey : v(l) ? l.meta.arg.fixedCacheKey ?? l.meta.requestId : e.internalActions.removeQueryResult.match(l) ? l.payload.queryCacheKey : e.internalActions.removeMutationResult.match(l) ? He(l.payload) : "";
   }
-  function y(l, a, p, f, m) {
+  function y(l, u, p, f, m) {
     const h = r.endpointDefinitions[l], s = h == null ? void 0 : h.onCacheEntryAdded;
     if (!s)
       return;
@@ -3211,15 +3211,15 @@ var fi = 2147483647 / 1e3 - 1, pi = ({
     })]);
     _.catch(() => {
     }), E[p] = i;
-    const b = e.endpoints[l].select(h.type === "query" ? a : p), R = f.dispatch((A, C, I) => I), w = {
+    const b = e.endpoints[l].select(h.type === "query" ? u : p), R = f.dispatch((A, C, I) => I), w = {
       ...f,
       getCacheEntry: () => b(f.getState()),
       requestId: m,
       extra: R,
-      updateCachedData: h.type === "query" ? (A) => f.dispatch(e.util.updateQueryData(l, a, A)) : void 0,
+      updateCachedData: h.type === "query" ? (A) => f.dispatch(e.util.updateQueryData(l, u, A)) : void 0,
       cacheDataLoaded: _,
       cacheEntryRemoved: c
-    }, T = s(a, w);
+    }, T = s(u, w);
     Promise.resolve(T).catch((A) => {
       if (A !== Nr)
         throw A;
@@ -3232,29 +3232,29 @@ var fi = 2147483647 / 1e3 - 1, pi = ({
   queryThunk: r,
   mutationThunk: n
 }) => {
-  const o = Zt(r, n), u = De(r, n), d = me(r, n), v = {};
+  const o = Zt(r, n), a = De(r, n), d = me(r, n), v = {};
   return (E, S) => {
     var g, y;
     if (o(E)) {
       const {
         requestId: l,
         arg: {
-          endpointName: a,
+          endpointName: u,
           originalArgs: p
         }
-      } = E.meta, f = t.endpointDefinitions[a], m = f == null ? void 0 : f.onQueryStarted;
+      } = E.meta, f = t.endpointDefinitions[u], m = f == null ? void 0 : f.onQueryStarted;
       if (m) {
         const h = {}, s = new Promise((b, R) => {
           h.resolve = b, h.reject = R;
         });
         s.catch(() => {
         }), v[l] = h;
-        const i = e.endpoints[a].select(f.type === "query" ? p : l), c = S.dispatch((b, R, w) => w), _ = {
+        const i = e.endpoints[u].select(f.type === "query" ? p : l), c = S.dispatch((b, R, w) => w), _ = {
           ...S,
           getCacheEntry: () => i(S.getState()),
           requestId: l,
           extra: c,
-          updateCachedData: f.type === "query" ? (b) => S.dispatch(e.util.updateQueryData(a, p, b)) : void 0,
+          updateCachedData: f.type === "query" ? (b) => S.dispatch(e.util.updateQueryData(u, p, b)) : void 0,
           queryFulfilled: s
         };
         m(p, _);
@@ -3262,21 +3262,21 @@ var fi = 2147483647 / 1e3 - 1, pi = ({
     } else if (d(E)) {
       const {
         requestId: l,
-        baseQueryMeta: a
+        baseQueryMeta: u
       } = E.meta;
       (g = v[l]) == null || g.resolve({
         data: E.payload,
-        meta: a
+        meta: u
       }), delete v[l];
-    } else if (u(E)) {
+    } else if (a(E)) {
       const {
         requestId: l,
-        rejectedWithValue: a,
+        rejectedWithValue: u,
         baseQueryMeta: p
       } = E.meta;
       (y = v[l]) == null || y.reject({
         error: E.payload ?? E.error,
-        isUnhandledError: !a,
+        isUnhandledError: !u,
         meta: p
       }), delete v[l];
     }
@@ -3288,8 +3288,8 @@ var fi = 2147483647 / 1e3 - 1, pi = ({
   },
   reducerPath: r
 }) => (n, o) => {
-  var u, d;
-  e.util.resetApiState.match(n) && o.dispatch(e.internalActions.middlewareRegistered(t)), typeof process < "u" && process.env.NODE_ENV === "development" && e.internalActions.middlewareRegistered.match(n) && n.payload === t && ((d = (u = o.getState()[r]) == null ? void 0 : u.config) == null ? void 0 : d.middlewareRegistered) === "conflict" && console.warn(`There is a mismatch between slice and middleware for the reducerPath "${r}".
+  var a, d;
+  e.util.resetApiState.match(n) && o.dispatch(e.internalActions.middlewareRegistered(t)), typeof process < "u" && process.env.NODE_ENV === "development" && e.internalActions.middlewareRegistered.match(n) && n.payload === t && ((d = (a = o.getState()[r]) == null ? void 0 : a.config) == null ? void 0 : d.middlewareRegistered) === "conflict" && console.warn(`There is a mismatch between slice and middleware for the reducerPath "${r}".
 You can only have one api per reducer path, this will lead to crashes in various situations!${r === "api" ? `
 If you have multiple apis, you *have* to specify the reducerPath option when using createApi!` : ""}`);
 }, Ei = ({
@@ -3298,51 +3298,51 @@ If you have multiple apis, you *have* to specify the reducerPath option when usi
   internalState: r
 }) => {
   const n = `${e.reducerPath}/subscriptions`;
-  let o = null, u = null;
+  let o = null, a = null;
   const {
     updateSubscriptionOptions: d,
     unsubscribeQueryResult: v
-  } = e.internalActions, O = (l, a) => {
+  } = e.internalActions, O = (l, u) => {
     var f, m, h;
-    if (d.match(a)) {
+    if (d.match(u)) {
       const {
         queryCacheKey: s,
         requestId: i,
         options: c
-      } = a.payload;
+      } = u.payload;
       return (f = l == null ? void 0 : l[s]) != null && f[i] && (l[s][i] = c), !0;
     }
-    if (v.match(a)) {
+    if (v.match(u)) {
       const {
         queryCacheKey: s,
         requestId: i
-      } = a.payload;
+      } = u.payload;
       return l[s] && delete l[s][i], !0;
     }
-    if (e.internalActions.removeQueryResult.match(a))
-      return delete l[a.payload.queryCacheKey], !0;
-    if (t.pending.match(a)) {
+    if (e.internalActions.removeQueryResult.match(u))
+      return delete l[u.payload.queryCacheKey], !0;
+    if (t.pending.match(u)) {
       const {
         meta: {
           arg: s,
           requestId: i
         }
-      } = a, c = l[m = s.queryCacheKey] ?? (l[m] = {});
+      } = u, c = l[m = s.queryCacheKey] ?? (l[m] = {});
       return c[`${i}_running`] = {}, s.subscribe && (c[i] = s.subscriptionOptions ?? c[i] ?? {}), !0;
     }
     let p = !1;
-    if (t.fulfilled.match(a) || t.rejected.match(a)) {
-      const s = l[a.meta.arg.queryCacheKey] || {}, i = `${a.meta.requestId}_running`;
+    if (t.fulfilled.match(u) || t.rejected.match(u)) {
+      const s = l[u.meta.arg.queryCacheKey] || {}, i = `${u.meta.requestId}_running`;
       p || (p = !!s[i]), delete s[i];
     }
-    if (t.rejected.match(a)) {
+    if (t.rejected.match(u)) {
       const {
         meta: {
           condition: s,
           arg: i,
           requestId: c
         }
-      } = a;
+      } = u;
       if (s && i.subscribe) {
         const _ = l[h = i.queryCacheKey] ?? (l[h] = {});
         _[c] = i.subscriptionOptions ?? _[c] ?? {}, p = !0;
@@ -3355,23 +3355,23 @@ If you have multiple apis, you *have* to specify the reducerPath option when usi
       const p = E()[l] ?? {};
       return Ie(p);
     },
-    isRequestSubscribed: (l, a) => {
+    isRequestSubscribed: (l, u) => {
       var f;
       const p = E();
-      return !!((f = p == null ? void 0 : p[l]) != null && f[a]);
+      return !!((f = p == null ? void 0 : p[l]) != null && f[u]);
     }
   };
-  return (l, a) => {
+  return (l, u) => {
     if (o || (o = JSON.parse(JSON.stringify(r.currentSubscriptions))), e.util.resetApiState.match(l))
-      return o = r.currentSubscriptions = {}, u = null, [!0, !1];
+      return o = r.currentSubscriptions = {}, a = null, [!0, !1];
     if (e.internalActions.internal_getRTKQSubscriptions.match(l))
       return [!1, y];
     const p = O(r.currentSubscriptions, l);
     let f = !0;
     if (p) {
-      u || (u = setTimeout(() => {
+      a || (a = setTimeout(() => {
         const s = JSON.parse(JSON.stringify(r.currentSubscriptions)), [, i] = en(o, () => s);
-        a.next(e.internalActions.subscriptionsUpdated(i)), o = s, u = null;
+        u.next(e.internalActions.subscriptionsUpdated(i)), o = s, a = null;
       }, 500));
       const m = typeof l.type == "string" && !!l.type.startsWith(n), h = t.rejected.match(l) && l.meta.condition && !!l.meta.arg.subscribe;
       f = !m && !h;
@@ -3386,25 +3386,25 @@ function _i(e) {
     api: n,
     context: o
   } = e, {
-    apiUid: u
+    apiUid: a
   } = o, d = {
     invalidateTags: X(`${t}/invalidateTags`)
   }, v = (g) => g.type.startsWith(`${t}/`), O = [Si, pi, yi, hi, gi, vi];
   return {
     middleware: (g) => {
       let y = !1;
-      const a = {
+      const u = {
         ...e,
         internalState: {
           currentSubscriptions: {}
         },
         refetchQuery: S,
         isThisApiSliceAction: v
-      }, p = O.map((h) => h(a)), f = Ei(a), m = mi(a);
+      }, p = O.map((h) => h(u)), f = Ei(u), m = mi(u);
       return (h) => (s) => {
         if (!Yt(s))
           return h(s);
-        y || (y = !0, g.dispatch(n.internalActions.middlewareRegistered(u)));
+        y || (y = !0, g.dispatch(n.internalActions.middlewareRegistered(a)));
         const i = {
           ...g,
           next: h
@@ -3441,7 +3441,7 @@ var Dr = /* @__PURE__ */ Symbol(), bi = ({
     baseQuery: r,
     tagTypes: n,
     reducerPath: o,
-    serializeQueryArgs: u,
+    serializeQueryArgs: a,
     keepUnusedDataFor: d,
     refetchOnMountOrArgChange: v,
     refetchOnFocus: O,
@@ -3449,7 +3449,7 @@ var Dr = /* @__PURE__ */ Symbol(), bi = ({
     invalidationBehavior: S
   }, g) {
     no();
-    const y = (q) => (typeof process < "u" && process.env.NODE_ENV === "development" && (n.includes(q.type) || console.error(`Tag type '${q.type}' was used, but not specified in \`tagTypes\`!`)), q);
+    const y = (k) => (typeof process < "u" && process.env.NODE_ENV === "development" && (n.includes(k.type) || console.error(`Tag type '${k.type}' was used, but not specified in \`tagTypes\`!`)), k);
     Object.assign(t, {
       reducerPath: o,
       endpoints: {},
@@ -3463,7 +3463,7 @@ var Dr = /* @__PURE__ */ Symbol(), bi = ({
     });
     const {
       queryThunk: l,
-      mutationThunk: a,
+      mutationThunk: u,
       patchQueryData: p,
       updateQueryData: f,
       upsertQueryData: m,
@@ -3474,15 +3474,15 @@ var Dr = /* @__PURE__ */ Symbol(), bi = ({
       reducerPath: o,
       context: g,
       api: t,
-      serializeQueryArgs: u,
+      serializeQueryArgs: a,
       assertTagType: y
     }), {
       reducer: i,
       actions: c
-    } = ui({
+    } = ai({
       context: g,
       queryThunk: l,
-      mutationThunk: a,
+      mutationThunk: u,
       reducerPath: o,
       assertTagType: y,
       config: {
@@ -3508,7 +3508,7 @@ var Dr = /* @__PURE__ */ Symbol(), bi = ({
       reducerPath: o,
       context: g,
       queryThunk: l,
-      mutationThunk: a,
+      mutationThunk: u,
       api: t,
       assertTagType: y
     });
@@ -3521,8 +3521,8 @@ var Dr = /* @__PURE__ */ Symbol(), bi = ({
       buildMutationSelector: w,
       selectInvalidatedBy: T,
       selectCachedArgsForQuery: A
-    } = ai({
-      serializeQueryArgs: u,
+    } = ui({
+      serializeQueryArgs: a,
       reducerPath: o,
       createSelector: e
     });
@@ -3535,34 +3535,34 @@ var Dr = /* @__PURE__ */ Symbol(), bi = ({
       buildInitiateMutation: I,
       getRunningMutationThunk: N,
       getRunningMutationsThunk: D,
-      getRunningQueriesThunk: $,
+      getRunningQueriesThunk: q,
       getRunningQueryThunk: x
     } = si({
       queryThunk: l,
-      mutationThunk: a,
+      mutationThunk: u,
       api: t,
-      serializeQueryArgs: u,
+      serializeQueryArgs: a,
       context: g
     });
     return fe(t.util, {
       getRunningMutationThunk: N,
       getRunningMutationsThunk: D,
       getRunningQueryThunk: x,
-      getRunningQueriesThunk: $
+      getRunningQueriesThunk: q
     }), {
       name: Dr,
-      injectEndpoint(q, W) {
+      injectEndpoint(k, W) {
         var H;
         const j = t;
-        (H = j.endpoints)[q] ?? (H[q] = {}), fn(W) ? fe(j.endpoints[q], {
-          name: q,
-          select: R(q, W),
-          initiate: C(q, W)
-        }, s(l, q)) : ni(W) && fe(j.endpoints[q], {
-          name: q,
+        (H = j.endpoints)[k] ?? (H[k] = {}), fn(W) ? fe(j.endpoints[k], {
+          name: k,
+          select: R(k, W),
+          initiate: C(k, W)
+        }, s(l, k)) : ni(W) && fe(j.endpoints[k], {
+          name: k,
           select: w(),
-          initiate: I(q)
-        }, s(a, q));
+          initiate: I(k)
+        }, s(u, k));
       }
     };
   }
@@ -3585,10 +3585,10 @@ function Oi() {
   function t(g, y) {
     return g === y && (g !== 0 || 1 / g === 1 / y) || g !== g && y !== y;
   }
-  var r = typeof Object.is == "function" ? Object.is : t, n = e.useState, o = e.useEffect, u = e.useLayoutEffect, d = e.useDebugValue;
+  var r = typeof Object.is == "function" ? Object.is : t, n = e.useState, o = e.useEffect, a = e.useLayoutEffect, d = e.useDebugValue;
   function v(g, y) {
-    var l = y(), a = n({ inst: { value: l, getSnapshot: y } }), p = a[0].inst, f = a[1];
-    return u(function() {
+    var l = y(), u = n({ inst: { value: l, getSnapshot: y } }), p = u[0].inst, f = u[1];
+    return a(function() {
       p.value = l, p.getSnapshot = y, O(p) && f({ inst: p });
     }, [g, l, y]), o(function() {
       return O(p) && f({ inst: p }), g(function() {
@@ -3622,9 +3622,9 @@ var At = {};
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-var jr;
+var qr;
 function Ri() {
-  return jr || (jr = 1, process.env.NODE_ENV !== "production" && function() {
+  return qr || (qr = 1, process.env.NODE_ENV !== "production" && function() {
     typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ < "u" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart == "function" && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
     var e = lt, t = e.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
     function r(s) {
@@ -3647,13 +3647,13 @@ function Ri() {
     function o(s, i) {
       return s === i && (s !== 0 || 1 / s === 1 / i) || s !== s && i !== i;
     }
-    var u = typeof Object.is == "function" ? Object.is : o, d = e.useState, v = e.useEffect, O = e.useLayoutEffect, E = e.useDebugValue, S = !1, g = !1;
+    var a = typeof Object.is == "function" ? Object.is : o, d = e.useState, v = e.useEffect, O = e.useLayoutEffect, E = e.useDebugValue, S = !1, g = !1;
     function y(s, i, c) {
       S || e.startTransition !== void 0 && (S = !0, r("You are using an outdated, pre-release alpha of React 18 that does not support useSyncExternalStore. The use-sync-external-store shim will not work correctly. Upgrade to a newer pre-release."));
       var _ = i();
       if (!g) {
         var b = i();
-        u(_, b) || (r("The result of getSnapshot should be cached to avoid an infinite loop"), g = !0);
+        a(_, b) || (r("The result of getSnapshot should be cached to avoid an infinite loop"), g = !0);
       }
       var R = d({
         inst: {
@@ -3681,15 +3681,15 @@ function Ri() {
       var i = s.getSnapshot, c = s.value;
       try {
         var _ = i();
-        return !u(c, _);
+        return !a(c, _);
       } catch {
         return !0;
       }
     }
-    function a(s, i, c) {
+    function u(s, i, c) {
       return i();
     }
-    var p = typeof window < "u" && typeof window.document < "u" && typeof window.document.createElement < "u", f = !p, m = f ? a : y, h = e.useSyncExternalStore !== void 0 ? e.useSyncExternalStore : m;
+    var p = typeof window < "u" && typeof window.document < "u" && typeof window.document.createElement < "u", f = !p, m = f ? u : y, h = e.useSyncExternalStore !== void 0 ? e.useSyncExternalStore : m;
     At.useSyncExternalStore = h, typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ < "u" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop == "function" && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());
   }()), At;
 }
@@ -3704,24 +3704,24 @@ var hn = Bt.exports, Wt = { exports: {} }, Mt = {};
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-var kr;
+var jr;
 function wi() {
-  if (kr)
+  if (jr)
     return Mt;
-  kr = 1;
+  jr = 1;
   var e = lt, t = hn;
   function r(E, S) {
     return E === S && (E !== 0 || 1 / E === 1 / S) || E !== E && S !== S;
   }
-  var n = typeof Object.is == "function" ? Object.is : r, o = t.useSyncExternalStore, u = e.useRef, d = e.useEffect, v = e.useMemo, O = e.useDebugValue;
+  var n = typeof Object.is == "function" ? Object.is : r, o = t.useSyncExternalStore, a = e.useRef, d = e.useEffect, v = e.useMemo, O = e.useDebugValue;
   return Mt.useSyncExternalStoreWithSelector = function(E, S, g, y, l) {
-    var a = u(null);
-    if (a.current === null) {
+    var u = a(null);
+    if (u.current === null) {
       var p = { hasValue: !1, value: null };
-      a.current = p;
+      u.current = p;
     } else
-      p = a.current;
-    a = v(function() {
+      p = u.current;
+    u = v(function() {
       function m(_) {
         if (!h) {
           if (h = !0, s = _, _ = y(_), l !== void 0 && p.hasValue) {
@@ -3743,7 +3743,7 @@ function wi() {
         return m(c());
       }];
     }, [S, g, y, l]);
-    var f = o(E, a[0], a[1]);
+    var f = o(E, u[0], u[1]);
     return d(function() {
       p.hasValue = !0, p.value = f;
     }, [f]), O(f), f;
@@ -3759,17 +3759,17 @@ var Pt = {};
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-var qr;
+var kr;
 function Ti() {
-  return qr || (qr = 1, process.env.NODE_ENV !== "production" && function() {
+  return kr || (kr = 1, process.env.NODE_ENV !== "production" && function() {
     typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ < "u" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart == "function" && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
     var e = lt, t = hn;
     function r(S, g) {
       return S === g && (S !== 0 || 1 / S === 1 / g) || S !== S && g !== g;
     }
-    var n = typeof Object.is == "function" ? Object.is : r, o = t.useSyncExternalStore, u = e.useRef, d = e.useEffect, v = e.useMemo, O = e.useDebugValue;
-    function E(S, g, y, l, a) {
-      var p = u(null), f;
+    var n = typeof Object.is == "function" ? Object.is : r, o = t.useSyncExternalStore, a = e.useRef, d = e.useEffect, v = e.useMemo, O = e.useDebugValue;
+    function E(S, g, y, l, u) {
+      var p = a(null), f;
       p.current === null ? (f = {
         hasValue: !1,
         value: null
@@ -3779,25 +3779,25 @@ function Ti() {
           if (!c) {
             c = !0, _ = C;
             var I = l(C);
-            if (a !== void 0 && f.hasValue) {
+            if (u !== void 0 && f.hasValue) {
               var N = f.value;
-              if (a(N, I))
+              if (u(N, I))
                 return b = N, N;
             }
             return b = I, I;
           }
-          var D = _, $ = b;
+          var D = _, q = b;
           if (n(D, C))
-            return $;
+            return q;
           var x = l(C);
-          return a !== void 0 && a($, x) ? $ : (_ = C, b = x, x);
+          return u !== void 0 && u(q, x) ? q : (_ = C, b = x, x);
         }, w = y === void 0 ? null : y, T = function() {
           return R(g());
         }, A = w === null ? void 0 : function() {
           return R(w());
         };
         return [T, A];
-      }, [g, y, l, a]), h = m[0], s = m[1], i = o(S, h, s);
+      }, [g, y, l, u]), h = m[0], s = m[1], i = o(S, h, s);
       return d(function() {
         f.hasValue = !0, f.value = i;
       }, [i]), O(i), i;
@@ -3839,7 +3839,7 @@ function Ni(e = Re) {
   const t = e === Re ? mn : or(e);
   return function(n, o = {}) {
     const {
-      equalityFn: u = Ii,
+      equalityFn: a = Ii,
       stabilityCheck: d = void 0,
       noopCheck: v = void 0
     } = typeof o == "function" ? {
@@ -3850,7 +3850,7 @@ function Ni(e = Re) {
         throw new Error("You must pass a selector to useSelector");
       if (typeof n != "function")
         throw new Error("You must pass a function as a selector to useSelector");
-      if (typeof u != "function")
+      if (typeof a != "function")
         throw new Error("You must pass a function as an equality function to useSelector");
     }
     const {
@@ -3859,14 +3859,14 @@ function Ni(e = Re) {
       getServerState: S,
       stabilityCheck: g,
       noopCheck: y
-    } = t(), l = ue(!0), a = xe({
+    } = t(), l = ae(!0), u = xe({
       [n.name](f) {
         const m = n(f);
         if (process.env.NODE_ENV !== "production") {
           const h = typeof d > "u" ? g : d;
           if (h === "always" || h === "once" && l.current) {
             const i = n(f);
-            if (!u(m, i)) {
+            if (!a(m, i)) {
               let c;
               try {
                 throw new Error();
@@ -3903,7 +3903,7 @@ Selectors that return the entire state are almost certainly a mistake, as they w
         }
         return m;
       }
-    }[n.name], [n, g, d]), p = gn(E.addNestedSub, O.getState, S || O.getState, a, u);
+    }[n.name], [n, g, d]), p = gn(E.addNestedSub, O.getState, S || O.getState, u, a);
     return $t(p), p;
   };
 }
@@ -3922,7 +3922,7 @@ function $i() {
   if (Lr)
     return L;
   Lr = 1;
-  var e = typeof Symbol == "function" && Symbol.for, t = e ? Symbol.for("react.element") : 60103, r = e ? Symbol.for("react.portal") : 60106, n = e ? Symbol.for("react.fragment") : 60107, o = e ? Symbol.for("react.strict_mode") : 60108, u = e ? Symbol.for("react.profiler") : 60114, d = e ? Symbol.for("react.provider") : 60109, v = e ? Symbol.for("react.context") : 60110, O = e ? Symbol.for("react.async_mode") : 60111, E = e ? Symbol.for("react.concurrent_mode") : 60111, S = e ? Symbol.for("react.forward_ref") : 60112, g = e ? Symbol.for("react.suspense") : 60113, y = e ? Symbol.for("react.suspense_list") : 60120, l = e ? Symbol.for("react.memo") : 60115, a = e ? Symbol.for("react.lazy") : 60116, p = e ? Symbol.for("react.block") : 60121, f = e ? Symbol.for("react.fundamental") : 60117, m = e ? Symbol.for("react.responder") : 60118, h = e ? Symbol.for("react.scope") : 60119;
+  var e = typeof Symbol == "function" && Symbol.for, t = e ? Symbol.for("react.element") : 60103, r = e ? Symbol.for("react.portal") : 60106, n = e ? Symbol.for("react.fragment") : 60107, o = e ? Symbol.for("react.strict_mode") : 60108, a = e ? Symbol.for("react.profiler") : 60114, d = e ? Symbol.for("react.provider") : 60109, v = e ? Symbol.for("react.context") : 60110, O = e ? Symbol.for("react.async_mode") : 60111, E = e ? Symbol.for("react.concurrent_mode") : 60111, S = e ? Symbol.for("react.forward_ref") : 60112, g = e ? Symbol.for("react.suspense") : 60113, y = e ? Symbol.for("react.suspense_list") : 60120, l = e ? Symbol.for("react.memo") : 60115, u = e ? Symbol.for("react.lazy") : 60116, p = e ? Symbol.for("react.block") : 60121, f = e ? Symbol.for("react.fundamental") : 60117, m = e ? Symbol.for("react.responder") : 60118, h = e ? Symbol.for("react.scope") : 60119;
   function s(c) {
     if (typeof c == "object" && c !== null) {
       var _ = c.$$typeof;
@@ -3932,7 +3932,7 @@ function $i() {
             case O:
             case E:
             case n:
-            case u:
+            case a:
             case o:
             case g:
               return c;
@@ -3940,7 +3940,7 @@ function $i() {
               switch (c = c && c.$$typeof, c) {
                 case v:
                 case S:
-                case a:
+                case u:
                 case l:
                 case d:
                   return c;
@@ -3956,7 +3956,7 @@ function $i() {
   function i(c) {
     return s(c) === E;
   }
-  return L.AsyncMode = O, L.ConcurrentMode = E, L.ContextConsumer = v, L.ContextProvider = d, L.Element = t, L.ForwardRef = S, L.Fragment = n, L.Lazy = a, L.Memo = l, L.Portal = r, L.Profiler = u, L.StrictMode = o, L.Suspense = g, L.isAsyncMode = function(c) {
+  return L.AsyncMode = O, L.ConcurrentMode = E, L.ContextConsumer = v, L.ContextProvider = d, L.Element = t, L.ForwardRef = S, L.Fragment = n, L.Lazy = u, L.Memo = l, L.Portal = r, L.Profiler = a, L.StrictMode = o, L.Suspense = g, L.isAsyncMode = function(c) {
     return i(c) || s(c) === O;
   }, L.isConcurrentMode = i, L.isContextConsumer = function(c) {
     return s(c) === v;
@@ -3969,19 +3969,19 @@ function $i() {
   }, L.isFragment = function(c) {
     return s(c) === n;
   }, L.isLazy = function(c) {
-    return s(c) === a;
+    return s(c) === u;
   }, L.isMemo = function(c) {
     return s(c) === l;
   }, L.isPortal = function(c) {
     return s(c) === r;
   }, L.isProfiler = function(c) {
-    return s(c) === u;
+    return s(c) === a;
   }, L.isStrictMode = function(c) {
     return s(c) === o;
   }, L.isSuspense = function(c) {
     return s(c) === g;
   }, L.isValidElementType = function(c) {
-    return typeof c == "string" || typeof c == "function" || c === n || c === E || c === u || c === o || c === g || c === y || typeof c == "object" && c !== null && (c.$$typeof === a || c.$$typeof === l || c.$$typeof === d || c.$$typeof === v || c.$$typeof === S || c.$$typeof === f || c.$$typeof === m || c.$$typeof === h || c.$$typeof === p);
+    return typeof c == "string" || typeof c == "function" || c === n || c === E || c === a || c === o || c === g || c === y || typeof c == "object" && c !== null && (c.$$typeof === u || c.$$typeof === l || c.$$typeof === d || c.$$typeof === v || c.$$typeof === S || c.$$typeof === f || c.$$typeof === m || c.$$typeof === h || c.$$typeof === p);
   }, L.typeOf = s, L;
 }
 var V = {};
@@ -3994,24 +3994,24 @@ var V = {};
  * LICENSE file in the root directory of this source tree.
  */
 var Vr;
-function ji() {
+function qi() {
   return Vr || (Vr = 1, process.env.NODE_ENV !== "production" && function() {
-    var e = typeof Symbol == "function" && Symbol.for, t = e ? Symbol.for("react.element") : 60103, r = e ? Symbol.for("react.portal") : 60106, n = e ? Symbol.for("react.fragment") : 60107, o = e ? Symbol.for("react.strict_mode") : 60108, u = e ? Symbol.for("react.profiler") : 60114, d = e ? Symbol.for("react.provider") : 60109, v = e ? Symbol.for("react.context") : 60110, O = e ? Symbol.for("react.async_mode") : 60111, E = e ? Symbol.for("react.concurrent_mode") : 60111, S = e ? Symbol.for("react.forward_ref") : 60112, g = e ? Symbol.for("react.suspense") : 60113, y = e ? Symbol.for("react.suspense_list") : 60120, l = e ? Symbol.for("react.memo") : 60115, a = e ? Symbol.for("react.lazy") : 60116, p = e ? Symbol.for("react.block") : 60121, f = e ? Symbol.for("react.fundamental") : 60117, m = e ? Symbol.for("react.responder") : 60118, h = e ? Symbol.for("react.scope") : 60119;
+    var e = typeof Symbol == "function" && Symbol.for, t = e ? Symbol.for("react.element") : 60103, r = e ? Symbol.for("react.portal") : 60106, n = e ? Symbol.for("react.fragment") : 60107, o = e ? Symbol.for("react.strict_mode") : 60108, a = e ? Symbol.for("react.profiler") : 60114, d = e ? Symbol.for("react.provider") : 60109, v = e ? Symbol.for("react.context") : 60110, O = e ? Symbol.for("react.async_mode") : 60111, E = e ? Symbol.for("react.concurrent_mode") : 60111, S = e ? Symbol.for("react.forward_ref") : 60112, g = e ? Symbol.for("react.suspense") : 60113, y = e ? Symbol.for("react.suspense_list") : 60120, l = e ? Symbol.for("react.memo") : 60115, u = e ? Symbol.for("react.lazy") : 60116, p = e ? Symbol.for("react.block") : 60121, f = e ? Symbol.for("react.fundamental") : 60117, m = e ? Symbol.for("react.responder") : 60118, h = e ? Symbol.for("react.scope") : 60119;
     function s(M) {
       return typeof M == "string" || typeof M == "function" || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
-      M === n || M === E || M === u || M === o || M === g || M === y || typeof M == "object" && M !== null && (M.$$typeof === a || M.$$typeof === l || M.$$typeof === d || M.$$typeof === v || M.$$typeof === S || M.$$typeof === f || M.$$typeof === m || M.$$typeof === h || M.$$typeof === p);
+      M === n || M === E || M === a || M === o || M === g || M === y || typeof M == "object" && M !== null && (M.$$typeof === u || M.$$typeof === l || M.$$typeof === d || M.$$typeof === v || M.$$typeof === S || M.$$typeof === f || M.$$typeof === m || M.$$typeof === h || M.$$typeof === p);
     }
     function i(M) {
       if (typeof M == "object" && M !== null) {
-        var je = M.$$typeof;
-        switch (je) {
+        var qe = M.$$typeof;
+        switch (qe) {
           case t:
             var P = M.type;
             switch (P) {
               case O:
               case E:
               case n:
-              case u:
+              case a:
               case o:
               case g:
                 return P;
@@ -4020,22 +4020,22 @@ function ji() {
                 switch (Te) {
                   case v:
                   case S:
-                  case a:
+                  case u:
                   case l:
                   case d:
                     return Te;
                   default:
-                    return je;
+                    return qe;
                 }
             }
           case r:
-            return je;
+            return qe;
         }
       }
     }
-    var c = O, _ = E, b = v, R = d, w = t, T = S, A = n, C = a, I = l, N = r, D = u, $ = o, x = g, q = !1;
+    var c = O, _ = E, b = v, R = d, w = t, T = S, A = n, C = u, I = l, N = r, D = a, q = o, x = g, k = !1;
     function W(M) {
-      return q || (q = !0, console.warn("The ReactIs.isAsyncMode() alias has been deprecated, and will be removed in React 17+. Update your code to use ReactIs.isConcurrentMode() instead. It has the exact same API.")), j(M) || i(M) === O;
+      return k || (k = !0, console.warn("The ReactIs.isAsyncMode() alias has been deprecated, and will be removed in React 17+. Update your code to use ReactIs.isConcurrentMode() instead. It has the exact same API.")), j(M) || i(M) === O;
     }
     function j(M) {
       return i(M) === E;
@@ -4056,7 +4056,7 @@ function ji() {
       return i(M) === n;
     }
     function ht(M) {
-      return i(M) === a;
+      return i(M) === u;
     }
     function mt(M) {
       return i(M) === l;
@@ -4065,7 +4065,7 @@ function ji() {
       return i(M) === r;
     }
     function vt(M) {
-      return i(M) === u;
+      return i(M) === a;
     }
     function St(M) {
       return i(M) === o;
@@ -4073,11 +4073,11 @@ function ji() {
     function Et(M) {
       return i(M) === g;
     }
-    V.AsyncMode = c, V.ConcurrentMode = _, V.ContextConsumer = b, V.ContextProvider = R, V.Element = w, V.ForwardRef = T, V.Fragment = A, V.Lazy = C, V.Memo = I, V.Portal = N, V.Profiler = D, V.StrictMode = $, V.Suspense = x, V.isAsyncMode = W, V.isConcurrentMode = j, V.isContextConsumer = H, V.isContextProvider = z, V.isElement = G, V.isForwardRef = J, V.isFragment = yt, V.isLazy = ht, V.isMemo = mt, V.isPortal = gt, V.isProfiler = vt, V.isStrictMode = St, V.isSuspense = Et, V.isValidElementType = s, V.typeOf = i;
+    V.AsyncMode = c, V.ConcurrentMode = _, V.ContextConsumer = b, V.ContextProvider = R, V.Element = w, V.ForwardRef = T, V.Fragment = A, V.Lazy = C, V.Memo = I, V.Portal = N, V.Profiler = D, V.StrictMode = q, V.Suspense = x, V.isAsyncMode = W, V.isConcurrentMode = j, V.isContextConsumer = H, V.isContextProvider = z, V.isElement = G, V.isForwardRef = J, V.isFragment = yt, V.isLazy = ht, V.isMemo = mt, V.isPortal = gt, V.isProfiler = vt, V.isStrictMode = St, V.isSuspense = Et, V.isValidElementType = s, V.typeOf = i;
   }()), V;
 }
-process.env.NODE_ENV === "production" ? Kt.exports = $i() : Kt.exports = ji();
-var ki = Kt.exports, vn = ki, qi = {
+process.env.NODE_ENV === "production" ? Kt.exports = $i() : Kt.exports = qi();
+var ji = Kt.exports, vn = ji, ki = {
   $$typeof: !0,
   render: !0,
   defaultProps: !0,
@@ -4091,7 +4091,7 @@ var ki = Kt.exports, vn = ki, qi = {
   propTypes: !0,
   type: !0
 }, Sn = {};
-Sn[vn.ForwardRef] = qi;
+Sn[vn.ForwardRef] = ki;
 Sn[vn.Memo] = xi;
 var F = {};
 /**
@@ -4108,8 +4108,8 @@ function zi() {
   if (Fr)
     return F;
   Fr = 1;
-  var e = Symbol.for("react.element"), t = Symbol.for("react.portal"), r = Symbol.for("react.fragment"), n = Symbol.for("react.strict_mode"), o = Symbol.for("react.profiler"), u = Symbol.for("react.provider"), d = Symbol.for("react.context"), v = Symbol.for("react.server_context"), O = Symbol.for("react.forward_ref"), E = Symbol.for("react.suspense"), S = Symbol.for("react.suspense_list"), g = Symbol.for("react.memo"), y = Symbol.for("react.lazy"), l = Symbol.for("react.offscreen"), a;
-  a = Symbol.for("react.module.reference");
+  var e = Symbol.for("react.element"), t = Symbol.for("react.portal"), r = Symbol.for("react.fragment"), n = Symbol.for("react.strict_mode"), o = Symbol.for("react.profiler"), a = Symbol.for("react.provider"), d = Symbol.for("react.context"), v = Symbol.for("react.server_context"), O = Symbol.for("react.forward_ref"), E = Symbol.for("react.suspense"), S = Symbol.for("react.suspense_list"), g = Symbol.for("react.memo"), y = Symbol.for("react.lazy"), l = Symbol.for("react.offscreen"), u;
+  u = Symbol.for("react.module.reference");
   function p(f) {
     if (typeof f == "object" && f !== null) {
       var m = f.$$typeof;
@@ -4129,7 +4129,7 @@ function zi() {
                 case O:
                 case y:
                 case g:
-                case u:
+                case a:
                   return f;
                 default:
                   return m;
@@ -4140,14 +4140,14 @@ function zi() {
       }
     }
   }
-  return F.ContextConsumer = d, F.ContextProvider = u, F.Element = e, F.ForwardRef = O, F.Fragment = r, F.Lazy = y, F.Memo = g, F.Portal = t, F.Profiler = o, F.StrictMode = n, F.Suspense = E, F.SuspenseList = S, F.isAsyncMode = function() {
+  return F.ContextConsumer = d, F.ContextProvider = a, F.Element = e, F.ForwardRef = O, F.Fragment = r, F.Lazy = y, F.Memo = g, F.Portal = t, F.Profiler = o, F.StrictMode = n, F.Suspense = E, F.SuspenseList = S, F.isAsyncMode = function() {
     return !1;
   }, F.isConcurrentMode = function() {
     return !1;
   }, F.isContextConsumer = function(f) {
     return p(f) === d;
   }, F.isContextProvider = function(f) {
-    return p(f) === u;
+    return p(f) === a;
   }, F.isElement = function(f) {
     return typeof f == "object" && f !== null && f.$$typeof === e;
   }, F.isForwardRef = function(f) {
@@ -4169,7 +4169,7 @@ function zi() {
   }, F.isSuspenseList = function(f) {
     return p(f) === S;
   }, F.isValidElementType = function(f) {
-    return typeof f == "string" || typeof f == "function" || f === r || f === o || f === n || f === E || f === S || f === l || typeof f == "object" && f !== null && (f.$$typeof === y || f.$$typeof === g || f.$$typeof === u || f.$$typeof === d || f.$$typeof === O || f.$$typeof === a || f.getModuleId !== void 0);
+    return typeof f == "string" || typeof f == "function" || f === r || f === o || f === n || f === E || f === S || f === l || typeof f == "object" && f !== null && (f.$$typeof === y || f.$$typeof === g || f.$$typeof === a || f.$$typeof === d || f.$$typeof === O || f.$$typeof === u || f.getModuleId !== void 0);
   }, F.typeOf = p, F;
 }
 var Q = {};
@@ -4185,10 +4185,10 @@ var Q = {};
 var Qr;
 function Li() {
   return Qr || (Qr = 1, process.env.NODE_ENV !== "production" && function() {
-    var e = !1, t = !1, r = !1, n = !1, o = !1, u = Symbol.for("react.element"), d = Symbol.for("react.portal"), v = Symbol.for("react.fragment"), O = Symbol.for("react.strict_mode"), E = Symbol.for("react.profiler"), S = Symbol.for("react.provider"), g = Symbol.for("react.context"), y = Symbol.for("react.server_context"), l = Symbol.for("react.forward_ref"), a = Symbol.for("react.suspense"), p = Symbol.for("react.suspense_list"), f = Symbol.for("react.memo"), m = Symbol.for("react.lazy"), h = Symbol.for("react.offscreen"), s;
+    var e = !1, t = !1, r = !1, n = !1, o = !1, a = Symbol.for("react.element"), d = Symbol.for("react.portal"), v = Symbol.for("react.fragment"), O = Symbol.for("react.strict_mode"), E = Symbol.for("react.profiler"), S = Symbol.for("react.provider"), g = Symbol.for("react.context"), y = Symbol.for("react.server_context"), l = Symbol.for("react.forward_ref"), u = Symbol.for("react.suspense"), p = Symbol.for("react.suspense_list"), f = Symbol.for("react.memo"), m = Symbol.for("react.lazy"), h = Symbol.for("react.offscreen"), s;
     s = Symbol.for("react.module.reference");
     function i(P) {
-      return !!(typeof P == "string" || typeof P == "function" || P === v || P === E || o || P === O || P === a || P === p || n || P === h || e || t || r || typeof P == "object" && P !== null && (P.$$typeof === m || P.$$typeof === f || P.$$typeof === S || P.$$typeof === g || P.$$typeof === l || // This needs to include all possible module reference object
+      return !!(typeof P == "string" || typeof P == "function" || P === v || P === E || o || P === O || P === u || P === p || n || P === h || e || t || r || typeof P == "object" && P !== null && (P.$$typeof === m || P.$$typeof === f || P.$$typeof === S || P.$$typeof === g || P.$$typeof === l || // This needs to include all possible module reference object
       // types supported by any Flight configuration anywhere since
       // we don't know which Flight build this will end up being used
       // with.
@@ -4198,13 +4198,13 @@ function Li() {
       if (typeof P == "object" && P !== null) {
         var Te = P.$$typeof;
         switch (Te) {
-          case u:
+          case a:
             var Ze = P.type;
             switch (Ze) {
               case v:
               case E:
               case O:
-              case a:
+              case u:
               case p:
                 return Ze;
               default:
@@ -4226,9 +4226,9 @@ function Li() {
         }
       }
     }
-    var _ = g, b = S, R = u, w = l, T = v, A = m, C = f, I = d, N = E, D = O, $ = a, x = p, q = !1, W = !1;
+    var _ = g, b = S, R = a, w = l, T = v, A = m, C = f, I = d, N = E, D = O, q = u, x = p, k = !1, W = !1;
     function j(P) {
-      return q || (q = !0, console.warn("The ReactIs.isAsyncMode() alias has been deprecated, and will be removed in React 18+.")), !1;
+      return k || (k = !0, console.warn("The ReactIs.isAsyncMode() alias has been deprecated, and will be removed in React 18+.")), !1;
     }
     function H(P) {
       return W || (W = !0, console.warn("The ReactIs.isConcurrentMode() alias has been deprecated, and will be removed in React 18+.")), !1;
@@ -4240,7 +4240,7 @@ function Li() {
       return c(P) === S;
     }
     function J(P) {
-      return typeof P == "object" && P !== null && P.$$typeof === u;
+      return typeof P == "object" && P !== null && P.$$typeof === a;
     }
     function yt(P) {
       return c(P) === l;
@@ -4264,12 +4264,12 @@ function Li() {
       return c(P) === O;
     }
     function M(P) {
-      return c(P) === a;
+      return c(P) === u;
     }
-    function je(P) {
+    function qe(P) {
       return c(P) === p;
     }
-    Q.ContextConsumer = _, Q.ContextProvider = b, Q.Element = R, Q.ForwardRef = w, Q.Fragment = T, Q.Lazy = A, Q.Memo = C, Q.Portal = I, Q.Profiler = N, Q.StrictMode = D, Q.Suspense = $, Q.SuspenseList = x, Q.isAsyncMode = j, Q.isConcurrentMode = H, Q.isContextConsumer = z, Q.isContextProvider = G, Q.isElement = J, Q.isForwardRef = yt, Q.isFragment = ht, Q.isLazy = mt, Q.isMemo = gt, Q.isPortal = vt, Q.isProfiler = St, Q.isStrictMode = Et, Q.isSuspense = M, Q.isSuspenseList = je, Q.isValidElementType = i, Q.typeOf = c;
+    Q.ContextConsumer = _, Q.ContextProvider = b, Q.Element = R, Q.ForwardRef = w, Q.Fragment = T, Q.Lazy = A, Q.Memo = C, Q.Portal = I, Q.Profiler = N, Q.StrictMode = D, Q.Suspense = q, Q.SuspenseList = x, Q.isAsyncMode = j, Q.isConcurrentMode = H, Q.isContextConsumer = z, Q.isContextProvider = G, Q.isElement = J, Q.isForwardRef = yt, Q.isFragment = ht, Q.isLazy = mt, Q.isMemo = gt, Q.isPortal = vt, Q.isProfiler = St, Q.isStrictMode = Et, Q.isSuspense = M, Q.isSuspenseList = qe, Q.isValidElementType = i, Q.typeOf = c;
   }()), Q;
 }
 process.env.NODE_ENV === "production" ? zi() : Li();
@@ -4337,7 +4337,7 @@ var Me = WeakMap ? /* @__PURE__ */ new WeakMap() : void 0, Bi = ({
   if (typeof n == "string")
     r = n;
   else {
-    const o = JSON.stringify(t, (u, d) => le(d) ? Object.keys(d).sort().reduce((v, O) => (v[O] = d[O], v), {}) : d);
+    const o = JSON.stringify(t, (a, d) => le(d) ? Object.keys(d).sort().reduce((v, O) => (v[O] = d[O], v), {}) : d);
     le(t) && (Me == null || Me.set(t, o)), r = o;
   }
   return `${e}(${r})`;
@@ -4350,13 +4350,13 @@ function Br(e, t, r, n) {
       endpointDefinition: r,
       endpointName: n
     }) : e
-  }), [e, t, r, n]), u = ue(o);
+  }), [e, t, r, n]), a = ae(o);
   return pe(() => {
-    u.current.serialized !== o.serialized && (u.current = o);
-  }, [o]), u.current.serialized === o.serialized ? u.current.queryArgs : e;
+    a.current.serialized !== o.serialized && (a.current = o);
+  }, [o]), a.current.serialized === o.serialized ? a.current.queryArgs : e;
 }
 function Dt(e) {
-  const t = ue(e);
+  const t = ae(e);
   return pe(() => {
     Qe(t.current, e) || (t.current = e);
   }, [e]), Qe(t.current, e) ? t.current : e;
@@ -4366,7 +4366,7 @@ var Wi = typeof window < "u" && window.document && window.document.createElement
   isUninitialized: !1,
   isFetching: !0,
   isLoading: e.data === void 0,
-  status: un.pending
+  status: an.pending
 } : e;
 function Yi({
   api: e,
@@ -4377,20 +4377,20 @@ function Yi({
       useSelector: n,
       useStore: o
     },
-    unstable__sideEffectsInRender: u,
+    unstable__sideEffectsInRender: a,
     createSelector: d
   },
   serializeQueryArgs: v,
   context: O
 }) {
-  const E = u ? (a) => a() : pe;
+  const E = a ? (u) => u() : pe;
   return {
     buildQueryHooks: y,
     buildMutationHook: l,
     usePrefetch: g
   };
-  function S(a, p, f) {
-    if (p != null && p.endpointName && a.isUninitialized) {
+  function S(u, p, f) {
+    if (p != null && p.endpointName && u.isUninitialized) {
       const {
         endpointName: _
       } = p, b = O.endpointDefinitions[_];
@@ -4404,26 +4404,26 @@ function Yi({
         endpointName: _
       }) && (p = void 0);
     }
-    let m = a.isSuccess ? a.data : p == null ? void 0 : p.data;
-    m === void 0 && (m = a.data);
-    const h = m !== void 0, s = a.isLoading, i = !h && s, c = a.isSuccess || s && h;
+    let m = u.isSuccess ? u.data : p == null ? void 0 : p.data;
+    m === void 0 && (m = u.data);
+    const h = m !== void 0, s = u.isLoading, i = !h && s, c = u.isSuccess || s && h;
     return {
-      ...a,
+      ...u,
       data: m,
-      currentData: a.data,
+      currentData: u.data,
       isFetching: s,
       isLoading: i,
       isSuccess: c
     };
   }
-  function g(a, p) {
+  function g(u, p) {
     const f = r(), m = Dt(p);
-    return xe((h, s) => f(e.util.prefetch(a, h, {
+    return xe((h, s) => f(e.util.prefetch(u, h, {
       ...m,
       ...s
-    })), [a, f, m]);
+    })), [u, f, m]);
   }
-  function y(a) {
+  function y(u) {
     const p = (h, {
       refetchOnReconnect: s,
       refetchOnFocus: i,
@@ -4434,7 +4434,7 @@ function Yi({
     } = {}) => {
       const {
         initiate: w
-      } = e.endpoints[a], T = r(), A = ue();
+      } = e.endpoints[u], T = r(), A = ae();
       if (!A.current) {
         const j = T(e.internalActions.internal_getRTKQSubscriptions());
         if (process.env.NODE_ENV !== "production" && (typeof j != "object" || typeof (j == null ? void 0 : j.type) == "string"))
@@ -4450,22 +4450,22 @@ function Yi({
         // with a case where the query args did change but the serialization doesn't,
         // and then we never try to initiate a refetch.
         Bi,
-        O.endpointDefinitions[a],
-        a
+        O.endpointDefinitions[u],
+        u
       ), I = Dt({
         refetchOnReconnect: s,
         refetchOnFocus: i,
         pollingInterval: b,
         skipPollingIfUnfocused: R
-      }), N = ue(!1), D = ue();
+      }), N = ae(!1), D = ae();
       let {
-        queryCacheKey: $,
+        queryCacheKey: q,
         requestId: x
-      } = D.current || {}, q = !1;
-      $ && x && (q = A.current.isRequestSubscribed($, x));
-      const W = !q && N.current;
+      } = D.current || {}, k = !1;
+      q && x && (k = A.current.isRequestSubscribed(q, x));
+      const W = !k && N.current;
       return E(() => {
-        N.current = q;
+        N.current = k;
       }), E(() => {
         W && (D.current = void 0);
       }, [W]), E(() => {
@@ -4507,30 +4507,30 @@ function Yi({
     } = {}) => {
       const {
         initiate: _
-      } = e.endpoints[a], b = r(), [R, w] = cr(Nt), T = ue(), A = Dt({
+      } = e.endpoints[u], b = r(), [R, w] = cr(Nt), T = ae(), A = Dt({
         refetchOnReconnect: h,
         refetchOnFocus: s,
         pollingInterval: i,
         skipPollingIfUnfocused: c
       });
       E(() => {
-        var D, $;
+        var D, q;
         const N = (D = T.current) == null ? void 0 : D.subscriptionOptions;
-        A !== N && (($ = T.current) == null || $.updateSubscriptionOptions(A));
+        A !== N && ((q = T.current) == null || q.updateSubscriptionOptions(A));
       }, [A]);
-      const C = ue(A);
+      const C = ae(A);
       E(() => {
         C.current = A;
       }, [A]);
       const I = xe(function(N, D = !1) {
-        let $;
+        let q;
         return t(() => {
           var x;
-          (x = T.current) == null || x.unsubscribe(), T.current = $ = b(_(N, {
+          (x = T.current) == null || x.unsubscribe(), T.current = q = b(_(N, {
             subscriptionOptions: C.current,
             forceRefetch: !D
           })), w(N);
-        }), $;
+        }), q;
       }, [b, _]);
       return pe(() => () => {
         var N;
@@ -4544,7 +4544,7 @@ function Yi({
     } = {}) => {
       const {
         select: c
-      } = e.endpoints[a], _ = Br(s ? Se : h, v, O.endpointDefinitions[a], a), b = ue(), R = ne(() => d([c(_), (I, N) => N, (I) => _], S, {
+      } = e.endpoints[u], _ = Br(s ? Se : h, v, O.endpointDefinitions[u], u), b = ae(), R = ne(() => d([c(_), (I, N) => N, (I) => _], S, {
         memoizeOptions: {
           resultEqualityCheck: Qe
         }
@@ -4596,7 +4596,7 @@ function Yi({
       }
     };
   }
-  function l(a) {
+  function l(u) {
     return ({
       selectFromResult: p,
       fixedCacheKey: f
@@ -4604,7 +4604,7 @@ function Yi({
       const {
         select: m,
         initiate: h
-      } = e.endpoints[a], s = r(), [i, c] = cr();
+      } = e.endpoints[u], s = r(), [i, c] = cr();
       pe(() => () => {
         i != null && i.arg.fixedCacheKey || i == null || i.reset();
       }, [i]);
@@ -4629,18 +4629,18 @@ function Yi({
         endpointName: I,
         data: N,
         status: D,
-        isLoading: $,
+        isLoading: q,
         isSuccess: x,
-        isError: q,
+        isError: k,
         error: W
       } = T;
       $t({
         endpointName: I,
         data: N,
         status: D,
-        isLoading: $,
+        isLoading: q,
         isSuccess: x,
-        isError: q,
+        isError: k,
         error: W
       });
       const j = ne(() => ({
@@ -4670,24 +4670,24 @@ var Gi = /* @__PURE__ */ Symbol(), Ji = ({
   ...o
 } = {}) => {
   if (process.env.NODE_ENV !== "production") {
-    const u = ["useDispatch", "useSelector", "useStore"];
+    const a = ["useDispatch", "useSelector", "useStore"];
     let d = !1;
-    for (const v of u)
+    for (const v of a)
       if (Hi(o) > 0 && (o[v] && (d || (console.warn("As of RTK 2.0, the hooks now need to be specified as one object, provided under a `hooks` key:\n`reactHooksModule({ hooks: { useDispatch, useSelector, useStore } })`"), d = !0)), t[v] = o[v]), typeof t[v] != "function")
-        throw new Error(process.env.NODE_ENV === "production" ? U(36) : `When using custom hooks for context, all ${u.length} hooks need to be provided: ${u.join(", ")}.
+        throw new Error(process.env.NODE_ENV === "production" ? U(36) : `When using custom hooks for context, all ${a.length} hooks need to be provided: ${a.join(", ")}.
 Hook ${v} was either not provided or not a function.`);
   }
   return {
     name: Gi,
-    init(u, {
+    init(a, {
       serializeQueryArgs: d
     }, v) {
-      const O = u, {
+      const O = a, {
         buildQueryHooks: E,
         buildMutationHook: S,
         usePrefetch: g
       } = Yi({
-        api: u,
+        api: a,
         moduleOptions: {
           batch: e,
           hooks: t,
@@ -4705,43 +4705,43 @@ Hook ${v} was either not provided or not a function.`);
         injectEndpoint(y, l) {
           if (Qi(l)) {
             const {
-              useQuery: a,
+              useQuery: u,
               useLazyQuery: p,
               useLazyQuerySubscription: f,
               useQueryState: m,
               useQuerySubscription: h
             } = E(y);
             ot(O.endpoints[y], {
-              useQuery: a,
+              useQuery: u,
               useLazyQuery: p,
               useLazyQuerySubscription: f,
               useQueryState: m,
               useQuerySubscription: h
-            }), u[`use${It(y)}Query`] = a, u[`useLazy${It(y)}Query`] = p;
+            }), a[`use${It(y)}Query`] = u, a[`useLazy${It(y)}Query`] = p;
           } else if (Ui(l)) {
-            const a = S(y);
+            const u = S(y);
             ot(O.endpoints[y], {
-              useMutation: a
-            }), u[`use${It(y)}Mutation`] = a;
+              useMutation: u
+            }), a[`use${It(y)}Mutation`] = u;
           }
         }
       };
     }
   };
-}, Xi = /* @__PURE__ */ li(bi(), Ji()), k = /* @__PURE__ */ ((e) => (e.Cashiers = "Cashiers", e.Orders = "Orders", e.Places = "Places", e.Organizations = "Organizations", e.Categories = "Categories", e.Additions = "Additions", e.Menu = "Menu", e.PromoCodes = "PromoCodes", e))(k || {});
+}, Xi = /* @__PURE__ */ li(bi(), Ji()), $ = /* @__PURE__ */ ((e) => (e.Cashiers = "Cashiers", e.Orders = "Orders", e.Places = "Places", e.Organizations = "Organizations", e.Categories = "Categories", e.Additions = "Additions", e.Menu = "Menu", e.PromoCodes = "PromoCodes", e))($ || {});
 const Zi = (e) => {
   const t = ri({ baseUrl: e });
   return async (r, n, o) => {
-    const u = await t(r, n, o);
-    if ("data" in u) {
-      const d = u.data;
+    const a = await t(r, n, o);
+    if ("data" in a) {
+      const d = a.data;
       return d != null && d.code ? (alert(`Ошибка: ${d.code}`), { error: { status: 400, data: d } }) : { data: d };
     }
-    return u;
+    return a;
   };
 }, de = Xi({
   reducerPath: "api",
-  tagTypes: Object.values(k),
+  tagTypes: Object.values($),
   baseQuery: Zi("/book-eat/api"),
   endpoints: () => ({})
 }), Ds = de.injectEndpoints({
@@ -4759,13 +4759,13 @@ const Zi = (e) => {
 }), es = de.injectEndpoints({
   endpoints: (e) => ({
     getCashiers: e.query({
-      providesTags: [k.Cashiers],
+      providesTags: [$.Cashiers],
       query: () => "/v1/users/organization",
       transformResponse: (t) => ct.setAll(ct.getInitialState(), t)
     }),
     createCashier: e.mutation(
       {
-        invalidatesTags: [k.Cashiers],
+        invalidatesTags: [$.Cashiers],
         query: (t) => ({
           url: "/v1/users/place",
           method: "POST",
@@ -4774,7 +4774,7 @@ const Zi = (e) => {
       }
     ),
     deleteCashiers: e.mutation({
-      invalidatesTags: [k.Cashiers],
+      invalidatesTags: [$.Cashiers],
       query: (t) => ({
         url: "/v1/auth/cashier",
         method: "DELETE",
@@ -4788,7 +4788,7 @@ const Zi = (e) => {
 function B(e) {
   return e === ts;
 }
-function ae(e) {
+function ue(e) {
   return function t(r) {
     return arguments.length === 0 || B(r) ? t : e.apply(this, arguments);
   };
@@ -4799,13 +4799,13 @@ function ve(e) {
       case 0:
         return t;
       case 1:
-        return B(r) ? t : ae(function(o) {
+        return B(r) ? t : ue(function(o) {
           return e(r, o);
         });
       default:
-        return B(r) && B(n) ? t : B(r) ? ae(function(o) {
+        return B(r) && B(n) ? t : B(r) ? ue(function(o) {
           return e(o, n);
-        }) : B(n) ? ae(function(o) {
+        }) : B(n) ? ue(function(o) {
           return e(r, o);
         }) : e(r, n);
     }
@@ -4830,31 +4830,31 @@ function bn(e, t) {
         return t.apply(this, arguments);
       };
     case 4:
-      return function(r, n, o, u) {
+      return function(r, n, o, a) {
         return t.apply(this, arguments);
       };
     case 5:
-      return function(r, n, o, u, d) {
+      return function(r, n, o, a, d) {
         return t.apply(this, arguments);
       };
     case 6:
-      return function(r, n, o, u, d, v) {
+      return function(r, n, o, a, d, v) {
         return t.apply(this, arguments);
       };
     case 7:
-      return function(r, n, o, u, d, v, O) {
+      return function(r, n, o, a, d, v, O) {
         return t.apply(this, arguments);
       };
     case 8:
-      return function(r, n, o, u, d, v, O, E) {
+      return function(r, n, o, a, d, v, O, E) {
         return t.apply(this, arguments);
       };
     case 9:
-      return function(r, n, o, u, d, v, O, E, S) {
+      return function(r, n, o, a, d, v, O, E, S) {
         return t.apply(this, arguments);
       };
     case 10:
-      return function(r, n, o, u, d, v, O, E, S, g) {
+      return function(r, n, o, a, d, v, O, E, S, g) {
         return t.apply(this, arguments);
       };
     default:
@@ -4867,30 +4867,30 @@ function On(e) {
       case 0:
         return t;
       case 1:
-        return B(r) ? t : ve(function(u, d) {
-          return e(r, u, d);
+        return B(r) ? t : ve(function(a, d) {
+          return e(r, a, d);
         });
       case 2:
-        return B(r) && B(n) ? t : B(r) ? ve(function(u, d) {
-          return e(u, n, d);
-        }) : B(n) ? ve(function(u, d) {
-          return e(r, u, d);
-        }) : ae(function(u) {
-          return e(r, n, u);
+        return B(r) && B(n) ? t : B(r) ? ve(function(a, d) {
+          return e(a, n, d);
+        }) : B(n) ? ve(function(a, d) {
+          return e(r, a, d);
+        }) : ue(function(a) {
+          return e(r, n, a);
         });
       default:
-        return B(r) && B(n) && B(o) ? t : B(r) && B(n) ? ve(function(u, d) {
-          return e(u, d, o);
-        }) : B(r) && B(o) ? ve(function(u, d) {
-          return e(u, n, d);
-        }) : B(n) && B(o) ? ve(function(u, d) {
-          return e(r, u, d);
-        }) : B(r) ? ae(function(u) {
-          return e(u, n, o);
-        }) : B(n) ? ae(function(u) {
-          return e(r, u, o);
-        }) : B(o) ? ae(function(u) {
-          return e(r, n, u);
+        return B(r) && B(n) && B(o) ? t : B(r) && B(n) ? ve(function(a, d) {
+          return e(a, d, o);
+        }) : B(r) && B(o) ? ve(function(a, d) {
+          return e(a, n, d);
+        }) : B(n) && B(o) ? ve(function(a, d) {
+          return e(r, a, d);
+        }) : B(r) ? ue(function(a) {
+          return e(a, n, o);
+        }) : B(n) ? ue(function(a) {
+          return e(r, a, o);
+        }) : B(o) ? ue(function(a) {
+          return e(r, n, a);
         }) : e(r, n, o);
     }
   };
@@ -4901,25 +4901,25 @@ const Rn = Array.isArray || function(t) {
 function rs(e) {
   return Object.prototype.toString.call(e) === "[object String]";
 }
-var ns = /* @__PURE__ */ ae(function(t) {
+var ns = /* @__PURE__ */ ue(function(t) {
   return Rn(t) ? !0 : !t || typeof t != "object" || rs(t) ? !1 : t.length === 0 ? !0 : t.length > 0 ? t.hasOwnProperty(0) && t.hasOwnProperty(t.length - 1) : !1;
 });
 const os = ns;
 var Wr = typeof Symbol < "u" ? Symbol.iterator : "@@iterator";
 function is(e, t, r) {
-  return function(o, u, d) {
+  return function(o, a, d) {
     if (os(d))
-      return e(o, u, d);
+      return e(o, a, d);
     if (d == null)
-      return u;
+      return a;
     if (typeof d["fantasy-land/reduce"] == "function")
-      return t(o, u, d, "fantasy-land/reduce");
+      return t(o, a, d, "fantasy-land/reduce");
     if (d[Wr] != null)
-      return r(o, u, d[Wr]());
+      return r(o, a, d[Wr]());
     if (typeof d.next == "function")
-      return r(o, u, d);
+      return r(o, a, d);
     if (typeof d.reduce == "function")
-      return t(o, u, d, "reduce");
+      return t(o, a, d, "reduce");
     throw new TypeError("reduce: list must be array or iterable");
   };
 }
@@ -4938,8 +4938,8 @@ var cs = /* @__PURE__ */ ve(function(t, r) {
     return t.apply(r, arguments);
   });
 });
-const us = cs;
-function as(e, t, r) {
+const as = cs;
+function us(e, t, r) {
   for (var n = r.next(); !n.done; ) {
     if (t = e["@@transducer/step"](t, n.value), t && t["@@transducer/reduced"]) {
       t = t["@@transducer/value"];
@@ -4950,9 +4950,9 @@ function as(e, t, r) {
   return e["@@transducer/result"](t);
 }
 function ls(e, t, r, n) {
-  return e["@@transducer/result"](r[n](us(e["@@transducer/step"], e), t));
+  return e["@@transducer/result"](r[n](as(e["@@transducer/step"], e), t));
 }
-var ds = /* @__PURE__ */ is(ss, ls, as);
+var ds = /* @__PURE__ */ is(ss, ls, us);
 const fs = ds;
 var ps = /* @__PURE__ */ function() {
   function e(t) {
@@ -4991,7 +4991,7 @@ var vs = /* @__PURE__ */ On(/* @__PURE__ */ wn("slice", function(t, r, n) {
   return Array.prototype.slice.call(n, t, r);
 }));
 const Ss = vs;
-var Es = /* @__PURE__ */ ae(/* @__PURE__ */ wn("tail", /* @__PURE__ */ Ss(1, 1 / 0)));
+var Es = /* @__PURE__ */ ue(/* @__PURE__ */ wn("tail", /* @__PURE__ */ Ss(1, 1 / 0)));
 const _s = Es;
 function re() {
   if (arguments.length === 0)
@@ -5006,14 +5006,14 @@ const bs = es.endpoints.getCashiers.select(), $s = ct.getSelectors(
 }), Tn = de.injectEndpoints({
   endpoints: (e) => ({
     getOrders: e.query({
-      providesTags: [k.Orders],
+      providesTags: [$.Orders],
       query: () => ({
         url: "/v1/orders"
       }),
       transformResponse: (t) => ce.setAll(ce.getInitialState(), t)
     }),
     getOrder: e.query({
-      providesTags: [k.Orders],
+      providesTags: [$.Orders],
       query: (t) => ({
         url: `/v1/orders/${t}`
       }),
@@ -5025,7 +5025,7 @@ const bs = es.endpoints.getCashiers.select(), $s = ct.getSelectors(
         method: "POST",
         body: t
       }),
-      invalidatesTags: [k.Orders]
+      invalidatesTags: [$.Orders]
     }),
     updateOrderStatus: e.mutation({
       query: ({ id: t, statusVal: r }) => ({
@@ -5033,28 +5033,28 @@ const bs = es.endpoints.getCashiers.select(), $s = ct.getSelectors(
         url: `/v1/orders/${t}/status`,
         method: "PUT"
       }),
-      invalidatesTags: [k.Orders]
+      invalidatesTags: [$.Orders]
     }),
     cancelOrder: e.mutation({
       query: (t) => ({
         url: `/v1/orders/${t}/cancel`,
         method: "PUT"
       }),
-      invalidatesTags: [k.Orders]
+      invalidatesTags: [$.Orders]
     }),
     confirmOrder: e.mutation({
       query: (t) => ({
         url: `/v1/orders/${t}/confirm`,
         method: "PUT"
       }),
-      invalidatesTags: [k.Orders]
+      invalidatesTags: [$.Orders]
     })
   })
-}), Cn = Tn.endpoints.getOrders.select(), js = ce.getSelectors(
+}), Cn = Tn.endpoints.getOrders.select(), qs = ce.getSelectors(
   re(Cn, (e) => e.data ?? ce.getInitialState())
-), ks = ce.getSelectors(
+), js = ce.getSelectors(
   re(Cn, (e) => e.data ?? ce.getInitialState())
-), qs = (e) => {
+), ks = (e) => {
   const t = Tn.endpoints.getOrder.select(e);
   return ce.getSelectors(
     re(t, (r) => r.data ?? ce.getInitialState())
@@ -5071,7 +5071,7 @@ const bs = es.endpoints.getCashiers.select(), $s = ct.getSelectors(
         oe.getInitialState(),
         t
       ),
-      providesTags: [k.Organizations]
+      providesTags: [$.Organizations]
     }),
     getCurrentOrganisation: e.query({
       query: () => ({
@@ -5081,7 +5081,7 @@ const bs = es.endpoints.getCashiers.select(), $s = ct.getSelectors(
         oe.getInitialState(),
         t
       ),
-      providesTags: [k.Organizations]
+      providesTags: [$.Organizations]
     }),
     getOrganisations: e.query({
       query: () => ({
@@ -5091,7 +5091,7 @@ const bs = es.endpoints.getCashiers.select(), $s = ct.getSelectors(
         oe.getInitialState(),
         t
       ),
-      providesTags: [k.Organizations]
+      providesTags: [$.Organizations]
     }),
     updateOrg: e.mutation({
       query: (t) => ({
@@ -5104,7 +5104,7 @@ const bs = es.endpoints.getCashiers.select(), $s = ct.getSelectors(
         oe.getInitialState(),
         t
       ),
-      invalidatesTags: [k.Organizations]
+      invalidatesTags: [$.Organizations]
     })
   })
 }), Os = An.endpoints.getOrganisations.select(), xs = oe.getSelectors(
@@ -5125,7 +5125,7 @@ const bs = es.endpoints.getCashiers.select(), $s = ct.getSelectors(
       query: () => ({
         url: "/v1/places"
       }),
-      providesTags: [k.Places],
+      providesTags: [$.Places],
       transformResponse: (t) => ye.setAll(ye.getInitialState(), t)
     }),
     fetchPlacesByOrganization: e.query(
@@ -5133,7 +5133,7 @@ const bs = es.endpoints.getCashiers.select(), $s = ct.getSelectors(
         query: () => ({
           url: "/v1/places/organization"
         }),
-        providesTags: [k.Places],
+        providesTags: [$.Places],
         transformResponse: (t) => ye.setAll(ye.getInitialState(), t)
       }
     ),
@@ -5143,7 +5143,7 @@ const bs = es.endpoints.getCashiers.select(), $s = ct.getSelectors(
         method: "POST",
         body: t
       }),
-      invalidatesTags: [k.Places]
+      invalidatesTags: [$.Places]
     }),
     editPlace: e.mutation({
       query: (t) => ({
@@ -5151,14 +5151,14 @@ const bs = es.endpoints.getCashiers.select(), $s = ct.getSelectors(
         method: "PUT",
         body: t
       }),
-      invalidatesTags: [k.Places]
+      invalidatesTags: [$.Places]
     }),
     deletePlace: e.mutation({
       query: (t) => ({
         url: `/v1/places/${t}`,
         method: "DELETE"
       }),
-      invalidatesTags: [k.Places]
+      invalidatesTags: [$.Places]
     })
   })
 }), Rs = Mn.endpoints.fetchPlaces.select(), Ls = ye.getSelectors(
@@ -5176,22 +5176,22 @@ const bs = es.endpoints.getCashiers.select(), $s = ct.getSelectors(
     getMenuByPlaceId: e.query({
       query: (t) => `/v2/products/place/${t}`,
       transformResponse: (t) => Z.setMany(Z.getInitialState(), t),
-      providesTags: [k.Menu]
+      providesTags: [$.Menu]
     }),
     getMenuById: e.query({
       query: (t) => `/v2/products/${t}`,
       transformResponse: (t) => Z.setOne(Z.getInitialState(), t),
-      providesTags: [k.Menu]
+      providesTags: [$.Menu]
     }),
     getMenuByPlaces: e.query({
       query: () => "/v1/products/place",
       transformResponse: (t) => Z.setAll(Z.getInitialState(), t),
-      providesTags: [k.Menu]
+      providesTags: [$.Menu]
     }),
     getMenuByOrganization: e.query({
       query: () => "/v1/products/organization",
       transformResponse: (t) => Z.setAll(Z.getInitialState(), t),
-      providesTags: [k.Menu]
+      providesTags: [$.Menu]
     }),
     saveMenu: e.mutation({
       query: (t) => ({
@@ -5199,7 +5199,7 @@ const bs = es.endpoints.getCashiers.select(), $s = ct.getSelectors(
         method: "POST",
         body: t
       }),
-      invalidatesTags: [k.Menu]
+      invalidatesTags: [$.Menu]
     }),
     editMenu: e.mutation({
       query: (t) => ({
@@ -5207,14 +5207,14 @@ const bs = es.endpoints.getCashiers.select(), $s = ct.getSelectors(
         method: "PUT",
         body: t
       }),
-      invalidatesTags: [k.Menu]
+      invalidatesTags: [$.Menu]
     }),
     deleteMenu: e.mutation({
       query: (t) => ({
         url: `/menu/${t}`,
         method: "DELETE"
       }),
-      invalidatesTags: [k.Menu]
+      invalidatesTags: [$.Menu]
     })
   })
 }), ws = ir.endpoints.getMenuByOrganization.select(), Fs = Z.getSelectors(
@@ -5229,14 +5229,14 @@ const bs = es.endpoints.getCashiers.select(), $s = ct.getSelectors(
   return Z.getSelectors(
     re(t, (r) => r.data ?? Z.getInitialState())
   );
-}, ut = we({
+}, at = we({
   selectId: (e) => e.id
 }), Ts = de.injectEndpoints({
   endpoints: (e) => ({
     fetchAdditions: e.query({
       query: () => "/v1/additions/organization?activeOnly=false",
-      providesTags: [k.Additions],
-      transformResponse: (t) => ut.setAll(ut.getInitialState(), t)
+      providesTags: [$.Additions],
+      transformResponse: (t) => at.setAll(at.getInitialState(), t)
     }),
     fetchAdditionsByIds: e.mutation({
       query: (t) => ({
@@ -5244,7 +5244,7 @@ const bs = es.endpoints.getCashiers.select(), $s = ct.getSelectors(
         method: "POST",
         body: { ids: t }
       }),
-      invalidatesTags: [k.Additions]
+      invalidatesTags: [$.Additions]
     }),
     saveAddition: e.mutation({
       query: (t) => ({
@@ -5252,7 +5252,7 @@ const bs = es.endpoints.getCashiers.select(), $s = ct.getSelectors(
         method: "POST",
         body: t
       }),
-      invalidatesTags: [k.Additions]
+      invalidatesTags: [$.Additions]
     }),
     editAddition: e.mutation({
       query: (t) => ({
@@ -5260,19 +5260,19 @@ const bs = es.endpoints.getCashiers.select(), $s = ct.getSelectors(
         method: "PUT",
         body: t
       }),
-      invalidatesTags: [k.Additions]
+      invalidatesTags: [$.Additions]
     }),
     deleteAddition: e.mutation({
       query: (t) => ({
         url: `/v1/additions/${t}`,
         method: "DELETE"
       }),
-      invalidatesTags: [k.Additions]
+      invalidatesTags: [$.Additions]
     })
   })
-}), Cs = Ts.endpoints.fetchAdditions.select(), Bs = ut.getSelectors(
-  re(Cs, (e) => e.data ?? ut.getInitialState())
-), at = we({
+}), Cs = Ts.endpoints.fetchAdditions.select(), Bs = at.getSelectors(
+  re(Cs, (e) => e.data ?? at.getInitialState())
+), ut = we({
   selectId: (e) => e.id
 }), As = de.injectEndpoints({
   endpoints: (e) => ({
@@ -5280,8 +5280,8 @@ const bs = es.endpoints.getCashiers.select(), $s = ct.getSelectors(
       query: () => ({
         url: "/v1/categories/organization?activeOnly=false"
       }),
-      transformResponse: (t) => at.setAll(at.getInitialState(), t),
-      providesTags: [k.Categories]
+      transformResponse: (t) => ut.setAll(ut.getInitialState(), t),
+      providesTags: [$.Categories]
     }),
     updateCategory: e.mutation({
       query: (t) => ({
@@ -5289,7 +5289,7 @@ const bs = es.endpoints.getCashiers.select(), $s = ct.getSelectors(
         method: "PUT",
         body: t
       }),
-      invalidatesTags: [k.Categories]
+      invalidatesTags: [$.Categories]
     }),
     createCategory: e.mutation({
       query: (t) => ({
@@ -5297,24 +5297,32 @@ const bs = es.endpoints.getCashiers.select(), $s = ct.getSelectors(
         method: "POST",
         body: { ...t, description: "test" }
       }),
-      invalidatesTags: [k.Categories]
+      invalidatesTags: [$.Categories]
     }),
     deleteCategory: e.mutation({
       query: (t) => ({
         url: `/v1/categories/${t}`,
         method: "DELETE"
       }),
-      invalidatesTags: [k.Categories]
+      invalidatesTags: [$.Categories]
     }),
     loadCategoriesList: e.query({
       query: (t) => ({ url: `/v1/categories/organizations/${t}` }),
-      providesTags: [k.Categories]
+      providesTags: [$.Categories]
+    }),
+    setPriorities: e.mutation({
+      query: (t) => ({
+        url: "/v1/categories/set-priorities",
+        method: "PUT",
+        body: { ids: t }
+      }),
+      invalidatesTags: [$.Categories]
     })
   })
-}), Ms = As.endpoints.fetchCategories.select(), Ws = at.getSelectors(
+}), Ms = As.endpoints.fetchCategories.select(), Ws = ut.getSelectors(
   re(
     Ms,
-    (e) => e.data ?? at.getInitialState()
+    (e) => e.data ?? ut.getInitialState()
   )
 ), Ks = de.injectEndpoints({
   endpoints: (e) => ({
@@ -5322,14 +5330,14 @@ const bs = es.endpoints.getCashiers.select(), $s = ct.getSelectors(
       query: () => ({
         url: "/v1/promo-codes/all"
       }),
-      providesTags: [k.PromoCodes]
+      providesTags: [$.PromoCodes]
     }),
     fetchPromoCodesByParams: e.query({
       query: (t) => ({
         url: "/v1/promo-codes",
         params: t
       }),
-      providesTags: [k.PromoCodes]
+      providesTags: [$.PromoCodes]
     }),
     updatePromoCode: e.mutation({
       query: (t) => ({
@@ -5337,7 +5345,7 @@ const bs = es.endpoints.getCashiers.select(), $s = ct.getSelectors(
         method: "PUT",
         body: t
       }),
-      invalidatesTags: [k.PromoCodes]
+      invalidatesTags: [$.PromoCodes]
     }),
     createPromoCode: e.mutation({
       query: (t) => ({
@@ -5345,22 +5353,22 @@ const bs = es.endpoints.getCashiers.select(), $s = ct.getSelectors(
         method: "POST",
         body: t
       }),
-      invalidatesTags: [k.PromoCodes]
+      invalidatesTags: [$.PromoCodes]
     }),
     deletePromoCode: e.mutation({
       query: (t) => ({
         url: `/v1/promo-codes/${t}`,
         method: "DELETE"
       }),
-      invalidatesTags: [k.PromoCodes]
+      invalidatesTags: [$.PromoCodes]
     })
   })
 });
 export {
-  qn as DayOfWeek,
-  kn as DeliveryTypeName,
-  jn as OrderStatus,
-  ut as additionsAdapters,
+  kn as DayOfWeek,
+  jn as DeliveryTypeName,
+  qn as OrderStatus,
+  at as additionsAdapters,
   Ts as additionsEndpoints,
   Bs as additionsSelectors,
   de as api,
@@ -5374,10 +5382,10 @@ export {
   Ds as loginApi,
   ir as menuEndpoints,
   Fs as menuSelectors,
-  ks as orderByIdSelectors,
-  qs as orderByIdSelectorsFactory,
+  js as orderByIdSelectors,
+  ks as orderByIdSelectorsFactory,
   Tn as ordersEndpoints,
-  js as ordersSelectors,
+  qs as ordersSelectors,
   An as organizationsEndpoints,
   zs as organizationsSelectors,
   Ls as placesByOrganizationSelectors,

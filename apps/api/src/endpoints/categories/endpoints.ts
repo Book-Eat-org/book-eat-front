@@ -41,5 +41,13 @@ export const categoriesEndpoints = api.injectEndpoints({
       query: (id) => ({ url: `/v1/categories/organizations/${id}` }),
       providesTags: [ApiTags.Categories],
     }),
+    setPriorities: build.mutation<{ success: boolean }, EntityId[]>({
+      query: (ids) => ({
+        url: '/v1/categories/set-priorities',
+        method: 'PUT',
+        body: { ids }
+      }),
+      invalidatesTags: [ApiTags.Categories],
+    })
   }),
 });

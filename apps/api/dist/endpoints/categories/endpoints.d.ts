@@ -9,4 +9,7 @@ export declare const categoriesEndpoints: import("@reduxjs/toolkit/query").Api<i
         success: boolean;
     }, "api">;
     loadCategoriesList: import("@reduxjs/toolkit/query").QueryDefinition<EntityId, import("@reduxjs/toolkit/query").BaseQueryFn<string | import("@reduxjs/toolkit/query").FetchArgs, unknown, import("@reduxjs/toolkit/query").FetchBaseQueryError>, ApiTags, ICategory[], "api">;
+    setPriorities: import("@reduxjs/toolkit/query").MutationDefinition<EntityId[], import("@reduxjs/toolkit/query").BaseQueryFn<string | import("@reduxjs/toolkit/query").FetchArgs, unknown, import("@reduxjs/toolkit/query").FetchBaseQueryError>, ApiTags, {
+        success: boolean;
+    }, "api">;
 }, "api", ApiTags, typeof import("@reduxjs/toolkit/query").coreModuleName | typeof import("@reduxjs/toolkit/query/react").reactHooksModuleName>;

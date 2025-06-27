@@ -1,3 +1,3 @@
 import { prop, sortBy } from "ramda";
 
-export const sortCategories = sortBy(prop("title"));
+export const sortCategories = sortBy(prop("priority"));
