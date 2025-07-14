@@ -3,6 +3,7 @@ import { FC, ReactNode, memo } from "react";
 import "./assets/fonts/stylesheet.css";
 import { YMaps } from "@pbe/react-yandex-maps";
 import { theme } from "$theme";
+import {Toaster} from "react-hot-toast";
 
 interface IProps {
   children: ReactNode;
@@ -59,6 +60,7 @@ const UIProvider: FC<IProps> = ({ children }) => {
       <ThemeProvider theme={theme}>
         <Global styles={styles} />
         {children}
+          <Toaster />
       </ThemeProvider>
     </YMaps>
   );

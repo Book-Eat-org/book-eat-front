@@ -1,23 +1,16 @@
-import { FC, ReactNode } from "react";
+import { FC } from "react";
 import styles from "./Content.module.css";
-import Header from "../Header";
-import Footer from "../Footer";
+import Grid from "../../Grid";
 
 interface IProps {
-  title?: string;
-  children: ReactNode;
+  children: React.ReactNode;
   className?: string;
-  onClose: () => void;
-  footer?: boolean;
 }
 
 const Content: FC<IProps> = (props) => {
-  const { 
-    title,
-    children, 
-    onClose, 
-    className = "" ,
-    footer = true,
+  const {
+    children,
+    className = ""
   } = props;
 
   return (
@@ -25,13 +18,9 @@ const Content: FC<IProps> = (props) => {
       className={`${styles.wrapper} ${className}`}
       onClick={(e) => e.stopPropagation()}
     >
-      <Header onClose={onClose} title={title} />
-      <div className={styles.content}>
+      <Grid gap={8}>
         {children}
-      </div>
-      {footer && (
-        <Footer onClose={onClose} />
-      )}
+      </Grid>
     </div>
   );
 };

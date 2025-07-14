@@ -39,7 +39,6 @@ specifiers:
   eslint-plugin-react-refresh: ^0.4.3
   eslint-plugin-storybook: ^0.6.15
   imask: ~7.1.3
-  moment: ~2.29.4
   prettier: ~3.0.3
   react: ^18.2.0
   react-cropper: ~2.3.3
@@ -98,7 +97,6 @@ dependencies:
   eslint-plugin-react-refresh: 0.4.3_eslint@8.45.0
   eslint-plugin-storybook: 0.6.15_z3pu2ep2qdxmri36awiqttsjvi
   imask: 7.1.3
-  moment: 2.29.4
   prettier: 3.0.3
   react: 18.2.0
   react-cropper: 2.3.3_react@18.2.0
@@ -6753,6 +6751,14 @@ packages:
       slash: 3.0.0
     dev: false
 
+  /goober/2.1.16_csstype@3.1.3:
+    resolution: {integrity: sha512-erjk19y1U33+XAMe1VTvIONHYoSqE4iS7BYUZfHaqeohLmnC0FdxEh7rQU+6MZ4OajItzjZFSRtVANrQwNq6/g==}
+    peerDependencies:
+      csstype: ^3.0.10
+    dependencies:
+      csstype: 3.1.3
+    dev: false
+
   /gopd/1.0.1:
     resolution: {integrity: sha512-d65bNlIadxvpb/A2abVdlqKqV563juRnZ1Wtk6s1sIR8uNsXR70xqIzVqxVf1eTqDunwT2MkczEeaezCKTZhwA==}
     dependencies:
@@ -8399,6 +8405,19 @@ packages:
       react: 18.2.0
     dev: false
 
+  /react-hot-toast/2.5.2_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-Tun3BbCxzmXXM7C+NI4qiv6lT0uwGh4oAfeJyNOjYUejTsm35mK9iCaYLGv8cBz9L5YxZLx/2ii7zsIwPtPUdw==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: '>=16'
+      react-dom: '>=16'
+    dependencies:
+      csstype: 3.1.3
+      goober: 2.1.16_csstype@3.1.3
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
   /react-imask/7.1.3_react@18.2.0:
     resolution: {integrity: sha512-anCnzdkqpDzNwe7ot76kQSvmnz4Sw7AW/QFjjLh3B87HVNv9e2oHC+1m9hQKSIui2Tqm7w68ooMgDFsCQlDMyg==}
     engines: {npm: '>=4.0.0'}
@@ -9992,7 +10011,7 @@ packages:
     dev: false
 
   file:projects/admin.tgz:
-    resolution: {integrity: sha512-BhvmLmswSuHuxIzG6ONVToDnYzraC7AJzmJWA3DxrZJTHAyOSSuVC5t1y4FN5EQOJEzWJpCnL0AMFE6/N82tsw==, tarball: file:projects/admin.tgz}
+    resolution: {integrity: sha512-xhth6Ofr7C3mbtCAx/kQp5rdbRc8nBFe2gBI1Uj4Wyt5TM/dqKBqC0Wc7+IPK6T4tF+jpVKldg8i6z2iDOBBNQ==, tarball: file:projects/admin.tgz}
     name: '@rush-temp/admin'
     version: 0.0.0
     dependencies:
@@ -10047,7 +10066,7 @@ packages:
     dev: false
 
   file:projects/api.tgz_reiadaay42xu3uk4bvhmtbk5mu:
-    resolution: {integrity: sha512-ZT7xf2CdFgQ6Q3XwRSKRPmHvSISPbmYn02SxdM3PStz7ZmW3YRiiuVNFLKR3ALQ/8tfwVfVHqTw67WQRYkb4tg==, tarball: file:projects/api.tgz}
+    resolution: {integrity: sha512-1qYhAPODzRA4/B5ij1jyVlq9BRRalZ43wh5ODC0/qw4OdWy3FVr8tlaM+lIqLHCy7mgvx2Pu+TTY9Mp4F/hjqQ==, tarball: file:projects/api.tgz}
     id: file:projects/api.tgz
     name: '@rush-temp/api'
     version: 0.0.0
@@ -10078,7 +10097,7 @@ packages:
     dev: false
 
   file:projects/shop.tgz:
-    resolution: {integrity: sha512-TrxCMvNVXMcOO2/28TRJvuqTdAtIp+ZySh2GLtIF1GLj1DtSECpj2NIDKpoaGhReCmOezPYxCOrdBskKZf4xag==, tarball: file:projects/shop.tgz}
+    resolution: {integrity: sha512-Luyw+tdWPVSJ1Tt2kaoUWj+j0nuC8lrIyEy8DvTougv/zXQv0kFsNxh1KHK2umfysO9aYihku7xNB0KzJt3mnA==, tarball: file:projects/shop.tgz}
     name: '@rush-temp/shop'
     version: 0.0.0
     dependencies:
@@ -10126,7 +10145,7 @@ packages:
     dev: false
 
   file:projects/ui.tgz:
-    resolution: {integrity: sha512-8pVhLkDtvUz0UGZSFHoHdJkXZzFhUtTKsGL/gGj5x/Pfl7KvfFBTYI/zXPk6d0qXfCwZTMuACPyO7eaUyQOQsw==, tarball: file:projects/ui.tgz}
+    resolution: {integrity: sha512-R7CUaxsyNhPzDLDACRLPHr/W48x643F282JWzQ4rDZOtv7e9nbMGa+lrHBVEr5moPi2S/ijGhy33A1rZf/F4kw==, tarball: file:projects/ui.tgz}
     name: '@rush-temp/ui'
     version: 0.0.0
     dependencies:
@@ -10163,6 +10182,7 @@ packages:
       react: 18.2.0
       react-cropper: 2.3.3_react@18.2.0
       react-dom: 18.2.0_react@18.2.0
+      react-hot-toast: 2.5.2_biqbaboplfbrettd7655fr4n2y
       react-imask: 7.1.3_react@18.2.0
       react-input-mask: 3.0.0-alpha.2_biqbaboplfbrettd7655fr4n2y
       storybook: 7.5.3
@@ -10256,7 +10276,6 @@ time:
   /eslint-plugin-storybook/0.6.15: '2023-10-08T11:21:46.052Z'
   /eslint/8.45.0: '2023-07-14T15:54:20.082Z'
   /imask/7.1.3: '2023-07-18T07:18:32.173Z'
-  /moment/2.29.4: '2022-07-06T16:01:32.700Z'
   /prettier/3.0.3: '2023-08-29T12:30:11.880Z'
   /react-cropper/2.3.3: '2023-04-12T07:50:07.873Z'
   /react-dom/18.2.0: '2022-06-14T19:46:48.370Z'

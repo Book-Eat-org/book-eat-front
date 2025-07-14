@@ -1,15 +1,7 @@
 import { FC, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
-import {
-  BackIcon24,
-  Button,
-  Flex,
-  Grid,
-  theme,
-  TrashIcon,
-  UIGrid,
-} from "@book-eat/ui";
+import { BackIcon24, Button, Flex, Grid, theme, UIGrid } from "@book-eat/ui";
 
 import { inputAdapter, ouptutAdapter } from "./adapters";
 import classes from "./AddItem.module.css";
@@ -31,6 +23,7 @@ import {
 } from "$api";
 import { Page } from "$components";
 import { useNavigate, useParams } from "react-router-dom";
+import { Remove } from "./Remove.tsx";
 
 const AddItem: FC = () => {
   const { id } = useParams();
@@ -40,7 +33,6 @@ const AddItem: FC = () => {
   const [mapOpened, setMapOpened] = useState(false);
   const [savePlace, { isLoading }] = placesEndpoints.useSavePlaceMutation();
   const [editPlace] = placesEndpoints.useEditPlaceMutation();
-  const [deletePlace] = placesEndpoints.useDeletePlaceMutation();
 
   const selector = placesByOrganizationSelectorsFactory(organization.id);
 
@@ -67,11 +59,6 @@ const AddItem: FC = () => {
   const handleAddressClick = () => setMapOpened(true);
   const handleCloseDetailAddress = () => setMapOpened(false);
 
-  const handleDelete = async () => {
-    await deletePlace(id!);
-    navigateBack();
-  };
-
   return (
     <FormProvider {...methods}>
       <Page>
@@ -84,15 +71,7 @@ const AddItem: FC = () => {
             >
               <BackIcon24 onClick={navigateBack} />
             </Flex>
-            {item && (
-              <Flex
-                backgroundColor={theme.colors.accent50}
-                borderRadius={10}
-                padding="6px"
-              >
-                <TrashIcon onClick={handleDelete} />
-              </Flex>
-            )}
+            {item && <Remove />}
           </Page.Header.Buttons>
           <Page.Header.Title>Заведения</Page.Header.Title>
         </Page.Header>

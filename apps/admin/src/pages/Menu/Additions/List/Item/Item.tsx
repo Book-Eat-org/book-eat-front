@@ -30,11 +30,11 @@ const Item: FC<IProps> = (props) => {
     return null;
   }
 
-  const { title, isActive, price, weight } = item;
+  const { isActive } = item;
 
   const toggleActive = (checked: boolean, event: ChangeEvent) => {
     event.stopPropagation();
-    triggerEdit({ id, isActive: checked, title, price, weight, measurement: '' });
+    triggerEdit({ ...item, id, isActive: checked });
   };
 
   const handleDelete = () => {

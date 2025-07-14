@@ -1,29 +1,17 @@
-import { FC } from "react";
-import { Button } from "$components";
+import React, { FC } from "react";
+import Flex from "../../Flex";
 
 interface IProps {
-  title?: string;
-  onClose: () => void;
+    children:React.ReactNode
 }
 
 const Footer: FC<IProps> = (props) => {
-  const { 
-    title = "Понятно", 
-    onClose 
+  const {
+      children
   } = props;
 
   return (
-    <Button 
-      style={{
-        position: 'fixed',
-        bottom: "44px",
-        left: "15px",
-        right: "15px"
-      }}
-      onClick={onClose}
-    >
-      {title}
-    </Button>
+      <Flex>{children}</Flex>
   );
 };
 

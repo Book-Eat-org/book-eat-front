@@ -29,6 +29,7 @@ import Image from "./Image";
 import NewPage from "./NewPage";
 import SearchInput from "./SearchInput";
 import Popup from "./Popup";
+export * from './Notifications'
 
 export {
   Button,

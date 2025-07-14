@@ -199,6 +199,10 @@
       "allowedCategories": [ "production" ]
     },
     {
+      "name": "react-hot-toast",
+      "allowedCategories": [ "tools" ]
+    },
+    {
       "name": "react-imask",
       "allowedCategories": [ "tools" ]
     },
