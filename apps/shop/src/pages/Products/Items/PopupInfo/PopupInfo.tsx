@@ -1,6 +1,5 @@
 import { FC } from "react";
-import { Popup } from "@book-eat/ui";
-import { Button } from "@book-eat/ui/src";
+import { Popup, Button } from "@book-eat/ui";
 
 interface IProps {
   isActive: boolean;

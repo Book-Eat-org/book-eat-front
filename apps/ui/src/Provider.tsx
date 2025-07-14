@@ -2,7 +2,7 @@ import { css, Global, ThemeProvider } from "@emotion/react";
 import { FC, ReactNode, memo } from "react";
 import "./assets/fonts/stylesheet.css";
 import { YMaps } from "@pbe/react-yandex-maps";
-import { theme } from "$theme";
+import { theme } from "./theme";
 import {Toaster} from "react-hot-toast";
 
 interface IProps {
