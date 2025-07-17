@@ -1,9 +1,10 @@
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useState, useEffect, useMemo } from "react";
 import { EntityId } from "@reduxjs/toolkit";
 import Item from "./Item";
 import { BackIcon24, Flex, Grid, theme } from "@book-eat/ui";
 import { isNil } from "ramda";
 import { categoriesEndpoints } from "@book-eat/api";
+import { sortCategories } from "../utils";
 import { useNavigate } from "react-router-dom";
 import { PopupProvider } from "./PopupProvider";
 import { Page } from "$components";
@@ -15,23 +16,30 @@ export const Settings = () => {
   const [localCategories, setLocalCategories] = useState<EntityId[]>([]);
 
   const { isLoading, data } = categoriesEndpoints.useFetchCategoriesQuery();
-  const [ trigger ] = categoriesEndpoints.useSetPrioritiesMutation();
+  const [trigger] = categoriesEndpoints.useSetPrioritiesMutation();
+
+  const sortedCategories = useMemo(() => 
+    sortCategories(data?.entities ?? {})
+  , [data?.entities]);
 
   useEffect(() => {
-    if (data?.ids) {
-      setLocalCategories([...data.ids]);
+    if (sortedCategories.length) {
+      setLocalCategories(sortedCategories.map(c => c.id));
     }
-  }, [data?.ids]);
+  }, [sortedCategories]);
 
   const onBackClick = useCallback(() => navigate(".."), []);
 
-  const handleMove = (id: EntityId, direction: 'up' | 'down') => {
+  const handleMove = async (id: EntityId, direction: 'up' | 'down') => {
     if (isMoving || localCategories.length <= 1) return;
     
     setIsMoving(true);
     
-    const currentIndex = localCategories.findIndex((itemId) => itemId === id);
-    if (currentIndex === -1) return;
+    const currentIndex = localCategories.findIndex(itemId => itemId === id);
+    if (currentIndex === -1) {
+      setIsMoving(false);
+      return;
+    }
 
     const newIndex = direction === 'up' ? currentIndex - 1 : currentIndex + 1;
     if (newIndex < 0 || newIndex >= localCategories.length) {
@@ -44,11 +52,15 @@ export const Settings = () => {
       [newCategories[newIndex], newCategories[currentIndex]];
 
     setLocalCategories(newCategories);
-    trigger(newCategories);
     
-    setTimeout(() => {
+    try {
+      await trigger(newCategories).unwrap();
+    } catch (error) {
+      console.error('Ошибка обновления категории', error);
+      setLocalCategories([...localCategories]);
+    } finally {
       setIsMoving(false);
-    }, 400);
+    }
   };
 
   if (isLoading || isNil(data)) {

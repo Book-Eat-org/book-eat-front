@@ -62,7 +62,7 @@ const List = memo(() => {
   return (
     <Grid gap={9}>
       {sortedKeys.map((key) => (
-        <Group status={key}>
+        <Group status={key} key={key}>
           {groupedData[key]!.map(({ id }) => (
             <Item key={id} id={id} />
           ))}
