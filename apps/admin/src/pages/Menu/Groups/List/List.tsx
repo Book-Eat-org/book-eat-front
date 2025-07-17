@@ -1,5 +1,4 @@
 import { useCallback } from "react";
-
 import Item from "./Item";
 import { BackIcon24, Flex, Grid, PlusIcon24, SettingsIcon24, theme } from "@book-eat/ui";
 import { isNil } from "ramda";
@@ -7,11 +6,14 @@ import { categoriesEndpoints } from "@book-eat/api";
 import { useNavigate } from "react-router-dom";
 import { Page } from "$components";
 import { navigateToPage, PageURLS } from "$constants";
+import { sortCategories } from "../utils";
 
 export const List = () => {
   const navigate = useNavigate();
 
   const { isLoading, data } = categoriesEndpoints.useFetchCategoriesQuery();
+  const entities = data?.entities ?? {};
+  const sortedCategories = sortCategories(entities);
 
   const onBackClick = useCallback(() => navigate(".."), []);
   
@@ -59,8 +61,8 @@ export const List = () => {
       </Page.Header>
       <Page.Body>
         <Grid gap={4}>
-          {data?.ids.map((id) => (
-            <Item id={id} key={id} />
+          {sortedCategories.map((item) => (
+            <Item id={item.id} key={item.id} />
           ))}
         </Grid>
       </Page.Body>
