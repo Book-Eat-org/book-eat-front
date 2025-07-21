@@ -1,8 +1,9 @@
 import Flex from "../Flex";
 import Typography from "../Typography";
 import {FC} from "react";
-import {Box, theme} from "../../../dist";
 import {CloseIcon} from "$assets";
+import {theme} from "$theme";
+import Box from "../Box";
 
 interface IProps {
     message: string;
