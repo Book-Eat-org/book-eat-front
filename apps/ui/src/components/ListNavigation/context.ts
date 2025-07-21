@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 
-interface IListNavigationContext {
+export interface IListNavigationContext {
   refs: Record<string, HTMLDivElement>;
   observer?: IntersectionObserver;
   setObserver?: (observer: IntersectionObserver) => void;

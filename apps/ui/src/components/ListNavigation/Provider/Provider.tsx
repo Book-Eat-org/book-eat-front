@@ -1,7 +1,11 @@
 import { FC, ReactNode, useCallback, useRef, useState } from "react";
 import { ListNavigationContext } from "../context.ts";
 
-const Provider: FC<{ children: ReactNode }> = (props) => {
+export interface IProps {
+ children: ReactNode
+}
+
+const Provider: FC<IProps> = (props) => {
   const { children } = props;
   const [observer, setObserver] = useState<IntersectionObserver>();
   const [currentId, setCurrentId] = useState<string | undefined>();

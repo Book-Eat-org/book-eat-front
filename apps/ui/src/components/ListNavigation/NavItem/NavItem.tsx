@@ -2,7 +2,7 @@ import { ComponentProps, FC, MouseEventHandler, ReactNode } from "react";
 import { useListNavigationContext } from "../context.ts";
 import Box from "../../Box";
 
-interface IProps extends ComponentProps<typeof Box> {
+export interface IProps extends ComponentProps<typeof Box> {
   id: string;
   children: ReactNode;
 }
@@ -19,9 +19,9 @@ const NavItem: FC<IProps> = (props) => {
   };
 
   return (
-    <Box 
-      data-id={id} 
-      onClick={clickHandler} 
+    <Box
+      data-id={id}
+      onClick={clickHandler}
       {...restProps}
     >
       {children}

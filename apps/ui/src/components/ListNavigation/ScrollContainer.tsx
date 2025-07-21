@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
   scroll-behavior: smooth;
 `;
 
-interface IProps extends ComponentProps<typeof Wrapper> {
+export interface IProps extends ComponentProps<typeof Wrapper> {
   children: ReactNode;
 }
 
@@ -45,13 +45,13 @@ const ScrollContainer: FC<IProps> = (props) => {
         .map(entry => ({
           id: entry.target.id,
           distance: Math.abs(
-            entry.boundingClientRect.top + 
-            entry.boundingClientRect.height / 2 - 
+            entry.boundingClientRect.top +
+            entry.boundingClientRect.height / 2 -
             (window.innerHeight - 200) / 2
           )
         }))
         .sort((a, b) => a.distance - b.distance);
-    
+
       if (visibleEntries.length > 0 && visibleEntries[0].id !== currentId) {
         setCurrentId?.(visibleEntries[0].id);
       }

@@ -1,13 +1,19 @@
-import styled from "@emotion/styled";
+import styled, {StyledComponent} from "@emotion/styled";
 import { FlexboxProps, flexbox } from "styled-system";
 import { styledCommonFn } from "$utils";
 import { TStyledCommonProps } from "$models";
+import React from "react";
 
 interface IProps {
   gap?: number;
 }
 
-const Flex = styled.div<TStyledCommonProps & FlexboxProps & IProps>`
+type Props = TStyledCommonProps & FlexboxProps & IProps;
+
+const Flex: StyledComponent<
+    React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
+    Props
+> = styled.div<Props>`
   ${styledCommonFn}
   ${flexbox}
   display:flex;

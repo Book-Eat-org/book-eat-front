@@ -1,8 +1,12 @@
 import { TStyledCommonProps } from "$models";
 import { styledCommonFn } from "$utils";
-import styled from "@emotion/styled";
+import styled, {StyledComponent} from "@emotion/styled";
+import React from "react";
 
-const Row = styled.div<TStyledCommonProps>`
+const Row:StyledComponent<
+    React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
+    TStyledCommonProps
+> = styled.div<TStyledCommonProps>`
   width: 100%;
   background: #eee;
   background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);

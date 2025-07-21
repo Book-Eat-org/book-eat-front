@@ -16,12 +16,16 @@ import {
   ColorProps,
 } from "styled-system";
 import Box from "../Box";
+import React from "react";
 
 interface IProps {
   gap?: number;
+  children?:React.ReactNode;
 }
-const Grid = styled(Box)<
-  LayoutProps & PaddingProps & ColorProps & GridProps & FlexboxProps & IProps
+type Props = LayoutProps & PaddingProps & ColorProps & GridProps & FlexboxProps & IProps;
+
+const Grid: React.FC<IProps> = styled(Box)<
+    Props
 >`
   ${space}
   ${width}

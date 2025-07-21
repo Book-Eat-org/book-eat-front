@@ -26,7 +26,7 @@ const Wrapper = styled.div`
   -ms-overflow-style: none;
 `;
 
-interface ScrollContext {
+export interface ScrollContext {
   scrollToId: (id: string) => void;
 }
 
@@ -34,7 +34,7 @@ const NavScrollContext = createContext<ScrollContext>({
   scrollToId: () => {},
 });
 
-interface IProps {
+export interface IProps {
   children: React.ReactNode;
 }
 

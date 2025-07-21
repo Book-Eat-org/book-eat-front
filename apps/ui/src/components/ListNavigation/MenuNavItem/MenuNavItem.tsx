@@ -5,7 +5,7 @@ import { useNavScroll } from "../NavScrollProvider.tsx";
 import { Typography } from "$components";
 import { theme } from "$theme";
 
-interface IProps extends ComponentProps<typeof NavItem> {
+export interface IProps extends ComponentProps<typeof NavItem> {
   autoscroll?: boolean;
 }
 

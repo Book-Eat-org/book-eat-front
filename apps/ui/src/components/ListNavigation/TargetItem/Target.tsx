@@ -3,7 +3,7 @@ import { useListNavigationContext } from "../context.ts";
 import { isNil } from "ramda";
 import Grid from "../../Grid";
 
-interface IProps extends ComponentProps<typeof Grid> {
+export interface IProps extends ComponentProps<typeof Grid> {
   id: string;
   children: ReactNode;
 }
