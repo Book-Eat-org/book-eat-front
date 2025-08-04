@@ -12,7 +12,7 @@ export const inputAdapter = (input: IOrganization): IFormValues => {
     legalInfoName: legalInfo?.legalName,
     legalInfoEmail: legalInfo?.email,
     legalInfoLegalAddress: legalInfo?.legalAddress,
-    legalInfoPhone: legalInfo?.phone,
+    legalInfoPhone: legalInfo?.phone ?? '',
     legalInfoActualAddress: legalInfo?.actualAddress,
     legalInfoInn: legalInfo?.inn,
     legalInfoOgrn: legalInfo?.ogrn,
