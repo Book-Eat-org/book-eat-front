@@ -7,6 +7,7 @@ import { getAdditionTitle, SYMBOLS } from "@book-eat/utils/src";
 export const Additions: FC = () => {
   const { additions } = useData();
 
+
   if (isNil(additions) || isEmpty(additions)) {
     return null;
   }
@@ -17,13 +18,14 @@ export const Additions: FC = () => {
         Добавки:
       </Typography>
       <Grid width="100%">
-        {additions.map(({ title, col, price }) => (
+        {additions.map(({ id, title, col, price }) => (
           <Flex
             justifyContent="space-between"
             alignItems="center"
             borderBottom="1px solid #D9D9D9"
             p={2}
             gap={2}
+            key={id}
           >
             <Flex gap={2} alignItems="center">
               <Typography size="14/14">x{col}</Typography>

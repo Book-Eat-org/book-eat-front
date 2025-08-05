@@ -12,16 +12,15 @@ import { PromoCode } from "./PromoCode";
 
 export const Body: FC = () => {
   const navigate = useNavigate();
-  const { id } = useParams() as { id: EntityId };
+  const { id: shopId } = useParams() as { id: EntityId };
   const onSubmit = () => navigate(navigateToPage(PageURLS.ORDERS_CREATE, {}));
 
   const cartItems = useSelector((state) => state.cart);
-
-  if (isEmpty(cartItems)) return <Empty />;
-
-  const shouldShowEmpty = id !== cartItems.shopId || isEmpty(cartItems.items);
   
-  if (shouldShowEmpty) {
+  if (isEmpty(cartItems) || 
+      shopId !== cartItems.shopId || 
+      isEmpty(cartItems.items)
+    ) {
     return <Empty />;
   }
 
