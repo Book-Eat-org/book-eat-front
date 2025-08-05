@@ -1,19 +1,19 @@
-import { useSelector } from "react-redux";
+import { useSelector } from "$hooks";
+import { EntityId } from "@reduxjs/toolkit";
 import { Box, Button } from "@book-eat/ui";
-import { useNavigate } from "react-router-dom";
-import { cartSelector } from "../../../../store/cart";
+import { useNavigate, useParams } from "react-router-dom";
 import { navigateToPage, PageURLS } from "$constants";
 import { isEmpty } from "ramda";
 
 const Footer = () => {
   const navigate = useNavigate();
-  const cartItems = useSelector(cartSelector);
+  const { id } = useParams() as { id: EntityId };
+  const cartItems = useSelector((state) => state.cart);
+  const onSubmit = () => navigate(navigateToPage(PageURLS.CART, { id }));
 
-  if (isEmpty(cartItems.items)) {
-    return null;
-  }
-
-  const onSubmit = () => navigate(navigateToPage(PageURLS.CART, {}));
+  if (isEmpty(cartItems)) return null;
+  
+  if (id !== cartItems.shopId || isEmpty(cartItems.items)) return null;
 
   return (
     <Box
