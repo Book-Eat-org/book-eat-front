@@ -8,14 +8,14 @@ import { keys } from "ramda";
 
 export const Cart: FC = () => {
   const navigate = useNavigate();
-  const { id } = useParams() as { id: EntityId };
+  const { id: shopId } = useParams() as { id: EntityId };
   const items = useSelector((store) => store.cart);
 
-  const isCurrentShopActive = items.shopId === id;
+  const isCurrentShopActive = items.shopId === shopId;
 
   const col = isCurrentShopActive ? keys(items.items).length : 0;
 
-  const onSubmit = () => navigate(navigateToPage(PageURLS.CART, { id }));
+  const onSubmit = () => navigate(navigateToPage(PageURLS.CART, { id: shopId }));
 
   return (
     <Flex

@@ -23,7 +23,7 @@ import { EntityId } from "@reduxjs/toolkit";
 import { clearCart } from "../../store/cart";
 
 const Cart = () => {
-  const { id } = useParams() as { id: EntityId };
+  const { id: shopId } = useParams() as { id: EntityId };
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const onBackClick = () => navigate(-1);
@@ -44,7 +44,7 @@ const Cart = () => {
     }
   }, [additionsIds]);
 
-  const { isSuccess } = menuEndpoints.useGetMenuByPlaceIdQuery(id!);
+  const { isSuccess } = menuEndpoints.useGetMenuByPlaceIdQuery(shopId);
   const { data, isSuccess: isShopSuccess } =
     placesEndpoints.useFetchPlacesQuery();
 
@@ -54,7 +54,7 @@ const Cart = () => {
     return null;
   }
 
-  const place: IPlace = data.entities[id!];
+  const place: IPlace = data.entities[shopId];
 
   return (
     <NewPage>

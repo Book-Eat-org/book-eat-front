@@ -7,13 +7,11 @@ import { isEmpty } from "ramda";
 
 const Footer = () => {
   const navigate = useNavigate();
-  const { id } = useParams() as { id: EntityId };
+  const { id: shopId } = useParams() as { id: EntityId };
   const cartItems = useSelector((state) => state.cart);
-  const onSubmit = () => navigate(navigateToPage(PageURLS.CART, { id }));
-
-  if (isEmpty(cartItems)) return null;
+  const onSubmit = () => navigate(navigateToPage(PageURLS.CART, { id: shopId }));
   
-  if (id !== cartItems.shopId || isEmpty(cartItems.items)) return null;
+  if (isEmpty(cartItems) || shopId !== cartItems.shopId || isEmpty(cartItems.items)) return null;
 
   return (
     <Box
