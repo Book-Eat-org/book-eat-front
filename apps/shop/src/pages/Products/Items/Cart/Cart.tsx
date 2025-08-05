@@ -1,20 +1,21 @@
 import { Box, Flex, CartIcon24, theme, Typography } from "@book-eat/ui";
 import { FC } from "react";
+import { EntityId } from "@reduxjs/toolkit";
 import { useSelector } from "$hooks";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { navigateToPage, PageURLS } from "$constants";
 import { keys } from "ramda";
 
 export const Cart: FC = () => {
   const navigate = useNavigate();
+  const { id } = useParams() as { id: EntityId };
   const items = useSelector((store) => store.cart);
-  const activeShop = useSelector((store) => store.activeShop);
 
-  const isCurrentShopActive = items.shopId === activeShop;
+  const isCurrentShopActive = items.shopId === id;
 
   const col = isCurrentShopActive ? keys(items.items).length : 0;
 
-  const onSubmit = () => navigate(navigateToPage(PageURLS.CART, {}));
+  const onSubmit = () => navigate(navigateToPage(PageURLS.CART, { id }));
 
   return (
     <Flex

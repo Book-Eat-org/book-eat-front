@@ -16,7 +16,7 @@ const Pages: FC = () => {
       <Route path="/organizations/:id/shops" element={<Shops />} />
       <Route path="legal-info/:id" element={<LegalInfo />} />
       <Route path="/products/*" element={<Products />} />
-      <Route path="/cart" element={<Cart />} />
+      <Route path="/cart/:id" element={<Cart />} />
       <Route path="/agreement" element={<Agreement />} />
       <Route path="/personal-consent" element={<PersonalConsent />} />
       <Route path="/orders/*" element={<Order />} />

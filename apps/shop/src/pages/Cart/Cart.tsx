@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   BackIcon24,
   Flex,
@@ -19,13 +19,16 @@ import { flatten, isEmpty, isNotNil, prop, values } from "ramda";
 import { useEffect, useMemo } from "react";
 import { Body } from "./Body";
 import { useDispatch } from "react-redux";
+import { EntityId } from "@reduxjs/toolkit";
 import { clearCart } from "../../store/cart";
 
 const Cart = () => {
+  const { id } = useParams() as { id: EntityId };
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const onBackClick = () => navigate(-1);
   const cart = useSelector((state) => state.cart);
+
   const additionsIds = useMemo(
     () =>
       flatten(values(cart.items).map((item) => item.additions.map(prop("id")))),
@@ -41,7 +44,7 @@ const Cart = () => {
     }
   }, [additionsIds]);
 
-  const { isSuccess } = menuEndpoints.useGetMenuByPlaceIdQuery(cart.shopId);
+  const { isSuccess } = menuEndpoints.useGetMenuByPlaceIdQuery(id!);
   const { data, isSuccess: isShopSuccess } =
     placesEndpoints.useFetchPlacesQuery();
 
@@ -51,7 +54,7 @@ const Cart = () => {
     return null;
   }
 
-  const place: IPlace = data.entities[cart.shopId];
+  const place: IPlace = data.entities[id!];
 
   return (
     <NewPage>

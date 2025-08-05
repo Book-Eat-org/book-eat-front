@@ -19,6 +19,7 @@ export interface IPagesNavigatePayload {
   [PageURLS.PRODUCTS_CARD]: { id: EntityId };
   [PageURLS.ORGANIZATION_LEGAL_INFO]: { id: EntityId };
   [PageURLS.ORDERS_DETAIL]: { id: EntityId };
+  [PageURLS.CART]: { id: EntityId };
 }
 export const PAGES: Record<PageURLS, unknown> = {
   [PageURLS.ROOT]: "/",
@@ -27,7 +28,7 @@ export const PAGES: Record<PageURLS, unknown> = {
   [PageURLS.SHOPS]: "/organizations/:id/shops",
   [PageURLS.PRODUCTS]: "/products/:id",
   [PageURLS.PRODUCTS_CARD]: "/products/detail/:id",
-  [PageURLS.CART]: "/cart",
+  [PageURLS.CART]: "/cart/:id",
   [PageURLS.ORDERS_CREATE]: "/orders/create",
   [PageURLS.ORDERS_DETAIL]: "/orders/:id",
   [PageURLS.ORGANIZATION_LEGAL_INFO]: "/legal-info/:id",
