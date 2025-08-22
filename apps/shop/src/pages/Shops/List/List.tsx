@@ -1,5 +1,6 @@
-import { Grid, Flex, Skeleton, Typography } from "@book-eat/ui";
+import { Grid, Skeleton } from "@book-eat/ui";
 import Card from "./Card";
+import Empty from "./Empty";
 import { useShopsContext } from "../context.ts";
 import { placesEndpoints } from "@book-eat/api";
 import { useParams } from "react-router-dom";
@@ -24,21 +25,7 @@ const List = () => {
   );
 
   if (!filteredData.length) {
-    return (
-      <Flex 
-        p="40px 0"
-        flexDirection="column"
-        alignItems="center"
-        gap={2}
-      >
-        <Typography size="18/18" fontWeight={700}>
-          Ничего не нашлось
-        </Typography>
-        <Typography size="14/14" fontWeight={400} color="#6C6C6C">
-          Попробуйте изменить запрос
-        </Typography>
-      </Flex>
-    )
+    return <Empty />
   }
 
   return (

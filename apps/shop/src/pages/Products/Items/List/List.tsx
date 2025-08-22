@@ -1,5 +1,6 @@
-import { Flex, Grid, Skeleton, ListNavigation, Typography, theme } from "@book-eat/ui";
+import { Flex, Grid, Skeleton, ListNavigation } from "@book-eat/ui";
 import Card from "./Card";
+import Empty from "./Empty";
 import { useSelector } from "react-redux";
 import { cartSelector } from "../../../../store/cart/selectors.ts";
 import { useOrganizationsContext } from "../context.ts";
@@ -64,21 +65,7 @@ const List = () => {
   );
 
   if (!filteredData.length) {
-    return (
-      <Flex 
-        p="40px 0"
-        flexDirection="column"
-        alignItems="center"
-        gap={2}
-      >
-        <Typography size="18/18" fontWeight={700}>
-          Ничего не нашлось
-        </Typography>
-        <Typography size="14/14" fontWeight={400} color={theme.colors.general650}>
-          Попробуйте изменить запрос
-        </Typography>
-      </Flex>
-    )
+    return <Empty />
   }
 
   return (

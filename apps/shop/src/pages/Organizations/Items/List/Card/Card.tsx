@@ -38,6 +38,7 @@ const Card: FC<IProps> = (props) => {
         width="100%"
         className={classes.wrapper}
         onClick={onClick}
+        data-card="true"
       >
         <Box p="2px" borderRadius="20px">
           <Image />
