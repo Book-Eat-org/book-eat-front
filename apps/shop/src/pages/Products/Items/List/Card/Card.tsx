@@ -49,6 +49,7 @@ const Card = forwardRef<HTMLDivElement, IProps>((props, externalRef) => {
       width="100%"
       ref={setRefs}
       className={classes.wrapper}
+      data-card="true"
     >
       <Flex borderRadius="20px" flexDirection="column" height="100%">
         <Image id={id} />

@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 import List from "./List";
 import Header from "./Header";
 import Search from "./Search";
-import { BackIcon24, Flex, Grid, NewPage, SearchInput, theme } from "@book-eat/ui";
+import { BackIcon24, Flex, Grid, NewPage, SearchInput, theme, useSearchOutside } from "@book-eat/ui";
 import { ShopsContext } from "./context.ts";
 import { useNavigate } from "react-router-dom";
 import PageHeader from "./PageHeader";
@@ -21,6 +21,8 @@ const Shops: FC = () => {
     setActiveSearch(false);
   }
 
+  const { searchRef } = useSearchOutside(activeSearch, onCloseSearch);
+
   return (
     <ShopsContext.Provider value={{ searchValue, setSearchValue }}>
       <NewPage>
@@ -31,6 +33,7 @@ const Shops: FC = () => {
             value={searchValue}
             onChange={setSearchValue}
             placeholder="Найти ресторан"
+            containerRef={searchRef}
           >
             <NewPage.Header.Top>
               <NewPage.Header.Top.Left>

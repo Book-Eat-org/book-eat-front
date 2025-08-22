@@ -8,6 +8,7 @@ import {
   ListNavigation,
   NewPage,
   SearchInput,
+  useSearchOutside,
   theme,
 } from "@book-eat/ui";
 import { OrganizationsContext } from "./context.ts";
@@ -42,6 +43,8 @@ export const Items: FC = () => {
     setActiveSearch(false);
   };
 
+  const { searchRef } = useSearchOutside(activeSearch, onCloseSearch);
+
   return (
     <ListNavigation.Provider>
       <OrganizationsContext.Provider value={{ searchValue, setSearchValue }}>
@@ -54,6 +57,7 @@ export const Items: FC = () => {
                 value={searchValue}
                 onChange={setSearchValue}
                 placeholder="Найти блюдо"
+                containerRef={searchRef}
               >
                 <NewPage.Header.Top>
                   <NewPage.Header.Top.Left>
@@ -82,7 +86,7 @@ export const Items: FC = () => {
               </SearchInput>
             </NewPage.Header>
             <NewPage.Body padding="0">
-              <Grid height="100%">
+              <Grid>
                 <Header />
                 <List />
                 <Footer />

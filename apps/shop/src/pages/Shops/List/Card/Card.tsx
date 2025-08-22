@@ -47,6 +47,7 @@ const Card: FC<IProps> = (props) => {
         width="100%"
         className={classes.wrapper}
         opacity={isClosed ? 0.5 : 1}
+        data-card="true"
       >
         <TimeTag />
         <Box p="2px" borderRadius="20px">
