@@ -86,7 +86,7 @@ export const Items: FC = () => {
               </SearchInput>
             </NewPage.Header>
             <NewPage.Body padding="0">
-              <Grid>
+              <Grid height="100%">
                 <Header />
                 <List />
                 <Footer />
