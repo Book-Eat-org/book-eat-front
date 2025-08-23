@@ -22,7 +22,9 @@ export interface IOrder {
   id: EntityId;
   comment: string;
   personsCount: number;
+  promoCodeDiscount?: number;
   totalCost: number;
+  totalCostWithoutPromoCode?: number;
   readyTime?: string;
   orderNumber: number;
   createdAt: string;

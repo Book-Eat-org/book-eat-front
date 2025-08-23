@@ -14,7 +14,9 @@ export const Composition = () => {
       </Typography>
       <Box background={colors.general50} p={3} borderRadius={15}>
         <Grid gap={6}>
-          {order?.products?.map((product) => <Product id={product.id} />)}
+          {order?.products?.map((product) => 
+            <Product key={product.id} id={product.id} />
+          )}
         </Grid>
       </Box>
       <Totals />
