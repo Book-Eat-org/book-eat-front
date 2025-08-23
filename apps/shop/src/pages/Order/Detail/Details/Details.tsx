@@ -6,6 +6,7 @@ import { useSelector } from "$hooks";
 import { placesSelectors } from "@book-eat/api";
 import { isNotNil } from "ramda";
 import { TakeUpConfig } from "$constants";
+import { formatPhoneNumber } from "@book-eat/utils";
 
 export const Details = () => {
   const { delivery, customerInfo, places, status } = useOrder();
@@ -26,10 +27,10 @@ export const Details = () => {
           <Item title={`Статус заказа (${TakeUpConfig[type]}):`}>
             <Status />
           </Item>
-          <Item title="Телефон ресторана:">{place.info.phone}</Item>
+          <Item title="Телефон ресторана:">{formatPhoneNumber(place.info.phone ?? '')}</Item>
           {isNotNil(address) && <Item title="Адрес доставки">{address}</Item>}
           <Item title="Клиент">
-            {customerName}, {customerPhone}
+            {customerName}, {formatPhoneNumber(customerPhone)}
           </Item>
         </Grid>
       </Box>
