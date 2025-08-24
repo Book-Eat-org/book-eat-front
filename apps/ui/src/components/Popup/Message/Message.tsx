@@ -1,11 +1,24 @@
-import {Typography} from "$components";
-import {FC, ReactNode} from "react";
+import { FC, ReactNode } from "react";
+import { textSize } from "$theme";
+import { Typography } from "$components";
 import Flex from "../../Flex";
 
-interface IProps{
-    children:ReactNode
+interface IProps {
+  fontSize?:  keyof typeof textSize;
+  fontWeight?: number;
+  children: ReactNode;
 }
 
-export const Message:FC<IProps> = ({children}) => <Flex alignItems="center" justifyContent="center" >
-    <Typography fontWeight={700} size="18/18" >{children}</Typography>
-</Flex>
+export const Message: FC<IProps> = (props) => {
+  const { 
+    fontSize = "18/18", 
+    fontWeight = 700, 
+    children 
+  } = props;
+
+  return (
+    <Flex alignItems="center" justifyContent="center" >
+      <Typography textAlign="center" fontWeight={fontWeight} size={fontSize} >{children}</Typography>
+    </Flex>
+  );
+}

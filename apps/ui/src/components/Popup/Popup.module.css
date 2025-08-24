@@ -2,7 +2,3 @@
   opacity: 1;
   pointer-events: auto;
 }
-
-.popup-wrapper--open {
-  transform: translateY(0);
-}
