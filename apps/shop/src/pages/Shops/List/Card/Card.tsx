@@ -1,6 +1,6 @@
 import { EntityId } from "@reduxjs/toolkit";
 import { FC } from "react";
-import { isNil } from "ramda";
+import { isNil, isEmpty } from "ramda";
 import { Box, Image } from "@book-eat/ui";
 import TimeTag from "./TimeTag";
 import classes from "./Card.module.css";
@@ -12,30 +12,40 @@ import { CardContext } from "./context.ts";
 import { Address } from "./Address";
 import { Details } from "./Details";
 import { isShopOpen } from "@book-eat/utils";
+import { useModal } from "../../ModalProvider.tsx";
 
 interface IProps {
   id: EntityId;
 }
 
 const Card: FC<IProps> = (props) => {
-  const navigate = useNavigate();
   const { id } = props;
+  const navigate = useNavigate();
+  const { openModal } = useModal();
+
   const item = useSelector((state) => placesSelectors.selectById(state, id));
+  const cartItems = useSelector((state) => state.cart);
 
   if (isNil(item)) {
     return null;
   }
-  const isClosed = !isShopOpen(item);
 
+  const isClosed = !isShopOpen(item);
   const { logoUrl } = item;
 
   const onClick = () => {
     if (isClosed) {
       return;
     }
-    const url = navigateToPage(PageURLS.PRODUCTS, {
-      id,
-    });
+
+    if (!isNil(cartItems) && cartItems.shopId) {
+      if (id !== cartItems.shopId && !isEmpty(cartItems.items)) {
+        openModal(id);
+        return;
+      }
+    }
+
+    const url = navigateToPage(PageURLS.PRODUCTS, { id });
     navigate(url);
   };
 

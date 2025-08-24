@@ -14,26 +14,27 @@ interface IProps {
   isActive: boolean;
   onClose: () => void;
   children: React.ReactNode;
-  title?:string;
+  title?: string;
+  mode?: 'popup' | 'modal';
 }
 
-const Popup: FC<IProps> & {Title:typeof Title,Footer:typeof Footer,Message:typeof Message} = (props) => {
+const Popup: FC<IProps> & { Title: typeof Title, Footer: typeof Footer, Message: typeof Message } = (props) => {
   const {
     isActive,
     onClose,
     children,
+    mode = 'popup'
   } = props;
 
   const { shouldRender, isOpen } = useAnimation(isActive);
 
   if (!shouldRender) return null;
 
-  const {  Title,Message,Footer } = extractSections(children, {
+  const { Title, Message, Footer } = extractSections(children, {
     Message: Popup.Message,
     Footer: Popup.Footer,
     Title: Popup.Title,
   });
-
 
   return createPortal(
     <Overlay
@@ -41,7 +42,8 @@ const Popup: FC<IProps> & {Title:typeof Title,Footer:typeof Footer,Message:typeo
       className={`${isOpen ? styles['overlay--visible'] : ''}`}
     >
       <Content
-        className={`${isOpen ? styles['popup-wrapper--open'] : ''}`}
+        mode={mode}
+        isOpen={isOpen}
       >
         <Header onClose={onClose}>{Title && <div>{Title}</div>}</Header>
         {Message && <div>{Message}</div>}

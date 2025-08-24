@@ -10,19 +10,26 @@ export const useAnimation = (isActive: boolean) => {
       setShouldRender(true);
       clearTimeout(timeoutRef.current);
       
-      timeoutRef.current = setTimeout(() => {
-        setIsOpen(true);
-      }, 10);
+      const rafId = requestAnimationFrame(() => {
+        timeoutRef.current = setTimeout(() => {
+          setIsOpen(true);
+        }, 50);
+      });
+      
+      return () => {
+        cancelAnimationFrame(rafId);
+        clearTimeout(timeoutRef.current);
+      };
     } else {
       setIsOpen(false);
       timeoutRef.current = setTimeout(() => {
         setShouldRender(false);
-      }, 300);
+      }, 350);
+      
+      return () => {
+        clearTimeout(timeoutRef.current);
+      };
     }
-
-    return () => {
-      clearTimeout(timeoutRef.current);
-    };
   }, [isActive]);
 
   return { 
