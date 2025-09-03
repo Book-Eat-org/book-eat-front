@@ -11,6 +11,15 @@ export const Totals = () => {
 
   return (
     <Grid gap={2}>
+      <Flex justifyContent="space-between" alignItems="flex-end">
+        <Typography fontSize={14} color={theme.colors.general600}>
+          Стоимость товаров:
+        </Typography>
+        <Flex flex="1" borderBottom={`1px dotted ${theme.colors.general500}`} />
+        <Typography fontSize={14} color={theme.colors.general600}>
+          {productsSum} {SYMBOLS.RUB}
+        </Typography>
+      </Flex>
       {Boolean(additionsSum) && (
         <Flex justifyContent="space-between" alignItems="flex-end">
           <Typography fontSize={14} color={theme.colors.general600}>
@@ -22,15 +31,6 @@ export const Totals = () => {
           </Typography>
         </Flex>
       )}
-      <Flex justifyContent="space-between" alignItems="flex-end">
-        <Typography fontSize={14} color={theme.colors.general600}>
-          Стоимость товаров:
-        </Typography>
-        <Flex flex="1" borderBottom={`1px dotted ${theme.colors.general500}`} />
-        <Typography fontSize={14} color={theme.colors.general600}>
-          {productsSum} {SYMBOLS.RUB}
-        </Typography>
-      </Flex>
       {Boolean(deliveryPrice) && (
         <Flex justifyContent="space-between" alignItems="flex-end">
           <Typography fontSize={14} color={theme.colors.general600}>
@@ -56,7 +56,12 @@ export const Totals = () => {
       <Flex justifyContent="space-between" alignItems="flex-end">
         <Typography fontSize={18} fontWeight={700}>Сумма заказа:</Typography>
         <Flex flex="1" borderBottom={`1px dotted ${theme.colors.general500}`} />
-        <Typography fontSize={18} fontWeight={700}>{totalCost} {SYMBOLS.RUB}</Typography>
+        <Typography fontSize={18} fontWeight={700}>
+          {Boolean(promoCodeDiscount && totalCostWithoutPromoCode)
+            ? `${totalCostWithoutPromoCode} ${SYMBOLS.RUB}`
+            : `${totalCost} ${SYMBOLS.RUB}`
+          }
+        </Typography>
       </Flex>
     </Grid>
   );
