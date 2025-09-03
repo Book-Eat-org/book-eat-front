@@ -13,8 +13,9 @@ const formSchema = z.object({
   agreement: z.literal(true),
   email: z
     .string()
-    .nonempty("Укажите адресс электронной почты")
-    .email("Укажите почту в формате example@mail.ru"),
+    .email("Укажите почту в формате example@mail.ru")
+    .optional()
+    .or(z.literal("")),
   phone: z.string().regex(/^\+?\d{11}$/, "Введите корректный номер телефона"),
   name: requiredString("Укажите имя"),
 }).passthrough();

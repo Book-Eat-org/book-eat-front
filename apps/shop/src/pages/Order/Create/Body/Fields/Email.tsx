@@ -15,7 +15,7 @@ export const Email: FC = () => {
     <UIInput
       type="text"
       onChange={onChange}
-      title="Почта*"
+      title="Почта"
       value={value}
       error={errorMessage}
     />
