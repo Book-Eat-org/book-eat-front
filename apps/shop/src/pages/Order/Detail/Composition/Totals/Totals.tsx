@@ -1,7 +1,7 @@
 import { Flex, Grid, Typography } from "@book-eat/ui";
 import { theme } from "@book-eat/ui";
 import { useOrder } from "../../useOrder.ts";
-import { getTotalProductsPrices, SYMBOLS } from "@book-eat/utils";
+import { getTotalProductsPrices, formatPrice, SYMBOLS } from "@book-eat/utils";
 
 export const Totals = () => {
   const { totalCost, delivery, products, totalCostWithoutPromoCode, promoCodeDiscount } = useOrder();
@@ -17,7 +17,10 @@ export const Totals = () => {
         </Typography>
         <Flex flex="1" borderBottom={`1px dotted ${theme.colors.general500}`} />
         <Typography fontSize={14} color={theme.colors.general600}>
-          {productsSum} {SYMBOLS.RUB}
+          {promoCodeDiscount && totalCostWithoutPromoCode
+            ? `${formatPrice(totalCostWithoutPromoCode - additionsSum)} ${SYMBOLS.RUB}`
+            : `${formatPrice(productsSum)} ${SYMBOLS.RUB}`
+          }
         </Typography>
       </Flex>
       {Boolean(additionsSum) && (
@@ -27,18 +30,7 @@ export const Totals = () => {
           </Typography>
           <Flex flex="1" borderBottom={`1px dotted ${theme.colors.general500}`} />
           <Typography fontSize={14} color={theme.colors.general600}>
-            {additionsSum} {SYMBOLS.RUB}
-          </Typography>
-        </Flex>
-      )}
-      {Boolean(deliveryPrice) && (
-        <Flex justifyContent="space-between" alignItems="flex-end">
-          <Typography fontSize={14} color={theme.colors.general600}>
-            Стоимость доставки:
-          </Typography>
-          <Flex flex="1" borderBottom={`1px dotted ${theme.colors.general500}`} />
-          <Typography fontSize={14} color={theme.colors.general600}>
-            {deliveryPrice} {SYMBOLS.RUB}
+            {formatPrice(additionsSum)} {SYMBOLS.RUB}
           </Typography>
         </Flex>
       )}
@@ -49,7 +41,18 @@ export const Totals = () => {
           </Typography>
           <Flex flex="1" borderBottom={`1px dotted ${theme.colors.general500}`} />
           <Typography fontSize={14} color={theme.colors.accent600}>
-            {totalCost - (totalCostWithoutPromoCode ?? 0)} {SYMBOLS.RUB}
+            {formatPrice(totalCost - (totalCostWithoutPromoCode ?? 0))} {SYMBOLS.RUB}
+          </Typography>
+        </Flex>
+      )}
+      {Boolean(deliveryPrice) && (
+        <Flex justifyContent="space-between" alignItems="flex-end">
+          <Typography fontSize={14} color={theme.colors.general600}>
+            Доставка:
+          </Typography>
+          <Flex flex="1" borderBottom={`1px dotted ${theme.colors.general500}`} />
+          <Typography fontSize={14} color={theme.colors.general600}>
+            {formatPrice(deliveryPrice)} {SYMBOLS.RUB}
           </Typography>
         </Flex>
       )}
@@ -57,10 +60,7 @@ export const Totals = () => {
         <Typography fontSize={18} fontWeight={700}>Сумма заказа:</Typography>
         <Flex flex="1" borderBottom={`1px dotted ${theme.colors.general500}`} />
         <Typography fontSize={18} fontWeight={700}>
-          {Boolean(promoCodeDiscount && totalCostWithoutPromoCode)
-            ? `${totalCostWithoutPromoCode} ${SYMBOLS.RUB}`
-            : `${totalCost} ${SYMBOLS.RUB}`
-          }
+          {formatPrice(totalCost)} {SYMBOLS.RUB}
         </Typography>
       </Flex>
     </Grid>
