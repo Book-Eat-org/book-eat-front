@@ -40,10 +40,10 @@ export const Submit = () => {
       takeUpTime,
       name,
       phone,
-      email,
       agreement,
     } = data;
-    console.log(data)
+    console.log(data);
+    
     const cartItems = values(cartState.items);
 
     const products = cartItems.map((item) => ({
@@ -65,7 +65,6 @@ export const Submit = () => {
       customerInfo: {
         customerName: name,
         customerPhone: phone,
-        customerEmail: email,
       },
       readyTime: takeUpTime,
       delivery: {

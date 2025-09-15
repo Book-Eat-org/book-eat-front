@@ -1,5 +1,5 @@
 import { Flex, Grid } from "@book-eat/ui";
-import { Email, Name, Phone, Comment, PersonsCount } from "./Fields";
+import { Name, Phone, Comment, PersonsCount } from "./Fields";
 import { Methods } from "./Methods";
 import { FormProvider, useForm } from "react-hook-form";
 import { IFormValues } from "../models.ts";
@@ -58,7 +58,6 @@ export const Body = () => {
         <Grid gap={3}>
           <Name />
           <Phone />
-          <Email />
           <Comment />
         </Grid>
         <PersonsCount />

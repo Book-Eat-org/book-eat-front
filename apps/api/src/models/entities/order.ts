@@ -31,7 +31,6 @@ export interface IOrder {
   creationTime: string;
   customerInfo: {
     customerName: string;
-    customerEmail: string;
     customerPhone: string;
   };
   status: OrderStatus;
